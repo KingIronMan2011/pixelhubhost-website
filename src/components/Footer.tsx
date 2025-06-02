@@ -1,0 +1,175 @@
+import React from "react";
+import { Link } from "react-router-dom";
+import { Globe, Youtube } from "lucide-react";
+import { useLanguage } from "../context/LanguageContext";
+import { siteConfig } from "../config/site";
+
+const languages = [
+  { code: "en", name: "English" },
+  { code: "pt", name: "Português" },
+  { code: "de", name: "Deutsch" },
+  { code: "fr", name: "Français" },
+];
+
+
+const Footer: React.FC = () => {
+  const { language, setLanguage } = useLanguage();
+
+  return (
+    <footer className="bg-gradient-to-b from-gray-900 via-gray-950 to-black text-gray-300 pt-14 pb-8 border-t border-gray-800">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
+          {/* Brand & Description */}
+          <div>
+            <h3 className="text-2xl font-bold mb-4 bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent drop-shadow">
+              {siteConfig.name}
+            </h3>
+            <p className="text-gray-400 mb-6 leading-relaxed text-sm">
+              {siteConfig.texts.footerDescription[language]}
+            </p>
+            <div className="flex space-x-3 mt-2">
+              <a
+                href="https://www.youtube.com/@PIXELHUBHOST"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="YouTube"
+                className="hover:text-red-500 transition-colors duration-200"
+              >
+                <Youtube size={22} />
+              </a>
+            </div>
+          </div>
+
+          {/* Company */}
+          <div>
+            <h4 className="font-semibold text-lg mb-4 text-white tracking-wide">
+              {siteConfig.texts.company[language]}
+            </h4>
+            <ul className="space-y-2 text-sm">
+              <li>
+                <a
+                  href="/aboutus"
+                  className="hover:text-blue-400 transition-colors"
+                >
+                  {siteConfig.texts.aboutUs[language]}
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#contact"
+                  className="hover:text-blue-400 transition-colors"
+                >
+                  {siteConfig.texts.contact[language]}
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          {/* Services */}
+          <div>
+            <h4 className="font-semibold text-lg mb-4 text-white tracking-wide">
+              {siteConfig.texts.services[language]}
+            </h4>
+            <ul className="space-y-2 text-sm">
+              <li>
+                <a
+                  href="#pricing"
+                  className="hover:text-blue-400 transition-colors"
+                >
+                  {siteConfig.texts.mcHosting[language]}
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#addons"
+                  className="hover:text-blue-400 transition-colors"
+                >
+                  {siteConfig.texts.addons[language]}
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          {/* Support & Language */}
+          <div>
+            <h4 className="font-semibold text-lg mb-4 text-white tracking-wide">
+              {siteConfig.texts.support[language]}
+            </h4>
+            <ul className="space-y-2 text-sm">
+              <li>
+                <a
+                  href={siteConfig.contact.discord}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-blue-400 transition-colors"
+                >
+                  {siteConfig.texts.helpCenter[language]}
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://stats.uptimerobot.com/h2jzO5FroG"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-blue-400 transition-colors"
+                >
+                  {siteConfig.texts.systemStatus[language]}
+                </a>
+              </li>
+              <li>
+                <div className="flex items-center mt-3">
+                  <Globe size={16} className="mr-2 text-gray-400" />
+                  <select
+                    value={language}
+                    onChange={(e) => setLanguage(e.target.value as any)}
+                    className="bg-gray-900 border border-gray-700 rounded px-2 py-1 text-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    aria-label="Select language"
+                  >
+                    {languages.map((lang) => (
+                      <option
+                        key={lang.code}
+                        value={lang.code}
+                        className="bg-gray-900 text-gray-300"
+                      >
+                        {lang.name}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        {/* Footer bottom */}
+        <div className="border-t border-gray-800 pt-6 mt-6 flex flex-col md:flex-row justify-between items-center gap-4">
+          <p className="text-gray-500 text-xs">
+            {siteConfig.texts.footerCopyright[language]}
+          </p>
+          <div className="flex flex-wrap gap-x-6 gap-y-2 text-xs text-gray-500">
+            <a
+              href="/privacy"
+              className="hover:text-blue-400 transition-colors"
+            >
+              {siteConfig.texts.privacyPolicy[language]}
+            </a>
+            <a href="/terms" className="hover:text-blue-400 transition-colors">
+              {siteConfig.texts.termsOfService[language]}
+            </a>
+            <Link
+              to="/sitemap"
+              className="hover:text-blue-400 transition-colors"
+            >
+              {siteConfig.texts.sitemap[language]}
+            </Link>
+            <a href="/legal" className="hover:text-blue-400 transition-colors">
+              {siteConfig.texts.legal[language]}
+            </a>
+          </div>
+        </div>
+      </div>
+    </footer>
+  );
+};
+
+export default Footer;
