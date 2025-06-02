@@ -11,6 +11,20 @@ const languages = [
   { code: "fr", name: "Français" },
 ];
 
+// Add translation strings for the GitHub button and "Made by"
+const githubButtonText: Record<string, string> = {
+  en: "Wanna help us build this website? Commit a change at our Github",
+  pt: "Quer ajudar a construir este site? Faça um commit no nosso Github",
+  de: "Willst du uns helfen, diese Website zu bauen? Mach einen Commit auf unserem Github",
+  fr: "Vous voulez aider à construire ce site ? Faites un commit sur notre Github",
+};
+
+const madeByText: Record<string, string> = {
+  en: "Made by KingIronMan2011",
+  pt: "Feito por KingIronMan2011",
+  de: "Erstellt von KingIronMan2011",
+  fr: "Réalisé par KingIronMan2011",
+};
 
 const Footer: React.FC = () => {
   const { language, setLanguage } = useLanguage();
@@ -18,7 +32,7 @@ const Footer: React.FC = () => {
   return (
     <footer className="bg-gradient-to-b from-gray-900 via-gray-950 to-black text-gray-300 pt-14 pb-8 border-t border-gray-800">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-8">
           {/* Brand & Description */}
           <div>
             <h3 className="text-2xl font-bold mb-4 bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent drop-shadow">
@@ -141,8 +155,27 @@ const Footer: React.FC = () => {
           </div>
         </div>
 
+        {/* GitHub contribution button */}
+        <div className="flex justify-center mt-1 mb-1">
+          <a
+            href="https://github.com/KingIronMan2011/pixelhubhost-website"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-block bg-gray-800 hover:bg-gray-700 text-white font-medium py-1 px-2 rounded shadow text-xs transition-colors duration-200"
+          >
+            {githubButtonText[language] || githubButtonText.en}
+          </a>
+        </div>
+
+        {/* Made by */}
+        <div className="flex justify-center mb-1">
+          <span className="text-gray-500 text-xs">
+            {madeByText[language] || madeByText.en}
+          </span>
+        </div>
+
         {/* Footer bottom */}
-        <div className="border-t border-gray-800 pt-6 mt-6 flex flex-col md:flex-row justify-between items-center gap-4">
+        <div className="border-t border-gray-800 pt-4 mt-4 flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-gray-500 text-xs">
             {siteConfig.texts.footerCopyright[language]}
           </p>
