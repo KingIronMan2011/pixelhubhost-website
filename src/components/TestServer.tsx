@@ -158,7 +158,7 @@ const ConnectPopup: React.FC<ConnectPopupProps> = ({
               className="absolute top-3 right-3 text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 text-xl font-bold transition-colors"
               aria-label="Close"
             >
-              ×
+              x
             </button>
             <div className="flex items-center mb-4">
               <Info className="w-6 h-6 text-blue-500 mr-2" />
