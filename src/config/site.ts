@@ -508,34 +508,10 @@ export const siteConfig: SiteConfig = {
       fr: "Vous voulez en savoir plus ? Contactez-nous à tout moment !",
     },
     home: {
-  en: "Home",
-  de: "Startseite",
-  pt: "Início",
-  fr: "Accueil"
-    },
-    aboutUs: {
-  en: "About Us",
-  de: "Über Uns",
-  pt: "Sobre Nós",
-  fr: "À Propos"
-    },
-    privacyPolicy: {
-  en: "Privacy Policy",
-  de: "Datenschutzrichtlinie",
-  pt: "Política de Privacidade",
-  fr: "Politique de Confidentialité"
-    },
-    termsOfService: {
-  en: "Terms of Service",
-  de: "Nutzungsbedingungen",
-  pt: "Termos de Serviço",
-  fr: "Conditions d'utilisation"
-    },
-    legal: {
-  en: "Legal",
-  de: "Rechtliches",
-  pt: "Legal",
-  fr: "Mentions légales"
+      en: "Home",
+      de: "Startseite",
+      pt: "Início",
+      fr: "Accueil",
     },
   },
 };

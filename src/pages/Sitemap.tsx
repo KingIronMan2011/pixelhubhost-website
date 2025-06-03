@@ -1,11 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { useTranslation } from "react-i18next";
+import { useLanguage } from "../context/LanguageContext";
 import { siteConfig } from "../config/site";
 
 const sitemapLinks = [
   { path: "/", labelKey: "home" },
-  { path: "/aboutus", labelKey: "aboutUs" },
+  { path: "/aboutus", labelKey: "aboutUsTitle" },
   { path: "/privacy", labelKey: "privacyPolicy" },
   { path: "/terms", labelKey: "termsOfService" },
   { path: "/legal", labelKey: "legal" },
@@ -13,7 +13,7 @@ const sitemapLinks = [
 ];
 
 const Sitemap: React.FC = () => {
-  const { t } = useTranslation();
+  const { language } = useLanguage();
 
   return (
     <div
@@ -27,7 +27,9 @@ const Sitemap: React.FC = () => {
       }}
     >
       <h1 style={{ fontWeight: 700, fontSize: "2rem", marginBottom: "2rem" }}>
-        {t("sitemap")}
+        {siteConfig.texts.sitemap?.[language] ||
+          siteConfig.texts.sitemap?.en ||
+          "Sitemap"}
       </h1>
       <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
         {sitemapLinks.map((link) => (
@@ -43,10 +45,16 @@ const Sitemap: React.FC = () => {
                 transition: "background 0.2s, color 0.2s",
                 display: "inline-block",
               }}
-              onMouseOver={e => (e.currentTarget.style.background = "#f0f4ff")}
-              onMouseOut={e => (e.currentTarget.style.background = "transparent")}
+              onMouseOver={(e) =>
+                (e.currentTarget.style.background = "#f0f4ff")
+              }
+              onMouseOut={(e) =>
+                (e.currentTarget.style.background = "transparent")
+              }
             >
-              {t(link.labelKey)}
+              {siteConfig.texts[link.labelKey]?.[language] ||
+                siteConfig.texts[link.labelKey]?.en ||
+                link.labelKey}
             </Link>
           </li>
         ))}
