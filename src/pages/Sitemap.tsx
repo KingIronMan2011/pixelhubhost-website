@@ -16,41 +16,18 @@ const Sitemap: React.FC = () => {
   const { language } = useLanguage();
 
   return (
-    <div
-      style={{
-        maxWidth: 480,
-        margin: "3rem auto",
-        padding: "2.5rem",
-        background: "#fff",
-        borderRadius: "20px",
-        boxShadow: "0 6px 32px rgba(0,0,0,0.06)",
-      }}
-    >
-      <h1 style={{ fontWeight: 700, fontSize: "2rem", marginBottom: "2rem" }}>
+    <div className="max-w-lg mx-auto mt-24 mb-12 p-8 rounded-2xl shadow-xl bg-white/90 dark:bg-gray-900/90 border border-gray-200 dark:border-gray-800">
+      <h1 className="font-extrabold text-3xl mb-8 text-center bg-gradient-to-r from-blue-500 to-purple-500 bg-clip-text text-transparent drop-shadow">
         {siteConfig.texts.sitemap?.[language] ||
           siteConfig.texts.sitemap?.en ||
           "Sitemap"}
       </h1>
-      <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
+      <ul className="space-y-3">
         {sitemapLinks.map((link) => (
-          <li key={link.path} style={{ margin: "1.2rem 0" }}>
+          <li key={link.path}>
             <Link
               to={link.path}
-              style={{
-                textDecoration: "none",
-                color: "#3366ff",
-                fontSize: "1.12rem",
-                padding: "0.4rem 1.2rem",
-                borderRadius: "10px",
-                transition: "background 0.2s, color 0.2s",
-                display: "inline-block",
-              }}
-              onMouseOver={(e) =>
-                (e.currentTarget.style.background = "#f0f4ff")
-              }
-              onMouseOut={(e) =>
-                (e.currentTarget.style.background = "transparent")
-              }
+              className="block px-5 py-3 rounded-xl font-medium text-base text-blue-700 dark:text-blue-300 bg-blue-50/60 dark:bg-blue-900/30 hover:bg-blue-100 dark:hover:bg-blue-800 transition-colors duration-200 shadow-sm"
             >
               {siteConfig.texts[link.labelKey]?.[language] ||
                 siteConfig.texts[link.labelKey]?.en ||
