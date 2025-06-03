@@ -1,6 +1,5 @@
 import React from "react";
-import { FaDiscord } from "react-icons/fa";
-import { Phone } from "lucide-react";
+import { FaDiscord, FaWhatsapp, FaEnvelope } from "react-icons/fa";
 import { useLanguage } from "../context/LanguageContext";
 import languagesConfig from "../config/languages/Languages";
 
@@ -8,7 +7,9 @@ type LanguageKey = keyof typeof languagesConfig;
 
 const Contact: React.FC = () => {
   const { language } = useLanguage();
-  const langKey = (language in languagesConfig ? language : "en") as LanguageKey;
+  const langKey = (
+    language in languagesConfig ? language : "en"
+  ) as LanguageKey;
   const t = languagesConfig[langKey].texts;
   const contact = languagesConfig[langKey].contact;
 
@@ -31,7 +32,7 @@ const Contact: React.FC = () => {
               href={contact.discord}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center justify-center gap-3 px-8 py-5 rounded-2xl bg-white/90 dark:bg-gray-900/90 border border-gray-200 dark:border-gray-800 shadow hover:shadow-lg hover:-translate-y-1 transition-all duration-300 text-gray-900 dark:text-white hover:text-blue-600 dark:hover:text-blue-400 font-medium text-lg"
+              className="flex items-center justify-center gap-3 px-8 py-5 rounded-2xl bg-blue-600 dark:bg-blue-700 border border-blue-700 dark:border-blue-500 shadow hover:shadow-lg hover:-translate-y-1 transition-all duration-300 text-white hover:text-white font-medium text-lg"
             >
               <FaDiscord className="w-7 h-7" />
               Discord
@@ -40,10 +41,17 @@ const Contact: React.FC = () => {
               href={contact.whatsapp}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center justify-center gap-3 px-8 py-5 rounded-2xl bg-white/90 dark:bg-gray-900/90 border border-gray-200 dark:border-gray-800 shadow hover:shadow-lg hover:-translate-y-1 transition-all duration-300 text-gray-900 dark:text-white hover:text-green-600 dark:hover:text-green-400 font-medium text-lg"
+              className="flex items-center justify-center gap-3 px-8 py-5 rounded-2xl bg-green-500 dark:bg-green-600 border border-green-700 dark:border-green-500 shadow hover:shadow-lg hover:-translate-y-1 transition-all duration-300 text-white hover:text-white font-medium text-lg"
             >
-              <Phone className="w-7 h-7" />
+              <FaWhatsapp className="w-7 h-7" />
               WhatsApp
+            </a>
+            <a
+              href={`mailto:${contact.email}`}
+              className="flex items-center justify-center gap-3 px-8 py-5 rounded-2xl bg-gray-100 dark:bg-gray-800 border border-gray-300 dark:border-gray-700 shadow hover:shadow-lg hover:-translate-y-1 transition-all duration-300 text-blue-700 dark:text-blue-400 hover:text-blue-900 dark:hover:text-blue-300 font-medium text-lg"
+            >
+              <FaEnvelope className="w-7 h-7" />
+              Email
             </a>
           </div>
         </div>

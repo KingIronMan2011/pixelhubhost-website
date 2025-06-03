@@ -1,22 +1,20 @@
-import { Language } from './config';
-
-// Fix: Export commonFeatures if used elsewhere, and ensure no circular imports or runtime errors.
+import { Language } from "./config";
 
 const getCurrencyByLanguage = (language: Language) => {
   switch (language) {
-    case 'en':
-      return { symbol: '$', rate: 0.2 };
-    case 'de':
-    case 'fr':
-    case 'it': // Add Italian to Euro
-      return { symbol: '€', rate: 0.19 };
+    case "en":
+      return { symbol: "$", rate: 0.2 };
+    case "de":
+    case "fr":
+    case "it":
+      return { symbol: "€", rate: 0.19 };
     default:
-      return { symbol: 'R$', rate: 1 };
+      return { symbol: "R$", rate: 1 };
   }
 };
 
 export type PlanFeature = {
-  name: { [key in Language]: string };
+  nameKey: string; // Use a single key for all languages
   included: boolean;
 };
 
@@ -47,46 +45,10 @@ export type Plan = {
 };
 
 export const commonFeatures: PlanFeature[] = [
-  {
-    name: {
-      en: "DDoS Protection",
-      pt: "Proteção DDoS",
-      de: "DDoS-Schutz",
-      fr: "Protection DDoS",
-      it: "Protezione DDoS"
-    },
-    included: true
-  },
-  {
-    name: {
-      en: "Intel Xeon CPU",
-      pt: "CPU Intel Xeon",
-      de: "Intel Xeon CPU",
-      fr: "CPU Intel Xeon",
-      it: "CPU Intel Xeon"
-    },
-    included: true
-  },
-  {
-    name: {
-      en: "1Gbps Network",
-      pt: "Rede 1Gbps",
-      de: "1Gbps Netzwerk",
-      fr: "Réseau 1Gbps",
-      it: "Rete 1Gbps"
-    },
-    included: true
-  },
-  {
-    name: {
-      en: "Reliable Support",
-      pt: "Suporte Confiável",
-      de: "Zuverlässiger Support",
-      fr: "Support Fiable",
-      it: "Supporto Affidabile"
-    },
-    included: true
-  }
+  { nameKey: "ddosProtection", included: true },
+  { nameKey: "xeonCpu", included: true },
+  { nameKey: "networkSpeed", included: true },
+  { nameKey: "reliableSupport", included: true },
 ];
 
 // You can add more plans here for scalability and maintainability
@@ -98,14 +60,14 @@ export const plans: Plan[] = [
       pt: "Carvalho",
       de: "Eiche",
       fr: "Chêne",
-      it: "Quercia"
+      it: "Quercia",
     },
     description: {
       en: "Great for growing Minecraft servers",
       pt: "Ótimo para servidores Minecraft em crescimento",
       de: "Ideal für wachsende Minecraft-Server",
       fr: "Idéal pour les serveurs Minecraft en croissance",
-      it: "Ottimo per server Minecraft in crescita"
+      it: "Ottimo per server Minecraft in crescita",
     },
     price: {
       base_amount: 34,
@@ -113,10 +75,10 @@ export const plans: Plan[] = [
         const { symbol, rate } = getCurrencyByLanguage(language);
         return {
           amount: Math.round(34 * rate),
-          quarterlyAmount: Math.round(34 * 3 * rate * 0.90),
-          currency: symbol
+          quarterlyAmount: Math.round(34 * 3 * rate * 0.9),
+          currency: symbol,
         };
-      }
+      },
     },
     features: commonFeatures,
     available: true,
@@ -128,8 +90,8 @@ export const plans: Plan[] = [
       storage: 10,
       backups: 1,
       databases: 3,
-      ports: 3
-    }
+      ports: 3,
+    },
   },
   {
     id: "stone",
@@ -138,14 +100,14 @@ export const plans: Plan[] = [
       pt: "Pedra",
       de: "Stein",
       fr: "Pierre",
-      it: "Pietra"
+      it: "Pietra",
     },
     description: {
       en: "Solid performance for medium-sized servers",
       pt: "Desempenho sólido para servidores médios",
       de: "Solide Leistung für mittelgroße Server",
       fr: "Performance solide pour serveurs moyens",
-      it: "Prestazioni solide per server di medie dimensioni"
+      it: "Prestazioni solide per server di medie dimensioni",
     },
     price: {
       base_amount: 51,
@@ -153,10 +115,10 @@ export const plans: Plan[] = [
         const { symbol, rate } = getCurrencyByLanguage(language);
         return {
           amount: Math.round(51 * rate),
-          quarterlyAmount: Math.round(51 * 3 * rate * 0.90),
-          currency: symbol
+          quarterlyAmount: Math.round(51 * 3 * rate * 0.9),
+          currency: symbol,
         };
-      }
+      },
     },
     features: commonFeatures,
     available: true,
@@ -168,8 +130,8 @@ export const plans: Plan[] = [
       storage: 20,
       backups: 1,
       databases: 3,
-      ports: 3
-    }
+      ports: 3,
+    },
   },
   {
     id: "iron",
@@ -178,14 +140,14 @@ export const plans: Plan[] = [
       pt: "Ferro",
       de: "Eisen",
       fr: "Fer",
-      it: "Ferro"
+      it: "Ferro",
     },
     description: {
       en: "Powerful hosting for established communities",
       pt: "Hospedagem poderosa para comunidades estabelecidas",
       de: "Leistungsstarkes Hosting für etablierte Communities",
       fr: "Hébergement puissant pour communautés établies",
-      it: "Hosting potente per community consolidate"
+      it: "Hosting potente per community consolidate",
     },
     price: {
       base_amount: 68,
@@ -193,10 +155,10 @@ export const plans: Plan[] = [
         const { symbol, rate } = getCurrencyByLanguage(language);
         return {
           amount: Math.round(68 * rate),
-          quarterlyAmount: Math.round(68 * 3 * rate * 0.90),
-          currency: symbol
+          quarterlyAmount: Math.round(68 * 3 * rate * 0.9),
+          currency: symbol,
         };
-      }
+      },
     },
     features: commonFeatures,
     available: true,
@@ -208,8 +170,8 @@ export const plans: Plan[] = [
       storage: 30,
       backups: 1,
       databases: 3,
-      ports: 3
-    }
+      ports: 3,
+    },
   },
   {
     id: "diamond",
@@ -218,14 +180,14 @@ export const plans: Plan[] = [
       pt: "Diamante",
       de: "Diamant",
       fr: "Diamant",
-      it: "Diamante"
+      it: "Diamante",
     },
     description: {
       en: "Premium hosting for large communities",
       pt: "Hospedagem premium para grandes comunidades",
       de: "Premium-Hosting für große Communities",
       fr: "Hébergement premium pour grandes communautés",
-      it: "Hosting premium per grandi community"
+      it: "Hosting premium per grandi community",
     },
     price: {
       base_amount: 100,
@@ -233,10 +195,10 @@ export const plans: Plan[] = [
         const { symbol, rate } = getCurrencyByLanguage(language);
         return {
           amount: Math.round(100 * rate),
-          quarterlyAmount: Math.round(100 * 3 * rate * 0.90),
-          currency: symbol
+          quarterlyAmount: Math.round(100 * 3 * rate * 0.9),
+          currency: symbol,
         };
-      }
+      },
     },
     features: commonFeatures,
     available: true,
@@ -248,8 +210,8 @@ export const plans: Plan[] = [
       storage: 40,
       backups: 1,
       databases: 3,
-      ports: 3
-    }
+      ports: 3,
+    },
   },
   {
     id: "netherite",
@@ -258,14 +220,14 @@ export const plans: Plan[] = [
       pt: "Netherita",
       de: "Netherit",
       fr: "Netherite",
-      it: "Netherite"
+      it: "Netherite",
     },
     description: {
       en: "Ultimate performance for demanding servers",
       pt: "Performance máxima para servidores exigentes",
       de: "Ultimative Leistung für anspruchsvolle Server",
       fr: "Performance ultime pour serveurs exigeants",
-      it: "Prestazioni estreme per server esigenti"
+      it: "Prestazioni estreme per server esigenti",
     },
     price: {
       base_amount: 130,
@@ -273,10 +235,10 @@ export const plans: Plan[] = [
         const { symbol, rate } = getCurrencyByLanguage(language);
         return {
           amount: Math.round(130 * rate),
-          quarterlyAmount: Math.round(130 * 3 * rate * 0.90),
-          currency: symbol
+          quarterlyAmount: Math.round(130 * 3 * rate * 0.9),
+          currency: symbol,
         };
-      }
+      },
     },
     features: commonFeatures,
     available: true,
@@ -288,8 +250,8 @@ export const plans: Plan[] = [
       storage: 60,
       backups: 1,
       databases: 3,
-      ports: 3
-    }
+      ports: 3,
+    },
   },
   {
     id: "dragon",
@@ -298,14 +260,14 @@ export const plans: Plan[] = [
       pt: "Dragão do Fim",
       de: "Enderdrache",
       fr: "Dragon de l'Ender",
-      it: "Drago Ender"
+      it: "Drago Ender",
     },
     description: {
       en: "Maximum power for large networks",
       pt: "Poder máximo para grandes redes",
       de: "Maximale Leistung für große Netzwerke",
       fr: "Puissance maximale pour grands réseaux",
-      it: "Potenza massima per grandi reti"
+      it: "Potenza massima per grandi reti",
     },
     price: {
       base_amount: 248,
@@ -313,10 +275,10 @@ export const plans: Plan[] = [
         const { symbol, rate } = getCurrencyByLanguage(language);
         return {
           amount: Math.round(248 * rate),
-          quarterlyAmount: Math.round(248 * 3 * rate * 0.90),
-          currency: symbol
+          quarterlyAmount: Math.round(248 * 3 * rate * 0.9),
+          currency: symbol,
         };
-      }
+      },
     },
     features: commonFeatures,
     available: true,
@@ -328,7 +290,7 @@ export const plans: Plan[] = [
       storage: 80,
       backups: 1,
       databases: 3,
-      ports: 3
-    }
-  }
+      ports: 3,
+    },
+  },
 ];

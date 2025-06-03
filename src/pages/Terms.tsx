@@ -1,52 +1,7 @@
 import React from "react";
 import { useLanguage } from "../context/LanguageContext";
 import { config } from "../config/config";
-import languagesConfig from "../config/languages/Languages"; // updated import
-
-const tosTexts = {
-  title: {
-    en: "Terms of Service",
-    de: "Nutzungsbedingungen",
-    fr: "Conditions d'utilisation",
-    pt: "Termos de Serviço",
-    it: "Termini di Servizio",
-  },
-  intro: {
-    en: "By using our website and services, you agree to the following terms.",
-    de: "Durch die Nutzung unserer Website und Dienste stimmen Sie den folgenden Bedingungen zu.",
-    fr: "En utilisant notre site et nos services, vous acceptez les conditions suivantes.",
-    pt: "Ao usar nosso site e serviços, você concorda com os seguintes termos.",
-    it: "Utilizzando il nostro sito e i nostri servizi, accetti i seguenti termini.",
-  },
-  usage: {
-    en: "You must not use our services for illegal or abusive purposes.",
-    de: "Sie dürfen unsere Dienste nicht für illegale oder missbräuchliche Zwecke verwenden.",
-    fr: "Vous ne devez pas utiliser nos services à des fins illégales ou abusives.",
-    pt: "Você não deve usar nossos serviços para fins ilegais ou abusivos.",
-    it: "Non devi utilizzare i nostri servizi per scopi illegali o abusivi.",
-  },
-  account: {
-    en: "You are responsible for maintaining the security of your account.",
-    de: "Sie sind für die Sicherheit Ihres Kontos verantwortlich.",
-    fr: "Vous êtes responsable de la sécurité de votre compte.",
-    pt: "Você é responsável por manter a segurança da sua conta.",
-    it: "Sei responsabile del mantenimento della sicurezza del tuo account.",
-  },
-  changes: {
-    en: "We may update these terms at any time. Continued use means acceptance of the new terms.",
-    de: "Wir können diese Bedingungen jederzeit aktualisieren. Die fortgesetzte Nutzung gilt als Zustimmung zu den neuen Bedingungen.",
-    fr: "Nous pouvons mettre à jour ces conditions à tout moment. L'utilisation continue vaut acceptation des nouvelles conditions.",
-    pt: "Podemos atualizar estes termos a qualquer momento. O uso contínuo implica aceitação dos novos termos.",
-    it: "Possiamo aggiornare questi termini in qualsiasi momento. L'uso continuato implica l'accettazione dei nuovi termini.",
-  },
-  contact: {
-    en: "If you have questions about our terms, please contact us.",
-    de: "Wenn Sie Fragen zu unseren Bedingungen haben, kontaktieren Sie uns bitte.",
-    fr: "Si vous avez des questions concernant nos conditions, veuillez nous contacter.",
-    pt: "Se você tiver dúvidas sobre nossos termos, entre em contato conosco.",
-    it: "Se hai domande sui nostri termini, ti preghiamo di contattarci.",
-  },
-};
+import languagesConfig from "../config/languages/Languages";
 
 const Terms: React.FC = () => {
   const { language } = useLanguage();
@@ -56,18 +11,18 @@ const Terms: React.FC = () => {
     <section className="min-h-screen bg-gradient-to-b from-gray-900 via-gray-950 to-black text-gray-200 py-20 px-4">
       <div className="max-w-3xl mx-auto">
         <h1 className="text-4xl font-bold mb-6 bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
-          {tosTexts.title[language]}
+          {texts.termsOfService}
         </h1>
-        <p className="mb-4 text-lg">{tosTexts.intro[language]}</p>
+        <p className="mb-4 text-lg">{texts.tosIntro}</p>
         <h2 className="text-2xl font-semibold mt-8 mb-2 text-blue-300">
           {config.name}
         </h2>
         <ul className="list-disc list-inside mb-4 space-y-2">
-          <li>{tosTexts.usage[language]}</li>
-          <li>{tosTexts.account[language]}</li>
-          <li>{tosTexts.changes[language]}</li>
+          <li>{texts.tosUsage}</li>
+          <li>{texts.tosAccount}</li>
+          <li>{texts.tosChanges}</li>
         </ul>
-        <p className="mb-4">{tosTexts.contact[language]}</p>
+        <p className="mb-4">{texts.tosContact}</p>
         <div className="mt-8 text-center">
           <a
             href={config.contact.discord}

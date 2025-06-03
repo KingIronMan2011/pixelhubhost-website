@@ -4,44 +4,6 @@ import { plans as basePlans } from "../config/plans";
 import { config, planLinks } from "../config/config";
 import languagesConfig from "../config/languages/Languages"; // <-- fixed casing to match other imports
 
-// Add a custom plan object
-const customPlan = {
-  id: "custom",
-  name: {
-    en: "Custom",
-    de: "Individuell",
-    fr: "Personnalisé",
-    pt: "Personalizado",
-    it: "Personalizzato", // Italian support
-  },
-  description: {
-    en: "Contact us for a custom server tailored to your needs.",
-    de: "Kontaktieren Sie uns für einen individuellen Server.",
-    fr: "Contactez-nous pour un serveur personnalisé.",
-    pt: "Entre em contato para um servidor personalizado.",
-    it: "Contattaci per un server personalizzato su misura per te.", // Italian support
-  },
-  price: {
-    getCurrencyInfo: () => ({
-      currency: "",
-      amount: "",
-      quarterlyAmount: "",
-    }),
-  },
-  specs: {
-    threads: "-",
-    ram: "-",
-    storage: "-",
-    backups: "-",
-    databases: "-",
-    ports: "-",
-  },
-  available: true,
-  popular: false,
-};
-
-const plans = [...basePlans, customPlan];
-
 const PricingPlans = () => {
   const { language } = useLanguage();
   const [billingInterval, setBillingInterval] = useState<
@@ -52,6 +14,44 @@ const PricingPlans = () => {
   const texts =
     languagesConfig[language as keyof typeof languagesConfig]?.texts ||
     languagesConfig.en.texts;
+
+  // Add a custom plan object (now that texts is in scope)
+  const customPlan = {
+    id: "custom",
+    name: {
+      en: texts.customPlanName,
+      de: texts.customPlanName,
+      fr: texts.customPlanName,
+      pt: texts.customPlanName,
+      it: texts.customPlanName,
+    },
+    description: {
+      en: texts.customPlanDesc,
+      de: texts.customPlanDesc,
+      fr: texts.customPlanDesc,
+      pt: texts.customPlanDesc,
+      it: texts.customPlanDesc,
+    },
+    price: {
+      getCurrencyInfo: () => ({
+        currency: "",
+        amount: "",
+        quarterlyAmount: "",
+      }),
+    },
+    specs: {
+      threads: "-",
+      ram: "-",
+      storage: "-",
+      backups: "-",
+      databases: "-",
+      ports: "-",
+    },
+    available: true,
+    popular: false,
+  };
+
+  const plans = useMemo(() => [...basePlans, customPlan], [basePlans, texts]);
 
   const getCurrencyDisplay = useMemo(() => {
     return (plan: (typeof plans)[0]) => {

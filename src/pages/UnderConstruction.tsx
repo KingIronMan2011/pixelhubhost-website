@@ -1,59 +1,14 @@
 import { useLanguage } from "../context/LanguageContext";
-import { config } from "../config/config";
+import { config, Language } from "../config/config";
+import languagesConfig from "../config/languages/Languages"; // <-- import the translations
 
 const brand = config.name;
 const contact = config.contact;
 const website = config.website;
 
-const texts = {
-  underConstruction: {
-    en: "Under Construction",
-    de: "Im Aufbau",
-    fr: "En construction",
-    pt: "Em construção",
-    it: "In costruzione",
-  },
-  working: {
-    en: "We're working hard to bring you something awesome.",
-    de: "Wir arbeiten daran, Ihnen etwas Großartiges zu bieten.",
-    fr: "Nous travaillons dur pour vous offrir quelque chose de génial.",
-    pt: "Estamos trabalhando para trazer algo incrível para você.",
-    it: "Stiamo lavorando duramente per offrirti qualcosa di fantastico.",
-  },
-  checkBack: {
-    en: "Please check back soon!",
-    de: "Bitte schauen Sie bald wieder vorbei!",
-    fr: "Veuillez revenir bientôt !",
-    pt: "Por favor, volte em breve!",
-    it: "Torna presto a trovarci!",
-  },
-  contactUs: {
-    en: "Contact us",
-    de: "Kontaktieren Sie uns",
-    fr: "Contactez-nous",
-    pt: "Contate-nos",
-    it: "Contattaci",
-  },
-  language: {
-    en: "Language",
-    de: "Sprache",
-    fr: "Langue",
-    pt: "Idioma",
-    it: "Lingua",
-  },
-  visitWebsite: {
-    en: "Visit Website",
-    de: "Webseite besuchen",
-    fr: "Visiter le site",
-    pt: "Visitar site",
-    it: "Visita il sito",
-  },
-};
-
-type Language = "en" | "de" | "fr" | "pt" | "it";
-
 const UnderConstruction = () => {
   const { language, setLanguage } = useLanguage();
+  const texts = languagesConfig[language]?.texts || languagesConfig.en.texts;
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-b from-gray-900 via-gray-950 to-black text-gray-200 transition-colors duration-500">
@@ -82,13 +37,13 @@ const UnderConstruction = () => {
         </a>
         <span className="text-5xl mb-4 animate-pulse">🚧</span>
         <h1 className="text-3xl md:text-4xl font-bold mb-3 text-gray-900 dark:text-white text-center">
-          {texts.underConstruction[language]}
+          {texts.underConstruction}
         </h1>
         <p className="text-lg text-gray-700 dark:text-gray-300 text-center mb-2">
-          {texts.working[language]}
+          {texts.constructionWorking}
         </p>
         <p className="text-base text-gray-500 dark:text-gray-400 text-center mb-4">
-          {texts.checkBack[language]}
+          {texts.constructionCheckBack}
         </p>
         {/* Contact */}
         <div className="flex gap-4 mb-4">
@@ -105,7 +60,7 @@ const UnderConstruction = () => {
             Discord
           </a>
           <a
-            href={contact.email}
+            href={`mailto:${contact.email}`}
             className="inline-flex items-center gap-2 bg-gray-100 dark:bg-gray-800 text-blue-600 dark:text-blue-400 px-5 py-2 rounded-lg font-medium border border-blue-200 dark:border-blue-900 hover:border-blue-400 dark:hover:border-blue-700 shadow transition-colors"
           >
             {/* Email Icon */}
@@ -114,6 +69,18 @@ const UnderConstruction = () => {
             </svg>
             Email
           </a>
+          <a
+            href={contact.whatsapp}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 bg-green-500 hover:bg-green-600 text-white px-5 py-2 rounded-lg font-medium transition-colors shadow"
+          >
+            {/* WhatsApp Icon */}
+            <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M20.52 3.48A11.93 11.93 0 0 0 12.07 0C5.4 0 .07 5.33.07 11.99c0 2.12.56 4.19 1.62 6.01L0 24l6.18-1.62a12.02 12.02 0 0 0 5.89 1.5h.01c6.67 0 12.1-5.33 12.1-11.99 0-3.2-1.25-6.21-3.56-8.52zM12.07 22c-1.8 0-3.57-.48-5.11-1.39l-.37-.22-3.67.96.98-3.58-.24-.37A9.98 9.98 0 0 1 2.07 12c0-5.51 4.49-9.99 10-9.99 2.67 0 5.18 1.04 7.07 2.93a9.93 9.93 0 0 1 2.93 7.06c0 5.51-4.49 9.99-10 9.99zm5.47-7.59c-.3-.15-1.77-.87-2.04-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.26-.47-2.4-1.5-.89-.79-1.49-1.77-1.66-2.07-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.07-.15-.67-1.61-.92-2.21-.24-.58-.49-.5-.67-.51-.17-.01-.37-.01-.57-.01-.2 0-.52.07-.8.37-.27.3-1.05 1.03-1.05 2.5 0 1.47 1.07 2.89 1.22 3.09.15.2 2.1 3.21 5.09 4.37.71.25 1.26.4 1.69.51.71.18 1.36.16 1.87.1.57-.07 1.77-.72 2.02-1.41.25-.69.25-1.28.18-1.41-.07-.13-.27-.2-.57-.35z"/>
+            </svg>
+            WhatsApp
+          </a>
         </div>
         {/* Language Switcher */}
         <div className="flex items-center gap-2 mt-4">
@@ -121,7 +88,7 @@ const UnderConstruction = () => {
             htmlFor="lang"
             className="text-sm text-gray-500 dark:text-gray-400"
           >
-            {texts.language[language]}:
+            {texts.constructionLanguage}:
           </label>
           <div className="relative">
             <select
@@ -150,6 +117,7 @@ const UnderConstruction = () => {
             </span>
           </div>
         </div>
+        {/* Visit Website Button removed */}
       </div>
       {/* Footer */}
       <footer className="mt-6 text-xs text-gray-500 dark:text-gray-400 text-center flex items-center justify-center gap-1">

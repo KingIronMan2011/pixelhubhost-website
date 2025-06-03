@@ -9,25 +9,8 @@ const languages = [
   { code: "pt", name: "Português" },
   { code: "de", name: "Deutsch" },
   { code: "fr", name: "Français" },
-  { code: "it", name: "Italiano" }, // Added Italian
+  { code: "it", name: "Italiano" },
 ];
-
-// Add translation strings for the GitHub button and "Made by"
-const githubButtonText: Record<string, string> = {
-  en: "Wanna help us build this website? Commit a change at our Github",
-  pt: "Quer ajudar a construir este site? Faça um commit no nosso Github",
-  de: "Willst du uns helfen, diese Website zu bauen? Mach einen Commit auf unserem Github",
-  fr: "Vous voulez aider à construire ce site ? Faites un commit sur notre Github",
-  it: "Vuoi aiutarci a costruire questo sito? Fai una commit sul nostro Github", // Italian
-};
-
-const madeByText: Record<string, string> = {
-  en: "Made by KingIronMan2011",
-  pt: "Feito por KingIronMan2011",
-  de: "Erstellt von KingIronMan2011",
-  fr: "Réalisé par KingIronMan2011",
-  it: "Creato da KingIronMan2011", // Italian
-};
 
 const Footer: React.FC = () => {
   const { language, setLanguage } = useLanguage();
@@ -169,36 +152,21 @@ const Footer: React.FC = () => {
             rel="noopener noreferrer"
             className="inline-block bg-gray-800 hover:bg-gray-700 text-white font-medium py-1 px-2 rounded shadow text-xs transition-colors duration-200"
           >
-            {githubButtonText[language] || githubButtonText.en}
+            {t.githubButtonText}
           </a>
         </div>
 
         {/* Made by */}
         <div className="flex justify-center mb-1">
           <span className="text-gray-500 text-xs">
-            {madeByText[language]?.replace(
-              "KingIronMan2011",
-              `<a href="https://github.com/KingIronMan2011" target="_blank" rel="noopener noreferrer" class="underline hover:text-blue-400 transition-colors">KingIronMan2011</a>`
-            ) ? (
-              <span
-                dangerouslySetInnerHTML={{
-                  __html:
-                    madeByText[language]?.replace(
-                      "KingIronMan2011",
-                      `<a href="https://github.com/KingIronMan2011" target="_blank" rel="noopener noreferrer" class="underline hover:text-blue-400 transition-colors">KingIronMan2011</a>`
-                    ) || "Made by KingIronMan2011",
-                }}
-              />
-            ) : (
-              <a
-                href="https://github.com/KingIronMan2011"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="underline hover:text-blue-400 transition-colors"
-              >
-                KingIronMan2011
-              </a>
-            )}
+            <span
+              dangerouslySetInnerHTML={{
+                __html: t.madeByText.replace(
+                  "KingIronMan2011",
+                  `<a href="https://github.com/KingIronMan2011" target="_blank" rel="noopener noreferrer" class="underline hover:text-blue-400 transition-colors">KingIronMan2011</a>`
+                ),
+              }}
+            />
           </span>
         </div>
 

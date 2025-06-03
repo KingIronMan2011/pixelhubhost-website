@@ -12,45 +12,25 @@ const Addons: React.FC = () => {
       icon: Globe,
       name: t.customDomain,
       description: t.customDomainDesc,
-      price: {
-        en: "Starting at $4.99",
-        pt: "A partir de R$40,00",
-        de: "Startet ab €4.99",
-        fr: "À partir de €4.99",
-      },
+      price: t.priceDomain,
     },
     {
       icon: Globe,
       name: t.extraPort,
       description: t.extraPortDesc,
-      price: {
-        en: "$2.99",
-        pt: "R$5,00",
-        de: "€2.99",
-        fr: "€2.99",
-      },
+      price: t.pricePort,
     },
     {
       icon: HardDrive,
       name: t.extraBackup,
       description: t.extraBackupDesc,
-      price: {
-        en: "$1.99",
-        pt: "R$10,00",
-        de: "€1.99",
-        fr: "€1.99",
-      },
+      price: t.priceBackup,
     },
     {
       icon: Database,
       name: t.extraDatabase,
       description: t.extraDatabaseDesc,
-      price: {
-        en: "$3.99",
-        pt: "R$10,00",
-        de: "€3.99",
-        fr: "€3.99",
-      },
+      price: t.priceDatabase,
     },
   ];
 
@@ -86,7 +66,7 @@ const Addons: React.FC = () => {
                 </p>
                 <div className="flex items-center justify-between">
                   <span className="text-2xl font-bold text-gray-900 dark:text-white drop-shadow-sm">
-                    {addon.price[language as keyof typeof addon.price]}
+                    {addon.price}
                   </span>
                   <button
                     type="button"

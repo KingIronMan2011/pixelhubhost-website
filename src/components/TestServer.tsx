@@ -27,59 +27,6 @@ const translations = Object.fromEntries(
   ])
 );
 
-
-const popupTranslations = {
-  javaTitle: {
-    en: "For Minecraft Java Edition:",
-    pt: "Para Minecraft Java Edition:",
-    de: "Für Minecraft Java Edition:",
-    fr: "Pour Minecraft Java Edition :",
-    it: "Per Minecraft Java Edition:",
-  },
-  javaDesc: {
-    en: "Open Minecraft Java Edition, click Multiplayer, then Add Server. Enter the following as the Server Address:",
-    pt: "Abra o Minecraft Java Edition, clique em Multiplayer e depois em Adicionar Servidor. Insira o seguinte como Endereço do Servidor:",
-    de: "Öffne Minecraft Java Edition, klicke auf Mehrspieler und dann auf Server hinzufügen. Gib Folgendes als Serveradresse ein:",
-    fr: "Ouvrez Minecraft Java Edition, cliquez sur Multijoueur puis Ajouter un serveur. Entrez ce qui suit comme adresse du serveur :",
-    it: "Apri Minecraft Java Edition, clicca su Multigiocatore e poi su Aggiungi Server. Inserisci quanto segue come indirizzo del server:",
-  },
-  bedrockTitle: {
-    en: "For Minecraft Bedrock Edition:",
-    pt: "Para Minecraft Bedrock Edition:",
-    de: "Für Minecraft Bedrock Edition:",
-    fr: "Pour Minecraft Bedrock Edition :",
-    it: "Per Minecraft Bedrock Edition:",
-  },
-  bedrockDesc: {
-    en: "Open Minecraft Bedrock Edition, go to Servers, then Add Server. Enter the following as the Server Address and Port:",
-    pt: "Abra o Minecraft Bedrock Edition, vá em Servidores e depois em Adicionar Servidor. Insira o seguinte como Endereço e Porta:",
-    de: "Öffne Minecraft Bedrock Edition, gehe zu Server und dann zu Server hinzufügen. Gib Folgendes als Serveradresse und Port ein:",
-    fr: "Ouvrez Minecraft Bedrock Edition, allez dans Serveurs puis Ajouter un serveur. Entrez ce qui suit comme adresse et port du serveur :",
-    it: "Apri Minecraft Bedrock Edition, vai su Server e poi su Aggiungi Server. Inserisci quanto segue come indirizzo e porta del server:",
-  },
-  copyDomain: {
-    en: "Copy Domain",
-    pt: "Copiar Domínio",
-    de: "Domain Kopieren",
-    fr: "Copier le Domaine",
-    it: "Copia Dominio",
-  },
-  copyPort: {
-    en: "Copy Port",
-    pt: "Copiar Porta",
-    de: "Port Kopieren",
-    fr: "Copier le Port",
-    it: "Copia Porta",
-  },
-  howToConnect: {
-    en: "How to Connect",
-    pt: "Como conectar",
-    de: "So verbindest du dich",
-    fr: "Comment se connecter",
-    it: "Come connettersi",
-  },
-};
-
 const siteConfig = {
   texts: Object.fromEntries(
     Object.entries(languagesConfig).map(([lang, obj]) => [
@@ -141,6 +88,7 @@ const ConnectPopup: React.FC<ConnectPopupProps> = ({
   serverDomain,
   bedrockPort,
 }) => {
+  const t = languagesConfig[language as keyof typeof languagesConfig]?.texts || languagesConfig.en.texts;
   const [copiedDomain, setCopiedDomain] = useState(false);
   const [copiedPort, setCopiedPort] = useState(false);
 
@@ -197,16 +145,16 @@ const ConnectPopup: React.FC<ConnectPopupProps> = ({
             <div className="flex items-center mb-4">
               <Info className="w-6 h-6 text-blue-500 mr-2" />
               <h3 className="text-xl font-bold text-gray-900 dark:text-white">
-                {popupTranslations.howToConnect[language]}
+                {t.howToConnect}
               </h3>
             </div>
             <div className="space-y-8">
               <div>
                 <p className="font-semibold text-gray-800 dark:text-gray-200 mb-1">
-                  {popupTranslations.javaTitle[language]}
+                  {t.javaTitle}
                 </p>
                 <p className="text-gray-700 dark:text-gray-300 text-sm mb-3">
-                  {popupTranslations.javaDesc[language]}
+                  {t.javaDesc}
                 </p>
                 <div className="flex items-center gap-2">
                   <span className="px-3 py-2 bg-gray-100 dark:bg-gray-800 rounded font-mono text-blue-600 dark:text-blue-400 text-sm select-all shadow-inner">
@@ -217,7 +165,7 @@ const ConnectPopup: React.FC<ConnectPopupProps> = ({
                     className={`p-1 rounded transition-all duration-200 text-gray-700 dark:text-white hover:bg-blue-100 dark:hover:bg-blue-900/30 ${
                       copiedDomain ? "bg-blue-100 dark:bg-blue-900/30" : ""
                     }`}
-                    title={popupTranslations.copyDomain[language]}
+                    title={t.copyDomain}
                   >
                     {buttonIcon}
                   </button>
@@ -225,10 +173,10 @@ const ConnectPopup: React.FC<ConnectPopupProps> = ({
               </div>
               <div>
                 <p className="font-semibold text-gray-800 dark:text-gray-200 mb-1">
-                  {popupTranslations.bedrockTitle[language]}
+                  {t.bedrockTitle}
                 </p>
                 <p className="text-gray-700 dark:text-gray-300 text-sm mb-3">
-                  {popupTranslations.bedrockDesc[language]}
+                  {t.bedrockDesc}
                 </p>
                 <div className="flex items-center gap-2 mb-2">
                   <span className="px-3 py-2 bg-gray-100 dark:bg-gray-800 rounded font-mono text-blue-600 dark:text-blue-400 text-sm select-all shadow-inner">
@@ -239,7 +187,7 @@ const ConnectPopup: React.FC<ConnectPopupProps> = ({
                     className={`p-1 rounded transition-all duration-200 text-gray-700 dark:text-white hover:bg-blue-100 dark:hover:bg-blue-900/30 ${
                       copiedDomain ? "bg-blue-100 dark:bg-blue-900/30" : ""
                     }`}
-                    title={popupTranslations.copyDomain[language]}
+                    title={t.copyDomain}
                   >
                     {buttonIcon}
                   </button>
@@ -253,7 +201,7 @@ const ConnectPopup: React.FC<ConnectPopupProps> = ({
                     className={`p-1 rounded transition-all duration-200 text-gray-700 dark:text-white hover:bg-green-100 dark:hover:bg-green-900/30 ${
                       copiedPort ? "bg-green-100 dark:bg-green-900/30" : ""
                     }`}
-                    title={popupTranslations.copyPort[language]}
+                    title={t.copyPort}
                   >
                     {buttonIconPort}
                   </button>
