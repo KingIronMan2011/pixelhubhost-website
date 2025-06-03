@@ -170,7 +170,29 @@ const Footer: React.FC = () => {
         {/* Made by */}
         <div className="flex justify-center mb-1">
           <span className="text-gray-500 text-xs">
-            {madeByText[language] || madeByText.en}
+            {madeByText[language]?.replace(
+              "KingIronMan2011",
+              `<a href="https://github.com/KingIronMan2011" target="_blank" rel="noopener noreferrer" class="underline hover:text-blue-400 transition-colors">KingIronMan2011</a>`
+            ) ? (
+              <span
+                dangerouslySetInnerHTML={{
+                  __html:
+                    madeByText[language]?.replace(
+                      "KingIronMan2011",
+                      `<a href="https://github.com/KingIronMan2011" target="_blank" rel="noopener noreferrer" class="underline hover:text-blue-400 transition-colors">KingIronMan2011</a>`
+                    ) || "Made by KingIronMan2011",
+                }}
+              />
+            ) : (
+              <a
+                href="https://github.com/KingIronMan2011"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="underline hover:text-blue-400 transition-colors"
+              >
+                KingIronMan2011
+              </a>
+            )}
           </span>
         </div>
 
