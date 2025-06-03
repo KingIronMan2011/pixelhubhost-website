@@ -1,9 +1,8 @@
 import { useMemo, useState } from "react";
 import { useLanguage } from "../context/LanguageContext";
-import { useTranslation } from "react-i18next";
 import { plans as basePlans } from "../config/plans";
-import { siteConfig } from "../config/site";
-import { planLinks } from "../config/planLinks";
+import { config, planLinks } from "../config/config";
+import languagesConfig from "../config/languages/Languages"; // <-- fixed casing to match other imports
 
 // Add a custom plan object
 const customPlan = {
@@ -43,10 +42,14 @@ const plans = [...basePlans, customPlan];
 
 const PricingPlans = () => {
   const { language } = useLanguage();
-  const { t } = useTranslation();
   const [billingInterval, setBillingInterval] = useState<
     "monthly" | "quarterly"
   >("monthly");
+
+  // Use texts from the new languages config
+  const texts =
+    languagesConfig[language as keyof typeof languagesConfig]?.texts ||
+    languagesConfig.en.texts;
 
   const getCurrencyDisplay = useMemo(() => {
     return (plan: (typeof plans)[0]) => {
@@ -80,10 +83,10 @@ const PricingPlans = () => {
       <div className="container mx-auto px-4">
         <div className="text-center max-w-3xl mx-auto mb-16">
           <h2 className="text-3xl md:text-4xl font-bold mb-4 text-gray-900 dark:text-white drop-shadow-sm">
-            {siteConfig.texts.pricingTitle[language]}
+            {texts.pricingTitle || "Pricing"}
           </h2>
           <p className="text-lg text-gray-700 dark:text-gray-400">
-            {siteConfig.texts.pricingSubtitle[language]}
+            {texts.pricingSubtitle || ""}
           </p>
           <div className="mt-8 flex justify-center gap-4">
             <button
@@ -94,7 +97,7 @@ const PricingPlans = () => {
                   : "bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300"
               }`}
             >
-              {t("monthly", { lng: language })}
+              {texts.monthly || "Monthly"}
             </button>
             <button
               onClick={() => setBillingInterval("quarterly")}
@@ -104,7 +107,7 @@ const PricingPlans = () => {
                   : "bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300"
               }`}
             >
-              {t("quarterly", { lng: language })}
+              {texts.quarterly || "Quarterly"}
               <span className="ml-2 text-sm bg-green-500 text-white px-2 py-0.5 rounded shadow">
                 -10% OFF
               </span>
@@ -117,7 +120,7 @@ const PricingPlans = () => {
             const { currency, displayAmount } = getCurrencyDisplay(plan);
             const planLink =
               plan.id === "custom"
-                ? siteConfig.contact.discord
+                ? config.contact?.discord || "#"
                 : planLinks[plan.id]?.[billingInterval] || "#";
 
             return (
@@ -131,16 +134,16 @@ const PricingPlans = () => {
               >
                 {plan.popular && (
                   <div className="absolute top-0 inset-x-0 px-4 py-1 bg-gradient-to-r from-blue-500 to-purple-500 text-white text-sm text-center font-semibold rounded-t-2xl shadow">
-                    {siteConfig.texts.popularPlan[language]}
+                    {texts.popularPlan || ""}
                   </div>
                 )}
 
                 <div className={`p-7 ${plan.popular ? "pt-14" : "pt-7"}`}>
                   <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-2 text-center font-minecraft tracking-tight">
-                    {plan.name[language]}
+                    {plan.name?.[language as keyof typeof plan.name] ?? plan.name["en"]}
                   </h3>
                   <p className="text-gray-600 dark:text-gray-400 mb-6 min-h-[3rem] text-center text-base">
-                    {plan.description[language]}
+                    {plan.description[language as keyof typeof plan.description] ?? plan.description["en"]}
                   </p>
 
                   <div className="mt-8 mb-6">
@@ -153,10 +156,9 @@ const PricingPlans = () => {
                       {plan.id !== "custom" && (
                         <span className="text-gray-700 dark:text-gray-400 ml-2">
                           /
-                          {t(
-                            billingInterval === "monthly" ? "month" : "quarter",
-                            { lng: language }
-                          )}
+                          {billingInterval === "monthly"
+                            ? texts.monthly?.toLowerCase?.() || "month"
+                            : texts.quarterly?.toLowerCase?.() || "quarterly"}
                         </span>
                       )}
                     </div>
@@ -183,13 +185,13 @@ const PricingPlans = () => {
                     {!plan.available && (
                       <div className="absolute inset-0 flex items-center justify-center bg-gray-900/50 dark:bg-gray-900/70 rounded-lg backdrop-blur-sm">
                         <span className="text-white font-bold text-lg">
-                          {siteConfig.texts.soldOut[language]}
+                          {texts.soldOut || "SOLD OUT"}
                         </span>
                       </div>
                     )}
                     {plan.id === "custom"
-                      ? siteConfig.texts.contactUs[language] || "Contact us"
-                      : siteConfig.texts.selectPlan[language]}
+                      ? texts.contactUs || "Contact us"
+                      : texts.buyNow || texts.selectPlan || "Select Plan"}
                   </a>
 
                   <div
@@ -198,50 +200,58 @@ const PricingPlans = () => {
                     }`}
                   >
                     <div className="flex items-center justify-between text-sm text-gray-700 dark:text-gray-400">
-                      <span>{siteConfig.texts.cpuThreads[language]}</span>
+                      <span>
+                        {texts.cpuThreads || "CPU"}
+                      </span>
                       <span className="font-medium text-gray-900 dark:text-white">
                         {plan.id === "custom"
-                          ? siteConfig.texts.custom[language] || "-"
+                          ? texts.custom || "-"
                           : plan.specs.threads}
                       </span>
                     </div>
                     <div className="flex items-center justify-between text-sm text-gray-700 dark:text-gray-400">
-                      <span>{siteConfig.texts.ram[language]}</span>
+                      <span>{texts.ram || "RAM"}</span>
                       <span className="font-medium text-gray-900 dark:text-white">
                         {plan.id === "custom"
-                          ? siteConfig.texts.custom[language] || "-"
+                          ? texts.custom || "-"
                           : `${plan.specs.ram}GB`}
                       </span>
                     </div>
                     <div className="flex items-center justify-between text-sm text-gray-700 dark:text-gray-400">
-                      <span>{siteConfig.texts.storage[language]}</span>
+                      <span>
+                        {texts.storage || "Storage"}
+                      </span>
                       <span className="font-medium text-gray-900 dark:text-white">
                         {plan.id === "custom"
-                          ? siteConfig.texts.custom[language] || "-"
+                          ? texts.custom || "-"
                           : `${plan.specs.storage}GB`}
                       </span>
                     </div>
                     <div className="flex items-center justify-between text-sm text-gray-700 dark:text-gray-400">
-                      <span>{siteConfig.texts.backups[language]}</span>
+                      <span>
+                        {texts.backups || "Backups"}
+                      </span>
                       <span className="font-medium text-gray-900 dark:text-white">
                         {plan.id === "custom"
-                          ? siteConfig.texts.custom[language] || "-"
+                          ? texts.custom || "-"
                           : plan.specs.backups}
                       </span>
                     </div>
                     <div className="flex items-center justify-between text-sm text-gray-700 dark:text-gray-400">
-                      <span>{siteConfig.texts.databases[language]}</span>
+                      <span>
+                        {texts.databases || "Databases"}
+                      </span>
                       <span className="font-medium text-gray-900 dark:text-white">
                         {plan.id === "custom"
-                          ? siteConfig.texts.custom[language] || "-"
+                          ? texts.custom || "-"
                           : plan.specs.databases}
                       </span>
                     </div>
                     <div className="flex items-center justify-between text-sm text-gray-700 dark:text-gray-400">
-                      <span>{siteConfig.texts.ports[language]}</span>
+                      <span>{texts.ports || "Ports"}</span>
                       <span className="font-medium text-gray-900 dark:text-white">
                         {plan.id === "custom"
-                          ? siteConfig.texts.custom[language] || "-"
+                          ? texts.custom || "-"
                           : plan.specs.ports}
                       </span>
                     </div>

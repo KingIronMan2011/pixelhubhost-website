@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from "react";
 import { pterodactylService } from "../services/pterodactyl";
-import type { ServerStatus } from "../config/pterodactyl";
+import type { ServerStatus } from "../config/config";
 
 export function usePterodactyl(serverId: string) {
   const [status, setStatus] = useState<ServerStatus | null>(null);

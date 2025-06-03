@@ -1,24 +1,28 @@
 import i18n from "i18next";
 import { initReactI18next } from "react-i18next";
 import LanguageDetector from "i18next-browser-languagedetector";
-import { translations } from "./config/translations";
-import type { Language } from "./config/types";
-
-const supportedLanguages: Language[] = ["en", "pt", "de", "fr"];
+import languages from "./config/languages/Languages";
 
 const resources = Object.fromEntries(
-  supportedLanguages.map((lang) => [
+  Object.entries(languages).map(([lang, data]) => [
     lang,
-    {
-      translation: Object.fromEntries(
-        Object.entries(translations).map(([key, value]) => [
-          key,
-          (value as Record<Language, string>)[lang],
-        ])
-      ),
-    },
+    { translation: flattenTranslations(data) },
   ])
 );
+
+// Helper to flatten nested objects (if needed)
+function flattenTranslations(obj: any, prefix = ""): any {
+  return Object.keys(obj).reduce((acc, key) => {
+    const value = obj[key];
+    const newKey = prefix ? `${prefix}.${key}` : key;
+    if (typeof value === "object" && value !== null && !Array.isArray(value)) {
+      Object.assign(acc, flattenTranslations(value, newKey));
+    } else {
+      acc[newKey] = value;
+    }
+    return acc;
+  }, {} as Record<string, string>);
+}
 
 i18n
   .use(LanguageDetector)

@@ -1,20 +1,23 @@
 import React, { useState } from "react";
 import { useLanguage } from "../context/LanguageContext";
-import { useTranslation } from "react-i18next";
+import languagesConfig from "../config/languages/Languages";
 import LanguageSelector from "./LanguageSelector";
 import ThemeToggle from "./ThemeToggle";
 
+// Infer the language keys from the config
+type LanguageKey = keyof typeof languagesConfig;
+
 const Header: React.FC = () => {
-  const { language } = useLanguage();
-  const { t } = useTranslation();
+  const { language } = useLanguage() as { language: LanguageKey };
+  const t = languagesConfig[language]?.texts || languagesConfig.en.texts;
   const [menuOpen, setMenuOpen] = useState(false);
 
   // Navigation links for DRYness
   const navLinks = [
-    { href: "#features", label: t("features", { lng: language }) },
-    { href: "#pricing", label: t("plans", { lng: language }) },
-    { href: "#addons", label: t("addons", { lng: language }) },
-    { href: "#contact", label: t("contact", { lng: language }) },
+    { href: "#features", label: t.features },
+    { href: "#pricing", label: t.pricing },
+    { href: "#addons", label: t.addons },
+    { href: "#contact", label: t.contact },
   ];
 
   return (
@@ -52,7 +55,7 @@ const Header: React.FC = () => {
               rel="noopener noreferrer"
               className="hidden md:inline-flex items-center bg-blue-600 text-white px-5 py-2 rounded-lg hover:bg-blue-700 transition-colors duration-300 font-medium shadow"
             >
-              {t("systemStatus", { lng: language })}
+              {t.systemStatus}
             </a>
             <a
               href="https://dash.pixelhubhost.com/login"
@@ -60,7 +63,7 @@ const Header: React.FC = () => {
               rel="noopener noreferrer"
               className="hidden md:inline-flex items-center bg-purple-600 text-white px-5 py-2 rounded-lg hover:bg-purple-700 transition-colors duration-300 font-medium shadow"
             >
-              {t("loginSignup", { lng: language })}
+              {t.loginSignup || "Login / Signup"}
             </a>
             {/* Mobile menu button */}
             <button
@@ -106,7 +109,7 @@ const Header: React.FC = () => {
               className="block bg-blue-600 text-white px-5 py-2 rounded-lg hover:bg-blue-700 transition-colors duration-300 font-medium mt-2 text-center shadow"
               onClick={() => setMenuOpen(false)}
             >
-              {t("systemStatus", { lng: language })}
+              {t.systemStatus}
             </a>
             <a
               href="https://dash.pixelhubhost.com/login"
@@ -115,7 +118,7 @@ const Header: React.FC = () => {
               className="block bg-purple-600 text-white px-5 py-2 rounded-lg hover:bg-purple-700 transition-colors duration-300 font-medium mt-2 text-center shadow"
               onClick={() => setMenuOpen(false)}
             >
-              {t("loginSignup", { lng: language })}
+              {t.loginSignup || "Login / Signup"}
             </a>
           </div>
         )}

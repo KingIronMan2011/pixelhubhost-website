@@ -1,7 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { useLanguage } from "../context/LanguageContext";
-import { siteConfig } from "../config/site";
+import { useTranslation } from "react-i18next";
 
 const sitemapLinks = [
   { path: "/", labelKey: "home" },
@@ -13,14 +12,12 @@ const sitemapLinks = [
 ];
 
 const Sitemap: React.FC = () => {
-  const { language } = useLanguage();
+  const { t } = useTranslation();
 
   return (
     <div className="max-w-lg mx-auto mt-24 mb-12 p-8 rounded-2xl shadow-xl bg-white/90 dark:bg-gray-900/90 border border-gray-200 dark:border-gray-800">
       <h1 className="font-extrabold text-3xl mb-8 text-center bg-gradient-to-r from-blue-500 to-purple-500 bg-clip-text text-transparent drop-shadow">
-        {siteConfig.texts.sitemap?.[language] ||
-          siteConfig.texts.sitemap?.en ||
-          "Sitemap"}
+        {t("texts.sitemap")}
       </h1>
       <ul className="space-y-3">
         {sitemapLinks.map((link) => (
@@ -29,9 +26,7 @@ const Sitemap: React.FC = () => {
               to={link.path}
               className="block px-5 py-3 rounded-xl font-medium text-base text-blue-700 dark:text-blue-300 bg-blue-50/60 dark:bg-blue-900/30 hover:bg-blue-100 dark:hover:bg-blue-800 transition-colors duration-200 shadow-sm"
             >
-              {siteConfig.texts[link.labelKey]?.[language] ||
-                siteConfig.texts[link.labelKey]?.en ||
-                link.labelKey}
+              {t(`texts.${link.labelKey}`)}
             </Link>
           </li>
         ))}

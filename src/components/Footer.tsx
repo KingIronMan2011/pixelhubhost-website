@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { Globe, Youtube } from "lucide-react";
 import { useLanguage } from "../context/LanguageContext";
-import { siteConfig } from "../config/site";
+import languagesConfig from "../config/languages/Languages";
 
 const languages = [
   { code: "en", name: "English" },
@@ -28,6 +28,9 @@ const madeByText: Record<string, string> = {
 
 const Footer: React.FC = () => {
   const { language, setLanguage } = useLanguage();
+  const langKey = language as keyof typeof languagesConfig;
+  const t = languagesConfig[langKey]?.texts || languagesConfig.en.texts;
+  const contact = languagesConfig[langKey]?.contact || languagesConfig.en.contact;
 
   return (
     <footer className="bg-gradient-to-b from-gray-900 via-gray-950 to-black text-gray-300 pt-14 pb-8 border-t border-gray-800">
@@ -36,10 +39,10 @@ const Footer: React.FC = () => {
           {/* Brand & Description */}
           <div>
             <h3 className="text-2xl font-bold mb-4 bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent drop-shadow">
-              {siteConfig.name}
+              PixelHub Host
             </h3>
             <p className="text-gray-400 mb-6 leading-relaxed text-sm">
-              {siteConfig.texts.footerDescription[language]}
+              {t.footerDescription}
             </p>
             <div className="flex space-x-3 mt-2">
               <a
@@ -57,7 +60,7 @@ const Footer: React.FC = () => {
           {/* Company */}
           <div>
             <h4 className="font-semibold text-lg mb-4 text-white tracking-wide">
-              {siteConfig.texts.company[language]}
+              {t.company}
             </h4>
             <ul className="space-y-2 text-sm">
               <li>
@@ -65,7 +68,7 @@ const Footer: React.FC = () => {
                   href="/aboutus"
                   className="hover:text-blue-400 transition-colors"
                 >
-                  {siteConfig.texts.aboutUs[language]}
+                  {t.aboutUs}
                 </a>
               </li>
               <li>
@@ -73,7 +76,7 @@ const Footer: React.FC = () => {
                   href="#contact"
                   className="hover:text-blue-400 transition-colors"
                 >
-                  {siteConfig.texts.contact[language]}
+                  {t.contact}
                 </a>
               </li>
             </ul>
@@ -82,7 +85,7 @@ const Footer: React.FC = () => {
           {/* Services */}
           <div>
             <h4 className="font-semibold text-lg mb-4 text-white tracking-wide">
-              {siteConfig.texts.services[language]}
+              {t.services}
             </h4>
             <ul className="space-y-2 text-sm">
               <li>
@@ -90,7 +93,7 @@ const Footer: React.FC = () => {
                   href="#pricing"
                   className="hover:text-blue-400 transition-colors"
                 >
-                  {siteConfig.texts.mcHosting[language]}
+                  {t.mcHosting}
                 </a>
               </li>
               <li>
@@ -98,7 +101,7 @@ const Footer: React.FC = () => {
                   href="#addons"
                   className="hover:text-blue-400 transition-colors"
                 >
-                  {siteConfig.texts.addons[language]}
+                  {t.addons}
                 </a>
               </li>
             </ul>
@@ -107,17 +110,17 @@ const Footer: React.FC = () => {
           {/* Support & Language */}
           <div>
             <h4 className="font-semibold text-lg mb-4 text-white tracking-wide">
-              {siteConfig.texts.support[language]}
+              {t.support}
             </h4>
             <ul className="space-y-2 text-sm">
               <li>
                 <a
-                  href={siteConfig.contact.discord}
+                  href={contact.discord}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="hover:text-blue-400 transition-colors"
                 >
-                  {siteConfig.texts.helpCenter[language]}
+                  {t.helpCenter}
                 </a>
               </li>
               <li>
@@ -127,7 +130,7 @@ const Footer: React.FC = () => {
                   rel="noopener noreferrer"
                   className="hover:text-blue-400 transition-colors"
                 >
-                  {siteConfig.texts.systemStatus[language]}
+                  {t.systemStatus}
                 </a>
               </li>
               <li>
@@ -199,26 +202,26 @@ const Footer: React.FC = () => {
         {/* Footer bottom */}
         <div className="border-t border-gray-800 pt-4 mt-4 flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-gray-500 text-xs">
-            {siteConfig.texts.footerCopyright[language]}
+            {t.footerCopyright}
           </p>
           <div className="flex flex-wrap gap-x-6 gap-y-2 text-xs text-gray-500">
             <a
               href="/privacy"
               className="hover:text-blue-400 transition-colors"
             >
-              {siteConfig.texts.privacyPolicy[language]}
+              {t.privacyPolicy}
             </a>
             <a href="/terms" className="hover:text-blue-400 transition-colors">
-              {siteConfig.texts.termsOfService[language]}
+              {t.termsOfService}
             </a>
             <Link
               to="/sitemap"
               className="hover:text-blue-400 transition-colors"
             >
-              {siteConfig.texts.sitemap[language]}
+              {t.sitemap}
             </Link>
             <a href="/legal" className="hover:text-blue-400 transition-colors">
-              {siteConfig.texts.legal[language]}
+              {t.legal}
             </a>
           </div>
         </div>

@@ -5,7 +5,7 @@ import {
   useEffect,
   ReactNode,
 } from "react";
-import { Language } from "../config/types";
+import { Language } from "../config/config";
 
 const supportedLanguages: Language[] = ["en", "pt", "de", "fr"];
 

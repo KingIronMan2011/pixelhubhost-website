@@ -1,5 +1,5 @@
-import { useTranslation } from "react-i18next";
 import { useLanguage } from "../context/LanguageContext";
+import languagesConfig from "../config/languages/Languages";
 import {
   Shield,
   Cpu,
@@ -10,39 +10,39 @@ import {
 } from "lucide-react";
 
 const Features = () => {
-  const { t } = useTranslation();
   const { language } = useLanguage();
+  const t = languagesConfig[language as keyof typeof languagesConfig]?.texts || languagesConfig.en.texts;
 
   const features = [
     {
       icon: Shield,
-      title: t("ddosProtection", { lng: language }),
-      description: t("ddosProtectionDesc", { lng: language }),
+      title: t.ddosProtectionDesc ? t.ddosProtection : "",
+      description: t.ddosProtectionDesc,
     },
     {
       icon: Cpu,
-      title: t("xeonCpu", { lng: language }),
-      description: t("xeonCpuDesc", { lng: language }),
+      title: t.xeonCpuDesc ? t.xeonCpu : "",
+      description: t.xeonCpuDesc,
     },
     {
       icon: Network,
-      title: t("networkSpeed", { lng: language }),
-      description: t("networkSpeedDesc", { lng: language }),
+      title: t.networkSpeedDesc ? t.networkSpeed : "",
+      description: t.networkSpeedDesc,
     },
     {
       icon: Clock,
-      title: t("reliableSupport", { lng: language }),
-      description: t("reliableSupportDesc", { lng: language }),
+      title: t.reliableSupportDesc ? t.reliableSupport : "",
+      description: t.reliableSupportDesc,
     },
     {
       icon: Globe,
-      title: t("freeSubdomain", { lng: language }),
-      description: t("freeSubdomainDesc", { lng: language }),
+      title: t.freeSubdomainDesc ? t.freeSubdomain : "",
+      description: t.freeSubdomainDesc,
     },
     {
       icon: DatabaseBackup,
-      title: t("dailyBackups", { lng: language }),
-      description: t("dailyBackupsDesc", { lng: language }),
+      title: t.dailyBackupsDesc ? t.dailyBackups : "",
+      description: t.dailyBackupsDesc,
     },
   ];
 
@@ -54,10 +54,10 @@ const Features = () => {
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
           <h2 className="text-4xl font-extrabold text-gray-900 dark:text-white mb-4 tracking-tight drop-shadow-sm">
-            {t("featuresTitle", { lng: language })}
+            {t.featuresTitle}
           </h2>
           <p className="text-gray-700 dark:text-gray-400 max-w-2xl mx-auto text-lg">
-            {t("featuresSubtitle", { lng: language })}
+            {t.featuresSubtitle}
           </p>
         </div>
 

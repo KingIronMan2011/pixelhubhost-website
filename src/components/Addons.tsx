@@ -1,19 +1,17 @@
 import React from "react";
-import { useTranslation } from "react-i18next";
 import { Globe, Database, HardDrive } from "lucide-react";
 import { useLanguage } from "../context/LanguageContext";
-import { siteConfig } from "../config/site";
+import languagesConfig from "../config/languages/Languages";
 
 const Addons: React.FC = () => {
-  const { t } = useTranslation();
   const { language } = useLanguage();
+  const t = languagesConfig[language as keyof typeof languagesConfig]?.texts || languagesConfig.en.texts;
 
-  // Only define what is needed for rendering
   const addons = [
     {
       icon: Globe,
-      name: siteConfig.texts.customDomain[language],
-      description: siteConfig.texts.customDomainDesc[language],
+      name: t.customDomain,
+      description: t.customDomainDesc,
       price: {
         en: "Starting at $4.99",
         pt: "A partir de R$40,00",
@@ -23,8 +21,8 @@ const Addons: React.FC = () => {
     },
     {
       icon: Globe,
-      name: siteConfig.texts.extraPort[language],
-      description: siteConfig.texts.extraPortDesc[language],
+      name: t.extraPort,
+      description: t.extraPortDesc,
       price: {
         en: "$2.99",
         pt: "R$5,00",
@@ -34,8 +32,8 @@ const Addons: React.FC = () => {
     },
     {
       icon: HardDrive,
-      name: siteConfig.texts.extraBackup[language],
-      description: siteConfig.texts.extraBackupDesc[language],
+      name: t.extraBackup,
+      description: t.extraBackupDesc,
       price: {
         en: "$1.99",
         pt: "R$10,00",
@@ -45,8 +43,8 @@ const Addons: React.FC = () => {
     },
     {
       icon: Database,
-      name: siteConfig.texts.extraDatabase[language],
-      description: siteConfig.texts.extraDatabaseDesc[language],
+      name: t.extraDatabase,
+      description: t.extraDatabaseDesc,
       price: {
         en: "$3.99",
         pt: "R$10,00",
@@ -64,10 +62,10 @@ const Addons: React.FC = () => {
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
           <h2 className="text-4xl font-extrabold text-gray-900 dark:text-white mb-3 tracking-tight drop-shadow-sm">
-            {t("addons", { lng: language })}
+            {t.addons}
           </h2>
           <p className="text-gray-700 dark:text-gray-400 max-w-2xl mx-auto text-lg">
-            {t("addonsSubtitle", { lng: language })}
+            {t.addonsSubtitle}
           </p>
         </div>
         <div className="max-w-2xl mx-auto space-y-6">
@@ -88,7 +86,7 @@ const Addons: React.FC = () => {
                 </p>
                 <div className="flex items-center justify-between">
                   <span className="text-2xl font-bold text-gray-900 dark:text-white drop-shadow-sm">
-                    {addon.price[language]}
+                    {addon.price[language as keyof typeof addon.price]}
                   </span>
                   <button
                     type="button"
@@ -99,7 +97,7 @@ const Addons: React.FC = () => {
                     }}
                     className="inline-flex items-center gap-1 px-4 py-2 rounded-lg bg-blue-600 hover:bg-blue-700 dark:bg-blue-700 dark:hover:bg-blue-600 text-white font-medium shadow transition-all duration-200"
                   >
-                    {t("contactToBuy", { lng: language })}
+                    {t.contactUs}
                   </button>
                 </div>
               </div>

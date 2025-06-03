@@ -2,13 +2,40 @@ import React, { useState, useEffect } from "react";
 import { Server, Signal, Copy, Check, Info } from "lucide-react";
 import { usePterodactyl } from "../hooks/usePterodactyl";
 import { useLanguage } from "../context/LanguageContext";
-import { siteConfig } from "../config/site";
-import { translations } from "../config/translations";
-import { SERVER_LIMITS } from "../config/pterodactyl";
-import { Language } from "../config/types";
+import languagesConfig from "../config/languages/Languages"; // updated import
+import { SERVER_LIMITS } from "../config/config";
+// import { Language } from "../config/types";
+type Language = "en" | "pt" | "de" | "fr"; // Replace with actual supported languages if different
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Dialog } from "@headlessui/react";
+
+// Use translations from new languagesConfig
+const translations = Object.fromEntries(
+  Object.entries(languagesConfig).map(([lang, obj]) => [
+    lang,
+    {
+      domainCopied: obj.texts?.domainCopied || "Domain copied!",
+      serverOffline: obj.texts?.serverOffline || "Server Offline",
+      checking: obj.texts?.checking || "Checking...",
+      testServer: obj.texts?.testServer || "Test Server",
+      connectToTestServer: obj.texts?.connectToTestServer || "Connect to Test Server",
+      domain: obj.texts?.domain || "Domain",
+      bedrockPort: obj.texts?.bedrockPort || "Bedrock Port",
+      cpu: obj.texts?.cpu || "CPU",
+      memory: obj.texts?.memory || "Memory",
+    },
+  ])
+);
+
+const siteConfig = {
+  texts: Object.fromEntries(
+    Object.entries(languagesConfig).map(([lang, obj]) => [
+      lang,
+      obj.texts || {},
+    ])
+  ),
+};
 
 type NotificationProps = {
   onClose: () => void;
@@ -29,7 +56,7 @@ const CopyNotification: React.FC<NotificationProps> = ({
       <div className="flex items-center gap-2 px-6 py-3 rounded-lg shadow-lg bg-white/90 dark:bg-gray-900/90 border border-gray-200 dark:border-gray-700 animate-fade-in-out">
         <Check className="w-5 h-5 text-green-500" />
         <span className="text-base font-semibold text-gray-900 dark:text-white">
-          {translations.domainCopied[language]}
+          {translations[language].domainCopied}
         </span>
       </div>
       <style>
@@ -130,7 +157,7 @@ const ConnectPopup: React.FC<ConnectPopupProps> = ({
         document.body.removeChild(textArea);
       }
       setCopiedFn(true);
-      toast.success(translations.domainCopied[language]);
+      toast.success(translations[language].domainCopied);
       setTimeout(() => setCopiedFn(false), 1500);
     } catch (err) {
       toast.error("Copy failed");
@@ -270,7 +297,6 @@ const TestServer: React.FC = () => {
       if (navigator.clipboard && window.isSecureContext) {
         await navigator.clipboard.writeText(value);
       } else {
-        // fallback for mobile/older browsers
         const textArea = document.createElement("textarea");
         textArea.value = value;
         textArea.style.position = "fixed";
@@ -281,7 +307,7 @@ const TestServer: React.FC = () => {
         document.execCommand("copy");
         document.body.removeChild(textArea);
       }
-      toast.success(translations.domainCopied[language]);
+      toast.success(translations[language].domainCopied);
       setCopiedFn(true);
       setTimeout(() => setCopiedFn(false), 1500);
     } catch (err) {
@@ -351,7 +377,7 @@ const TestServer: React.FC = () => {
                 <Server className="w-7 h-7 text-blue-500" />
                 <div>
                   <h2 className="text-xl font-minecraft font-bold text-gray-900 dark:text-white">
-                    {siteConfig.texts.testServer[language]}
+                    {siteConfig.texts[language].testServer}
                   </h2>
                   <p className="text-sm text-gray-600 dark:text-gray-400">
                     (1.7.2 - 1.21.5)
@@ -374,8 +400,8 @@ const TestServer: React.FC = () => {
                   }`}
                 >
                   {loading
-                    ? siteConfig.texts.checking[language]
-                    : status?.state || siteConfig.texts.serverOffline[language]}
+                    ? siteConfig.texts[language].checking
+                    : status?.state || siteConfig.texts[language].serverOffline}
                 </span>
               </div>
             </div>
@@ -390,7 +416,7 @@ const TestServer: React.FC = () => {
               <div className="flex flex-col gap-2">
                 <div className="flex items-center bg-gray-100/70 dark:bg-gray-800/70 rounded-lg px-3 py-2">
                   <span className="text-sm text-gray-600 dark:text-gray-400 mr-2">
-                    {siteConfig.texts.domain[language]}:
+                    {siteConfig.texts[language].domain}:
                   </span>
                   <span className="font-mono text-blue-600 dark:text-blue-400 text-sm font-medium">
                     {serverDomain}
@@ -398,14 +424,14 @@ const TestServer: React.FC = () => {
                   <button
                     onClick={() => handleCopy(serverDomain, setCopied)}
                     className="ml-2 p-1 hover:bg-gray-200 dark:hover:bg-gray-700 rounded transition-colors text-gray-700 dark:text-white"
-                    title={translations.domainCopied[language]}
+                    title={translations[language].domainCopied}
                   >
                     {buttonIcon}
                   </button>
                 </div>
                 <div className="flex items-center bg-gray-100/70 dark:bg-gray-800/70 rounded-lg px-3 py-2">
                   <span className="text-sm text-gray-600 dark:text-gray-400 mr-2">
-                    {siteConfig.texts.bedrockPort[language]}:
+                    {siteConfig.texts[language].bedrockPort}:
                   </span>
                   <span className="font-mono text-sm text-gray-900 dark:text-white font-medium">
                     {bedrockPort}
@@ -413,7 +439,7 @@ const TestServer: React.FC = () => {
                   <button
                     onClick={() => handleCopy(bedrockPort, setCopiedPort)}
                     className="ml-2 p-1 hover:bg-gray-200 dark:hover:bg-gray-700 rounded transition-colors text-gray-700 dark:text-white"
-                    title={translations.domainCopied[language]}
+                    title={translations[language].domainCopied}
                   >
                     {buttonIconPort}
                   </button>
@@ -434,7 +460,7 @@ const TestServer: React.FC = () => {
                   <div>
                     <div className="flex items-center justify-between mb-1">
                       <span className="text-sm text-gray-500">
-                        {siteConfig.texts.cpu[language]}
+                        {siteConfig.texts[language].cpu}
                       </span>
                       <span className="text-sm font-medium text-gray-900 dark:text-white">
                         {Math.floor(cpuUsagePercent)}%
@@ -450,7 +476,7 @@ const TestServer: React.FC = () => {
                   <div>
                     <div className="flex items-center justify-between mb-1">
                       <span className="text-sm text-gray-500">
-                        {siteConfig.texts.memory[language]}
+                        {siteConfig.texts[language].memory}
                       </span>
                       <span className="text-sm font-medium text-gray-900 dark:text-white">
                         {Math.round(status.memory.current / 1024 / 1024)}MB
@@ -472,7 +498,7 @@ const TestServer: React.FC = () => {
                 onClick={() => setShowConnectPopup(true)}
                 className="w-full px-4 py-2 bg-emerald-600 hover:bg-emerald-700 text-white font-minecraft text-sm rounded-lg transition-all transform hover:-translate-y-0.5 duration-200 shadow-lg hover:shadow-xl"
               >
-                {siteConfig.texts.connectToTestServer[language]}
+                {siteConfig.texts[language].connectToTestServer}
               </button>
             </div>
           </div>

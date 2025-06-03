@@ -1,7 +1,7 @@
 import { useLocation } from 'react-router-dom';
 import { useLanguage } from '../context/LanguageContext';
-import { siteConfig } from '../config/site';
 import { Helmet } from 'react-helmet-async';
+import { config } from '../config/config';
 
 interface MetaTagsProps {
   title?: string;
@@ -19,8 +19,8 @@ const MetaTags = ({
   const { language } = useLanguage();
   const location = useLocation();
   const currentUrl = `https://www.pixelhubhost.com${location.pathname}`;
-  const pageTitle = title || siteConfig.name;
-  const pageDescription = description || siteConfig.description[language];
+  const pageTitle = title || config.name;
+  const pageDescription = description || config.name;
 
   // Supported languages for alternate links
   const languages = ['en', 'pt', 'de', 'fr'];
@@ -34,7 +34,7 @@ const MetaTags = ({
       <meta property="og:image" content={image} />
       <meta property="og:url" content={currentUrl} />
       <meta property="og:type" content={type} />
-      <meta property="og:site_name" content={siteConfig.name} />
+      <meta property="og:site_name" content={config.name} />
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:title" content={pageTitle} />
       <meta name="twitter:description" content={pageDescription} />
@@ -47,10 +47,12 @@ const MetaTags = ({
         <link
           key={code}
           rel="alternate"
-          href={`${currentUrl}?lang=${code}`}
+          href={`https://www.pixelhubhost.com${location.pathname}?lang=${code}`}
           hrefLang={code}
         />
       ))}
+      {/* Set html lang attribute for accessibility/SEO */}
+      <html lang={language} />
     </Helmet>
   );
 };

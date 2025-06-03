@@ -1,6 +1,7 @@
 import React from "react";
 import { useLanguage } from "../context/LanguageContext";
-import { siteConfig } from "../config/site";
+import { config } from "../config/config";
+import languagesConfig from "../config/languages/Languages"; // updated import
 
 const legalTexts = {
   title: {
@@ -93,6 +94,10 @@ const legalTexts = {
 
 const Legal: React.FC = () => {
   const { language } = useLanguage();
+  // Use aboutUsContact from the new languages config
+  const aboutUsContact =
+    languagesConfig[language]?.texts?.aboutUsContact ||
+    languagesConfig.en.texts.aboutUsContact;
 
   return (
     <section className="min-h-screen bg-gradient-to-b from-gray-900 via-gray-950 to-black text-gray-200 py-20 px-4">
@@ -151,12 +156,12 @@ const Legal: React.FC = () => {
         </h3>
         <div className="mb-4">
           <a
-            href={siteConfig.contact.discord}
+            href={config.contact.discord}
             target="_blank"
             rel="noopener noreferrer"
             className="inline-block bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-medium transition-colors shadow"
           >
-            {siteConfig.texts.aboutUsContact[language]}
+            {aboutUsContact}
           </a>
         </div>
         <div className="mt-8 space-y-3 text-gray-400 text-sm">

@@ -1,16 +1,16 @@
 import React from "react";
-import { useTranslation } from "react-i18next";
 import { FaDiscord } from "react-icons/fa";
 import { Phone } from "lucide-react";
 import { useLanguage } from "../context/LanguageContext";
-import { siteConfig } from "../config/site";
-import { config } from "../config/config";
+import languagesConfig from "../config/languages/Languages";
+
+type LanguageKey = keyof typeof languagesConfig;
 
 const Contact: React.FC = () => {
-  useTranslation();
   const { language } = useLanguage();
-
-  const contact = config.contact;
+  const langKey = (language in languagesConfig ? language : "en") as LanguageKey;
+  const t = languagesConfig[langKey].texts;
+  const contact = languagesConfig[langKey].contact;
 
   return (
     <section
@@ -20,10 +20,10 @@ const Contact: React.FC = () => {
       <div className="container mx-auto px-4">
         <div className="max-w-3xl mx-auto text-center">
           <h2 className="text-4xl font-extrabold text-gray-900 dark:text-white mb-3 tracking-tight drop-shadow-sm">
-            {siteConfig.texts.contactTitle[language]}
+            {t.contactTitle}
           </h2>
           <p className="text-gray-700 dark:text-gray-400 mb-10 text-lg">
-            {siteConfig.texts.contactSubtitle[language]}
+            {t.contactSubtitle}
           </p>
 
           <div className="flex flex-col sm:flex-row justify-center gap-6 sm:gap-12 mt-8">

@@ -1,4 +1,4 @@
-import { Language } from './types';
+import { Language } from './config';
 
 // Fix: Export commonFeatures if used elsewhere, and ensure no circular imports or runtime errors.
 

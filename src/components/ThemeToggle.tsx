@@ -1,17 +1,23 @@
 import React from "react";
 import { Sun, Moon } from "lucide-react";
 import { useTheme } from "../context/ThemeContext";
+import { useLanguage } from "../context/LanguageContext";
+import languagesConfig from "../config/languages/Languages"; // updated import
 
 const ThemeToggle: React.FC = () => {
   const { theme, toggleTheme } = useTheme();
+  const { language } = useLanguage();
+  const texts =
+    languagesConfig[language as keyof typeof languagesConfig]?.texts ||
+    languagesConfig.en.texts;
 
   return (
     <button
       onClick={toggleTheme}
       className="p-2 rounded-xl border border-transparent bg-gray-800/60 hover:bg-gray-700/80 transition-all duration-200 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
-      aria-label="Toggle theme"
+      aria-label={texts.toggleTheme || "Toggle theme"}
     >
-      <span className="sr-only">Toggle theme</span>
+      <span className="sr-only">{texts.toggleTheme || "Toggle theme"}</span>
       {theme === "dark" ? (
         <Sun size={20} className="text-yellow-400 animate-spin-slow" />
       ) : (

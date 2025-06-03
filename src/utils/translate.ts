@@ -1,12 +1,15 @@
-import { translations } from "../config/translations";
+import languagesConfig from "../config/languages/Languages";
 
 type Language = "en" | "fr" | "de" | "pt";
 
+// Infer the keys from the English texts object
+type TranslationKey = keyof typeof languagesConfig.en.texts;
+
 export const translate = (
-  key: keyof typeof translations,
+  key: TranslationKey,
   language: Language
 ): string => {
-  const entry = translations[key] as Record<Language, string>;
+  const entry = languagesConfig[language]?.texts?.[key] ?? languagesConfig.en.texts?.[key];
   if (!entry) return key;
-  return entry[language] || entry["en"] || "";
+  return entry;
 };
