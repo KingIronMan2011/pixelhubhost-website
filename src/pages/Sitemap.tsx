@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import { siteConfig } from "../config/site";
 
 const sitemapLinks = [
   { path: "/", labelKey: "home" },
