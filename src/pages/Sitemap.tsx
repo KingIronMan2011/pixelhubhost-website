@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 
 const sitemapLinks = [
   { path: "/", label: "Home" },
+  { path: "/aboutus", label: "About Us" },
+  { path: "/privacy", label: "Privacy Policy" },
   // Add more routes as needed
 ];
 
