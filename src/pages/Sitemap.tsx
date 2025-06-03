@@ -5,6 +5,8 @@ const sitemapLinks = [
   { path: "/", label: "Home" },
   { path: "/aboutus", label: "About Us" },
   { path: "/privacy", label: "Privacy Policy" },
+  { path: "/terms", label: "Terms of Service" },
+  { path: "/legal", label: "Legal"
   // Add more routes as needed
 ];
 
