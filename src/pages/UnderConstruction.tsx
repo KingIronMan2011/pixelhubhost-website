@@ -11,40 +11,46 @@ const texts = {
     de: "Im Aufbau",
     fr: "En construction",
     pt: "Em construção",
+    it: "In costruzione",
   },
   working: {
     en: "We're working hard to bring you something awesome.",
     de: "Wir arbeiten daran, Ihnen etwas Großartiges zu bieten.",
     fr: "Nous travaillons dur pour vous offrir quelque chose de génial.",
     pt: "Estamos trabalhando para trazer algo incrível para você.",
+    it: "Stiamo lavorando duramente per offrirti qualcosa di fantastico.",
   },
   checkBack: {
     en: "Please check back soon!",
     de: "Bitte schauen Sie bald wieder vorbei!",
     fr: "Veuillez revenir bientôt !",
     pt: "Por favor, volte em breve!",
+    it: "Torna presto a trovarci!",
   },
   contactUs: {
     en: "Contact us",
     de: "Kontaktieren Sie uns",
     fr: "Contactez-nous",
     pt: "Contate-nos",
+    it: "Contattaci",
   },
   language: {
     en: "Language",
     de: "Sprache",
     fr: "Langue",
     pt: "Idioma",
+    it: "Lingua",
   },
   visitWebsite: {
     en: "Visit Website",
     de: "Webseite besuchen",
     fr: "Visiter le site",
     pt: "Visitar site",
+    it: "Visita il sito",
   },
 };
 
-type Language = "en" | "de" | "fr" | "pt";
+type Language = "en" | "de" | "fr" | "pt" | "it";
 
 const UnderConstruction = () => {
   const { language, setLanguage } = useLanguage();
@@ -128,6 +134,7 @@ const UnderConstruction = () => {
               <option value="de">Deutsch</option>
               <option value="fr">Français</option>
               <option value="pt">Português</option>
+              <option value="it">Italiano</option>
             </select>
             {/* Dropdown Arrow Icon */}
             <span className="pointer-events-none absolute right-2 top-1/2 -translate-y-1/2 text-gray-400 dark:text-gray-500">

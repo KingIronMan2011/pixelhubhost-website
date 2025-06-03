@@ -9,36 +9,42 @@ const tosTexts = {
     de: "Nutzungsbedingungen",
     fr: "Conditions d'utilisation",
     pt: "Termos de Serviço",
+    it: "Termini di Servizio",
   },
   intro: {
     en: "By using our website and services, you agree to the following terms.",
     de: "Durch die Nutzung unserer Website und Dienste stimmen Sie den folgenden Bedingungen zu.",
     fr: "En utilisant notre site et nos services, vous acceptez les conditions suivantes.",
     pt: "Ao usar nosso site e serviços, você concorda com os seguintes termos.",
+    it: "Utilizzando il nostro sito e i nostri servizi, accetti i seguenti termini.",
   },
   usage: {
     en: "You must not use our services for illegal or abusive purposes.",
     de: "Sie dürfen unsere Dienste nicht für illegale oder missbräuchliche Zwecke verwenden.",
     fr: "Vous ne devez pas utiliser nos services à des fins illégales ou abusives.",
     pt: "Você não deve usar nossos serviços para fins ilegais ou abusivos.",
+    it: "Non devi utilizzare i nostri servizi per scopi illegali o abusivi.",
   },
   account: {
     en: "You are responsible for maintaining the security of your account.",
     de: "Sie sind für die Sicherheit Ihres Kontos verantwortlich.",
     fr: "Vous êtes responsable de la sécurité de votre compte.",
     pt: "Você é responsável por manter a segurança da sua conta.",
+    it: "Sei responsabile del mantenimento della sicurezza del tuo account.",
   },
   changes: {
     en: "We may update these terms at any time. Continued use means acceptance of the new terms.",
     de: "Wir können diese Bedingungen jederzeit aktualisieren. Die fortgesetzte Nutzung gilt als Zustimmung zu den neuen Bedingungen.",
     fr: "Nous pouvons mettre à jour ces conditions à tout moment. L'utilisation continue vaut acceptation des nouvelles conditions.",
     pt: "Podemos atualizar estes termos a qualquer momento. O uso contínuo implica aceitação dos novos termos.",
+    it: "Possiamo aggiornare questi termini in qualsiasi momento. L'uso continuato implica l'accettazione dei nuovi termini.",
   },
   contact: {
     en: "If you have questions about our terms, please contact us.",
     de: "Wenn Sie Fragen zu unseren Bedingungen haben, kontaktieren Sie uns bitte.",
     fr: "Si vous avez des questions concernant nos conditions, veuillez nous contacter.",
     pt: "Se você tiver dúvidas sobre nossos termos, entre em contato conosco.",
+    it: "Se hai domande sui nostri termini, ti preghiamo di contattarci.",
   },
 };
 

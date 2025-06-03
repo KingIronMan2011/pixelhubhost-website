@@ -8,6 +8,7 @@ const getCurrencyByLanguage = (language: Language) => {
       return { symbol: '$', rate: 0.2 };
     case 'de':
     case 'fr':
+    case 'it': // Add Italian to Euro
       return { symbol: '€', rate: 0.19 };
     default:
       return { symbol: 'R$', rate: 1 };
@@ -51,7 +52,8 @@ export const commonFeatures: PlanFeature[] = [
       en: "DDoS Protection",
       pt: "Proteção DDoS",
       de: "DDoS-Schutz",
-      fr: "Protection DDoS"
+      fr: "Protection DDoS",
+      it: "Protezione DDoS"
     },
     included: true
   },
@@ -60,7 +62,8 @@ export const commonFeatures: PlanFeature[] = [
       en: "Intel Xeon CPU",
       pt: "CPU Intel Xeon",
       de: "Intel Xeon CPU",
-      fr: "CPU Intel Xeon"
+      fr: "CPU Intel Xeon",
+      it: "CPU Intel Xeon"
     },
     included: true
   },
@@ -69,7 +72,8 @@ export const commonFeatures: PlanFeature[] = [
       en: "1Gbps Network",
       pt: "Rede 1Gbps",
       de: "1Gbps Netzwerk",
-      fr: "Réseau 1Gbps"
+      fr: "Réseau 1Gbps",
+      it: "Rete 1Gbps"
     },
     included: true
   },
@@ -78,7 +82,8 @@ export const commonFeatures: PlanFeature[] = [
       en: "Reliable Support",
       pt: "Suporte Confiável",
       de: "Zuverlässiger Support",
-      fr: "Support Fiable"
+      fr: "Support Fiable",
+      it: "Supporto Affidabile"
     },
     included: true
   }
@@ -92,13 +97,15 @@ export const plans: Plan[] = [
       en: "Oak",
       pt: "Carvalho",
       de: "Eiche",
-      fr: "Chêne"
+      fr: "Chêne",
+      it: "Quercia"
     },
     description: {
       en: "Great for growing Minecraft servers",
       pt: "Ótimo para servidores Minecraft em crescimento",
       de: "Ideal für wachsende Minecraft-Server",
-      fr: "Idéal pour les serveurs Minecraft en croissance"
+      fr: "Idéal pour les serveurs Minecraft en croissance",
+      it: "Ottimo per server Minecraft in crescita"
     },
     price: {
       base_amount: 34,
@@ -130,13 +137,15 @@ export const plans: Plan[] = [
       en: "Stone",
       pt: "Pedra",
       de: "Stein",
-      fr: "Pierre"
+      fr: "Pierre",
+      it: "Pietra"
     },
     description: {
       en: "Solid performance for medium-sized servers",
       pt: "Desempenho sólido para servidores médios",
       de: "Solide Leistung für mittelgroße Server",
-      fr: "Performance solide pour serveurs moyens"
+      fr: "Performance solide pour serveurs moyens",
+      it: "Prestazioni solide per server di medie dimensioni"
     },
     price: {
       base_amount: 51,
@@ -168,13 +177,15 @@ export const plans: Plan[] = [
       en: "Iron",
       pt: "Ferro",
       de: "Eisen",
-      fr: "Fer"
+      fr: "Fer",
+      it: "Ferro"
     },
     description: {
       en: "Powerful hosting for established communities",
       pt: "Hospedagem poderosa para comunidades estabelecidas",
       de: "Leistungsstarkes Hosting für etablierte Communities",
-      fr: "Hébergement puissant pour communautés établies"
+      fr: "Hébergement puissant pour communautés établies",
+      it: "Hosting potente per community consolidate"
     },
     price: {
       base_amount: 68,
@@ -206,13 +217,15 @@ export const plans: Plan[] = [
       en: "Diamond",
       pt: "Diamante",
       de: "Diamant",
-      fr: "Diamant"
+      fr: "Diamant",
+      it: "Diamante"
     },
     description: {
       en: "Premium hosting for large communities",
       pt: "Hospedagem premium para grandes comunidades",
       de: "Premium-Hosting für große Communities",
-      fr: "Hébergement premium pour grandes communautés"
+      fr: "Hébergement premium pour grandes communautés",
+      it: "Hosting premium per grandi community"
     },
     price: {
       base_amount: 100,
@@ -244,13 +257,15 @@ export const plans: Plan[] = [
       en: "Netherite",
       pt: "Netherita",
       de: "Netherit",
-      fr: "Netherite"
+      fr: "Netherite",
+      it: "Netherite"
     },
     description: {
       en: "Ultimate performance for demanding servers",
       pt: "Performance máxima para servidores exigentes",
       de: "Ultimative Leistung für anspruchsvolle Server",
-      fr: "Performance ultime pour serveurs exigeants"
+      fr: "Performance ultime pour serveurs exigeants",
+      it: "Prestazioni estreme per server esigenti"
     },
     price: {
       base_amount: 130,
@@ -282,13 +297,15 @@ export const plans: Plan[] = [
       en: "Ender Dragon",
       pt: "Dragão do Fim",
       de: "Enderdrache",
-      fr: "Dragon de l'Ender"
+      fr: "Dragon de l'Ender",
+      it: "Drago Ender"
     },
     description: {
       en: "Maximum power for large networks",
       pt: "Poder máximo para grandes redes",
       de: "Maximale Leistung für große Netzwerke",
-      fr: "Puissance maximale pour grands réseaux"
+      fr: "Puissance maximale pour grands réseaux",
+      it: "Potenza massima per grandi reti"
     },
     price: {
       base_amount: 248,

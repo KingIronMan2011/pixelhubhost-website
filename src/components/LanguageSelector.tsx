@@ -7,6 +7,7 @@ const languageNames: Record<string, string> = {
   pt: "Português",
   de: "Deutsch",
   fr: "Français",
+  it: "Italiano", // Added Italian
 };
 
 const LanguageSelector = () => {

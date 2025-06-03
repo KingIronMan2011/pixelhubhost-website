@@ -12,12 +12,14 @@ const customPlan = {
     de: "Individuell",
     fr: "Personnalisé",
     pt: "Personalizado",
+    it: "Personalizzato", // Italian support
   },
   description: {
     en: "Contact us for a custom server tailored to your needs.",
     de: "Kontaktieren Sie uns für einen individuellen Server.",
     fr: "Contactez-nous pour un serveur personnalisé.",
     pt: "Entre em contato para um servidor personalizado.",
+    it: "Contattaci per un server personalizzato su misura per te.", // Italian support
   },
   price: {
     getCurrencyInfo: () => ({

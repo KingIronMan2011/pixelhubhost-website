@@ -9,6 +9,7 @@ const languages = [
   { code: "pt", name: "Português" },
   { code: "de", name: "Deutsch" },
   { code: "fr", name: "Français" },
+  { code: "it", name: "Italiano" }, // Added Italian
 ];
 
 // Add translation strings for the GitHub button and "Made by"
@@ -17,6 +18,7 @@ const githubButtonText: Record<string, string> = {
   pt: "Quer ajudar a construir este site? Faça um commit no nosso Github",
   de: "Willst du uns helfen, diese Website zu bauen? Mach einen Commit auf unserem Github",
   fr: "Vous voulez aider à construire ce site ? Faites un commit sur notre Github",
+  it: "Vuoi aiutarci a costruire questo sito? Fai una commit sul nostro Github", // Italian
 };
 
 const madeByText: Record<string, string> = {
@@ -24,6 +26,7 @@ const madeByText: Record<string, string> = {
   pt: "Feito por KingIronMan2011",
   de: "Erstellt von KingIronMan2011",
   fr: "Réalisé par KingIronMan2011",
+  it: "Creato da KingIronMan2011", // Italian
 };
 
 const Footer: React.FC = () => {

@@ -7,7 +7,7 @@ import {
 } from "react";
 import { Language } from "../config/config";
 
-const supportedLanguages: Language[] = ["en", "pt", "de", "fr"];
+const supportedLanguages: Language[] = ["en", "pt", "de", "fr", "it"];
 
 const getInitialLanguage = (): Language => {
   if (typeof window === "undefined") return "pt";

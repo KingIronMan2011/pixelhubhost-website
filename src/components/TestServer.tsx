@@ -4,8 +4,7 @@ import { usePterodactyl } from "../hooks/usePterodactyl";
 import { useLanguage } from "../context/LanguageContext";
 import languagesConfig from "../config/languages/Languages"; // updated import
 import { SERVER_LIMITS } from "../config/config";
-// import { Language } from "../config/types";
-type Language = "en" | "pt" | "de" | "fr"; // Replace with actual supported languages if different
+import type { Language } from "../config/config";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Dialog } from "@headlessui/react";
@@ -27,6 +26,59 @@ const translations = Object.fromEntries(
     },
   ])
 );
+
+
+const popupTranslations = {
+  javaTitle: {
+    en: "For Minecraft Java Edition:",
+    pt: "Para Minecraft Java Edition:",
+    de: "Für Minecraft Java Edition:",
+    fr: "Pour Minecraft Java Edition :",
+    it: "Per Minecraft Java Edition:",
+  },
+  javaDesc: {
+    en: "Open Minecraft Java Edition, click Multiplayer, then Add Server. Enter the following as the Server Address:",
+    pt: "Abra o Minecraft Java Edition, clique em Multiplayer e depois em Adicionar Servidor. Insira o seguinte como Endereço do Servidor:",
+    de: "Öffne Minecraft Java Edition, klicke auf Mehrspieler und dann auf Server hinzufügen. Gib Folgendes als Serveradresse ein:",
+    fr: "Ouvrez Minecraft Java Edition, cliquez sur Multijoueur puis Ajouter un serveur. Entrez ce qui suit comme adresse du serveur :",
+    it: "Apri Minecraft Java Edition, clicca su Multigiocatore e poi su Aggiungi Server. Inserisci quanto segue come indirizzo del server:",
+  },
+  bedrockTitle: {
+    en: "For Minecraft Bedrock Edition:",
+    pt: "Para Minecraft Bedrock Edition:",
+    de: "Für Minecraft Bedrock Edition:",
+    fr: "Pour Minecraft Bedrock Edition :",
+    it: "Per Minecraft Bedrock Edition:",
+  },
+  bedrockDesc: {
+    en: "Open Minecraft Bedrock Edition, go to Servers, then Add Server. Enter the following as the Server Address and Port:",
+    pt: "Abra o Minecraft Bedrock Edition, vá em Servidores e depois em Adicionar Servidor. Insira o seguinte como Endereço e Porta:",
+    de: "Öffne Minecraft Bedrock Edition, gehe zu Server und dann zu Server hinzufügen. Gib Folgendes als Serveradresse und Port ein:",
+    fr: "Ouvrez Minecraft Bedrock Edition, allez dans Serveurs puis Ajouter un serveur. Entrez ce qui suit comme adresse et port du serveur :",
+    it: "Apri Minecraft Bedrock Edition, vai su Server e poi su Aggiungi Server. Inserisci quanto segue come indirizzo e porta del server:",
+  },
+  copyDomain: {
+    en: "Copy Domain",
+    pt: "Copiar Domínio",
+    de: "Domain Kopieren",
+    fr: "Copier le Domaine",
+    it: "Copia Dominio",
+  },
+  copyPort: {
+    en: "Copy Port",
+    pt: "Copiar Porta",
+    de: "Port Kopieren",
+    fr: "Copier le Port",
+    it: "Copia Porta",
+  },
+  howToConnect: {
+    en: "How to Connect",
+    pt: "Como conectar",
+    de: "So verbindest du dich",
+    fr: "Comment se connecter",
+    it: "Come connettersi",
+  },
+};
 
 const siteConfig = {
   texts: Object.fromEntries(
@@ -81,51 +133,6 @@ type ConnectPopupProps = {
   language: Language;
   serverDomain: string;
   bedrockPort: string;
-};
-
-const popupTranslations = {
-  javaTitle: {
-    en: "For Minecraft Java Edition:",
-    pt: "Para Minecraft Java Edition:",
-    de: "Für Minecraft Java Edition:",
-    fr: "Pour Minecraft Java Edition :",
-  },
-  javaDesc: {
-    en: "Open Minecraft Java Edition, click Multiplayer, then Add Server. Enter the following as the Server Address:",
-    pt: "Abra o Minecraft Java Edition, clique em Multiplayer e depois em Adicionar Servidor. Insira o seguinte como Endereço do Servidor:",
-    de: "Öffne Minecraft Java Edition, klicke auf Mehrspieler und dann auf Server hinzufügen. Gib Folgendes als Serveradresse ein:",
-    fr: "Ouvrez Minecraft Java Edition, cliquez sur Multijoueur puis Ajouter un serveur. Entrez ce qui suit comme adresse du serveur :",
-  },
-  bedrockTitle: {
-    en: "For Minecraft Bedrock Edition:",
-    pt: "Para Minecraft Bedrock Edition:",
-    de: "Für Minecraft Bedrock Edition:",
-    fr: "Pour Minecraft Bedrock Edition :",
-  },
-  bedrockDesc: {
-    en: "Open Minecraft Bedrock Edition, go to Servers, then Add Server. Enter the following as the Server Address and Port:",
-    pt: "Abra o Minecraft Bedrock Edition, vá em Servidores e depois em Adicionar Servidor. Insira o seguinte como Endereço e Porta:",
-    de: "Öffne Minecraft Bedrock Edition, gehe zu Server und dann zu Server hinzufügen. Gib Folgendes als Serveradresse und Port ein:",
-    fr: "Ouvrez Minecraft Bedrock Edition, allez dans Serveurs puis Ajouter un serveur. Entrez ce qui suit comme adresse et port du serveur :",
-  },
-  copyDomain: {
-    en: "Copy Domain",
-    pt: "Copiar Domínio",
-    de: "Domain Kopieren",
-    fr: "Copier le Domaine",
-  },
-  copyPort: {
-    en: "Copy Port",
-    pt: "Copiar Porta",
-    de: "Port Kopieren",
-    fr: "Copier le Port",
-  },
-  howToConnect: {
-    en: "How to Connect",
-    pt: "Como conectar",
-    de: "So verbindest du dich",
-    fr: "Comment se connecter",
-  },
 };
 
 const ConnectPopup: React.FC<ConnectPopupProps> = ({

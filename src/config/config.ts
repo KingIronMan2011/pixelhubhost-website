@@ -38,7 +38,7 @@ export const planLinks: Record<string, { monthly: string; quarterly: string }> =
   },
 };
 
-export type Language = "en" | "pt" | "de" | "fr";
+export type Language = "en" | "pt" | "de" | "fr" | "it"; // Italian supported
 export type Theme = "light" | "dark";
 
 export const PTERODACTYL_CONFIG = {

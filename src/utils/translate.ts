@@ -1,6 +1,6 @@
 import languagesConfig from "../config/languages/Languages";
 
-type Language = "en" | "fr" | "de" | "pt";
+type Language = "en" | "fr" | "de" | "pt" | "it";
 
 // Infer the keys from the English texts object
 type TranslationKey = keyof typeof languagesConfig.en.texts;
