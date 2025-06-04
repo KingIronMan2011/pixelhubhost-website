@@ -9,7 +9,7 @@ This website serves as the main landing page, offering information about our ser
 ## 🌐 Website Features
 
 - **Multilingual Support**:  
-  Available in English, German, Portuguese, and French.
+  Available in English, German, Portuguese, French, and Italian.
 - **Modern Design**:  
   Responsive, clean, and user-friendly interface.
 - **Service Info**:  
@@ -50,7 +50,7 @@ To contribute or run the website locally:
 
 - **Frontend:** React (with TypeScript)
 - **Routing:** React Router
-- **Translations:** Custom solution (see `src/config/site.ts`)
+- **Translations:** Custom solution (see `src/config/languages`)
 - **Styling:** Inline styles and CSS
 
 ---
@@ -63,8 +63,9 @@ The site supports the following languages:
 - **Deutsch (German)**
 - **Português (Portuguese)**
 - **Français (French)**
+- **Italiano (Italian)**
 
-Translations are managed in [`src/config/site.ts`](./src/config/site.ts).
+Translations are managed in [`src/config/languages`](./src/config/languages).
 
 ---
 
@@ -93,7 +94,7 @@ Feel free to submit issues and pull requests for improvements, bug fixes, or tra
 
 - **Discord:** [Join Server](https://discord.gg/mquaVhs5sr)
 - **WhatsApp:** [Contact on WhatsApp](https://wa.me/5516993981473)
-- **Email:** [Contact](mailto:your@email.com) (update as needed)
+- **Email:** [Contact](mailto: contato@pixelhubhost.com)
 
 ---
 
