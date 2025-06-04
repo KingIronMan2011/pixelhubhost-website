@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from "react";
 
+// Set this to true to enable the Admin page, or false to disable it
+const ADMIN_ENABLED = false;
+
 const ADMIN_PASSWORD = "KingJulian#2011@10";
 const ADMIN_AUTH_KEY = "pixelhub_admin_authenticated";
 
@@ -21,6 +24,22 @@ const saveFile = async (file: string, content: string) => {
 };
 
 const Admin: React.FC = () => {
+  // Option to disable the Admin page
+  if (!ADMIN_ENABLED) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-100 via-white to-purple-100 dark:from-gray-900 dark:via-gray-950 dark:to-gray-900 transition-colors">
+        <div className="bg-white/90 dark:bg-gray-900/90 p-8 rounded-2xl shadow-2xl text-center">
+          <h2 className="text-3xl font-extrabold mb-2 text-blue-700 dark:text-blue-300 tracking-tight">
+            Admin Page Disabled
+          </h2>
+          <p className="text-gray-700 dark:text-gray-300">
+            The admin panel is currently disabled.
+          </p>
+        </div>
+      </div>
+    );
+  }
+
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
