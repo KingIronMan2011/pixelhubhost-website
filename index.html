@@ -35,6 +35,16 @@
       content="Premium Minecraft server hosting with high performance, instant setup, custom domains, and 24/7 support."
     />
     <meta name="twitter:image" content="/favicon-32x32.png" />
+    <!-- Fallback favicon for older browsers -->
+    <link rel="icon" href="/favicon.ico" />
+    <!-- Fallback for query parameters: redirect to root if only query string is present -->
+    <script>
+      // If the path is "/" and there are query parameters, reload to "/" (for static hosting)
+      if (location.pathname === "/" && location.search && !location.hash) {
+        history.replaceState(null, "", "/");
+        location.reload();
+      }
+    </script>
   </head>
   <body
     class="antialiased bg-gradient-to-b from-[#f0f6ff] via-white to-[#f3e8ff] min-h-screen"
