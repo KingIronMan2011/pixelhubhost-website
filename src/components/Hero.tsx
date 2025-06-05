@@ -8,7 +8,9 @@ type SupportedLanguage = keyof typeof languagesConfig;
 const Hero = () => {
   const { language } = useLanguage();
   const heroRef = useRef<HTMLDivElement>(null);
-  const t = languagesConfig[language as SupportedLanguage]?.texts || languagesConfig.en.texts;
+  const t =
+    languagesConfig[language as SupportedLanguage]?.texts ||
+    languagesConfig.en.texts;
 
   // Animate elements on scroll into view
   useEffect(() => {
@@ -51,7 +53,13 @@ const Hero = () => {
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="max-w-4xl mx-auto text-center">
-          <h1 className="animate-on-scroll text-4xl md:text-6xl font-extrabold mb-7 bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 bg-clip-text text-transparent drop-shadow-lg">
+          <h1
+            className="animate-on-scroll text-4xl md:text-6xl font-extrabold mb-7 bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 bg-clip-text text-transparent drop-shadow-lg leading-tight md:leading-[1.13] tracking-tight"
+            style={{
+              letterSpacing: "0.01em",
+              lineHeight: 1.18, // Ensures descenders like "g" are visible
+            }}
+          >
             {t.heroTitle}
           </h1>
           <p className="animate-on-scroll text-lg md:text-2xl text-gray-700 dark:text-gray-300 mb-10 max-w-2xl mx-auto font-medium">

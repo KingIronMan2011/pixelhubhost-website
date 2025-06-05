@@ -18,7 +18,8 @@ const translations = Object.fromEntries(
       serverOffline: obj.texts?.serverOffline || "Server Offline",
       checking: obj.texts?.checking || "Checking...",
       testServer: obj.texts?.testServer || "Test Server",
-      connectToTestServer: obj.texts?.connectToTestServer || "Connect to Test Server",
+      connectToTestServer:
+        obj.texts?.connectToTestServer || "Connect to Test Server",
       domain: obj.texts?.domain || "Domain",
       bedrockPort: obj.texts?.bedrockPort || "Bedrock Port",
       cpu: obj.texts?.cpu || "CPU",
@@ -88,7 +89,9 @@ const ConnectPopup: React.FC<ConnectPopupProps> = ({
   serverDomain,
   bedrockPort,
 }) => {
-  const t = languagesConfig[language as keyof typeof languagesConfig]?.texts || languagesConfig.en.texts;
+  const t =
+    languagesConfig[language as keyof typeof languagesConfig]?.texts ||
+    languagesConfig.en.texts;
   const [copiedDomain, setCopiedDomain] = useState(false);
   const [copiedPort, setCopiedPort] = useState(false);
 
@@ -331,7 +334,7 @@ const TestServer: React.FC = () => {
               <div className="flex items-center space-x-3">
                 <Server className="w-7 h-7 text-blue-500" />
                 <div>
-                  <h2 className="text-xl font-minecraft font-bold text-gray-900 dark:text-white">
+                  <h2 className="text-xl font-bold text-gray-900 dark:text-white">
                     {siteConfig.texts[language].testServer}
                   </h2>
                   <p className="text-sm text-gray-600 dark:text-gray-400">
@@ -451,7 +454,7 @@ const TestServer: React.FC = () => {
             <div className="mt-4 pt-3 border-t border-gray-200 dark:border-gray-700">
               <button
                 onClick={() => setShowConnectPopup(true)}
-                className="w-full px-4 py-2 bg-emerald-600 hover:bg-emerald-700 text-white font-minecraft text-sm rounded-lg transition-all transform hover:-translate-y-0.5 duration-200 shadow-lg hover:shadow-xl"
+                className="w-full px-4 py-2 bg-emerald-600 hover:bg-emerald-700 text-white text-sm rounded-lg transition-all transform hover:-translate-y-0.5 duration-200 shadow-lg hover:shadow-xl"
               >
                 {siteConfig.texts[language].connectToTestServer}
               </button>
