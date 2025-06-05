@@ -11,32 +11,33 @@ export const config = {
   copyright: "PixelHub Host",
 };
 
-export const planLinks: Record<string, { monthly: string; quarterly: string }> = {
-  oak: {
-    monthly: "https://dash.pixelhubhost.com/market/1/checkout",
-    quarterly: "https://dash.pixelhubhost.com/market/1/checkout",
-  },
-  stone: {
-    monthly: "https://dash.pixelhubhost.com/market/2/checkout",
-    quarterly: "https://dash.pixelhubhost.com/market/2/checkout",
-  },
-  iron: {
-    monthly: "https://dash.pixelhubhost.com/market/3/checkout",
-    quarterly: "https://dash.pixelhubhost.com/market/3/checkout",
-  },
-  diamond: {
-    monthly: "https://dash.pixelhubhost.com/market/4/checkout",
-    quarterly: "https://dash.pixelhubhost.com/market/4/checkout",
-  },
-  netherite: {
-    monthly: "https://dash.pixelhubhost.com/market/5/checkout",
-    quarterly: "https://dash.pixelhubhost.com/market/5/checkout",
-  },
-  dragon: {
-    monthly: "https://dash.pixelhubhost.com/market/6/checkout",
-    quarterly: "https://dash.pixelhubhost.com/market/6/checkout",
-  },
-};
+export const planLinks: Record<string, { monthly: string; quarterly: string }> =
+  {
+    oak: {
+      monthly: "https://dash.pixelhubhost.com/market/1/checkout",
+      quarterly: "https://dash.pixelhubhost.com/market/1/checkout",
+    },
+    stone: {
+      monthly: "https://dash.pixelhubhost.com/market/2/checkout",
+      quarterly: "https://dash.pixelhubhost.com/market/2/checkout",
+    },
+    iron: {
+      monthly: "https://dash.pixelhubhost.com/market/3/checkout",
+      quarterly: "https://dash.pixelhubhost.com/market/3/checkout",
+    },
+    diamond: {
+      monthly: "https://dash.pixelhubhost.com/market/4/checkout",
+      quarterly: "https://dash.pixelhubhost.com/market/4/checkout",
+    },
+    netherite: {
+      monthly: "https://dash.pixelhubhost.com/market/5/checkout",
+      quarterly: "https://dash.pixelhubhost.com/market/5/checkout",
+    },
+    dragon: {
+      monthly: "https://dash.pixelhubhost.com/market/6/checkout",
+      quarterly: "https://dash.pixelhubhost.com/market/6/checkout",
+    },
+  };
 
 export type Language = "en" | "pt" | "de" | "fr" | "it"; // Italian supported
 export type Theme = "light" | "dark";
@@ -48,12 +49,12 @@ export const PTERODACTYL_CONFIG = {
 };
 
 export type ServerStatus = {
-  state: 'starting' | 'running' | 'stopping' | 'offline';
+  state: "testServerStarting" | "testServerRunning" | "testServerStopping" | "testServerOffline";
   memory: { current: number; limit: number };
   cpu: { current: number; limit: number };
 };
 
 export const SERVER_LIMITS = {
   MEMORY: 3 * 1024 * 1024 * 1024, // 3GB in bytes
-  CPU: 200 // 200%
+  CPU: 200, // 200%
 };

@@ -370,21 +370,23 @@ const TestServer: React.FC = () => {
               <div className="flex items-center space-x-2">
                 <Signal
                   className={`w-5 h-5 ${
-                    status?.state === "running"
+                    status?.state === "testServerRunning"
                       ? "text-green-500"
                       : "text-red-500"
                   }`}
                 />
                 <span
                   className={`text-sm font-medium ${
-                    status?.state === "running"
+                    status?.state === "testServerRunning"
                       ? "text-green-500"
                       : "text-red-500"
                   }`}
                 >
                   {loading
                     ? siteConfig.texts[language].checking
-                    : status?.state || siteConfig.texts[language].serverOffline}
+                    : status?.state
+                    ? siteConfig.texts[language][status.state as keyof typeof siteConfig.texts[typeof language]]
+                    : siteConfig.texts[language].serverOffline}
                 </span>
               </div>
             </div>

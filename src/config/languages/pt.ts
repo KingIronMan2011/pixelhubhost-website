@@ -22,15 +22,20 @@ const pt = {
     featuresSubtitle:
       "Experimente o melhor em hospedagem de servidores Minecraft",
     ddosProtection: "Proteção DDoS",
-    ddosProtectionDesc: "Proteja seu servidor contra ataques DDoS para máxima segurança.",
+    ddosProtectionDesc:
+      "Proteja seu servidor contra ataques DDoS para máxima segurança.",
     xeonCpu: "CPUs de alto desempenho",
-    xeonCpuDesc: "Processadores Intel Xeon de última geração para desempenho superior.",
+    xeonCpuDesc:
+      "Processadores Intel Xeon de última geração para desempenho superior.",
     networkSpeed: "Velocidade de Rede",
-    networkSpeedDesc: "Conexão ultra-rápida e baixa latência para uma jogabilidade suave.",
+    networkSpeedDesc:
+      "Conexão ultra-rápida e baixa latência para uma jogabilidade suave.",
     reliableSupport: "Suporte Confiável",
-    reliableSupportDesc: "Nossa equipe está disponível 24/7 para ajudar com qualquer dúvida ou problema.",
+    reliableSupportDesc:
+      "Nossa equipe está disponível 24/7 para ajudar com qualquer dúvida ou problema.",
     freeSubdomain: "Subdomínio Grátis",
-    freeSubdomainDesc: "Obtenha um subdomínio .pixelhubhost.com gratuito para seu servidor.",
+    freeSubdomainDesc:
+      "Obtenha um subdomínio .pixelhubhost.com gratuito para seu servidor.",
     dailyBackups: "Backups Diários",
     dailyBackupsDesc: "Backups automáticos diários mantêm seus dados seguros.",
     pricingTitle: "Escolha Seu Plano",
@@ -110,19 +115,23 @@ const pt = {
     pricePort: "R$5,00",
     priceBackup: "R$10,00",
     priceDatabase: "R$10,00",
-    githubButtonText: "Quer ajudar a construir este site? Faça um commit no nosso Github",
+    githubButtonText:
+      "Quer ajudar a construir este site? Faça um commit no nosso Github",
     madeByText: "Feito por KingIronMan2011",
     customPlanName: "Personalizado",
     customPlanDesc: "Entre em contato para um servidor personalizado.",
     javaTitle: "Para Minecraft Java Edition:",
-    javaDesc: "Abra o Minecraft Java Edition, clique em Multiplayer e depois em Adicionar Servidor. Insira o seguinte como Endereço do Servidor:",
+    javaDesc:
+      "Abra o Minecraft Java Edition, clique em Multiplayer e depois em Adicionar Servidor. Insira o seguinte como Endereço do Servidor:",
     bedrockTitle: "Para Minecraft Bedrock Edition:",
-    bedrockDesc: "Abra o Minecraft Bedrock Edition, vá em Servidores e depois em Adicionar Servidor. Insira o seguinte como Endereço e Porta:",
+    bedrockDesc:
+      "Abra o Minecraft Bedrock Edition, vá em Servidores e depois em Adicionar Servidor. Insira o seguinte como Endereço e Porta:",
     copyDomain: "Copiar Domínio",
     copyPort: "Copiar Porta",
     howToConnect: "Como conectar",
     legalTitle: "Aviso Legal",
-    legalIntro: "Esta página contém informações legais e os dados de contato do operador do site.",
+    legalIntro:
+      "Esta página contém informações legais e os dados de contato do operador do site.",
     legalOperator: "Operador do site",
     legalCompany: "Nome da empresa: PixelHubHost",
     legalWebsite: "Site: https://www.pixelhubhost.com",
@@ -131,28 +140,52 @@ const pt = {
     legalBillingEmail: "E-mail de cobrança: no-reply@pixelhubhost.com",
     legalPhone: "Telefone de suporte: +55 16 99398-1473",
     legalContact: "Contato",
-    legalDisclaimer: "Aviso legal: Todas as informações são fornecidas sem garantia. Em caso de dúvidas, entre em contato conosco.",
-    legalCopyright: "Todo o conteúdo deste site é © PixelHubHost, salvo indicação em contrário.",
-    legalLiability: "Responsabilidade pelo conteúdo: Nos esforçamos para manter as informações do site atualizadas, mas não aceitamos responsabilidade pelo conteúdo fornecido. Links externos são de responsabilidade dos respectivos operadores.",
-    legalJurisdiction: "Jurisdição: Aplicam-se as leis do Brasil. O foro é Igarapava, SP.",
-    privacyIntro: "Levamos sua privacidade a sério. Esta página explica quais dados coletamos e como os utilizamos.",
-    privacyData: "Coletamos apenas os dados necessários para fornecer nossos serviços. Isso pode incluir seu endereço de e-mail, nome de usuário e dados de uso.",
-    privacyCookies: "Podemos usar cookies para melhorar sua experiência. Você pode desativar os cookies nas configurações do seu navegador.",
-    privacyThirdParty: "Não compartilhamos seus dados com terceiros, exceto quando exigido por lei ou para fornecer nossos serviços.",
-    privacyContact: "Se você tiver dúvidas sobre nossa política de privacidade, entre em contato conosco.",
-    tosIntro: "Ao usar nosso site e serviços, você concorda com os seguintes termos.",
-    tosUsage: "Você não deve usar nossos serviços para fins ilegais ou abusivos.",
+    legalDisclaimer:
+      "Aviso legal: Todas as informações são fornecidas sem garantia. Em caso de dúvidas, entre em contato conosco.",
+    legalCopyright:
+      "Todo o conteúdo deste site é © PixelHubHost, salvo indicação em contrário.",
+    legalLiability:
+      "Responsabilidade pelo conteúdo: Nos esforçamos para manter as informações do site atualizadas, mas não aceitamos responsabilidade pelo conteúdo fornecido. Links externos são de responsabilidade dos respectivos operadores.",
+    legalJurisdiction:
+      "Jurisdição: Aplicam-se as leis do Brasil. O foro é Igarapava, SP.",
+    privacyIntro:
+      "Levamos sua privacidade a sério. Esta página explica quais dados coletamos e como os utilizamos.",
+    privacyData:
+      "Coletamos apenas os dados necessários para fornecer nossos serviços. Isso pode incluir seu endereço de e-mail, nome de usuário e dados de uso.",
+    privacyCookies:
+      "Podemos usar cookies para melhorar sua experiência. Você pode desativar os cookies nas configurações do seu navegador.",
+    privacyThirdParty:
+      "Não compartilhamos seus dados com terceiros, exceto quando exigido por lei ou para fornecer nossos serviços.",
+    privacyContact:
+      "Se você tiver dúvidas sobre nossa política de privacidade, entre em contato conosco.",
+    tosIntro:
+      "Ao usar nosso site e serviços, você concorda com os seguintes termos.",
+    tosUsage:
+      "Você não deve usar nossos serviços para fins ilegais ou abusivos.",
     tosAccount: "Você é responsável por manter a segurança da sua conta.",
-    tosChanges: "Podemos atualizar estes termos a qualquer momento. O uso contínuo implica aceitação dos novos termos.",
-    tosContact: "Se você tiver dúvidas sobre nossos termos, entre em contato conosco.",
+    tosChanges:
+      "Podemos atualizar estes termos a qualquer momento. O uso contínuo implica aceitação dos novos termos.",
+    tosContact:
+      "Se você tiver dúvidas sobre nossos termos, entre em contato conosco.",
     underConstruction: "Em construção",
-    constructionWorking: "Estamos trabalhando para trazer algo incrível para você.",
+    constructionWorking:
+      "Estamos trabalhando para trazer algo incrível para você.",
     constructionCheckBack: "Por favor, volte em breve!",
     constructionContactUs: "Contate-nos",
     constructionLanguage: "Idioma",
     constructionVisitWebsite: "Visitar site",
-    privacyMinecraft: "Todos os dados dos servidores Minecraft são armazenados de forma segura e só são acessíveis por você e nossa equipe de suporte para solução de problemas.",
-    sitemapMinecraftNote: "A PixelHub Host oferece hospedagem premium para servidores Minecraft, servidores de teste e suporte 24/7 para sua comunidade.",
+    privacyMinecraft:
+      "Todos os dados dos servidores Minecraft são armazenados de forma segura e só são acessíveis por você e nossa equipe de suporte para solução de problemas.",
+    sitemapMinecraftNote:
+      "A PixelHub Host oferece hospedagem premium para servidores Minecraft, servidores de teste e suporte 24/7 para sua comunidade.",
+    starting: "Iniciando",
+    running: "Em execução",
+    stopping: "Parando",
+    offline: "Offline",
+    testServerStarting: "Iniciando",
+    testServerRunning: "Em execução",
+    testServerStopping: "Parando",
+    testServerOffline: "Offline",
   },
 };
 
