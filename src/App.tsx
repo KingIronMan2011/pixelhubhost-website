@@ -1,10 +1,9 @@
-import { Routes, Route, Navigate } from "react-router-dom";
+import { Routes, Route, Navigate, useLocation } from "react-router-dom";
 import { useAuth } from "./context/AuthContext";
 import { useTranslation } from "react-i18next";
 import MetaTags from "./components/MetaTags";
 import { LanguageProvider } from "./context/LanguageContext";
 import { config } from "./config/config";
-
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import Hero from "./components/Hero";
@@ -23,12 +22,23 @@ import Sitemap from "./pages/Sitemap";
 function App() {
   const { loading } = useAuth();
   useTranslation();
+  const location = useLocation();
 
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-gradient-to-b from-blue-50 via-white to-purple-50 dark:from-gray-950 dark:via-gray-900 dark:to-gray-950 transition-colors duration-500">
         <div className="flex flex-col items-center">
-          <div className="animate-spin rounded-full h-16 w-16 border-t-4 border-b-4 border-blue-500 mb-4"></div>
+          <div
+            className="rounded-full h-16 w-16 border-t-4 border-b-4 border-blue-500 mb-4 animate-spin"
+            style={{
+              borderTopColor: "#3b82f6",
+              borderBottomColor: "#3b82f6",
+              borderLeftColor: "transparent",
+              borderRightColor: "transparent",
+              borderWidth: "4px",
+              borderStyle: "solid",
+            }}
+          />
           <span className="text-blue-600 dark:text-blue-300 font-semibold text-lg mt-2">
             Loading...
           </span>
@@ -47,7 +57,7 @@ function App() {
         <MetaTags />
         <Header />
         <main className="flex-grow">
-          <Routes>
+          <Routes location={location}>
             <Route
               path="/"
               element={
@@ -61,7 +71,7 @@ function App() {
                 </>
               }
             />
-            <Route path="/aboutus" element={<AboutUs />} />
+            <Route path="/about-us" element={<AboutUs />} />
             <Route path="/privacy" element={<Privacy />} />
             <Route path="/terms" element={<Terms />} />
             <Route path="/legal" element={<Legal />} />
