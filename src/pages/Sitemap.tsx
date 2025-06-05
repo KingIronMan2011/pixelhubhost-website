@@ -23,7 +23,10 @@ const Sitemap: React.FC = () => {
 
   return (
     <div className="max-w-lg mx-auto mt-24 mb-12 p-8 rounded-2xl shadow-xl bg-white/90 dark:bg-gray-900/90 border border-gray-200 dark:border-gray-800">
-      <h1 className="font-extrabold text-3xl mb-8 text-center bg-gradient-to-r from-blue-500 to-purple-500 bg-clip-text text-transparent drop-shadow">
+      <h1
+        className="font-extrabold text-3xl mb-8 text-center bg-gradient-to-r from-blue-500 to-purple-500 bg-clip-text text-transparent drop-shadow"
+        style={{ lineHeight: 1.18 }}
+      >
         {t("texts.sitemap")}
       </h1>
       <ul className="space-y-3">

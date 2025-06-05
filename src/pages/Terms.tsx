@@ -10,7 +10,10 @@ const Terms: React.FC = () => {
   return (
     <section className="min-h-screen bg-gradient-to-b from-gray-900 via-gray-950 to-black text-gray-200 px-4 pt-28 pb-24 overflow-y-auto">
       <div className="max-w-3xl mx-auto pb-8">
-        <h1 className="text-4xl font-bold mb-6 bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
+        <h1
+          className="text-4xl font-bold mb-6 bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent"
+          style={{ lineHeight: 1.18 }}
+        >
           {texts.termsOfService}
         </h1>
         <p className="mb-4 text-lg">{texts.tosIntro}</p>

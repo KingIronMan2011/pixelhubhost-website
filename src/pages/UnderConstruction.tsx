@@ -45,7 +45,10 @@ const UnderConstruction = () => {
           </span>
         </a>
         <span className="text-5xl mb-4 animate-pulse">🚧</span>
-        <h1 className="text-3xl md:text-4xl font-bold mb-3 text-gray-900 dark:text-white text-center">
+        <h1
+          className="text-3xl md:text-4xl font-bold mb-3 text-gray-900 dark:text-white text-center"
+          style={{ lineHeight: 1.18 }}
+        >
           {texts.underConstruction}
         </h1>
         <p className="text-lg text-gray-700 dark:text-gray-300 text-center mb-2">
