@@ -8,10 +8,13 @@ import {
   Globe,
   DatabaseBackup,
 } from "lucide-react";
+import { motion } from "framer-motion";
 
 const Features = () => {
   const { language } = useLanguage();
-  const t = languagesConfig[language as keyof typeof languagesConfig]?.texts || languagesConfig.en.texts;
+  const t =
+    languagesConfig[language as keyof typeof languagesConfig]?.texts ||
+    languagesConfig.en.texts;
 
   const features = [
     {
@@ -46,6 +49,31 @@ const Features = () => {
     },
   ];
 
+  // Animation variants
+  const containerVariants = {
+    hidden: {},
+    show: {
+      transition: {
+        staggerChildren: 0.13,
+      },
+    },
+  };
+
+  const cardVariants = {
+    hidden: { opacity: 0, y: 30, scale: 0.97 },
+    show: {
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      transition: { type: "spring", stiffness: 120, damping: 16 },
+    },
+    hover: {
+      scale: 1.05,
+      boxShadow: "0 8px 32px 0 rgba(0,0,0,0.13)",
+      transition: { duration: 0.13, ease: "easeOut" },
+    },
+  };
+
   return (
     <section
       id="features"
@@ -61,24 +89,43 @@ const Features = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+        <motion.div
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto"
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, amount: 0.2 }}
+        >
           {features.map((feature, index) => (
-            <div
+            <motion.div
               key={index}
-              className="group bg-white/90 dark:bg-gray-900/90 rounded-2xl p-8 border border-gray-200 dark:border-gray-800 shadow-md hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 flex flex-col items-center"
+              variants={cardVariants}
+              whileHover="hover"
+              className="group bg-white/90 dark:bg-gray-900/90 rounded-2xl p-8 border border-gray-200 dark:border-gray-800 shadow-md flex flex-col items-center transition-all duration-100"
+              style={{ willChange: "transform, box-shadow" }}
             >
-              <div className="flex items-center justify-center w-16 h-16 rounded-xl bg-blue-50 dark:bg-blue-900/20 mb-4 group-hover:scale-105 transition-transform duration-300">
+              <motion.div
+                className="flex items-center justify-center w-16 h-16 rounded-xl bg-blue-50 dark:bg-blue-900/20 mb-4 group-hover:scale-110 transition-transform duration-100"
+                initial={{ scale: 0.9, opacity: 0.7 }}
+                animate={{ scale: 1, opacity: 1 }}
+                transition={{
+                  type: "spring",
+                  stiffness: 120,
+                  damping: 12,
+                  delay: 0.13 * index,
+                }}
+              >
                 <feature.icon className="w-10 h-10 text-blue-500 dark:text-blue-400" />
-              </div>
+              </motion.div>
               <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">
                 {feature.title}
               </h3>
               <p className="text-gray-600 dark:text-gray-400 text-base">
                 {feature.description}
               </p>
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );

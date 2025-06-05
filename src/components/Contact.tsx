@@ -2,6 +2,7 @@ import React from "react";
 import { FaDiscord, FaWhatsapp, FaEnvelope } from "react-icons/fa";
 import { useLanguage } from "../context/LanguageContext";
 import languagesConfig from "../config/languages/Languages";
+import { motion } from "framer-motion";
 
 type LanguageKey = keyof typeof languagesConfig;
 
@@ -12,6 +13,55 @@ const Contact: React.FC = () => {
   ) as LanguageKey;
   const t = languagesConfig[langKey].texts;
   const contact = languagesConfig[langKey].contact;
+
+  // Animation variants
+  const containerVariants = {
+    hidden: {},
+    show: {
+      transition: {
+        staggerChildren: 0.13,
+      },
+    },
+  };
+
+  const cardVariants = {
+    hidden: { opacity: 0, y: 30, scale: 0.97 },
+    show: {
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      transition: { type: "spring", stiffness: 120, damping: 16 },
+    },
+    hover: {
+      scale: 1.05,
+      boxShadow: "0 8px 32px 0 rgba(0,0,0,0.13)",
+      transition: { duration: 0.13, ease: "easeOut" },
+    },
+  };
+
+  const contacts = [
+    {
+      href: contact.discord,
+      icon: <FaDiscord className="w-7 h-7" />,
+      label: "Discord",
+      className:
+        "bg-blue-600 dark:bg-blue-700 border-blue-700 dark:border-blue-500 text-white hover:text-white",
+    },
+    {
+      href: contact.whatsapp,
+      icon: <FaWhatsapp className="w-7 h-7" />,
+      label: "WhatsApp",
+      className:
+        "bg-green-500 dark:bg-green-600 border-green-700 dark:border-green-500 text-white hover:text-white",
+    },
+    {
+      href: `mailto:${contact.email}`,
+      icon: <FaEnvelope className="w-7 h-7" />,
+      label: "Email",
+      className:
+        "bg-gray-100 dark:bg-gray-800 border-gray-300 dark:border-gray-700 text-blue-700 dark:text-blue-400 hover:text-blue-900 dark:hover:text-blue-300",
+    },
+  ];
 
   return (
     <section
@@ -27,33 +77,29 @@ const Contact: React.FC = () => {
             {t.contactSubtitle}
           </p>
 
-          <div className="flex flex-col sm:flex-row justify-center gap-6 sm:gap-12 mt-8">
-            <a
-              href={contact.discord}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center justify-center gap-3 px-8 py-5 rounded-2xl bg-blue-600 dark:bg-blue-700 border border-blue-700 dark:border-blue-500 shadow hover:shadow-lg hover:-translate-y-1 transition-all duration-300 text-white hover:text-white font-medium text-lg"
-            >
-              <FaDiscord className="w-7 h-7" />
-              Discord
-            </a>
-            <a
-              href={contact.whatsapp}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center justify-center gap-3 px-8 py-5 rounded-2xl bg-green-500 dark:bg-green-600 border border-green-700 dark:border-green-500 shadow hover:shadow-lg hover:-translate-y-1 transition-all duration-300 text-white hover:text-white font-medium text-lg"
-            >
-              <FaWhatsapp className="w-7 h-7" />
-              WhatsApp
-            </a>
-            <a
-              href={`mailto:${contact.email}`}
-              className="flex items-center justify-center gap-3 px-8 py-5 rounded-2xl bg-gray-100 dark:bg-gray-800 border border-gray-300 dark:border-gray-700 shadow hover:shadow-lg hover:-translate-y-1 transition-all duration-300 text-blue-700 dark:text-blue-400 hover:text-blue-900 dark:hover:text-blue-300 font-medium text-lg"
-            >
-              <FaEnvelope className="w-7 h-7" />
-              Email
-            </a>
-          </div>
+          <motion.div
+            className="flex flex-col sm:flex-row justify-center gap-6 sm:gap-12 mt-8"
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, amount: 0.2 }}
+          >
+            {contacts.map((c) => (
+              <motion.a
+                key={c.label}
+                href={c.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                variants={cardVariants}
+                whileHover="hover"
+                className={`flex items-center justify-center gap-3 px-8 py-5 rounded-2xl border shadow transition-all duration-100 font-medium text-lg will-change-transform will-change-shadow hover:-translate-y-1 hover:scale-105 hover:shadow-2xl ${c.className}`}
+                style={{ willChange: "transform, box-shadow" }}
+              >
+                {c.icon}
+                {c.label}
+              </motion.a>
+            ))}
+          </motion.div>
         </div>
       </div>
     </section>

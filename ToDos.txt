@@ -1,3 +1,5 @@
 Add a propet API Integration for the Admin Page so it can access the Files and edit them
 
 Maybe Update the Design so it doesn't Look as AI generated
+
+Fix the cutoff g's and y's from /src/pages 

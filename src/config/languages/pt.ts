@@ -151,6 +151,8 @@ const pt = {
     constructionContactUs: "Contate-nos",
     constructionLanguage: "Idioma",
     constructionVisitWebsite: "Visitar site",
+    privacyMinecraft: "Todos os dados dos servidores Minecraft são armazenados de forma segura e só são acessíveis por você e nossa equipe de suporte para solução de problemas.",
+    sitemapMinecraftNote: "A PixelHub Host oferece hospedagem premium para servidores Minecraft, servidores de teste e suporte 24/7 para sua comunidade.",
   },
 };
 

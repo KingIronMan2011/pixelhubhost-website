@@ -3,9 +3,16 @@ import { useLanguage } from "../context/LanguageContext";
 import languagesConfig from "../config/languages/Languages";
 import LanguageSelector from "./LanguageSelector";
 import ThemeToggle from "./ThemeToggle";
+import { motion } from "framer-motion";
 
 // Infer the language keys from the config
 type LanguageKey = keyof typeof languagesConfig;
+
+const linkHover = {
+  scale: 1.045,
+  color: "#fff",
+  transition: { type: "tween", duration: 0.13, ease: "easeInOut" },
+};
 
 const Header: React.FC = () => {
   const { language } = useLanguage() as { language: LanguageKey };
@@ -37,7 +44,7 @@ const Header: React.FC = () => {
               <a
                 key={link.href}
                 href={link.href}
-                className="text-gray-100 hover:text-white font-medium transition-colors duration-300"
+                className="text-gray-100 font-medium"
               >
                 {link.label}
               </a>
@@ -49,22 +56,28 @@ const Header: React.FC = () => {
               <LanguageSelector />
               <ThemeToggle />
             </div>
-            <a
+            <motion.a
               href="https://stats.uptimerobot.com/h2jzO5FroG"
               target="_blank"
               rel="noopener noreferrer"
-              className="hidden md:inline-flex items-center bg-blue-600 text-white px-5 py-2 rounded-lg hover:bg-blue-700 transition-colors duration-300 font-medium shadow"
+              className="hidden md:inline-flex items-center bg-blue-600 text-white px-5 py-2 rounded-lg hover:bg-blue-700 transition-colors font-medium shadow"
+              whileHover={linkHover}
+              whileFocus={linkHover}
+              style={{ willChange: "transform, color" }}
             >
               {t.systemStatus}
-            </a>
-            <a
+            </motion.a>
+            <motion.a
               href="https://dash.pixelhubhost.com/login"
               target="_blank"
               rel="noopener noreferrer"
-              className="hidden md:inline-flex items-center bg-purple-600 text-white px-5 py-2 rounded-lg hover:bg-purple-700 transition-colors duration-300 font-medium shadow"
+              className="hidden md:inline-flex items-center bg-purple-600 text-white px-5 py-2 rounded-lg hover:bg-purple-700 transition-colors font-medium shadow"
+              whileHover={linkHover}
+              whileFocus={linkHover}
+              style={{ willChange: "transform, color" }}
             >
               {t.loginSignup || "Login / Signup"}
-            </a>
+            </motion.a>
             {/* Mobile menu button */}
             <button
               className="md:hidden flex flex-col justify-center items-center w-10 h-10 focus:outline-none ml-2"
@@ -96,30 +109,36 @@ const Header: React.FC = () => {
               <a
                 key={link.href}
                 href={link.href}
-                className="block text-gray-100 hover:text-white font-medium transition-colors duration-300"
+                className="block text-gray-100 font-medium"
                 onClick={() => setMenuOpen(false)}
               >
                 {link.label}
               </a>
             ))}
-            <a
+            <motion.a
               href="https://stats.uptimerobot.com/h2jzO5FroG"
               target="_blank"
               rel="noopener noreferrer"
-              className="block bg-blue-600 text-white px-5 py-2 rounded-lg hover:bg-blue-700 transition-colors duration-300 font-medium mt-2 text-center shadow"
+              className="block bg-blue-600 text-white px-5 py-2 rounded-lg hover:bg-blue-700 transition-colors font-medium mt-2 text-center shadow"
+              whileHover={linkHover}
+              whileFocus={linkHover}
+              style={{ willChange: "transform, color" }}
               onClick={() => setMenuOpen(false)}
             >
               {t.systemStatus}
-            </a>
-            <a
+            </motion.a>
+            <motion.a
               href="https://dash.pixelhubhost.com/login"
               target="_blank"
               rel="noopener noreferrer"
-              className="block bg-purple-600 text-white px-5 py-2 rounded-lg hover:bg-purple-700 transition-colors duration-300 font-medium mt-2 text-center shadow"
+              className="block bg-purple-600 text-white px-5 py-2 rounded-lg hover:bg-purple-700 transition-colors font-medium mt-2 text-center shadow"
+              whileHover={linkHover}
+              whileFocus={linkHover}
+              style={{ willChange: "transform, color" }}
               onClick={() => setMenuOpen(false)}
             >
               {t.loginSignup || "Login / Signup"}
-            </a>
+            </motion.a>
           </div>
         )}
       </div>

@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import { motion } from "framer-motion";
 
 const sitemapLinks = [
   { path: "/", labelKey: "home" },
@@ -8,8 +9,14 @@ const sitemapLinks = [
   { path: "/privacy", labelKey: "privacyPolicy" },
   { path: "/terms", labelKey: "termsOfService" },
   { path: "/legal", labelKey: "legal" },
-  // Add more routes as needed
+  // Add more Minecraft hosting-related routes as needed
 ];
+
+const linkHover = {
+  scale: 1.035,
+  boxShadow: "0 8px 32px 0 rgba(59,130,246,0.10)",
+  transition: { type: "tween", duration: 0.13, ease: "easeInOut" },
+};
 
 const Sitemap: React.FC = () => {
   const { t } = useTranslation();
@@ -22,15 +29,24 @@ const Sitemap: React.FC = () => {
       <ul className="space-y-3">
         {sitemapLinks.map((link) => (
           <li key={link.path}>
-            <Link
-              to={link.path}
-              className="block px-5 py-3 rounded-xl font-medium text-base text-blue-700 dark:text-blue-300 bg-blue-50/60 dark:bg-blue-900/30 hover:bg-blue-100 dark:hover:bg-blue-800 transition-colors duration-200 shadow-sm"
+            <motion.div
+              whileHover={linkHover}
+              whileFocus={linkHover}
+              style={{ willChange: "transform, box-shadow" }}
             >
-              {t(`texts.${link.labelKey}`)}
-            </Link>
+              <Link
+                to={link.path}
+                className="block px-5 py-3 rounded-xl font-medium text-base text-blue-700 dark:text-blue-300 bg-blue-50/60 dark:bg-blue-900/30 hover:bg-blue-100 dark:hover:bg-blue-800 transition-colors duration-200 shadow-sm"
+              >
+                {t(`texts.${link.labelKey}`)}
+              </Link>
+            </motion.div>
           </li>
         ))}
       </ul>
+      <div className="mt-10 text-center text-gray-500 dark:text-gray-400 text-sm">
+        {t("texts.sitemapMinecraftNote")}
+      </div>
     </div>
   );
 };

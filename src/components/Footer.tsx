@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { Globe, Youtube } from "lucide-react";
 import { useLanguage } from "../context/LanguageContext";
 import languagesConfig from "../config/languages/Languages";
+import { motion } from "framer-motion";
 
 const languages = [
   { code: "en", name: "English" },
@@ -12,11 +13,20 @@ const languages = [
   { code: "it", name: "Italiano" },
 ];
 
+const hoverMotion = {
+  whileHover: {
+    scale: 1.07,
+    boxShadow: "0 8px 32px 0 rgba(0,0,0,0.13)",
+    transition: { duration: 0.13, ease: "easeOut" },
+  },
+};
+
 const Footer: React.FC = () => {
   const { language, setLanguage } = useLanguage();
   const langKey = language as keyof typeof languagesConfig;
   const t = languagesConfig[langKey]?.texts || languagesConfig.en.texts;
-  const contact = languagesConfig[langKey]?.contact || languagesConfig.en.contact;
+  const contact =
+    languagesConfig[langKey]?.contact || languagesConfig.en.contact;
 
   return (
     <footer className="bg-gradient-to-b from-gray-900 via-gray-950 to-black text-gray-300 pt-14 pb-8 border-t border-gray-800">
@@ -31,15 +41,16 @@ const Footer: React.FC = () => {
               {t.footerDescription}
             </p>
             <div className="flex space-x-3 mt-2">
-              <a
+              <motion.a
                 href="https://www.youtube.com/@PIXELHUBHOST"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="YouTube"
                 className="hover:text-red-500 transition-colors duration-200"
+                {...hoverMotion}
               >
                 <Youtube size={22} />
-              </a>
+              </motion.a>
             </div>
           </div>
 
@@ -146,14 +157,15 @@ const Footer: React.FC = () => {
 
         {/* GitHub contribution button */}
         <div className="flex justify-center mt-1 mb-1">
-          <a
+          <motion.a
             href="https://github.com/KingIronMan2011/pixelhubhost-website"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-block bg-gray-800 hover:bg-gray-700 text-white font-medium py-1 px-2 rounded shadow text-xs transition-colors duration-200"
+            {...hoverMotion}
           >
             {t.githubButtonText}
-          </a>
+          </motion.a>
         </div>
 
         {/* Made by */}
@@ -172,28 +184,37 @@ const Footer: React.FC = () => {
 
         {/* Footer bottom */}
         <div className="border-t border-gray-800 pt-4 mt-4 flex flex-col md:flex-row justify-between items-center gap-4">
-          <p className="text-gray-500 text-xs">
-            {t.footerCopyright}
-          </p>
+          <p className="text-gray-500 text-xs">{t.footerCopyright}</p>
           <div className="flex flex-wrap gap-x-6 gap-y-2 text-xs text-gray-500">
-            <a
+            <motion.a
               href="/privacy"
               className="hover:text-blue-400 transition-colors"
+              {...hoverMotion}
             >
               {t.privacyPolicy}
-            </a>
-            <a href="/terms" className="hover:text-blue-400 transition-colors">
-              {t.termsOfService}
-            </a>
-            <Link
-              to="/sitemap"
+            </motion.a>
+            <motion.a
+              href="/terms"
               className="hover:text-blue-400 transition-colors"
+              {...hoverMotion}
             >
-              {t.sitemap}
-            </Link>
-            <a href="/legal" className="hover:text-blue-400 transition-colors">
+              {t.termsOfService}
+            </motion.a>
+            <motion.div {...hoverMotion} className="hover:text-blue-400 transition-colors">
+              <Link
+                to="/sitemap"
+                className="hover:text-blue-400 transition-colors"
+              >
+                {t.sitemap}
+              </Link>
+            </motion.div>
+            <motion.a
+              href="/legal"
+              className="hover:text-blue-400 transition-colors"
+              {...hoverMotion}
+            >
               {t.legal}
-            </a>
+            </motion.a>
           </div>
         </div>
       </div>

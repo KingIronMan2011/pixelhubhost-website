@@ -8,6 +8,7 @@ import type { Language } from "../config/config";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Dialog } from "@headlessui/react";
+import { motion } from "framer-motion";
 
 // Use translations from new languagesConfig
 const translations = Object.fromEntries(
@@ -132,6 +133,8 @@ const ConnectPopup: React.FC<ConnectPopupProps> = ({
   ) : (
     <Copy className="w-4 h-4" />
   );
+
+  // Framer Motion hover animation for copy and connect buttons
 
   return (
     <Dialog open={true} onClose={onClose}>
@@ -284,6 +287,23 @@ const TestServer: React.FC = () => {
     <Copy className="w-4 h-4" />
   );
 
+  // Framer Motion hover animation for copy and connect buttons
+  const buttonHover = {
+    scale: 1.045,
+    boxShadow: "0 8px 32px 0 rgba(16,185,129,0.13)",
+    transition: { type: "tween", duration: 0.13, ease: "easeInOut" },
+  };
+  const copyHover = {
+    scale: 1.13,
+    backgroundColor: "rgba(59,130,246,0.13)", // blue-500/20
+    transition: { type: "tween", duration: 0.13, ease: "easeInOut" },
+  };
+  const copyHoverGreen = {
+    scale: 1.13,
+    backgroundColor: "rgba(16,185,129,0.13)", // emerald-500/20
+    transition: { type: "tween", duration: 0.13, ease: "easeInOut" },
+  };
+
   const memoryUsagePercent = status?.memory?.current
     ? Math.round((status.memory.current / SERVER_LIMITS.MEMORY) * 100)
     : 0;
@@ -329,7 +349,12 @@ const TestServer: React.FC = () => {
       )}
       <div className="container mx-auto px-4">
         <div className="max-w-lg mx-auto relative">
-          <div className="bg-white/90 dark:bg-gray-900/90 backdrop-blur-sm rounded-2xl shadow-xl p-8 border border-gray-200 dark:border-gray-800 transition-all duration-300">
+          <motion.div
+            className="bg-white/90 dark:bg-gray-900/90 backdrop-blur-sm rounded-2xl shadow-xl p-8 border border-gray-200 dark:border-gray-800 transition-all duration-300"
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4, ease: "easeOut" }}
+          >
             <div className="flex items-center justify-between mb-6">
               <div className="flex items-center space-x-3">
                 <Server className="w-7 h-7 text-blue-500" />
@@ -379,13 +404,16 @@ const TestServer: React.FC = () => {
                   <span className="font-mono text-blue-600 dark:text-blue-400 text-sm font-medium">
                     {serverDomain}
                   </span>
-                  <button
+                  <motion.button
                     onClick={() => handleCopy(serverDomain, setCopied)}
-                    className="ml-2 p-1 hover:bg-gray-200 dark:hover:bg-gray-700 rounded transition-colors text-gray-700 dark:text-white"
+                    className="ml-2 p-1 rounded transition-colors text-gray-700 dark:text-white"
                     title={translations[language].domainCopied}
+                    whileHover={copyHover}
+                    whileFocus={copyHover}
+                    style={{ willChange: "transform, background-color" }}
                   >
                     {buttonIcon}
-                  </button>
+                  </motion.button>
                 </div>
                 <div className="flex items-center bg-gray-100/70 dark:bg-gray-800/70 rounded-lg px-3 py-2">
                   <span className="text-sm text-gray-600 dark:text-gray-400 mr-2">
@@ -394,13 +422,16 @@ const TestServer: React.FC = () => {
                   <span className="font-mono text-sm text-gray-900 dark:text-white font-medium">
                     {bedrockPort}
                   </span>
-                  <button
+                  <motion.button
                     onClick={() => handleCopy(bedrockPort, setCopiedPort)}
-                    className="ml-2 p-1 hover:bg-gray-200 dark:hover:bg-gray-700 rounded transition-colors text-gray-700 dark:text-white"
+                    className="ml-2 p-1 rounded transition-colors text-gray-700 dark:text-white"
                     title={translations[language].domainCopied}
+                    whileHover={copyHoverGreen}
+                    whileFocus={copyHoverGreen}
+                    style={{ willChange: "transform, background-color" }}
                   >
                     {buttonIconPort}
-                  </button>
+                  </motion.button>
                 </div>
                 <div className="flex items-center justify-end space-x-2 mt-1">
                   <img
@@ -452,14 +483,17 @@ const TestServer: React.FC = () => {
             </div>
 
             <div className="mt-4 pt-3 border-t border-gray-200 dark:border-gray-700">
-              <button
+              <motion.button
                 onClick={() => setShowConnectPopup(true)}
-                className="w-full px-4 py-2 bg-emerald-600 hover:bg-emerald-700 text-white text-sm rounded-lg transition-all transform hover:-translate-y-0.5 duration-200 shadow-lg hover:shadow-xl"
+                className="w-full px-4 py-2 bg-emerald-600 hover:bg-emerald-700 text-white text-sm rounded-lg transition-all duration-200 shadow-lg"
+                whileHover={buttonHover}
+                whileFocus={buttonHover}
+                style={{ willChange: "transform, box-shadow" }}
               >
                 {siteConfig.texts[language].connectToTestServer}
-              </button>
+              </motion.button>
             </div>
-          </div>
+          </motion.div>
         </div>
       </div>
       <ToastContainer

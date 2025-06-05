@@ -36,6 +36,13 @@ const Hero = () => {
     document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
   };
 
+  // Framer Motion hover animation for buttons
+  const buttonHover = {
+    scale: 1.045,
+    boxShadow: "0 8px 32px 0 rgba(0,0,0,0.13)",
+    transition: { type: "tween", duration: 0.16, ease: "easeInOut" },
+  };
+
   return (
     <motion.div
       ref={heroRef}
@@ -66,18 +73,24 @@ const Hero = () => {
             {t.heroSubtitle}
           </p>
           <div className="animate-on-scroll flex flex-col sm:flex-row justify-center gap-4">
-            <button
+            <motion.button
+              whileHover={buttonHover}
+              whileFocus={buttonHover}
               onClick={() => scrollToSection("pricing")}
-              className="px-8 py-3 bg-blue-600 text-white font-semibold rounded-xl hover:bg-blue-700 shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-200 text-lg"
+              className="px-8 py-3 bg-blue-600 text-white font-semibold rounded-xl shadow-lg transition-all duration-200 text-lg"
+              style={{ willChange: "transform, box-shadow" }}
             >
               {t.getStarted}
-            </button>
-            <button
+            </motion.button>
+            <motion.button
+              whileHover={buttonHover}
+              whileFocus={buttonHover}
               onClick={() => scrollToSection("features")}
-              className="px-8 py-3 bg-white dark:bg-gray-900 text-blue-600 dark:text-blue-400 font-semibold rounded-xl border border-blue-200 dark:border-blue-900 hover:border-blue-400 dark:hover:border-blue-700 shadow hover:shadow-md transform hover:-translate-y-1 transition-all duration-200 text-lg"
+              className="px-8 py-3 bg-white dark:bg-gray-900 text-blue-600 dark:text-blue-400 font-semibold rounded-xl border border-blue-200 dark:border-blue-900 hover:border-blue-400 dark:hover:border-blue-700 shadow transition-all duration-200 text-lg"
+              style={{ willChange: "transform, box-shadow" }}
             >
               {t.learnMore}
-            </button>
+            </motion.button>
           </div>
         </div>
       </div>

@@ -2,7 +2,8 @@ import { useMemo, useState } from "react";
 import { useLanguage } from "../context/LanguageContext";
 import { plans as basePlans } from "../config/plans";
 import { config, planLinks } from "../config/config";
-import languagesConfig from "../config/languages/Languages"; // <-- fixed casing to match other imports
+import languagesConfig from "../config/languages/Languages";
+import { motion } from "framer-motion"; // <-- Add framer-motion
 
 const PricingPlans = () => {
   const { language } = useLanguage();
@@ -10,12 +11,10 @@ const PricingPlans = () => {
     "monthly" | "quarterly"
   >("monthly");
 
-  // Use texts from the new languages config
   const texts =
     languagesConfig[language as keyof typeof languagesConfig]?.texts ||
     languagesConfig.en.texts;
 
-  // Add a custom plan object (now that texts is in scope)
   const customPlan = {
     id: "custom",
     name: {
@@ -77,6 +76,17 @@ const PricingPlans = () => {
     };
   }, [language, billingInterval]);
 
+  // Framer Motion hover animation for card and button
+  const cardHover = {
+    scale: 1.025,
+    boxShadow: "0 8px 32px 0 rgba(0,0,0,0.13)",
+    transition: { type: "tween", duration: 0.16, ease: "easeInOut" },
+  };
+  const buttonHover = {
+    scale: 1.04,
+    transition: { type: "tween", duration: 0.13, ease: "easeInOut" },
+  };
+
   return (
     <section
       id="pricing"
@@ -91,29 +101,37 @@ const PricingPlans = () => {
             {texts.pricingSubtitle || ""}
           </p>
           <div className="mt-8 flex justify-center gap-4">
-            <button
+            <motion.button
               onClick={() => setBillingInterval("monthly")}
               className={`px-4 py-2 rounded-lg transition-colors font-medium shadow-sm ${
                 billingInterval === "monthly"
                   ? "bg-blue-600 text-white"
                   : "bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300"
               }`}
+              whileHover={buttonHover}
+              whileFocus={buttonHover}
+              type="button"
+              style={{ willChange: "transform" }}
             >
               {texts.monthly || "Monthly"}
-            </button>
-            <button
+            </motion.button>
+            <motion.button
               onClick={() => setBillingInterval("quarterly")}
               className={`px-4 py-2 rounded-lg transition-colors font-medium shadow-sm ${
                 billingInterval === "quarterly"
                   ? "bg-blue-600 text-white"
                   : "bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300"
               }`}
+              whileHover={buttonHover}
+              whileFocus={buttonHover}
+              type="button"
+              style={{ willChange: "transform" }}
             >
               {texts.quarterly || "Quarterly"}
               <span className="ml-2 text-sm bg-green-500 text-white px-2 py-0.5 rounded shadow">
                 -10% OFF
               </span>
-            </button>
+            </motion.button>
           </div>
         </div>
 
@@ -126,13 +144,33 @@ const PricingPlans = () => {
                 : planLinks[plan.id]?.[billingInterval] || "#";
 
             return (
-              <div
+              <motion.div
                 key={plan.id}
-                className={`relative rounded-2xl overflow-hidden transition-all duration-300 bg-white/90 dark:bg-gray-900/90 hover:bg-white/90 dark:hover:bg-gray-900/90 hover:shadow-2xl ${
-                  plan.popular
-                    ? "ring-2 ring-blue-500 scale-[1.03]"
-                    : "hover:ring-1 hover:ring-blue-500/50"
-                } ${!plan.available ? "opacity-75 pointer-events-none" : ""}`}
+                className={`relative rounded-2xl overflow-hidden bg-white/90 dark:bg-gray-900/90 ${
+                  !plan.available ? "opacity-75 pointer-events-none" : ""
+                }`}
+                whileHover={{
+                  ...cardHover,
+                  boxShadow: "0 8px 32px 0 rgba(0,0,0,0.13)",
+                  borderColor: "#3b82f6", // Tailwind blue-500
+                  borderWidth: "2px",
+                  outline: "none",
+                  // Animate the ring as a border for smoothness
+                }}
+                whileFocus={{
+                  ...cardHover,
+                  boxShadow: "0 8px 32px 0 rgba(0,0,0,0.13)",
+                  borderColor: "#3b82f6",
+                  borderWidth: "2px",
+                  outline: "none",
+                }}
+                style={{
+                  willChange:
+                    "transform, box-shadow, border-color, border-width",
+                  border: plan.popular
+                    ? "2px solid #3b82f6"
+                    : "2px solid transparent",
+                }}
               >
                 {plan.popular && (
                   <div className="absolute top-0 inset-x-0 px-4 py-1 bg-gradient-to-r from-blue-500 to-purple-500 text-white text-sm text-center font-semibold rounded-t-2xl shadow">
@@ -141,11 +179,15 @@ const PricingPlans = () => {
                 )}
 
                 <div className={`p-7 ${plan.popular ? "pt-14" : "pt-7"}`}>
-                  <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-2 text-center font-minecraft tracking-tight">
-                    {plan.name?.[language as keyof typeof plan.name] ?? plan.name["en"]}
+                  <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-2 text-center tracking-tight">
+                    {plan.name?.[language as keyof typeof plan.name] ??
+                      plan.name["en"]}
                   </h3>
+                  {/* Description left as-is for clarity and accessibility */}
                   <p className="text-gray-600 dark:text-gray-400 mb-6 min-h-[3rem] text-center text-base">
-                    {plan.description[language as keyof typeof plan.description] ?? plan.description["en"]}
+                    {plan.description[
+                      language as keyof typeof plan.description
+                    ] ?? plan.description["en"]}
                   </p>
 
                   <div className="mt-8 mb-6">
@@ -166,7 +208,7 @@ const PricingPlans = () => {
                     </div>
                   </div>
 
-                  <a
+                  <motion.a
                     href={planLink}
                     target="_blank"
                     rel="noopener noreferrer"
@@ -183,6 +225,9 @@ const PricingPlans = () => {
                     }`}
                     tabIndex={!plan.available ? -1 : 0}
                     aria-disabled={!plan.available}
+                    whileHover={plan.available ? buttonHover : undefined}
+                    whileFocus={plan.available ? buttonHover : undefined}
+                    style={{ willChange: "transform" }}
                   >
                     {!plan.available && (
                       <div className="absolute inset-0 flex items-center justify-center bg-gray-900/50 dark:bg-gray-900/70 rounded-lg backdrop-blur-sm">
@@ -194,7 +239,7 @@ const PricingPlans = () => {
                     {plan.id === "custom"
                       ? texts.contactUs || "Contact us"
                       : texts.buyNow || texts.selectPlan || "Select Plan"}
-                  </a>
+                  </motion.a>
 
                   <div
                     className={`mt-6 space-y-4 ${
@@ -202,9 +247,7 @@ const PricingPlans = () => {
                     }`}
                   >
                     <div className="flex items-center justify-between text-sm text-gray-700 dark:text-gray-400">
-                      <span>
-                        {texts.cpuThreads || "CPU"}
-                      </span>
+                      <span>{texts.cpuThreads || "CPU"}</span>
                       <span className="font-medium text-gray-900 dark:text-white">
                         {plan.id === "custom"
                           ? texts.custom || "-"
@@ -220,9 +263,7 @@ const PricingPlans = () => {
                       </span>
                     </div>
                     <div className="flex items-center justify-between text-sm text-gray-700 dark:text-gray-400">
-                      <span>
-                        {texts.storage || "Storage"}
-                      </span>
+                      <span>{texts.storage || "Storage"}</span>
                       <span className="font-medium text-gray-900 dark:text-white">
                         {plan.id === "custom"
                           ? texts.custom || "-"
@@ -230,9 +271,7 @@ const PricingPlans = () => {
                       </span>
                     </div>
                     <div className="flex items-center justify-between text-sm text-gray-700 dark:text-gray-400">
-                      <span>
-                        {texts.backups || "Backups"}
-                      </span>
+                      <span>{texts.backups || "Backups"}</span>
                       <span className="font-medium text-gray-900 dark:text-white">
                         {plan.id === "custom"
                           ? texts.custom || "-"
@@ -240,9 +279,7 @@ const PricingPlans = () => {
                       </span>
                     </div>
                     <div className="flex items-center justify-between text-sm text-gray-700 dark:text-gray-400">
-                      <span>
-                        {texts.databases || "Databases"}
-                      </span>
+                      <span>{texts.databases || "Databases"}</span>
                       <span className="font-medium text-gray-900 dark:text-white">
                         {plan.id === "custom"
                           ? texts.custom || "-"
@@ -259,7 +296,7 @@ const PricingPlans = () => {
                     </div>
                   </div>
                 </div>
-              </div>
+              </motion.div>
             );
           })}
         </div>

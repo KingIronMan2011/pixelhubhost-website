@@ -2,7 +2,8 @@ import React from "react";
 import { Sun, Moon } from "lucide-react";
 import { useTheme } from "../context/ThemeContext";
 import { useLanguage } from "../context/LanguageContext";
-import languagesConfig from "../config/languages/Languages"; // updated import
+import languagesConfig from "../config/languages/Languages";
+import { motion } from "framer-motion";
 
 const ThemeToggle: React.FC = () => {
   const { theme, toggleTheme } = useTheme();
@@ -11,30 +12,38 @@ const ThemeToggle: React.FC = () => {
     languagesConfig[language as keyof typeof languagesConfig]?.texts ||
     languagesConfig.en.texts;
 
+  // Framer Motion hover animation for the toggle button
+  const buttonHover = {
+    scale: 1.08,
+    boxShadow: "0 8px 32px 0 rgba(251,191,36,0.13)",
+    transition: { type: "tween", duration: 0.13, ease: "easeInOut" },
+  };
+
+  // Framer Motion for icon rotation (for dark mode sun)
+  const iconSpin = {
+    animate: { rotate: 360 },
+    transition: { repeat: Infinity, duration: 15, ease: "linear" },
+  };
+
   return (
-    <button
+    <motion.button
       onClick={toggleTheme}
       className="p-2 rounded-xl border border-transparent bg-gray-800/60 hover:bg-gray-700/80 transition-all duration-200 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
       aria-label={texts.toggleTheme || "Toggle theme"}
+      whileHover={buttonHover}
+      whileFocus={buttonHover}
+      type="button"
+      style={{ willChange: "transform, box-shadow" }}
     >
       <span className="sr-only">{texts.toggleTheme || "Toggle theme"}</span>
       {theme === "dark" ? (
-        <Sun size={20} className="text-yellow-400 animate-spin-slow" />
+        <motion.span {...iconSpin}>
+          <Sun size={20} className="text-yellow-400" />
+        </motion.span>
       ) : (
         <Moon size={20} className="text-blue-400" />
       )}
-      <style>
-        {`
-          .animate-spin-slow {
-            animation: spin 15s linear infinite;
-          }
-          @keyframes spin {
-            0% { transform: rotate(0deg);}
-            100% { transform: rotate(360deg);}
-          }
-        `}
-      </style>
-    </button>
+    </motion.button>
   );
 };
 

@@ -144,6 +144,8 @@ const en = {
     constructionContactUs: "Contact us",
     constructionLanguage: "Language",
     constructionVisitWebsite: "Visit Website",
+    privacyMinecraft: "All Minecraft server data is stored securely and is only accessible by you and our support team for troubleshooting.",
+    sitemapMinecraftNote: "PixelHub Host offers premium Minecraft server hosting, test servers, and 24/7 support for your community.",
   },
 };
 

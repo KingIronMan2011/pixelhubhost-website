@@ -1,6 +1,7 @@
 import { useLanguage } from "../context/LanguageContext";
 import { planLinks } from "../config/config";
-import languagesConfig from "../config/languages/Languages"; // <-- fixed import (all lowercase)
+import languagesConfig from "../config/languages/Languages";
+import { motion } from "framer-motion";
 
 interface PricingCardProps {
   product: {
@@ -27,13 +28,24 @@ const PricingCard = ({
       ? t.monthly || "Monthly"
       : t.quarterly || "Quarterly";
 
+  // Framer Motion hover animation for card and button
+  const cardHover = {
+    scale: 1.025,
+    boxShadow: "0 8px 32px 0 rgba(0,0,0,0.13)",
+    transition: { type: "tween", duration: 0.16, ease: "easeInOut" },
+  };
+  const buttonHover = {
+    scale: 1.04,
+    transition: { type: "tween", duration: 0.13, ease: "easeInOut" },
+  };
+
   return (
-    <div
-      className={`relative bg-white/90 dark:bg-gray-900/90 rounded-2xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-2xl hover:-translate-y-1 ${
-        isPopular
-          ? "ring-2 ring-blue-500 scale-[1.03]"
-          : "hover:ring-1 hover:ring-blue-500/50"
+    <motion.div
+      className={`relative bg-white/90 dark:bg-gray-900/90 rounded-2xl shadow-lg overflow-hidden transition-all duration-300 ${
+        isPopular ? "ring-2 ring-blue-500 scale-[1.03]" : ""
       }`}
+      whileHover={cardHover}
+      style={{ willChange: "transform, box-shadow" }}
     >
       {isPopular && (
         <div className="absolute top-0 inset-x-0 px-4 py-1 bg-gradient-to-r from-blue-500 to-purple-500 text-white text-sm text-center font-semibold rounded-t-2xl shadow">
@@ -59,7 +71,7 @@ const PricingCard = ({
           </span>
         </div>
 
-        <a
+        <motion.a
           href={planLink}
           target="_blank"
           rel="noopener noreferrer"
@@ -70,14 +82,17 @@ const PricingCard = ({
                 : "bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-white hover:bg-gray-200 dark:hover:bg-gray-700"
             }
           `}
+          whileHover={buttonHover}
+          whileFocus={buttonHover}
+          style={{ willChange: "transform" }}
         >
           {t.buyNow || "Buy Now"}
-        </a>
+        </motion.a>
         <span className="ml-2 text-sm bg-green-500 text-white px-2 py-0.5 rounded shadow font-semibold">
           -10% OFF
         </span>
       </div>
-    </div>
+    </motion.div>
   );
 };
 
