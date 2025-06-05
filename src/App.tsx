@@ -19,7 +19,6 @@ import Privacy from "./pages/Privacy";
 import Terms from "./pages/Terms";
 import Legal from "./pages/Legal";
 import Sitemap from "./pages/Sitemap";
-import Admin from "./pages/Admin";
 
 function App() {
   const { loading } = useAuth();
@@ -68,7 +67,6 @@ function App() {
             <Route path="/legal" element={<Legal />} />
             <Route path="/sitemap" element={<Sitemap />} />
             <Route path="/under-construction" element={<UnderConstruction />} />
-            <Route path="/admin" element={<Admin />} />
             {/* Add more routes as needed */}
             <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
