@@ -90,7 +90,7 @@ const Header: React.FC = () => {
             </motion.a>
             {/* Login/Signup button (desktop only) */}
             <motion.a
-              href="https://dash.pixelhubhost.com/login"
+              href="https://dash.pixelhubhost.com/register"
               target="_blank"
               rel="noopener noreferrer"
               className="hidden md:inline-flex items-center bg-purple-600 text-white px-5 py-2 rounded-lg hover:bg-purple-700 transition-colors font-medium shadow"
