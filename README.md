@@ -8,16 +8,24 @@ This website serves as the main landing page, offering information about our ser
 
 ## 🌐 Website Features
 
-- **Multilingual Support**:  
-  Available in English, German, Portuguese, French, and Italian.
-- **Modern Design**:  
-  Responsive, clean, and user-friendly interface.
-- **Service Info**:  
-  Detailed descriptions of hosting plans, features, and company mission.
-- **Integrated Contact Options**:  
-  Quick access to support via Discord, WhatsApp, and email.
-- **Legal & Policy Pages**:  
-  Includes Privacy Policy, Terms of Service, and Legal pages.
+- **Multilingual Support**  
+  Available in English, German, Portuguese, French, and Italian.  
+  Additional languages can be added by creating new translation files in [src/config/languages](./src/config/languages).
+
+- **Modern Design**  
+  Responsive, clean, and user-friendly interface, with a dark-theme toggle.
+
+- **Service Info**  
+  Detailed descriptions of hosting plans, features, and our company mission.
+
+- **Integrated Contact Options**  
+  Quick access to support via Discord, WhatsApp, and Email.
+
+- **Legal & Policy Pages**  
+  Includes Privacy Policy, Terms of Service, Legal disclaimers, and other necessary documentation.
+
+- **Maintenance/Construction Mode**  
+  An “Under Construction” page can be shown during maintenance or service downtime.
 
 ---
 
@@ -25,23 +33,26 @@ This website serves as the main landing page, offering information about our ser
 
 To contribute or run the website locally:
 
-1. **Clone the Repository:**
+1. **Clone the Repository**
+
    ```bash
    git clone https://github.com/KingIronMan2011/pixelhubhost-website.git
    cd pixelhubhost-website
    ```
 
-2. **Install Dependencies:**
+2. **Install Dependencies**
+
    ```bash
    npm install
    ```
 
-3. **Start the Development Server:**
+3. **Start the Development Server**
+
    ```bash
    npm run dev
    ```
 
-4. **Open in Browser:**  
+4. **Open in Browser**  
    Visit [http://localhost:5173](http://localhost:5173) to view the site.
 
 ---
@@ -103,7 +114,3 @@ See [LICENSE](./LICENSE.txt) for more details.
 ---
 
 **PixelHub Host – Empowering your Minecraft community!**
-
----
-
-Let me know if you'd like any customizations or sections (badges, deployment, FAQs, etc.) added!

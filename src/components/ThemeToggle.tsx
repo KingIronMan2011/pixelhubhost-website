@@ -5,9 +5,13 @@ import { useLanguage } from "../context/LanguageContext";
 import languagesConfig from "../config/languages/Languages";
 import { motion } from "framer-motion";
 
+// ThemeToggle component: toggles between light and dark mode
 const ThemeToggle: React.FC = () => {
+  // Get current theme and toggle function from context
   const { theme, toggleTheme } = useTheme();
+  // Get current language from context
   const { language } = useLanguage();
+  // Get translations for the current language, fallback to English
   const texts =
     languagesConfig[language as keyof typeof languagesConfig]?.texts ||
     languagesConfig.en.texts;
@@ -37,6 +41,7 @@ const ThemeToggle: React.FC = () => {
   };
 
   return (
+    // Animated button to toggle theme
     <motion.button
       onClick={toggleTheme}
       className="p-2 rounded-xl border border-transparent bg-gray-800/60 hover:bg-gray-700/80 transition-all duration-200 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
@@ -45,7 +50,9 @@ const ThemeToggle: React.FC = () => {
       type="button"
       style={{ willChange: "transform, box-shadow" }}
     >
+      {/* Visually hidden label for accessibility */}
       <span className="sr-only">{texts.toggleTheme || "Toggle theme"}</span>
+      {/* Show sun icon (animated) if dark mode, moon if light mode */}
       {theme === "dark" ? (
         <motion.span {...iconSpin}>
           <Sun size={20} className="text-yellow-400" />

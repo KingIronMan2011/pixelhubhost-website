@@ -1,23 +1,23 @@
 {
   "compilerOptions": {
-    "target": "ES2022",
-    "lib": ["ES2023"],
-    "module": "ESNext",
-    "skipLibCheck": true,
+    "target": "ES2022", // Output JavaScript will use ES2022 features
+    "lib": ["ES2023"], // Include ES2023 standard library features
+    "module": "ESNext", // Use modern ES module syntax
+    "skipLibCheck": true, // Skip type checking of declaration files for faster builds
 
     /* Bundler mode */
-    "moduleResolution": "bundler",
-    "allowImportingTsExtensions": true,
-    "isolatedModules": true,
-    "moduleDetection": "force",
-    "noEmit": true,
-    "types": ["node"],
+    "moduleResolution": "bundler", // Use bundler-style module resolution (for Vite, etc.)
+    "allowImportingTsExtensions": true, // Allow importing TypeScript files with extensions
+    "isolatedModules": true, // Ensure each file can be safely transpiled independently
+    "moduleDetection": "force", // Always treat files as modules
+    "noEmit": true, // Do not output compiled files (handled by the bundler)
+    "types": ["node"], // Include Node.js type definitions
 
     /* Linting */
-    "strict": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
-    "noFallthroughCasesInSwitch": true
+    "strict": true, // Enable all strict type-checking options
+    "noUnusedLocals": true, // Report errors on unused local variables
+    "noUnusedParameters": true, // Report errors on unused function parameters
+    "noFallthroughCasesInSwitch": true // Prevent fallthrough in switch statements
   },
-  "include": ["vite.config.ts"]
+  "include": ["vite.config.ts"] // Only include vite.config.ts for compilation (Node-specific config)
 }

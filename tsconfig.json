@@ -1,7 +1,13 @@
 {
-  "files": [],
+  // This is the root TypeScript configuration file for the project.
+  // It acts as a "solution" config, referencing other tsconfig files for different parts of the project.
+
+  "files": [], // No files are compiled directly by this config.
+
   "references": [
+    // Reference the main application TypeScript config (for the frontend app)
     { "path": "./tsconfig.app.json" },
+    // Reference the Node.js/server TypeScript config (if present)
     { "path": "./tsconfig.node.json" }
   ]
 }

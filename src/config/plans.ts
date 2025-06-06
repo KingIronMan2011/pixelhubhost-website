@@ -1,5 +1,9 @@
 import { Language } from "./config";
 
+// Helper function to get currency symbol and conversion rate based on language
+// - English: USD ($), rate 0.2 (likely for BRL to USD conversion)
+// - German, French, Italian: Euro (€), rate 0.19
+// - Default (Portuguese/Brazil): Real (R$), rate 1 (no conversion)
 const getCurrencyByLanguage = (language: Language) => {
   switch (language) {
     case "en":
@@ -13,37 +17,41 @@ const getCurrencyByLanguage = (language: Language) => {
   }
 };
 
+// Type for a feature included in a plan
 export type PlanFeature = {
-  nameKey: string; // Use a single key for all languages
-  included: boolean;
+  nameKey: string; // Key for translation (used for all languages)
+  included: boolean; // Whether this feature is included in the plan
 };
 
+// Type for a hosting plan
 export type Plan = {
-  id: string;
-  name: { [key in Language]: string };
-  description: { [key in Language]: string };
+  id: string; // Unique plan ID
+  name: { [key in Language]: string }; // Plan name in all supported languages
+  description: { [key in Language]: string }; // Description in all supported languages
   price: {
-    base_amount: number;
+    base_amount: number; // Base price in BRL (Brazilian Real)
+    // Function to get price and currency info for a given language
     getCurrencyInfo: (language: Language) => {
-      amount: number;
-      quarterlyAmount: number;
-      currency: string;
+      amount: number; // Monthly price in selected currency
+      quarterlyAmount: number; // Quarterly price (with 10% discount)
+      currency: string; // Currency symbol
     };
   };
-  features: PlanFeature[];
-  available: boolean;
-  popular: boolean;
-  color: string;
+  features: PlanFeature[]; // List of features for this plan
+  available: boolean; // Is this plan available for purchase?
+  popular: boolean; // Is this plan marked as "popular"?
+  color: string; // Color code for UI display
   specs: {
-    threads: number;
-    ram: number;
-    storage: number;
-    backups: number;
-    databases: number;
-    ports: number;
+    threads: number; // Number of CPU threads/vCores
+    ram: number; // RAM in GB
+    storage: number; // Storage in GB
+    backups: number; // Number of backup slots
+    databases: number; // Number of databases
+    ports: number; // Number of ports
   };
 };
 
+// Common features included in all plans
 export const commonFeatures: PlanFeature[] = [
   { nameKey: "ddosProtection", included: true },
   { nameKey: "xeonCpu", included: true },
@@ -51,7 +59,8 @@ export const commonFeatures: PlanFeature[] = [
   { nameKey: "reliableSupport", included: true },
 ];
 
-// You can add more plans here for scalability and maintainability
+// Array of all available hosting plans
+// Each plan includes translated names/descriptions, pricing logic, features, and specs
 export const plans: Plan[] = [
   {
     id: "oak",
@@ -75,7 +84,7 @@ export const plans: Plan[] = [
         const { symbol, rate } = getCurrencyByLanguage(language);
         return {
           amount: Math.round(34 * rate),
-          quarterlyAmount: Math.round(34 * 3 * rate * 0.9),
+          quarterlyAmount: Math.round(34 * 3 * rate * 0.9), // 10% discount for quarterly
           currency: symbol,
         };
       },
@@ -115,7 +124,7 @@ export const plans: Plan[] = [
         const { symbol, rate } = getCurrencyByLanguage(language);
         return {
           amount: Math.round(51 * rate),
-          quarterlyAmount: Math.round(51 * 3 * rate * 0.9),
+          quarterlyAmount: Math.round(51 * 3 * rate * 0.9), // 10% discount for quarterly
           currency: symbol,
         };
       },
@@ -155,7 +164,7 @@ export const plans: Plan[] = [
         const { symbol, rate } = getCurrencyByLanguage(language);
         return {
           amount: Math.round(68 * rate),
-          quarterlyAmount: Math.round(68 * 3 * rate * 0.9),
+          quarterlyAmount: Math.round(68 * 3 * rate * 0.9), // 10% discount for quarterly
           currency: symbol,
         };
       },
@@ -195,7 +204,7 @@ export const plans: Plan[] = [
         const { symbol, rate } = getCurrencyByLanguage(language);
         return {
           amount: Math.round(100 * rate),
-          quarterlyAmount: Math.round(100 * 3 * rate * 0.9),
+          quarterlyAmount: Math.round(100 * 3 * rate * 0.9), // 10% discount for quarterly
           currency: symbol,
         };
       },
@@ -235,7 +244,7 @@ export const plans: Plan[] = [
         const { symbol, rate } = getCurrencyByLanguage(language);
         return {
           amount: Math.round(130 * rate),
-          quarterlyAmount: Math.round(130 * 3 * rate * 0.9),
+          quarterlyAmount: Math.round(130 * 3 * rate * 0.9), // 10% discount for quarterly
           currency: symbol,
         };
       },
@@ -275,7 +284,7 @@ export const plans: Plan[] = [
         const { symbol, rate } = getCurrencyByLanguage(language);
         return {
           amount: Math.round(248 * rate),
-          quarterlyAmount: Math.round(248 * 3 * rate * 0.9),
+          quarterlyAmount: Math.round(248 * 3 * rate * 0.9), // 10% discount for quarterly
           currency: symbol,
         };
       },

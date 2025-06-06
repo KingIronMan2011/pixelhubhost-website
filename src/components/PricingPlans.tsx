@@ -3,18 +3,22 @@ import { useLanguage } from "../context/LanguageContext";
 import { plans as basePlans } from "../config/plans";
 import { config, planLinks } from "../config/config";
 import languagesConfig from "../config/languages/Languages";
-import { motion } from "framer-motion"; // <-- Add framer-motion
+import { motion } from "framer-motion"; // Animation library
 
 const PricingPlans = () => {
+  // Get current language from context
   const { language } = useLanguage();
+  // State for selected billing interval (monthly or quarterly)
   const [billingInterval, setBillingInterval] = useState<
     "monthly" | "quarterly"
   >("monthly");
 
+  // Get translations for the current language, fallback to English
   const texts =
     languagesConfig[language as keyof typeof languagesConfig]?.texts ||
     languagesConfig.en.texts;
 
+  // Define a custom plan (for "Contact us" option)
   const customPlan = {
     id: "custom",
     name: {
@@ -50,8 +54,10 @@ const PricingPlans = () => {
     popular: false,
   };
 
+  // Combine base plans with the custom plan
   const plans = useMemo(() => [...basePlans, customPlan], [basePlans, texts]);
 
+  // Helper to get currency and price display for a plan
   const getCurrencyDisplay = useMemo(() => {
     return (plan: (typeof plans)[0]) => {
       try {
@@ -88,11 +94,13 @@ const PricingPlans = () => {
   };
 
   return (
+    // Pricing section with gradient background and padding
     <section
       id="pricing"
       className="pt-8 pb-6 bg-gradient-to-b from-white via-blue-50 to-indigo-50 dark:from-gray-950 dark:via-gray-900 dark:to-gray-950 transition-colors duration-500"
     >
       <div className="container mx-auto px-4">
+        {/* Section title and subtitle */}
         <div className="text-center max-w-3xl mx-auto mb-16">
           <h2 className="text-3xl md:text-4xl font-bold mb-4 text-gray-900 dark:text-white drop-shadow-sm">
             {texts.pricingTitle || "Pricing"}
@@ -100,6 +108,7 @@ const PricingPlans = () => {
           <p className="text-lg text-gray-700 dark:text-gray-400">
             {texts.pricingSubtitle || ""}
           </p>
+          {/* Billing interval toggle buttons */}
           <div className="mt-8 flex justify-center gap-4">
             <motion.button
               onClick={() => setBillingInterval("monthly")}
@@ -135,15 +144,19 @@ const PricingPlans = () => {
           </div>
         </div>
 
+        {/* Pricing cards grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {plans.map((plan) => {
+            // Get currency and price for this plan
             const { currency, displayAmount } = getCurrencyDisplay(plan);
+            // Get the correct plan link (or contact for custom)
             const planLink =
               plan.id === "custom"
                 ? config.contact?.discord || "#"
                 : planLinks[plan.id]?.[billingInterval] || "#";
 
             return (
+              // Animated pricing card
               <motion.div
                 key={plan.id}
                 className={`relative rounded-2xl overflow-hidden bg-white/90 dark:bg-gray-900/90 ${
@@ -155,7 +168,6 @@ const PricingPlans = () => {
                   borderColor: "#3b82f6", // Tailwind blue-500
                   borderWidth: "2px",
                   outline: "none",
-                  // Animate the ring as a border for smoothness
                 }}
                 whileFocus={{
                   ...cardHover,
@@ -170,7 +182,11 @@ const PricingPlans = () => {
                   borderColor: "#3b82f6",
                   borderWidth: "2px",
                   outline: "none",
-                  transition: { type: "tween", duration: 0.13, ease: "easeInOut" },
+                  transition: {
+                    type: "tween",
+                    duration: 0.13,
+                    ease: "easeInOut",
+                  },
                 }} // mobile tap animation
                 style={{
                   willChange:
@@ -180,6 +196,7 @@ const PricingPlans = () => {
                     : "2px solid transparent",
                 }}
               >
+                {/* Popular plan badge */}
                 {plan.popular && (
                   <div className="absolute top-0 inset-x-0 px-4 py-1 bg-gradient-to-r from-blue-500 to-purple-500 text-white text-sm text-center font-semibold rounded-t-2xl shadow">
                     {texts.popularPlan || ""}
@@ -187,17 +204,19 @@ const PricingPlans = () => {
                 )}
 
                 <div className={`p-7 ${plan.popular ? "pt-14" : "pt-7"}`}>
+                  {/* Plan name */}
                   <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-2 text-center tracking-tight">
                     {plan.name?.[language as keyof typeof plan.name] ??
                       plan.name["en"]}
                   </h3>
-                  {/* Description left as-is for clarity and accessibility */}
+                  {/* Plan description */}
                   <p className="text-gray-600 dark:text-gray-400 mb-6 min-h-[3rem] text-center text-base">
                     {plan.description[
                       language as keyof typeof plan.description
                     ] ?? plan.description["en"]}
                   </p>
 
+                  {/* Price and billing label */}
                   <div className="mt-8 mb-6">
                     <div className="flex items-baseline justify-center">
                       <span className="text-4xl font-bold text-gray-900 dark:text-white">
@@ -216,6 +235,7 @@ const PricingPlans = () => {
                     </div>
                   </div>
 
+                  {/* Buy Now / Contact Us button */}
                   <motion.a
                     href={planLink}
                     target="_blank"
@@ -238,6 +258,7 @@ const PricingPlans = () => {
                     whileTap={plan.available ? { scale: 1.04 } : undefined} // mobile tap animation
                     style={{ willChange: "transform" }}
                   >
+                    {/* Overlay for sold out plans */}
                     {!plan.available && (
                       <div className="absolute inset-0 flex items-center justify-center bg-gray-900/50 dark:bg-gray-900/70 rounded-lg backdrop-blur-sm">
                         <span className="text-white font-bold text-lg">
@@ -250,6 +271,7 @@ const PricingPlans = () => {
                       : texts.buyNow || texts.selectPlan || "Select Plan"}
                   </motion.a>
 
+                  {/* Plan specs list */}
                   <div
                     className={`mt-6 space-y-4 ${
                       plan.id === "custom" ? "opacity-50" : ""

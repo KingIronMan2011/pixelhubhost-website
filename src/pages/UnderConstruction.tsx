@@ -8,11 +8,14 @@ const brand = config.name;
 const contact = config.contact;
 const website = config.website;
 
+// UnderConstruction page component displays a maintenance/coming soon message
 const UnderConstruction = () => {
+  // Get current language and setter from context
   const { language, setLanguage } = useLanguage();
+  // Get translated texts for the current language, fallback to English if missing
   const texts = languagesConfig[language]?.texts || languagesConfig.en.texts;
 
-  // Framer Motion hover animation for contact buttons
+  // Framer Motion hover animation configs for contact buttons
   const buttonHover = {
     scale: 1.045,
     boxShadow: "0 8px 32px 0 rgba(59,130,246,0.13)",
@@ -30,9 +33,10 @@ const UnderConstruction = () => {
   };
 
   return (
+    // Main container with background and centered content
     <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-b from-gray-900 via-gray-950 to-black text-gray-200 transition-colors duration-500">
       <div className="bg-white/90 dark:bg-gray-900/90 rounded-2xl shadow-xl p-8 border border-gray-200 dark:border-gray-800 flex flex-col items-center max-w-lg w-full">
-        {/* Brand/Logo */}
+        {/* Brand/Logo with link to main website */}
         <a
           href={website}
           target="_blank"
@@ -44,21 +48,25 @@ const UnderConstruction = () => {
             {brand}
           </span>
         </a>
+        {/* Construction emoji */}
         <span className="text-5xl mb-4 animate-pulse">🚧</span>
+        {/* Main title */}
         <h1
           className="text-3xl md:text-4xl font-bold mb-3 text-gray-900 dark:text-white text-center"
           style={{ lineHeight: 1.18 }}
         >
           {texts.underConstruction}
         </h1>
+        {/* Subtitle and info */}
         <p className="text-lg text-gray-700 dark:text-gray-300 text-center mb-2">
           {texts.constructionWorking}
         </p>
         <p className="text-base text-gray-500 dark:text-gray-400 text-center mb-4">
           {texts.constructionCheckBack}
         </p>
-        {/* Contact */}
+        {/* Contact buttons: Discord, Email, WhatsApp */}
         <div className="flex gap-4 mb-4">
+          {/* Discord button */}
           <motion.a
             href={contact.discord}
             target="_blank"
@@ -76,6 +84,7 @@ const UnderConstruction = () => {
             <FaDiscord size={20} />
             Discord
           </motion.a>
+          {/* Email button */}
           <motion.a
             href={`mailto:${contact.email}`}
             className="inline-flex items-center gap-2 bg-gray-100 dark:bg-gray-800 text-blue-600 dark:text-blue-400 px-5 py-2 rounded-lg font-medium border border-blue-200 dark:border-blue-900 hover:border-blue-400 dark:hover:border-blue-700 shadow transition-colors"
@@ -91,6 +100,7 @@ const UnderConstruction = () => {
             <FaEnvelope size={20} />
             Email
           </motion.a>
+          {/* WhatsApp button */}
           <motion.a
             href={contact.whatsapp}
             target="_blank"
@@ -109,7 +119,7 @@ const UnderConstruction = () => {
             WhatsApp
           </motion.a>
         </div>
-        {/* Language Switcher */}
+        {/* Language Switcher Dropdown */}
         <div className="flex items-center gap-2 mt-4">
           <label
             htmlFor="lang"
@@ -156,7 +166,7 @@ const UnderConstruction = () => {
           </motion.div>
         </div>
       </div>
-      {/* Footer */}
+      {/* Footer with brand and copyright */}
       <footer className="mt-6 text-xs text-gray-500 dark:text-gray-400 text-center flex items-center justify-center gap-1">
         <FaCube size={14} className="inline-block mb-0.5 text-indigo-400" />
         {new Date().getFullYear()} {brand}. All rights reserved.

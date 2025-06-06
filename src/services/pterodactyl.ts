@@ -1,43 +1,62 @@
-import axios from 'axios';
-import type { ServerStatus } from '../config/config';
+import axios from "axios";
+import type { ServerStatus } from "../config/config";
 
+// Get Supabase environment variables for API base URL and anonymous key
 const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
 const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
 
+// Create an Axios instance for API requests to Supabase Edge Functions
 const api = axios.create({
   baseURL: `${supabaseUrl}/functions/v1`,
   headers: {
     Authorization: `Bearer ${supabaseAnonKey}`,
-    'Content-Type': 'application/json',
+    "Content-Type": "application/json",
   },
-  timeout: 10000,
+  timeout: 10000, // 10 seconds timeout for requests
 });
 
+// Helper function to handle and throw user-friendly errors for API calls
 function handleAxiosError(error: any, action: string) {
   if (error?.response?.status) {
     const status = error.response.status;
-    const msg = error.response.data?.error || error.response.data?.details || error.message;
+    const msg =
+      error.response.data?.error ||
+      error.response.data?.details ||
+      error.message;
     switch (status) {
-      case 401: throw new Error('Authentication failed: Invalid API key');
-      case 403: throw new Error('Access forbidden: Insufficient permissions');
-      case 404: throw new Error('Server not found: Invalid server ID');
-      case 500: throw new Error(`Pterodactyl server error: ${msg}`);
-      case 502: throw new Error('Unable to reach Pterodactyl server');
-      case 504: throw new Error('Pterodactyl server timeout');
-      default: throw new Error(`Failed to ${action} server: ${msg}`);
+      case 401:
+        throw new Error("Authentication failed: Invalid API key");
+      case 403:
+        throw new Error("Access forbidden: Insufficient permissions");
+      case 404:
+        throw new Error("Server not found: Invalid server ID");
+      case 500:
+        throw new Error(`Pterodactyl server error: ${msg}`);
+      case 502:
+        throw new Error("Unable to reach Pterodactyl server");
+      case 504:
+        throw new Error("Pterodactyl server timeout");
+      default:
+        throw new Error(`Failed to ${action} server: ${msg}`);
     }
   }
-  throw new Error(`An unexpected error occurred while trying to ${action} server`);
+  throw new Error(
+    `An unexpected error occurred while trying to ${action} server`
+  );
 }
 
+// Service object for interacting with the Pterodactyl server management API
 export const pterodactylService = {
+  // Fetch the current status of a server by its ID
   async getServerStatus(serverId: string): Promise<ServerStatus> {
     try {
-      if (!serverId?.trim()) throw new Error('Invalid server ID provided');
-      const { data } = await api.get('/pterodactyl-proxy', { params: { serverId } });
+      if (!serverId?.trim()) throw new Error("Invalid server ID provided");
+      const { data } = await api.get("/pterodactyl-proxy", {
+        params: { serverId },
+      });
       const attr = data?.attributes;
-      if (!attr?.resources || typeof attr.current_state === 'undefined')
-        throw new Error('Invalid response format');
+      if (!attr?.resources || typeof attr.current_state === "undefined")
+        throw new Error("Invalid response format");
       return {
         state: attr.current_state,
         memory: {
@@ -50,35 +69,44 @@ export const pterodactylService = {
         },
       };
     } catch (error) {
-      handleAxiosError(error, 'fetch server status');
-      throw new Error('Failed to fetch server status');
+      handleAxiosError(error, "fetch server status");
+      throw new Error("Failed to fetch server status");
     }
   },
 
+  // Start the server with the given ID
   async startServer(serverId: string): Promise<void> {
     try {
-      if (!serverId?.trim()) throw new Error('Invalid server ID provided');
-      await api.get('/pterodactyl-proxy', { params: { serverId, action: 'start' } });
+      if (!serverId?.trim()) throw new Error("Invalid server ID provided");
+      await api.get("/pterodactyl-proxy", {
+        params: { serverId, action: "start" },
+      });
     } catch (error) {
-      handleAxiosError(error, 'start');
+      handleAxiosError(error, "start");
     }
   },
 
+  // Stop the server with the given ID
   async stopServer(serverId: string): Promise<void> {
     try {
-      if (!serverId?.trim()) throw new Error('Invalid server ID provided');
-      await api.get('/pterodactyl-proxy', { params: { serverId, action: 'stop' } });
+      if (!serverId?.trim()) throw new Error("Invalid server ID provided");
+      await api.get("/pterodactyl-proxy", {
+        params: { serverId, action: "stop" },
+      });
     } catch (error) {
-      handleAxiosError(error, 'stop');
+      handleAxiosError(error, "stop");
     }
   },
 
+  // Restart the server with the given ID
   async restartServer(serverId: string): Promise<void> {
     try {
-      if (!serverId?.trim()) throw new Error('Invalid server ID provided');
-      await api.get('/pterodactyl-proxy', { params: { serverId, action: 'restart' } });
+      if (!serverId?.trim()) throw new Error("Invalid server ID provided");
+      await api.get("/pterodactyl-proxy", {
+        params: { serverId, action: "restart" },
+      });
     } catch (error) {
-      handleAxiosError(error, 'restart');
+      handleAxiosError(error, "restart");
     }
   },
 };

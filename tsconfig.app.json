@@ -1,24 +1,24 @@
 {
   "compilerOptions": {
-    "target": "ES2020",
-    "useDefineForClassFields": true,
-    "lib": ["ES2020", "DOM", "DOM.Iterable"],
-    "module": "ESNext",
-    "skipLibCheck": true,
+    "target": "ES2020", // Set the JavaScript language version for output
+    "useDefineForClassFields": true, // Use 'define' semantics for class fields (modern JS)
+    "lib": ["ES2020", "DOM", "DOM.Iterable"], // Include standard library features for ES2020 and browser APIs
+    "module": "ESNext", // Use modern ES module syntax
+    "skipLibCheck": true, // Skip type checking of declaration files for faster builds
 
     /* Bundler mode */
-    "moduleResolution": "bundler",
-    "allowImportingTsExtensions": true,
-    "isolatedModules": true,
-    "moduleDetection": "force",
-    "noEmit": true,
-    "jsx": "react-jsx",
+    "moduleResolution": "bundler", // Use bundler-style module resolution (for Vite, etc.)
+    "allowImportingTsExtensions": true, // Allow importing TypeScript files with extensions
+    "isolatedModules": true, // Ensure each file can be safely transpiled independently
+    "moduleDetection": "force", // Always treat files as modules
+    "noEmit": true, // Do not output compiled files (handled by the bundler)
+    "jsx": "react-jsx", // Use the new JSX transform (React 17+)
 
     /* Linting */
-    "strict": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
-    "noFallthroughCasesInSwitch": true
+    "strict": true, // Enable all strict type-checking options
+    "noUnusedLocals": true, // Report errors on unused local variables
+    "noUnusedParameters": true, // Report errors on unused function parameters
+    "noFallthroughCasesInSwitch": true // Prevent fallthrough in switch statements
   },
-  "include": ["src"]
+  "include": ["src"] // Only include files in the src directory for compilation
 }

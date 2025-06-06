@@ -4,12 +4,15 @@ import { useLanguage } from "../context/LanguageContext";
 import languagesConfig from "../config/languages/Languages";
 import { motion } from "framer-motion";
 
+// Main Addons component
 const Addons: React.FC = () => {
+  // Get current language and translations
   const { language } = useLanguage();
   const t =
     languagesConfig[language as keyof typeof languagesConfig]?.texts ||
     languagesConfig.en.texts;
 
+  // Define the list of addon options, each with icon, name, description, and price
   const addons = [
     {
       icon: Globe,
@@ -37,7 +40,7 @@ const Addons: React.FC = () => {
     },
   ];
 
-  // Animation variants for framer-motion
+  // Animation variants for the container (stagger children on show)
   const containerVariants = {
     hidden: {},
     show: {
@@ -47,8 +50,9 @@ const Addons: React.FC = () => {
     },
   };
 
+  // Animation variants for each card (entrance, hover, tap)
   const cardVariants = {
-    hidden: { opacity: 0, y: 40, scale: 0.97 },
+    hidden: { opacity: 0, y: 40, scale: 0.97 }, // initial state (offscreen, faded, slightly smaller)
     show: {
       opacity: 1,
       y: 0,
@@ -68,11 +72,13 @@ const Addons: React.FC = () => {
   };
 
   return (
+    // Section for Addons, with background gradient and padding
     <section
       id="addons"
       className="py-8 bg-gradient-to-b from-gray-50 via-white to-gray-100 dark:from-gray-950 dark:via-gray-900 dark:to-gray-950 transition-colors duration-500"
     >
       <div className="container mx-auto px-4">
+        {/* Section header */}
         <div className="text-center mb-12">
           <h2 className="text-4xl font-extrabold text-gray-900 dark:text-white mb-3 tracking-tight drop-shadow-sm">
             {t.addons}
@@ -81,6 +87,7 @@ const Addons: React.FC = () => {
             {t.addonsSubtitle}
           </p>
         </div>
+        {/* Animated list of addon cards */}
         <motion.div
           className="max-w-2xl mx-auto space-y-6"
           variants={containerVariants}
@@ -89,14 +96,16 @@ const Addons: React.FC = () => {
           viewport={{ once: true, amount: 0.2 }}
         >
           {addons.map((addon, index) => (
+            // Each addon card with animation and hover/tap effects
             <motion.div
               key={index}
               variants={cardVariants}
               whileHover="hover"
-              whileTap="tap" // <-- Add tap animation for mobile
+              whileTap="tap" // tap animation for mobile
               className="group bg-white/90 dark:bg-gray-900/90 rounded-2xl p-6 shadow-md border border-gray-200 dark:border-gray-800 flex items-center gap-5 transition-all duration-150"
               style={{ willChange: "transform, box-shadow" }}
             >
+              {/* Icon with its own animation */}
               <motion.div
                 className="flex-shrink-0 flex items-center justify-center w-16 h-16 rounded-xl bg-blue-50 dark:bg-blue-900/20 group-hover:scale-110 transition-transform duration-150"
                 initial={{ scale: 0.9, opacity: 0.7 }}
@@ -110,6 +119,7 @@ const Addons: React.FC = () => {
               >
                 <addon.icon className="w-8 h-8 text-blue-500 dark:text-blue-400" />
               </motion.div>
+              {/* Addon details */}
               <div className="flex-1">
                 <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-1">
                   {addon.name}
@@ -118,6 +128,7 @@ const Addons: React.FC = () => {
                   {addon.description}
                 </p>
                 <div className="flex items-center justify-between">
+                  {/* Price with entrance animation */}
                   <motion.span
                     className="text-2xl font-bold text-gray-900 dark:text-white drop-shadow-sm"
                     initial={{ opacity: 0, y: 10 }}
@@ -126,6 +137,7 @@ const Addons: React.FC = () => {
                   >
                     {addon.price}
                   </motion.span>
+                  {/* Button to scroll to contact section */}
                   <motion.button
                     type="button"
                     onClick={() => {

@@ -2,6 +2,7 @@ import { useState, useRef, useEffect } from "react";
 import { useLanguage } from "../context/LanguageContext";
 import { Globe, ChevronDown } from "lucide-react";
 
+// Mapping of language codes to display names
 const languageNames: Record<string, string> = {
   en: "English",
   pt: "Português",
@@ -10,12 +11,16 @@ const languageNames: Record<string, string> = {
   it: "Italiano", // Added Italian
 };
 
+// Main LanguageSelector component
 const LanguageSelector = () => {
+  // Get current language and setter from context
   const { language, setLanguage } = useLanguage();
+  // State to control dropdown open/close
   const [isOpen, setIsOpen] = useState(false);
+  // Ref for the dropdown container (used for outside click detection)
   const dropdownRef = useRef<HTMLDivElement>(null);
 
-  // Persist language selection in localStorage
+  // On mount: load language from localStorage if available
   useEffect(() => {
     const savedLang = localStorage.getItem("language");
     if (savedLang && savedLang !== language) {
@@ -24,11 +29,12 @@ const LanguageSelector = () => {
     // eslint-disable-next-line
   }, []);
 
+  // Whenever language changes, persist it to localStorage
   useEffect(() => {
     localStorage.setItem("language", language);
   }, [language]);
 
-  // Close dropdown on outside click
+  // Close dropdown when clicking outside the component
   useEffect(() => {
     if (!isOpen) return;
     function handleClickOutside(event: MouseEvent) {
@@ -43,7 +49,7 @@ const LanguageSelector = () => {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, [isOpen]);
 
-  // Keyboard accessibility: close on Escape
+  // Keyboard accessibility: close dropdown on Escape key
   useEffect(() => {
     if (!isOpen) return;
     function handleKeyDown(event: KeyboardEvent) {
@@ -54,7 +60,9 @@ const LanguageSelector = () => {
   }, [isOpen]);
 
   return (
+    // Dropdown container
     <div className="relative" ref={dropdownRef}>
+      {/* Button to open/close the language dropdown */}
       <button
         onClick={() => setIsOpen((v) => !v)}
         className={`flex items-center gap-1.5 text-gray-300 hover:text-white transition-colors px-3 py-2 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 ${
@@ -72,6 +80,7 @@ const LanguageSelector = () => {
         />
       </button>
 
+      {/* Dropdown menu with language options */}
       {isOpen && (
         <div className="absolute right-0 mt-2 w-48 rounded-xl shadow-2xl bg-gray-900 ring-1 ring-black ring-opacity-10 z-50 animate-fade-in-down">
           <div className="py-1" role="menu">
@@ -96,6 +105,7 @@ const LanguageSelector = () => {
           </div>
         </div>
       )}
+      {/* Animation for dropdown appearance */}
       <style>
         {`
           .animate-fade-in-down {

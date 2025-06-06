@@ -19,11 +19,16 @@ import Terms from "./pages/Terms";
 import Legal from "./pages/Legal";
 import Sitemap from "./pages/Sitemap";
 
+// Main App component that sets up routing, layout, and global providers
 function App() {
+  // Get authentication loading state from AuthContext
   const { loading } = useAuth();
+  // Initialize translations (i18next)
   useTranslation();
+  // Get current location for routing
   const location = useLocation();
 
+  // Show a loading spinner while authentication state is being determined
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-gradient-to-b from-blue-50 via-white to-purple-50 dark:from-gray-950 dark:via-gray-900 dark:to-gray-950 transition-colors duration-500">
@@ -47,15 +52,21 @@ function App() {
     );
   }
 
+  // If the site is in under construction mode, show the UnderConstruction page only
   if (config.underConstruction) {
     return <UnderConstruction />;
   }
 
+  // Main app layout and routing
   return (
+    // Provide language context to all children
     <LanguageProvider>
       <div className="min-h-screen flex flex-col bg-gradient-to-b from-blue-50 via-white to-purple-50 dark:from-gray-950 dark:via-gray-900 dark:to-gray-950 transition-colors duration-500">
+        {/* Set up meta tags for SEO and social sharing */}
         <MetaTags />
+        {/* Site header/navigation */}
         <Header />
+        {/* Main content area with route-based rendering */}
         <main className="flex-grow">
           <Routes location={location}>
             <Route
@@ -77,10 +88,11 @@ function App() {
             <Route path="/legal" element={<Legal />} />
             <Route path="/sitemap" element={<Sitemap />} />
             <Route path="/under-construction" element={<UnderConstruction />} />
-            {/* Add more routes as needed */}
+            {/* Redirect any unknown route to home */}
             <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
         </main>
+        {/* Site footer */}
         <Footer />
       </div>
     </LanguageProvider>

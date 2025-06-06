@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Server, Signal, Copy, Check, Info } from "lucide-react";
 import { usePterodactyl } from "../hooks/usePterodactyl";
 import { useLanguage } from "../context/LanguageContext";
-import languagesConfig from "../config/languages/Languages"; // updated import
+import languagesConfig from "../config/languages/Languages";
 import { SERVER_LIMITS } from "../config/config";
 import type { Language } from "../config/config";
 import { toast, ToastContainer } from "react-toastify";
@@ -239,17 +239,23 @@ const ConnectPopup: React.FC<ConnectPopupProps> = ({
 
 const testServerId = import.meta.env.VITE_PTERODACTYL_TEST_SERVER_ID;
 
+// Main TestServer component
 const TestServer: React.FC = () => {
+  // Get current language from context
   const { language } = useLanguage();
+  // State for copy feedback and popups
   const [copied, setCopied] = useState(false);
   const [copiedPort, setCopiedPort] = useState(false);
   const [showNotification, setShowNotification] = useState(false);
   const [showConnectPopup, setShowConnectPopup] = useState(false);
+  // Server connection info
   const serverDomain = "test.pixelhubhost.com";
   const bedrockPort = "19132";
 
+  // Get test server status from custom hook
   const { status, loading, error } = usePterodactyl(testServerId);
 
+  // Copy-to-clipboard handler for domain/port
   const handleCopy = async (
     value: string,
     setCopiedFn: React.Dispatch<React.SetStateAction<boolean>>
@@ -258,6 +264,7 @@ const TestServer: React.FC = () => {
       if (navigator.clipboard && window.isSecureContext) {
         await navigator.clipboard.writeText(value);
       } else {
+        // Fallback for insecure context
         const textArea = document.createElement("textarea");
         textArea.value = value;
         textArea.style.position = "fixed";
@@ -276,6 +283,7 @@ const TestServer: React.FC = () => {
     }
   };
 
+  // Icons for copy buttons (checkmark if copied)
   const buttonIcon = copied ? (
     <Check className="w-4 h-4" />
   ) : (
@@ -298,21 +306,21 @@ const TestServer: React.FC = () => {
     backgroundColor: "rgba(59,130,246,0.13)", // blue-500/20
     transition: { type: "tween", duration: 0.13, ease: "easeInOut" },
   };
-
   const copyHoverGreen = {
     scale: 1.13,
     backgroundColor: "rgba(16,185,129,0.13)", // emerald-500/20
     transition: { type: "tween", duration: 0.13, ease: "easeInOut" },
   };
 
+  // Calculate memory and CPU usage as percentages
   const memoryUsagePercent = status?.memory?.current
     ? Math.round((status.memory.current / SERVER_LIMITS.MEMORY) * 100)
     : 0;
-
   const cpuUsagePercent = status?.cpu?.current
     ? Math.round((status.cpu.current / SERVER_LIMITS.CPU) * 100)
     : 0;
 
+  // If no test server ID is configured, show an error message
   if (!testServerId) {
     return (
       <div className="py-12 bg-white dark:bg-gray-900">
@@ -333,13 +341,16 @@ const TestServer: React.FC = () => {
   }
 
   return (
+    // Main section with background and padding
     <section className="pt-8 pb-8 bg-gradient-to-b from-gray-50 via-white to-gray-100 dark:from-gray-950 dark:via-gray-900 dark:to-gray-950 transition-colors duration-500 relative overflow-hidden">
+      {/* Show notification when something is copied */}
       {showNotification && (
         <CopyNotification
           onClose={() => setShowNotification(false)}
           language={language}
         />
       )}
+      {/* Show popup with connection instructions */}
       {showConnectPopup && (
         <ConnectPopup
           onClose={() => setShowConnectPopup(false)}
@@ -350,12 +361,14 @@ const TestServer: React.FC = () => {
       )}
       <div className="container mx-auto px-4">
         <div className="max-w-lg mx-auto relative">
+          {/* Animated card for test server info */}
           <motion.div
             className="bg-white/90 dark:bg-gray-900/90 backdrop-blur-sm rounded-2xl shadow-xl p-8 border border-gray-200 dark:border-gray-800 transition-all duration-300"
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4, ease: "easeOut" }}
           >
+            {/* Header: server icon, name, and version info */}
             <div className="flex items-center justify-between mb-6">
               <div className="flex items-center space-x-3">
                 <Server className="w-7 h-7 text-blue-500" />
@@ -368,6 +381,7 @@ const TestServer: React.FC = () => {
                   </p>
                 </div>
               </div>
+              {/* Server status indicator */}
               <div className="flex items-center space-x-2">
                 <Signal
                   className={`w-5 h-5 ${
@@ -386,20 +400,25 @@ const TestServer: React.FC = () => {
                   {loading
                     ? siteConfig.texts[language].checking
                     : status?.state
-                    ? siteConfig.texts[language][status.state as keyof typeof siteConfig.texts[typeof language]]
+                    ? siteConfig.texts[language][
+                        status.state as keyof (typeof siteConfig.texts)[typeof language]
+                      ]
                     : siteConfig.texts[language].serverOffline}
                 </span>
               </div>
             </div>
 
+            {/* Error message if fetching server status fails */}
             {error && (
               <div className="mb-4 p-3 rounded-lg bg-red-50/90 dark:bg-red-900/20 border border-red-200 dark:border-red-800">
                 <p className="text-red-700 dark:text-red-300">{error}</p>
               </div>
             )}
 
+            {/* Domain and port info with copy buttons */}
             <div className="space-y-4">
               <div className="flex flex-col gap-2">
+                {/* Java/Bedrock domain */}
                 <div className="flex items-center bg-gray-100/70 dark:bg-gray-800/70 rounded-lg px-3 py-2">
                   <span className="text-sm text-gray-600 dark:text-gray-400 mr-2">
                     {siteConfig.texts[language].domain}:
@@ -407,18 +426,23 @@ const TestServer: React.FC = () => {
                   <span className="font-mono text-blue-600 dark:text-blue-400 text-sm font-medium">
                     {serverDomain}
                   </span>
+                  {/* Copy domain button */}
                   <motion.button
                     onClick={() => handleCopy(serverDomain, setCopied)}
                     className="ml-2 p-1 rounded transition-colors text-gray-700 dark:text-white"
                     title={translations[language].domainCopied}
                     whileHover={copyHover}
                     whileFocus={copyHover}
-                    whileTap={{ scale: 1.04, backgroundColor: "rgba(59,130,246,0.18)" }} // mobile tap animation
+                    whileTap={{
+                      scale: 1.04,
+                      backgroundColor: "rgba(59,130,246,0.18)",
+                    }} // mobile tap animation
                     style={{ willChange: "transform, background-color" }}
                   >
                     {buttonIcon}
                   </motion.button>
                 </div>
+                {/* Bedrock port */}
                 <div className="flex items-center bg-gray-100/70 dark:bg-gray-800/70 rounded-lg px-3 py-2">
                   <span className="text-sm text-gray-600 dark:text-gray-400 mr-2">
                     {siteConfig.texts[language].bedrockPort}:
@@ -426,18 +450,23 @@ const TestServer: React.FC = () => {
                   <span className="font-mono text-sm text-gray-900 dark:text-white font-medium">
                     {bedrockPort}
                   </span>
+                  {/* Copy port button */}
                   <motion.button
                     onClick={() => handleCopy(bedrockPort, setCopiedPort)}
                     className="ml-2 p-1 rounded transition-colors text-gray-700 dark:text-white"
                     title={translations[language].domainCopied}
                     whileHover={copyHoverGreen}
                     whileFocus={copyHoverGreen}
-                    whileTap={{ scale: 1.04, backgroundColor: "rgba(16,185,129,0.18)" }} // mobile tap animation
+                    whileTap={{
+                      scale: 1.04,
+                      backgroundColor: "rgba(16,185,129,0.18)",
+                    }} // mobile tap animation
                     style={{ willChange: "transform, background-color" }}
                   >
                     {buttonIconPort}
                   </motion.button>
                 </div>
+                {/* Server location info */}
                 <div className="flex items-center justify-end space-x-2 mt-1">
                   <img
                     src="https://flagcdn.com/w40/br.png"
@@ -449,6 +478,7 @@ const TestServer: React.FC = () => {
                   </span>
                 </div>
               </div>
+              {/* Server resource usage bars */}
               {status && (
                 <div className="grid grid-cols-2 gap-4">
                   <div>
@@ -487,6 +517,7 @@ const TestServer: React.FC = () => {
               )}
             </div>
 
+            {/* Button to open connect instructions popup */}
             <div className="mt-4 pt-3 border-t border-gray-200 dark:border-gray-700">
               <motion.button
                 onClick={() => setShowConnectPopup(true)}
@@ -502,6 +533,7 @@ const TestServer: React.FC = () => {
           </motion.div>
         </div>
       </div>
+      {/* Toast notifications for copy actions */}
       <ToastContainer
         position="bottom-center"
         autoClose={1500}

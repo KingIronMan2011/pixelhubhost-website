@@ -8,12 +8,14 @@ import { motion } from "framer-motion";
 // Infer the language keys from the config
 type LanguageKey = keyof typeof languagesConfig;
 
+// Animation for link hover (desktop)
 const linkHover = {
   scale: 1.045,
   color: "#fff",
   transition: { type: "tween", duration: 0.13, ease: "easeInOut" },
 };
 
+// Animation for mobile nav links (hover/tap)
 const mobileLinkMotion = {
   whileHover: {
     scale: 1.04,
@@ -27,12 +29,16 @@ const mobileLinkMotion = {
   },
 };
 
+// Main Header component
 const Header: React.FC = () => {
+  // Get current language from context
   const { language } = useLanguage() as { language: LanguageKey };
+  // Get translations for the current language, fallback to English
   const t = languagesConfig[language]?.texts || languagesConfig.en.texts;
+  // State for mobile menu open/close
   const [menuOpen, setMenuOpen] = useState(false);
 
-  // Navigation links for DRYness
+  // Navigation links (labels are translated)
   const navLinks = [
     { href: "#features", label: t.features },
     { href: "#pricing", label: t.pricing },
@@ -41,17 +47,18 @@ const Header: React.FC = () => {
   ];
 
   return (
+    // Header bar with fixed position and background
     <header className="fixed top-0 left-0 right-0 z-50 bg-gray-900/95 backdrop-blur-md py-4 shadow transition-colors duration-500">
       <div className="container mx-auto px-4">
         <nav className="flex justify-between items-center">
-          {/* Logo */}
+          {/* Logo (left side) */}
           <a
             href="/"
             className="text-2xl font-bold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent hover:from-blue-300 hover:to-purple-300 transition-all duration-500"
           >
             PixelHub Host
           </a>
-          {/* Desktop menu */}
+          {/* Desktop navigation links (center) */}
           <div className="hidden md:flex items-center space-x-8">
             {navLinks.map((link) => (
               <a
@@ -63,12 +70,13 @@ const Header: React.FC = () => {
               </a>
             ))}
           </div>
-          {/* Right side: Language, Theme, System Status, Login/Signup, and Mobile Menu Button */}
+          {/* Right side: language selector, theme toggle, status/login buttons, mobile menu button */}
           <div className="flex items-center space-x-3">
             <div className="flex items-center space-x-2">
               <LanguageSelector />
               <ThemeToggle />
             </div>
+            {/* System status button (desktop only) */}
             <motion.a
               href="https://stats.uptimerobot.com/h2jzO5FroG"
               target="_blank"
@@ -80,6 +88,7 @@ const Header: React.FC = () => {
             >
               {t.systemStatus}
             </motion.a>
+            {/* Login/Signup button (desktop only) */}
             <motion.a
               href="https://dash.pixelhubhost.com/login"
               target="_blank"
@@ -91,12 +100,13 @@ const Header: React.FC = () => {
             >
               {t.loginSignup || "Login / Signup"}
             </motion.a>
-            {/* Mobile menu button */}
+            {/* Hamburger menu button (mobile only) */}
             <button
               className="md:hidden flex flex-col justify-center items-center w-10 h-10 focus:outline-none ml-2"
               onClick={() => setMenuOpen(!menuOpen)}
               aria-label="Open menu"
             >
+              {/* Hamburger icon (animated to X when open) */}
               <span
                 className={`block w-6 h-0.5 bg-white mb-1 rounded transition-all duration-500 ${
                   menuOpen ? "rotate-45 translate-y-2" : ""
@@ -115,7 +125,7 @@ const Header: React.FC = () => {
             </button>
           </div>
         </nav>
-        {/* Mobile menu dropdown */}
+        {/* Mobile menu dropdown (shows when menuOpen is true) */}
         {menuOpen && (
           <div className="md:hidden mt-4 bg-gray-900/95 backdrop-blur-md rounded-xl shadow-lg p-5 space-y-3 animate-fade-in-down">
             {navLinks.map((link) => (
@@ -129,6 +139,7 @@ const Header: React.FC = () => {
                 {link.label}
               </motion.a>
             ))}
+            {/* System status button (mobile) */}
             <motion.a
               href="https://stats.uptimerobot.com/h2jzO5FroG"
               target="_blank"
@@ -141,6 +152,7 @@ const Header: React.FC = () => {
             >
               {t.systemStatus}
             </motion.a>
+            {/* Login/Signup button (mobile) */}
             <motion.a
               href="https://dash.pixelhubhost.com/login"
               target="_blank"
@@ -156,6 +168,7 @@ const Header: React.FC = () => {
           </div>
         )}
       </div>
+      {/* Animation for mobile menu dropdown */}
       <style>
         {`
           .animate-fade-in-down {

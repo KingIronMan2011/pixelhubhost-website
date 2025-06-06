@@ -1,15 +1,21 @@
+// German language configuration for PixelHub Host website
 
 const de = {
+  // Short description for SEO and meta tags
   description: "Premium Minecraft Server Hosting",
+  // Contact information for German users
   contact: {
     discord: "https://discord.gg/mquaVhs5sr",
     whatsapp: "https://wa.me/5516993981473",
     email: "",
   },
+  // All translated UI texts and labels for the German version
   texts: {
+    // Hero section
     heroTitle: "Premium Minecraft Server Hosting",
     heroSubtitle:
       "Hohe Leistung, DDoS-Schutz und zuverlässiger Support für Ihren Minecraft-Server",
+    // Navigation and section titles
     features: "Funktionen",
     pricing: "Preise",
     contact: "Kontakt",
@@ -17,6 +23,7 @@ const de = {
     learnMore: "Mehr Erfahren",
     contactTitle: "Kontaktieren Sie Uns",
     contactSubtitle: "Haben Sie Fragen? Wir sind hier um zu helfen!",
+    // Pricing and plans
     popularPlan: "Am beliebtesten",
     selectPlan: "Plan Auswählen",
     featuresTitle: "Premium Funktionen",
@@ -40,6 +47,7 @@ const de = {
       "Automatische tägliche Backups schützen Ihre Daten zuverlässig.",
     pricingTitle: "Wählen Sie Ihren Plan",
     pricingSubtitle: "Finden Sie den perfekten Plan für Ihren Minecraft-Server",
+    // Footer and legal
     footerText: "© 2025 PixelHub Host. Alle Rechte vorbehalten.",
     cpuThreads: "vCores",
     ram: "RAM DDR4",
@@ -52,6 +60,7 @@ const de = {
     contactUs: "Kontaktieren Sie uns",
     soldOut: "AUSVERKAUFT",
     from: "ab",
+    // Test server section
     testServer: "Testserver",
     testServerDesc:
       "Testen Sie unsere Serverleistung mit diesem kostenlosen Testserver",
@@ -62,6 +71,7 @@ const de = {
     checking: "Überprüfung...",
     serverOffline: "Server Offline",
     connectToTestServer: "Mit Testserver verbinden",
+    // Addons
     customDomain: "Eigene Domain",
     customDomainDesc: "Beschreibung Ihrer benutzerdefinierten Domain hier",
     extraPort: "Zusätzlicher Port",
@@ -70,6 +80,7 @@ const de = {
     extraBackupDesc: "Kaufen Sie zusätzliche Backup-Slots für Ihren Server.",
     extraDatabase: "Zusätzliche Datenbank",
     extraDatabaseDesc: "Fügen Sie Ihrem Server weitere Datenbanken hinzu.",
+    // System status and footer
     systemStatus: "Systemstatus",
     footerDescription:
       "PixelHub Host bietet Premium-Minecraft-Server-Hosting mit bester Leistung, Sicherheit und Support.",
@@ -92,6 +103,7 @@ const de = {
     addonsSubtitle:
       "Erweitern Sie Ihren Server mit diesen optionalen Funktionen",
     mcHosting: "Minecraft Hosting",
+    // About us section
     aboutUsTitle: "Über Uns",
     aboutUsIntro:
       "PixelHub Host bietet Premium-Minecraft-Server-Hosting mit bester Leistung, Sicherheit und Support.",
@@ -106,6 +118,7 @@ const de = {
       "Unser Team besteht aus leidenschaftlichen Gamern, Entwicklern und Support-Spezialisten, die wissen, was für ein großartiges Minecraft-Erlebnis nötig ist.",
     aboutUsContact:
       "Möchten Sie mehr erfahren? Kontaktieren Sie uns jederzeit!",
+    // Miscellaneous
     home: "Startseite",
     domainCopied: "Domain kopiert!",
     serverStatus: "Serverstatus",
@@ -126,6 +139,7 @@ const de = {
     madeByText: "Erstellt von KingIronMan2011",
     customPlanName: "Individuell",
     customPlanDesc: "Kontaktieren Sie uns für einen individuellen Server.",
+    // Test server connection instructions
     javaTitle: "Für Minecraft Java Edition:",
     javaDesc:
       "Öffne Minecraft Java Edition, klicke auf Mehrspieler und dann auf Server hinzufügen. Gib Folgendes als Serveradresse ein:",
@@ -135,6 +149,7 @@ const de = {
     copyDomain: "Domain Kopieren",
     copyPort: "Port Kopieren",
     howToConnect: "So verbindest du dich",
+    // Legal and privacy
     legalTitle: "Impressum",
     legalIntro:
       "Diese Seite enthält rechtliche Hinweise und die Kontaktdaten des Seitenbetreibers.",
@@ -173,6 +188,7 @@ const de = {
       "Wir können diese Bedingungen jederzeit aktualisieren. Die fortgesetzte Nutzung gilt als Zustimmung zu den neuen Bedingungen.",
     tosContact:
       "Wenn Sie Fragen zu unseren Bedingungen haben, kontaktieren Sie uns bitte.",
+    // Construction/maintenance mode
     underConstruction: "Im Aufbau",
     constructionWorking:
       "Wir arbeiten daran, Ihnen etwas Großartiges zu bieten.",
@@ -180,10 +196,12 @@ const de = {
     constructionContactUs: "Kontaktieren Sie uns",
     constructionLanguage: "Sprache",
     constructionVisitWebsite: "Webseite besuchen",
+    // Privacy and sitemap notes
     privacyMinecraft:
       "Alle Minecraft-Serverdaten werden sicher gespeichert und sind nur für Sie und unser Support-Team zugänglich, um Probleme zu beheben.",
     sitemapMinecraftNote:
       "PixelHub Host bietet Premium-Minecraft-Server-Hosting, Testserver und 24/7 Support für Ihre Community.",
+    // Test server status states
     testServerStarting: "Startet",
     testServerRunning: "Läuft",
     testServerStopping: "Stoppt",
