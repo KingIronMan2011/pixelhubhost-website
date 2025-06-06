@@ -52,14 +52,21 @@ const ThemeToggle: React.FC = () => {
     >
       {/* Visually hidden label for accessibility */}
       <span className="sr-only">{texts.toggleTheme || "Toggle theme"}</span>
-      {/* Show sun icon (animated) if dark mode, moon if light mode */}
+      {/* Show sun icon (animated 15s spin) if dark mode, moon if light mode */}
       {theme === "dark" ? (
         <motion.span {...iconSpin}>
-          <Sun size={20} className="text-yellow-400" />
+          <Sun
+          size={20}
+          className="text-yellow-400"
+          style={{ animation: "spin 15s linear infinite" }}
+        />
         </motion.span>
       ) : (
         <Moon size={20} className="text-blue-400" />
       )}
+      {/* Add this to your global CSS if not already present:
+          @keyframes spin { 100% { transform: rotate(360deg); } }
+      */}
     </motion.button>
   );
 };
