@@ -116,7 +116,7 @@ const en = {
     aboutUsContact: "Want to know more? Reach out to us anytime!",
     // Miscellaneous
     home: "Home",
-    loginSignup: "Login / Signup",
+    loginSignup: "Signup",
     buyNow: "Buy Now",
     domainCopied: "Domain copied!",
     toggleTheme: "Toggle theme",
