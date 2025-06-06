@@ -122,7 +122,7 @@ const fr = {
       "Vous voulez en savoir plus ? Contactez-nous à tout moment !",
     // Miscellaneous
     home: "Accueil",
-    loginSignup: "Connexion / Inscription",
+    loginSignup: "Inscription",
     buyNow: "Acheter maintenant",
     domainCopied: "Domaine copié !",
     toggleTheme: "Changer le thème",
