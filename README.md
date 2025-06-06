@@ -50,7 +50,7 @@ To contribute or run the website locally:
 
 - **Frontend:** React (with TypeScript)
 - **Routing:** React Router
-- **Translations:** Custom solution (see `src/config/languages`)
+- **Translations:** Custom solution see [`src/config/languages`](./src/config/languages)
 - **Styling:** Inline styles and CSS
 
 ---
@@ -73,13 +73,10 @@ Translations are managed in [`src/config/languages`](./src/config/languages).
 
 - **Home**
 - **About Us**
-- **Pricing**
-- **Features**
 - **Legal**
 - **Privacy Policy**
 - **Terms of Service**
 - **Sitemap**
-- **Contact**
 
 ---
 
@@ -101,7 +98,7 @@ Feel free to submit issues and pull requests for improvements, bug fixes, or tra
 ## 📝 License
 
 This project is licensed under the MIT License.  
-See [LICENSE](./LICENSE) for more details.
+See [LICENSE](./LICENSE.txt) for more details.
 
 ---
 
