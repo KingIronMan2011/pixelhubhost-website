@@ -119,7 +119,7 @@ const it = {
     aboutUsContact: "Vuoi saperne di più? Contattaci in qualsiasi momento!",
     // Miscellaneous
     home: "Home",
-    loginSignup: "Accedi / Registrati",
+    loginSignup: "Registrati",
     buyNow: "Acquista Ora",
     domainCopied: "Dominio copiato!",
     toggleTheme: "Cambia tema",
