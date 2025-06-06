@@ -58,7 +58,7 @@ const ThemeToggle: React.FC = () => {
           <Sun
           size={20}
           className="text-yellow-400"
-          style={{ animation: "spin 15s linear infinite" }}
+          style={{ animation: "spin 20s linear infinite" }}
         />
         </motion.span>
       ) : (
