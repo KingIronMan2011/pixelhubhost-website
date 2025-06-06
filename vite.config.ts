@@ -23,6 +23,6 @@ export default defineConfig({
     watch: {
       usePolling: true, // Use polling for file changes (helps in some environments like Docker/WSL)
     },
-    allowedHosts: ["website.pixelhubhost.com"], // Only allow these hosts to access the dev server
+    allowedHosts: ["website.pixelhubhost.com", "www.pixelhubhost.com"], // Only allow these hosts to access the dev server
   },
 });
