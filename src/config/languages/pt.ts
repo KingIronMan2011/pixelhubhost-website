@@ -197,10 +197,6 @@ const pt = {
     sitemapMinecraftNote:
       "A PixelHub Host oferece hospedagem premium para servidores Minecraft, servidores de teste e suporte 24/7 para sua comunidade.",
     // Test server status states
-    starting: "Iniciando",
-    running: "Em execução",
-    stopping: "Parando",
-    offline: "Offline",
     testServerStarting: "Iniciando",
     testServerRunning: "Em execução",
     testServerStopping: "Parando",

@@ -199,10 +199,6 @@ const it = {
     sitemapMinecraftNote:
       "PixelHub Host offre hosting premium per server Minecraft, server di prova e supporto 24/7 per la tua community.",
     // Test server status states
-    starting: "Avvio",
-    running: "In esecuzione",
-    stopping: "Arresto",
-    offline: "Offline",
     testServerStarting: "Avvio",
     testServerRunning: "In esecuzione",
     testServerStopping: "Arresto",

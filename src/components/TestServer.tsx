@@ -340,6 +340,24 @@ const TestServer: React.FC = () => {
     );
   }
 
+  // Helper to get translated server status
+  const getServerStatusText = () => {
+    if (loading) return siteConfig.texts[language].checking;
+    if (!status?.state) return siteConfig.texts[language].serverOffline;
+    switch (status.state) {
+      case "testServerStarting":
+        return siteConfig.texts[language].testServerStarting;
+      case "testServerRunning":
+        return siteConfig.texts[language].testServerRunning;
+      case "testServerStopping":
+        return siteConfig.texts[language].testServerStopping;
+      case "testServerOffline":
+        return siteConfig.texts[language].testServerOffline;
+      default:
+        return siteConfig.texts[language].serverOffline;
+    }
+  };
+
   return (
     // Main section with background and padding
     <section className="pt-8 pb-8 bg-gradient-to-b from-gray-50 via-white to-gray-100 dark:from-gray-950 dark:via-gray-900 dark:to-gray-950 transition-colors duration-500 relative overflow-hidden">
@@ -397,13 +415,7 @@ const TestServer: React.FC = () => {
                       : "text-red-500"
                   }`}
                 >
-                  {loading
-                    ? siteConfig.texts[language].checking
-                    : status?.state
-                    ? siteConfig.texts[language][
-                        status.state as keyof (typeof siteConfig.texts)[typeof language]
-                      ]
-                    : siteConfig.texts[language].serverOffline}
+                  {getServerStatusText()}
                 </span>
               </div>
             </div>
