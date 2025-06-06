@@ -91,7 +91,7 @@ Feel free to submit issues and pull requests for improvements, bug fixes, or tra
 
 - **Discord:** [Join Server](https://discord.gg/mquaVhs5sr)
 - **WhatsApp:** [Contact on WhatsApp](https://wa.me/5516993981473)
-- **Email:** [contato@pixelhubhost.com](mailto: contato@pixelhubhost.com)
+- **Email:** contato@pixelhubhost.com
 
 ---
 
