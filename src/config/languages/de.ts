@@ -125,7 +125,7 @@ const de = {
     loading: "Lädt...",
     error: "Fehler",
     notFound: "Nicht gefunden",
-    loginSignup: "Login / Registrieren",
+    loginSignup: "Registrieren",
     buyNow: "Jetzt kaufen",
     toggleTheme: "Design wechseln",
     monthly: "Monatlich",
