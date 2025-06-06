@@ -72,6 +72,11 @@ const Features = () => {
       boxShadow: "0 8px 32px 0 rgba(0,0,0,0.13)",
       transition: { duration: 0.13, ease: "easeOut" },
     },
+    tap: {
+      scale: 1.05,
+      boxShadow: "0 8px 32px 0 rgba(0,0,0,0.13)",
+      transition: { duration: 0.13, ease: "easeOut" },
+    },
   };
 
   return (
@@ -101,6 +106,7 @@ const Features = () => {
               key={index}
               variants={cardVariants}
               whileHover="hover"
+              whileTap="tap" // <-- Add tap animation for mobile
               className="group bg-white/90 dark:bg-gray-900/90 rounded-2xl p-8 border border-gray-200 dark:border-gray-800 shadow-md flex flex-col items-center transition-all duration-100"
               style={{ willChange: "transform, box-shadow" }}
             >

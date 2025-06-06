@@ -14,6 +14,19 @@ const linkHover = {
   transition: { type: "tween", duration: 0.13, ease: "easeInOut" },
 };
 
+const mobileLinkMotion = {
+  whileHover: {
+    scale: 1.04,
+    color: "#fff",
+    transition: { type: "tween", duration: 0.13, ease: "easeInOut" },
+  },
+  whileTap: {
+    scale: 1.04,
+    color: "#a5b4fc",
+    transition: { type: "tween", duration: 0.13, ease: "easeInOut" },
+  },
+};
+
 const Header: React.FC = () => {
   const { language } = useLanguage() as { language: LanguageKey };
   const t = languagesConfig[language]?.texts || languagesConfig.en.texts;
@@ -106,14 +119,15 @@ const Header: React.FC = () => {
         {menuOpen && (
           <div className="md:hidden mt-4 bg-gray-900/95 backdrop-blur-md rounded-xl shadow-lg p-5 space-y-3 animate-fade-in-down">
             {navLinks.map((link) => (
-              <a
+              <motion.a
                 key={link.href}
                 href={link.href}
                 className="block text-gray-100 font-medium"
                 onClick={() => setMenuOpen(false)}
+                {...mobileLinkMotion}
               >
                 {link.label}
-              </a>
+              </motion.a>
             ))}
             <motion.a
               href="https://stats.uptimerobot.com/h2jzO5FroG"
@@ -121,8 +135,8 @@ const Header: React.FC = () => {
               rel="noopener noreferrer"
               className="block bg-blue-600 text-white px-5 py-2 rounded-lg hover:bg-blue-700 transition-colors font-medium mt-2 text-center shadow"
               whileHover={linkHover}
-              whileFocus={linkHover}
-              style={{ willChange: "transform, color" }}
+              whileTap={{ scale: 0.97, backgroundColor: "#2563eb" }}
+              style={{ willChange: "transform, color, background-color" }}
               onClick={() => setMenuOpen(false)}
             >
               {t.systemStatus}
@@ -133,8 +147,8 @@ const Header: React.FC = () => {
               rel="noopener noreferrer"
               className="block bg-purple-600 text-white px-5 py-2 rounded-lg hover:bg-purple-700 transition-colors font-medium mt-2 text-center shadow"
               whileHover={linkHover}
-              whileFocus={linkHover}
-              style={{ willChange: "transform, color" }}
+              whileTap={{ scale: 0.97, backgroundColor: "#7c3aed" }}
+              style={{ willChange: "transform, color, background-color" }}
               onClick={() => setMenuOpen(false)}
             >
               {t.loginSignup || "Login / Signup"}

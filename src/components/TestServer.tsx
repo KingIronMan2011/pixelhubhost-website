@@ -412,6 +412,7 @@ const TestServer: React.FC = () => {
                     title={translations[language].domainCopied}
                     whileHover={copyHover}
                     whileFocus={copyHover}
+                    whileTap={{ scale: 1.04, backgroundColor: "rgba(59,130,246,0.18)" }} // mobile tap animation
                     style={{ willChange: "transform, background-color" }}
                   >
                     {buttonIcon}
@@ -430,6 +431,7 @@ const TestServer: React.FC = () => {
                     title={translations[language].domainCopied}
                     whileHover={copyHoverGreen}
                     whileFocus={copyHoverGreen}
+                    whileTap={{ scale: 1.04, backgroundColor: "rgba(16,185,129,0.18)" }} // mobile tap animation
                     style={{ willChange: "transform, background-color" }}
                   >
                     {buttonIconPort}
@@ -490,6 +492,7 @@ const TestServer: React.FC = () => {
                 className="w-full px-4 py-2 bg-emerald-600 hover:bg-emerald-700 text-white text-sm rounded-lg transition-all duration-200 shadow-lg"
                 whileHover={buttonHover}
                 whileFocus={buttonHover}
+                whileTap={{ scale: 1.04, backgroundColor: "#059669" }} // mobile tap animation
                 style={{ willChange: "transform, box-shadow" }}
               >
                 {siteConfig.texts[language].connectToTestServer}

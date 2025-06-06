@@ -69,6 +69,11 @@ const AboutUs: React.FC = () => {
             className="inline-block bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-medium transition-colors shadow"
             whileHover={buttonHover}
             whileFocus={buttonHover}
+            whileTap={{
+              scale: 1.045,
+              boxShadow: "0 8px 32px 0 rgba(0,0,0,0.13)",
+              transition: { type: "tween", duration: 0.13, ease: "easeInOut" },
+            }} // mobile tap animation
             style={{ willChange: "transform, box-shadow" }}
           >
             {texts.aboutUsContact || "Join our Discord for Support"}

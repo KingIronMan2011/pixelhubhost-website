@@ -35,6 +35,11 @@ const Sitemap: React.FC = () => {
             <motion.div
               whileHover={linkHover}
               whileFocus={linkHover}
+              whileTap={{
+                scale: 1.035,
+                boxShadow: "0 8px 32px 0 rgba(59,130,246,0.10)",
+                transition: { type: "tween", duration: 0.13, ease: "easeInOut" },
+              }} // mobile tap animation
               style={{ willChange: "transform, box-shadow" }}
             >
               <Link

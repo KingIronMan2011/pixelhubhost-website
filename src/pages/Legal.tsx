@@ -47,6 +47,11 @@ const Legal: React.FC = () => {
               rel="noopener noreferrer"
               whileHover={linkHover}
               whileFocus={linkHover}
+              whileTap={{
+                scale: 1.04,
+                color: "#2563eb",
+                transition: { type: "tween", duration: 0.13, ease: "easeInOut" },
+              }} // mobile tap animation
               style={{ willChange: "transform, color" }}
             >
               https://www.pixelhubhost.com
@@ -60,6 +65,11 @@ const Legal: React.FC = () => {
               className="text-blue-400 hover:underline break-all"
               whileHover={linkHover}
               whileFocus={linkHover}
+              whileTap={{
+                scale: 1.04,
+                color: "#2563eb",
+                transition: { type: "tween", duration: 0.13, ease: "easeInOut" },
+              }} // mobile tap animation
               style={{ willChange: "transform, color" }}
             >
               contato@pixelhubhost.com
@@ -72,6 +82,11 @@ const Legal: React.FC = () => {
               className="text-blue-400 hover:underline break-all"
               whileHover={linkHover}
               whileFocus={linkHover}
+              whileTap={{
+                scale: 1.04,
+                color: "#2563eb",
+                transition: { type: "tween", duration: 0.13, ease: "easeInOut" },
+              }} // mobile tap animation
               style={{ willChange: "transform, color" }}
             >
               no-reply@pixelhubhost.com
@@ -84,6 +99,11 @@ const Legal: React.FC = () => {
               className="text-blue-400 hover:underline break-all"
               whileHover={linkHover}
               whileFocus={linkHover}
+              whileTap={{
+                scale: 1.04,
+                color: "#2563eb",
+                transition: { type: "tween", duration: 0.13, ease: "easeInOut" },
+              }} // mobile tap animation
               style={{ willChange: "transform, color" }}
             >
               +55 16 99398-1473
@@ -101,6 +121,11 @@ const Legal: React.FC = () => {
             className="inline-block bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-medium transition-colors shadow"
             whileHover={buttonHover}
             whileFocus={buttonHover}
+            whileTap={{
+              scale: 1.04,
+              boxShadow: "0 4px 16px 0 rgba(59,130,246,0.10)",
+              transition: { type: "tween", duration: 0.13, ease: "easeInOut" },
+            }} // mobile tap animation
             style={{ willChange: "transform, box-shadow" }}
           >
             {t.aboutUsContact ||

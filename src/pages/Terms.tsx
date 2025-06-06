@@ -1,4 +1,5 @@
 import React from "react";
+import { motion } from "framer-motion";
 import { useLanguage } from "../context/LanguageContext";
 import { config } from "../config/config";
 import languagesConfig from "../config/languages/Languages";
@@ -27,14 +28,30 @@ const Terms: React.FC = () => {
         </ul>
         <p className="mb-4">{texts.tosContact}</p>
         <div className="mt-8 text-center">
-          <a
+          <motion.a
             href={config.contact.discord}
             target="_blank"
             rel="noopener noreferrer"
             className="inline-block bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-medium transition-colors shadow"
+            whileHover={{
+              scale: 1.045,
+              boxShadow: "0 8px 32px 0 rgba(59,130,246,0.13)",
+              transition: { type: "tween", duration: 0.13, ease: "easeInOut" },
+            }}
+            whileFocus={{
+              scale: 1.045,
+              boxShadow: "0 8px 32px 0 rgba(59,130,246,0.13)",
+              transition: { type: "tween", duration: 0.13, ease: "easeInOut" },
+            }}
+            whileTap={{
+              scale: 1.045,
+              boxShadow: "0 8px 32px 0 rgba(59,130,246,0.10)",
+              transition: { type: "tween", duration: 0.13, ease: "easeInOut" },
+            }} // mobile tap animation
+            style={{ willChange: "transform, box-shadow" }}
           >
             {texts.aboutUsContact}
-          </a>
+          </motion.a>
         </div>
       </div>
     </section>

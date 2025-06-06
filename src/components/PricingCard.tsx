@@ -45,6 +45,11 @@ const PricingCard = ({
         isPopular ? "ring-2 ring-blue-500 scale-[1.03]" : ""
       }`}
       whileHover={cardHover}
+      whileTap={{
+        scale: 1.04,
+        boxShadow: "0 8px 32px 0 rgba(0,0,0,0.13)",
+        transition: { type: "tween", duration: 0.13, ease: "easeInOut" },
+      }} // mobile tap animation
       style={{ willChange: "transform, box-shadow" }}
     >
       {isPopular && (
@@ -84,6 +89,7 @@ const PricingCard = ({
           `}
           whileHover={buttonHover}
           whileFocus={buttonHover}
+          whileTap={{ scale: 0.97 }} // mobile tap animation
           style={{ willChange: "transform" }}
         >
           {t.buyNow || "Buy Now"}

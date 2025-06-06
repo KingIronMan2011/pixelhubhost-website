@@ -66,6 +66,11 @@ const UnderConstruction = () => {
             className="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-5 py-2 rounded-lg font-medium transition-colors shadow"
             whileHover={buttonHover}
             whileFocus={buttonHover}
+            whileTap={{
+              scale: 1.045,
+              boxShadow: "0 8px 32px 0 rgba(16,185,129,0.13)",
+              transition: { type: "tween", duration: 0.13, ease: "easeInOut" },
+            }} // mobile tap animation
             style={{ willChange: "transform, box-shadow" }}
           >
             <FaDiscord size={20} />
@@ -76,6 +81,11 @@ const UnderConstruction = () => {
             className="inline-flex items-center gap-2 bg-gray-100 dark:bg-gray-800 text-blue-600 dark:text-blue-400 px-5 py-2 rounded-lg font-medium border border-blue-200 dark:border-blue-900 hover:border-blue-400 dark:hover:border-blue-700 shadow transition-colors"
             whileHover={emailHover}
             whileFocus={emailHover}
+            whileTap={{
+              scale: 1.045,
+              boxShadow: "0 8px 32px 0 rgba(16,185,129,0.13)",
+              transition: { type: "tween", duration: 0.13, ease: "easeInOut" },
+            }} // mobile tap animation
             style={{ willChange: "transform, box-shadow" }}
           >
             <FaEnvelope size={20} />
@@ -88,6 +98,11 @@ const UnderConstruction = () => {
             className="inline-flex items-center gap-2 bg-green-500 hover:bg-green-600 text-white px-5 py-2 rounded-lg font-medium transition-colors shadow"
             whileHover={whatsappHover}
             whileFocus={whatsappHover}
+            whileTap={{
+              scale: 1.045,
+              boxShadow: "0 8px 32px 0 rgba(16,185,129,0.13)",
+              transition: { type: "tween", duration: 0.13, ease: "easeInOut" },
+            }} // mobile tap animation
             style={{ willChange: "transform, box-shadow" }}
           >
             <FaWhatsapp size={20} />

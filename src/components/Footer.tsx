@@ -19,6 +19,11 @@ const hoverMotion = {
     boxShadow: "0 8px 32px 0 rgba(0,0,0,0.13)",
     transition: { duration: 0.13, ease: "easeOut" },
   },
+  whileTap: {
+    scale: 1.07,
+    boxShadow: "0 8px 32px 0 rgba(0,0,0,0.13)",
+    transition: { duration: 0.13, ease: "easeOut" },
+  },
 };
 
 const Footer: React.FC = () => {

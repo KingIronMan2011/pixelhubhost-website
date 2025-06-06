@@ -164,6 +164,14 @@ const PricingPlans = () => {
                   borderWidth: "2px",
                   outline: "none",
                 }}
+                whileTap={{
+                  scale: 1.025,
+                  boxShadow: "0 8px 32px 0 rgba(0,0,0,0.13)",
+                  borderColor: "#3b82f6",
+                  borderWidth: "2px",
+                  outline: "none",
+                  transition: { type: "tween", duration: 0.13, ease: "easeInOut" },
+                }} // mobile tap animation
                 style={{
                   willChange:
                     "transform, box-shadow, border-color, border-width",
@@ -227,6 +235,7 @@ const PricingPlans = () => {
                     aria-disabled={!plan.available}
                     whileHover={plan.available ? buttonHover : undefined}
                     whileFocus={plan.available ? buttonHover : undefined}
+                    whileTap={plan.available ? { scale: 1.04 } : undefined} // mobile tap animation
                     style={{ willChange: "transform" }}
                   >
                     {!plan.available && (
