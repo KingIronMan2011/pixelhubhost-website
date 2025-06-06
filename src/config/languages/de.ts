@@ -69,7 +69,6 @@ const de = {
     cpu: "CPU",
     memory: "Arbeitsspeicher",
     checking: "Überprüfung...",
-    serverOffline: "Server Offline",
     connectToTestServer: "Mit Testserver verbinden",
     // Addons
     customDomain: "Eigene Domain",

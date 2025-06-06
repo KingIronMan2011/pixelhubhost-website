@@ -70,7 +70,6 @@ const fr = {
     cpu: "CPU",
     memory: "Mémoire",
     checking: "Vérification...",
-    serverOffline: "Serveur Hors Ligne",
     connectToTestServer: "Se Connecter au Serveur de Test",
     // Addons
     customDomain: "Domaine personnalisé",

@@ -16,7 +16,7 @@ const translations = Object.fromEntries(
     lang,
     {
       domainCopied: obj.texts?.domainCopied || "Domain copied!",
-      serverOffline: obj.texts?.serverOffline || "Server Offline",
+      serverOffline: obj.texts?.testServerOffline || "Server Offline",
       checking: obj.texts?.checking || "Checking...",
       testServer: obj.texts?.testServer || "Test Server",
       connectToTestServer:
@@ -343,7 +343,7 @@ const TestServer: React.FC = () => {
   // Helper to get translated server status
   const getServerStatusText = () => {
     if (loading) return siteConfig.texts[language].checking;
-    if (!status?.state) return siteConfig.texts[language].serverOffline;
+    if (!status?.state) return siteConfig.texts[language].testServerOffline;
     switch (status.state) {
       case "testServerStarting":
         return siteConfig.texts[language].testServerStarting;
@@ -354,7 +354,7 @@ const TestServer: React.FC = () => {
       case "testServerOffline":
         return siteConfig.texts[language].testServerOffline;
       default:
-        return siteConfig.texts[language].serverOffline;
+        return siteConfig.texts[language].testServerOffline;
     }
   };
 

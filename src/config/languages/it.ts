@@ -70,7 +70,6 @@ const it = {
     cpu: "CPU",
     memory: "Memoria",
     checking: "Verifica...",
-    serverOffline: "Server Offline",
     connectToTestServer: "Connettiti al Server di Test",
     // Addons
     customDomain: "Dominio Personalizzato",

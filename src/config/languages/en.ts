@@ -67,7 +67,6 @@ const en = {
     cpu: "CPU",
     memory: "Memory",
     checking: "Checking...",
-    serverOffline: "Server Offline",
     connectToTestServer: "Connect to Test Server",
     // Addons
     customDomain: "Custom Domain",
