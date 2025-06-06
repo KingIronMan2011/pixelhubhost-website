@@ -36,10 +36,13 @@ i18n
     fallbackLng: "en", // Fallback to English if translation is missing
     interpolation: { escapeValue: false }, // React already escapes values
     detection: {
-      order: ["navigator", "localStorage"], // Try browser language, then localStorage
+      order: ["localStorage", "navigator", "htmlTag"], // Check localStorage first, then browser, then <html lang="">
       lookupLocalStorage: "preferred-language", // Key for localStorage
       caches: ["localStorage"], // Cache language preference in localStorage
     },
+    supportedLngs: Object.keys(languages), // Only allow languages you provide
+    nonExplicitSupportedLngs: true, // Match "en-US" to "en", etc.
+    load: "languageOnly", // Only use base language code (e.g., "en" from "en-US")
   });
 
 export default i18n;
