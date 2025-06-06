@@ -298,6 +298,7 @@ const TestServer: React.FC = () => {
     backgroundColor: "rgba(59,130,246,0.13)", // blue-500/20
     transition: { type: "tween", duration: 0.13, ease: "easeInOut" },
   };
+
   const copyHoverGreen = {
     scale: 1.13,
     backgroundColor: "rgba(16,185,129,0.13)", // emerald-500/20

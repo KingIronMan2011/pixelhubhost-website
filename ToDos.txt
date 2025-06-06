@@ -1,4 +1,1 @@
-Maybe Update the Design so it doesn't Look as AI generated:
--three main colors: black, dark dark blue, light blue
-
-Bring the animations to mobile if possible
+// nothing here yet
