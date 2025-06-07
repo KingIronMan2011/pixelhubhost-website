@@ -207,6 +207,9 @@ const pt = {
       fr: "Francês",
       it: "Italiano",
     },
+    notFoundTitle: "Página não encontrada",
+    notFoundMessage: "A página solicitada não existe ou foi movida.",
+    backToHome: "Voltar ao Início",
   },
 };
 

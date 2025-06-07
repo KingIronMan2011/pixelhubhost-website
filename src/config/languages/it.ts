@@ -117,6 +117,10 @@ const it = {
     loading: "Caricamento...",
     error: "Errore",
     notFound: "Non trovato",
+    notFoundTitle: "Pagina non trovata",
+    notFoundMessage:
+      "La pagina che hai richiesto non esiste o è stata spostata.",
+    backToHome: "Torna alla Home",
     loginSignup: "Registrati",
     buyNow: "Acquista Ora",
     toggleTheme: "Cambia tema",

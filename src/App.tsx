@@ -1,4 +1,4 @@
-import { Routes, Route, Navigate, useLocation } from "react-router-dom";
+import { Routes, Route, useLocation } from "react-router-dom";
 import { useAuth } from "./context/AuthContext";
 import { useTranslation } from "react-i18next";
 import MetaTags from "./components/MetaTags";
@@ -18,6 +18,7 @@ import Privacy from "./pages/Privacy";
 import Terms from "./pages/Terms";
 import Legal from "./pages/Legal";
 import Sitemap from "./pages/Sitemap";
+import NotFound from "./pages/NotFound";
 import { HelmetProvider } from "react-helmet-async";
 
 // Main App component that sets up routing, layout, and global providers
@@ -89,6 +90,8 @@ function App() {
               <Route path="/terms" element={<Terms />} />
               <Route path="/legal" element={<Legal />} />
               <Route path="/sitemap" element={<Sitemap />} />
+              <Route path="/not-found" element={<NotFound />} />
+              {/* Catch-all route for under construction page */}
               <Route
                 path="/under-construction"
                 element={<UnderConstruction />}
@@ -105,8 +108,8 @@ function App() {
                 }
               />
 
-              {/* Redirect any unknown route to home */}
-              <Route path="*" element={<Navigate to="/" replace />} />
+              {/* Show custom not found page for unknown routes */}
+              <Route path="*" element={<NotFound />} />
             </Routes>
           </main>
           {/* Site footer */}

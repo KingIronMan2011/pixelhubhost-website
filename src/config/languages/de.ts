@@ -121,6 +121,10 @@ const de = {
     loading: "Lädt...",
     error: "Fehler",
     notFound: "Nicht gefunden",
+    notFoundTitle: "Seite nicht gefunden",
+    notFoundMessage:
+      "Die angeforderte Seite existiert nicht oder wurde verschoben.",
+    backToHome: "Zurück zur Startseite",
     loginSignup: "Registrieren",
     buyNow: "Jetzt kaufen",
     toggleTheme: "Design wechseln",
