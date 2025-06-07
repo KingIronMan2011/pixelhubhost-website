@@ -17,8 +17,10 @@ if (!rootElement) throw new Error("Failed to find the root element");
 createRoot(rootElement).render(
   <StrictMode>
     {/* Enables React's strict mode for highlighting potential problems */}
-    <BrowserRouter>
-      {/* Enables client-side routing */}
+    <BrowserRouter
+      future={{ v7_startTransition: true, v7_relativeSplatPath: true }}
+    >
+      {/* Enables client-side routing with the future flags for v7 */}
       <HelmetProvider>
         {/* Provides support for managing document head (meta tags, title, etc.) */}
         <AuthProvider>
