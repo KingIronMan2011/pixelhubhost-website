@@ -2,7 +2,7 @@
 
 ### Error Boundaries
 
-- [x] Add React error boundaries to catch unexpected errors and show a friendly message.
+- [ ] Add React error boundaries to catch unexpected errors and show a friendly message.
 
 ### SEO & Accessibility
 
