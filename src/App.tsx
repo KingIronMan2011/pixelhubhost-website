@@ -104,12 +104,9 @@ function App() {
 
               {/* Example route to display the icon file */}
               <Route
-                path="android-chrome-512x512.png"
+                path="pixel_hub_host.png"
                 element={
-                  <img
-                    src="/android-chrome-512x512.png"
-                    alt="Android Chrome Icon"
-                  />
+                  <img src="/pixel_hub_host.png" alt="PixelHubHost Logo" />
                 }
               />
 

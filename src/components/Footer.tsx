@@ -42,9 +42,15 @@ const Footer: React.FC = () => {
           <div>
             <a
               href="#home"
-              className="font-semibold text-lg mb-4 text-white tracking-wide inline-block hover:text-blue-400 transition-colors"
+              className="font-semibold text-lg mb-4 text-white tracking-wide hover:text-blue-400 transition-colors flex items-center gap-2"
               aria-label="PixelHub Host"
             >
+              <img
+                src="/pixel_hub_host.png"
+                alt="PixelHub Host Logo"
+                className="h-7 w-auto mr-2"
+                style={{ display: "inline-block", verticalAlign: "middle" }}
+              />
               {t.brand}
             </a>
             <p className="text-sm text-gray-400 leading-relaxed mb-4">
