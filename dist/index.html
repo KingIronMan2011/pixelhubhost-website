@@ -52,12 +52,19 @@
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
-    <script type="module" crossorigin src="/assets/index-DfJsusNK.js"></script>
-    <link rel="stylesheet" crossorigin href="/assets/index-o3UT7IQx.css">
+    <script type="module" crossorigin src="/assets/index-DOflxkeo.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-BG53fdpQ.css">
   </head>
   <body
     class="antialiased bg-gradient-to-b from-[#f0f6ff] via-white to-[#f3e8ff] min-h-screen"
   >
     <div id="root"></div>
+    <script>
+      if (sessionStorage.redirect) {
+        var redirect = sessionStorage.redirect;
+        sessionStorage.removeItem("redirect");
+        history.replaceState(null, null, redirect);
+      }
+    </script>
   </body>
 </html>
