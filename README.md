@@ -91,6 +91,12 @@ Translations are managed in [`src/config/languages`](./src/config/languages).
 
 ---
 
+## 📋 TODOs
+
+See [TODO.md](./TODO.md) for the current project tasks and checks.
+
+---
+
 ## 🤝 Contributing
 
 Contributions are welcome!  
