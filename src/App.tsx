@@ -88,6 +88,7 @@ function App() {
             <Route path="/legal" element={<Legal />} />
             <Route path="/sitemap" element={<Sitemap />} />
             <Route path="/under-construction" element={<UnderConstruction />} />
+            <Route path="android-chrome-512x512.png" element={<img src="/android-chrome-512x512.png" alt="Android Chrome Icon" />} />
             {/* Redirect any unknown route to home */}
             <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
