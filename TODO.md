@@ -8,7 +8,6 @@
 
 - [x] Make sure all pages have proper `<title>` and `<meta>` tags (your MetaTags component helps).
 - [x] Use `alt` attributes for all images.
-- [ ] Use semantic HTML (headings, lists, etc.).
 
 ### Loading & Empty States
 
@@ -48,3 +47,7 @@
 
 - [x] Check your `vite.config.ts` or build config for correct base paths.
 - [x] Set up proper redirects for SPA routing (especially for 404s) on your host.
+
+---
+
+**Feel free to add stuff to this list as needed!**
