@@ -1,19 +1,13 @@
-import { useEffect, useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import { useLanguage } from "../context/LanguageContext";
 import languagesConfig from "../config/languages/Languages";
 
-type SupportedLanguage = keyof typeof languagesConfig;
-
-// Main Hero section component
-const Hero = () => {
-  // Get current language from context
+const Hero: React.FC = () => {
   const { language } = useLanguage();
-  // Ref for the hero section (used for scroll animations)
   const heroRef = useRef<HTMLDivElement>(null);
-  // Get translations for the current language, fallback to English
   const t =
-    languagesConfig[language as SupportedLanguage]?.texts ||
+    languagesConfig[language as keyof typeof languagesConfig]?.texts ||
     languagesConfig.en.texts;
 
   // Animate elements with .animate-on-scroll class when they enter the viewport
@@ -37,31 +31,45 @@ const Hero = () => {
     };
   }, []);
 
-  // Smooth scroll to a section by id
-  const scrollToSection = (id: string) => {
-    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+  // Framer Motion hover animation for the call-to-action buttons
+  const buttonHover = {
+    scale: 1.05,
+    boxShadow: "0 8px 32px 0 rgba(59,130,246,0.15)",
+    transition: { duration: 0.13, ease: "easeOut" },
   };
 
-  // Framer Motion hover animation for buttons
-  const buttonHover = {
-    scale: 1.045,
-    boxShadow: "0 8px 32px 0 rgba(0,0,0,0.13)",
-    transition: { type: "tween", duration: 0.16, ease: "easeInOut" },
+  // Helper function to scroll to a given section by ID
+  const scrollToSection = (id: string) => {
+    const el = document.getElementById(id);
+    if (el) {
+      el.scrollIntoView({ behavior: "smooth" });
+    }
   };
+
+  // Scroll to top when #home is triggered
+  useEffect(() => {
+    const handleHashChange = () => {
+      if (window.location.hash === "#home") {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }
+    };
+    window.addEventListener("hashchange", handleHashChange);
+    return () => window.removeEventListener("hashchange", handleHashChange);
+  }, []);
 
   return (
     // Main hero section with animated entrance and gradient background
     <motion.div
       ref={heroRef}
+      id="home"
       initial={{ opacity: 0, y: 40 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.7, ease: "easeOut" }}
-      className="relative pt-24 pb-4 md:pt-28 md:pb-6 overflow-hidden bg-gradient-to-b from-blue-50 via-white to-purple-50 dark:from-gray-950 dark:via-gray-900 dark:to-gray-950 transition-colors duration-500"
+      className="relative pt-24 pb-4 md:pt-28 md:pb-6 overflow-hidden bg-gradient-to-b from-white via-blue-50 to-indigo-50 dark:from-gray-900 dark:via-gray-900 dark:to-gray-950 transition-colors duration-500"
     >
-      {/* Animated background blobs for visual effect */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute -top-24 -right-24 w-96 h-96 rounded-full bg-blue-200 dark:bg-blue-800 opacity-30 animate-float-slow blur-2xl"></div>
-        <div className="absolute top-1/3 -left-16 w-48 h-48 rounded-full bg-purple-200 dark:bg-purple-800 opacity-20 animate-float blur-xl"></div>
+      {/* Background blobs or decorative elements */}
+      <div className="pointer-events-none select-none">
+        <div className="absolute top-1/4 left-1/4 w-72 h-72 rounded-full bg-blue-200 dark:bg-blue-800 opacity-20 animate-float blur-xl"></div>
         <div className="absolute bottom-1/4 right-1/4 w-72 h-72 rounded-full bg-teal-200 dark:bg-teal-800 opacity-20 animate-float-reverse blur-xl"></div>
       </div>
 
@@ -106,6 +114,7 @@ const Hero = () => {
           </div>
         </div>
       </div>
+
       {/* Custom CSS for fade-in and floating blob animations */}
       <style>
         {`
@@ -122,16 +131,13 @@ const Hero = () => {
           .animate-float-reverse {
             animation: floatReverse 7s ease-in-out infinite alternate;
           }
-          .animate-float-slow {
-            animation: float 12s ease-in-out infinite alternate;
-          }
           @keyframes float {
             0% { transform: translateY(0px);}
-            100% { transform: translateY(-24px);}
+            100% { transform: translateY(-20px);}
           }
           @keyframes floatReverse {
             0% { transform: translateY(0px);}
-            100% { transform: translateY(24px);}
+            100% { transform: translateY(20px);}
           }
         `}
       </style>

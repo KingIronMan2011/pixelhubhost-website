@@ -1,5 +1,4 @@
 // French language configuration for PixelHub Host website
-
 const fr = {
   // Short description for SEO and meta tags
   description: "Hébergement Premium de Serveurs Minecraft",
@@ -14,7 +13,7 @@ const fr = {
     // Hero section
     heroTitle: "Hébergement Premium de Serveurs Minecraft",
     heroSubtitle:
-      "Haute performance, protection DDoS et support fiable pour votre Serveur Minecraft",
+      "Performances élevées, protection DDoS et support fiable pour votre serveur Minecraft",
     // Navigation and section titles
     features: "Fonctionnalités",
     pricing: "Tarifs",
@@ -22,34 +21,33 @@ const fr = {
     getStarted: "Commencer",
     learnMore: "En Savoir Plus",
     contactTitle: "Contactez-Nous",
-    contactSubtitle: "Des questions? Nous sommes là pour vous aider!",
+    contactSubtitle:
+      "Vous avez des questions ? Nous sommes là pour vous aider !",
     // Pricing and plans
     popularPlan: "Plus Populaire",
     selectPlan: "Sélectionner le Plan",
     featuresTitle: "Fonctionnalités Premium",
-    featuresSubtitle:
-      "Découvrez le meilleur de l'hébergement de serveurs Minecraft",
+    featuresSubtitle: "Découvrez le meilleur de l'hébergement Minecraft",
     ddosProtection: "Protection DDoS",
     ddosProtectionDesc:
-      "Protégez votre serveur contre les attaques DDoS pour une sécurité maximale.",
+      "Protégez votre serveur contre les attaques DDoS pour une sécurité optimale.",
     xeonCpu: "Processeurs Xeon haute performance",
     xeonCpuDesc:
-      "Processeurs Intel Xeon de dernière génération pour des performances optimales.",
-    networkSpeed: "Vitesse du réseau",
+      "Processeurs Intel Xeon de dernière génération pour des performances exceptionnelles.",
+    networkSpeed: "Vitesse réseau",
     networkSpeedDesc:
-      "Connexion ultra-rapide et faible latence pour une expérience de jeu fluide.",
-    reliableSupport: "Support fiable",
+      "Connexion ultra-rapide et faible latence pour un jeu fluide.",
+    reliableSupport: "Support Fiable",
     reliableSupportDesc:
-      "Notre équipe vous aide 24h/24 et 7j/7 pour toutes vos questions ou problèmes.",
+      "Notre équipe est disponible 24h/24 et 7j/7 pour toute question ou problème.",
     freeSubdomain: "Sous-domaine gratuit",
     freeSubdomainDesc:
-      "Obtenez un sous-domaine .pixelhubhost.com gratuit pour votre serveur.",
+      "Obtenez un sous-domaine .pixelhubhost.com pour votre serveur, sans frais.",
     dailyBackups: "Sauvegardes quotidiennes",
     dailyBackupsDesc:
-      "Des sauvegardes automatiques quotidiennes protègent vos données en toute sécurité.",
+      "Des sauvegardes automatiques quotidiennes protègent vos données.",
     pricingTitle: "Choisissez Votre Plan",
-    pricingSubtitle: "Trouvez le plan parfait pour votre serveur Minecraft",
-    // Footer and legal
+    pricingSubtitle: "Trouvez le forfait idéal pour votre serveur Minecraft",
     footerText: "© 2025 PixelHub Host. Tous droits réservés.",
     cpuThreads: "vCores",
     ram: "RAM DDR4",
@@ -64,7 +62,7 @@ const fr = {
     from: "à partir de",
     // Test server section
     testServer: "Serveur de Test",
-    testServerDesc: "Essayez notre performance avec ce serveur de test gratuit",
+    testServerDesc: "Testez nos performances avec ce serveur de test gratuit",
     domain: "Domaine",
     bedrockPort: "Port Bedrock",
     cpu: "CPU",
@@ -73,18 +71,18 @@ const fr = {
     connectToTestServer: "Se Connecter au Serveur de Test",
     // Addons
     customDomain: "Domaine personnalisé",
-    customDomainDesc: "Description de votre domaine personnalisé ici",
+    customDomainDesc: "Décrivez ici votre domaine personnalisé",
     extraPort: "Port supplémentaire",
     extraPortDesc: "Ajoutez un port supplémentaire à votre serveur.",
     extraBackup: "Sauvegarde supplémentaire",
     extraBackupDesc:
-      "Achetez des emplacements de sauvegarde supplémentaires pour votre serveur.",
+      "Achetez des espaces de sauvegarde supplémentaires pour votre serveur.",
     extraDatabase: "Base de données supplémentaire",
     extraDatabaseDesc: "Ajoutez plus de bases de données à votre serveur.",
     // System status and footer
     systemStatus: "Statut du Système",
     footerDescription:
-      "PixelHub Host propose un hébergement premium de serveurs Minecraft avec performance, sécurité et support de premier ordre.",
+      "PixelHub Host propose un hébergement premium de serveurs Minecraft avec performance, sécurité et assistance de premier ordre.",
     aboutUs: "À Propos",
     company: "Entreprise",
     services: "Services",
@@ -92,7 +90,7 @@ const fr = {
     helpCenter: "Centre d'aide",
     documentation: "Documentation",
     serverTypes: "Types de Serveur",
-    modpackHosting: "Hébergement de Modpack",
+    modpackHosting: "Hébergement Modpack",
     pluginInstallation: "Installation de Plugins",
     serverManagement: "Gestion de Serveur",
     footerCopyright: "© 2025 PixelHub Host. Tous droits réservés.",
@@ -102,27 +100,26 @@ const fr = {
     legal: "Mentions légales",
     addons: "Modules complémentaires",
     addonsSubtitle:
-      "Améliorez votre serveur avec ces fonctionnalités optionnelles",
+      "Améliorez votre serveur avec des fonctionnalités optionnelles",
     mcHosting: "Hébergement Minecraft",
     // About us section
     aboutUsTitle: "À Propos",
     aboutUsIntro:
-      "PixelHub Host propose un hébergement premium de serveurs Minecraft avec performance, sécurité et support de premier ordre.",
+      "PixelHub Host offre un hébergement Minecraft premium avec des performances de pointe, une sécurité renforcée et un support de qualité.",
     aboutUsMission:
-      "Notre mission est d'offrir aux joueurs et aux communautés des serveurs fiables, performants et une assistance professionnelle.",
-    aboutUsValues1: "Infrastructure axée sur la performance",
+      "Notre mission est de fournir aux joueurs et aux communautés des serveurs fiables et performants, assortis d'une assistance professionnelle.",
+    aboutUsValues1: "Infrastructure axée sur les performances",
     aboutUsValues2: "Support expert 24/7",
     aboutUsValues3: "Tarification abordable et transparente",
     aboutUsValues4: "Innovation continue",
-    aboutUsValues5: "Service axé sur la communauté",
+    aboutUsValues5: "Service orienté communauté",
     aboutUsTeam:
-      "Notre équipe est composée de joueurs passionnés, de développeurs et de spécialistes du support qui comprennent vos besoins pour une expérience Minecraft optimale.",
-    aboutUsContact:
-      "Vous voulez en savoir plus ? Contactez-nous à tout moment !",
+      "Notre équipe se compose de joueurs passionnés, de développeurs et de spécialistes du support, qui comprennent les besoins d’une expérience Minecraft optimale.",
+    aboutUsContact: "Envie d'en savoir plus ? Contactez-nous à tout moment !",
     // Miscellaneous
     home: "Accueil",
     loginSignup: "Inscription",
-    buyNow: "Acheter maintenant",
+    buyNow: "Acheter Maintenant",
     domainCopied: "Domaine copié !",
     toggleTheme: "Changer le thème",
     monthly: "Mensuel",
@@ -132,24 +129,24 @@ const fr = {
     priceBackup: "€1.99",
     priceDatabase: "€3.99",
     githubButtonText:
-      "Vous voulez aider à construire ce site ? Faites un commit sur notre Github",
+      "Vous voulez contribuer à ce site ? Faites un commit sur notre GitHub",
     madeByText: "Réalisé par KingIronMan2011",
     customPlanName: "Personnalisé",
-    customPlanDesc: "Contactez-nous pour un serveur personnalisé.",
+    customPlanDesc: "Contactez-nous pour un serveur adapté à vos besoins.",
     // Test server connection instructions
     javaTitle: "Pour Minecraft Java Edition :",
     javaDesc:
-      "Ouvrez Minecraft Java Edition, cliquez sur Multijoueur puis Ajouter un serveur. Entrez ce qui suit comme adresse du serveur :",
+      "Ouvrez Minecraft Java Edition, cliquez sur Multijoueur puis Ajouter un serveur. Entrez l'adresse suivante :",
     bedrockTitle: "Pour Minecraft Bedrock Edition :",
     bedrockDesc:
-      "Ouvrez Minecraft Bedrock Edition, allez dans Serveurs puis Ajouter un serveur. Entrez ce qui suit comme adresse et port du serveur :",
+      "Ouvrez Minecraft Bedrock Edition, allez dans Serveurs puis Ajouter un serveur. Entrez l'adresse et le port ci-dessous :",
     copyDomain: "Copier le Domaine",
     copyPort: "Copier le Port",
     howToConnect: "Comment se connecter",
     // Legal and privacy
     legalTitle: "Mentions légales",
     legalIntro:
-      "Cette page contient les informations légales et les coordonnées de l'exploitant du site.",
+      "Cette page contient des informations légales et les coordonnées de l'exploitant du site.",
     legalOperator: "Exploitant du site",
     legalCompany: "Nom de l'entreprise : PixelHubHost",
     legalWebsite: "Site web : https://www.pixelhubhost.com",
@@ -159,50 +156,57 @@ const fr = {
     legalPhone: "Téléphone support : +55 16 99398-1473",
     legalContact: "Contact",
     legalDisclaimer:
-      "Avertissement : Toutes les informations sont fournies sans garantie. Pour toute question, veuillez nous contacter.",
+      "Avertissement : Toutes les informations sont fournies sans garantie. Pour toute question, contactez-nous.",
     legalCopyright:
-      "Tout le contenu de ce site est © PixelHubHost sauf indication contraire.",
+      "Sauf mention contraire, l'intégralité du contenu de ce site est © PixelHubHost.",
     legalLiability:
-      "Responsabilité du contenu : Nous nous efforçons de maintenir les informations de notre site à jour, mais nous n'acceptons aucune responsabilité pour le contenu fourni. Les liens externes relèvent de la responsabilité de leurs opérateurs respectifs.",
+      "Nous faisons de notre mieux pour assurer la mise à jour des informations, mais ne pouvons être tenus responsables des contenus. Les liens externes sont sous la responsabilité de leurs exploitants respectifs.",
     legalJurisdiction:
-      "Juridiction : Les lois du Brésil s'appliquent. Le lieu de juridiction est Igarapava, SP.",
+      "Loi applicable : le droit brésilien. Le lieu de juridiction est Igarapava, SP.",
     privacyIntro:
-      "Nous prenons votre vie privée au sérieux. Cette page explique quelles données nous collectons et comment nous les utilisons.",
+      "Nous accordons une grande importance à votre vie privée. Ici, nous expliquons quelles données sont collectées et comment nous les utilisons.",
     privacyData:
-      "Nous ne collectons que les données nécessaires à la fourniture de nos services. Cela peut inclure votre adresse e-mail, votre nom d'utilisateur et des données d'utilisation.",
+      "Seules les données nécessaires à nos services sont collectées. Cela inclut vos coordonnées et données d’utilisation.",
     privacyCookies:
-      "Nous pouvons utiliser des cookies pour améliorer votre expérience. Vous pouvez désactiver les cookies dans les paramètres de votre navigateur.",
+      "Nous pouvons utiliser des cookies pour améliorer votre expérience. Vous pouvez les désactiver dans les paramètres de votre navigateur.",
     privacyThirdParty:
-      "Nous ne partageons pas vos données avec des tiers, sauf si la loi l'exige ou pour fournir nos services.",
+      "Nous ne partageons pas vos données avec des tiers sauf obligation légale ou pour fournir nos services.",
     privacyContact:
-      "Si vous avez des questions concernant notre politique de confidentialité, veuillez nous contacter.",
+      "Pour toute question sur notre politique de confidentialité, contactez-nous.",
     tosIntro:
       "En utilisant notre site et nos services, vous acceptez les conditions suivantes.",
     tosUsage:
-      "Vous ne devez pas utiliser nos services à des fins illégales ou abusives.",
+      "Il est interdit d'utiliser nos services à des fins illégales ou abusives.",
     tosAccount: "Vous êtes responsable de la sécurité de votre compte.",
     tosChanges:
-      "Nous pouvons mettre à jour ces conditions à tout moment. L'utilisation continue vaut acceptation des nouvelles conditions.",
+      "Nous pouvons mettre à jour ces conditions à tout moment. L'utilisation continue équivaut à acceptation des modifications.",
     tosContact:
-      "Si vous avez des questions concernant nos conditions, veuillez nous contacter.",
-    // Construction/maintenance mode
+      "Pour toute question à propos de nos conditions, contactez-nous.",
     underConstruction: "En construction",
     constructionWorking:
-      "Nous travaillons dur pour vous offrir quelque chose de génial.",
-    constructionCheckBack: "Veuillez revenir bientôt !",
+      "Nous travaillons dur pour vous offrir quelque chose de formidable.",
+    constructionCheckBack: "Revenez nous voir bientôt !",
     constructionContactUs: "Contactez-nous",
     constructionLanguage: "Langue",
     constructionVisitWebsite: "Visiter le site",
-    // Privacy and sitemap notes
     privacyMinecraft:
-      "Toutes les données des serveurs Minecraft sont stockées en toute sécurité et ne sont accessibles que par vous et notre équipe de support pour le dépannage.",
+      "Toutes les données des serveurs Minecraft sont sécurisées et accessibles uniquement par vous et notre équipe de support pour la résolution de problèmes.",
     sitemapMinecraftNote:
-      "PixelHub Host propose un hébergement premium de serveurs Minecraft, des serveurs de test et un support 24/7 pour votre communauté.",
-    // Test server status states
+      "PixelHub Host propose un hébergement Minecraft premium, des serveurs de test et un support 24/7 pour votre communauté.",
     testServerStarting: "Démarrage",
     testServerRunning: "En ligne",
     testServerStopping: "Arrêt",
     testServerOffline: "Hors ligne",
+    brand: "PixelHub Host",
+    description:
+      "PixelHubHost – Hébergement premium de serveurs Minecraft, performance élevée, installation instantanée, domaines personnalisés et support 24/7.",
+    languageNames: {
+      en: "Anglais",
+      de: "Allemand",
+      pt: "Portugais",
+      fr: "Français",
+      it: "Italien",
+    },
   },
 };
 

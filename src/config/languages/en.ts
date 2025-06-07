@@ -1,5 +1,4 @@
 // English language configuration for PixelHub Host website
-
 const en = {
   // Short description for SEO and meta tags
   description: "Premium Minecraft Server Hosting",
@@ -14,7 +13,7 @@ const en = {
     // Hero section
     heroTitle: "Premium Minecraft Server Hosting",
     heroSubtitle:
-      "High Performance, DDoS protection, and reliable Support for your Minecraft Server",
+      "High performance, DDoS protection, and reliable support for your Minecraft server",
     // Navigation and section titles
     features: "Features",
     pricing: "Pricing",
@@ -30,33 +29,32 @@ const en = {
     featuresSubtitle: "Experience the best in Minecraft server hosting",
     ddosProtection: "DDoS Protection",
     ddosProtectionDesc:
-      "Protect your server from DDoS attacks for maximum security.",
-    xeonCpu: "High-performance CPUs",
-    xeonCpuDesc: "Latest generation Intel Xeon processors for top performance.",
+      "Shield your server from DDoS attacks for maximum security.",
+    xeonCpu: "High-Performance CPUs",
+    xeonCpuDesc: "Cutting-edge Intel Xeon processors for superior performance.",
     networkSpeed: "Network Speed",
     networkSpeedDesc:
-      "Ultra-fast connection and low latency for smooth gameplay.",
+      "Ultra-fast connectivity and minimal latency for a seamless gameplay experience.",
     reliableSupport: "Reliable Support",
     reliableSupportDesc:
-      "Our team is here to help you 24/7 with any questions or issues.",
+      "Our team is here 24/7 to assist with any questions or issues.",
     freeSubdomain: "Free Subdomain",
     freeSubdomainDesc:
-      "Get a free .pixelhubhost.com subdomain for your server.",
+      "Claim a free .pixelhubhost.com subdomain for your server.",
     dailyBackups: "Daily Backups",
-    dailyBackupsDesc: "Automatic daily backups keep your data safe and secure.",
+    dailyBackupsDesc: "Automatic daily backups to keep your data safe.",
     pricingTitle: "Choose Your Plan",
     pricingSubtitle: "Find the perfect plan for your Minecraft server",
-    // Footer and legal
     footerText: "© 2025 PixelHub Host. All rights reserved.",
     cpuThreads: "vCores",
-    ram: "RAM DDR4",
+    ram: "DDR4 RAM",
     storage: "NVMe",
     backups: "Backups",
     databases: "Databases",
     ports: "Ports",
     month: "month",
     custom: "Custom",
-    contactUs: "Contact us",
+    contactUs: "Contact Us",
     soldOut: "SOLD OUT",
     from: "from",
     // Test server section
@@ -70,17 +68,17 @@ const en = {
     connectToTestServer: "Connect to Test Server",
     // Addons
     customDomain: "Custom Domain",
-    customDomainDesc: "Your custom domain description here",
+    customDomainDesc: "Describe your custom domain here",
     extraPort: "Extra Port",
     extraPortDesc: "Add an additional port to your server.",
     extraBackup: "Extra Backup",
-    extraBackupDesc: "Purchase additional backup slots for your server.",
+    extraBackupDesc: "Purchase extra backup slots for your server.",
     extraDatabase: "Extra Database",
     extraDatabaseDesc: "Add more databases to your server.",
     // System status and footer
     systemStatus: "System Status",
     footerDescription:
-      "PixelHub Host provides premium Minecraft server hosting with top performance, security, and support.",
+      "PixelHub Host provides premium Minecraft server hosting with best-in-class performance, security, and dedicated support.",
     aboutUs: "About Us",
     company: "Company",
     services: "Services",
@@ -102,23 +100,27 @@ const en = {
     // About us section
     aboutUsTitle: "About Us",
     aboutUsIntro:
-      "PixelHub Host is dedicated to providing premium Minecraft server hosting with top performance, security, and support.",
+      "PixelHub Host is committed to delivering top-tier Minecraft server hosting with unmatched performance, security, and support.",
     aboutUsMission:
-      "Our mission is to empower gamers and communities with reliable, high-performance servers and professional assistance.",
+      "Our mission is to provide gamers and communities with dependable, high-performance servers and professional assistance.",
     aboutUsValues1: "Performance-first infrastructure",
     aboutUsValues2: "24/7 expert support",
     aboutUsValues3: "Affordable and transparent pricing",
     aboutUsValues4: "Continuous innovation",
-    aboutUsValues5: "Community-driven service",
+    aboutUsValues5: "Community-focused service",
     aboutUsTeam:
-      "Our team is made up of passionate gamers, developers, and support specialists who understand what you need for a great Minecraft experience.",
-    aboutUsContact: "Want to know more? Reach out to us anytime!",
+      "Our team is made up of passionate gamers, developers, and support specialists who understand what it takes to create a great Minecraft experience.",
+    aboutUsContact: "Want to learn more? Reach out anytime!",
     // Miscellaneous
     home: "Home",
-    loginSignup: "Signup",
-    buyNow: "Buy Now",
     domainCopied: "Domain copied!",
-    toggleTheme: "Toggle theme",
+    serverStatus: "Server Status",
+    loading: "Loading...",
+    error: "Error",
+    notFound: "Not found",
+    loginSignup: "Sign Up",
+    buyNow: "Buy Now",
+    toggleTheme: "Toggle Theme",
     monthly: "Monthly",
     quarterly: "Quarterly",
     priceDomain: "Starting at $4.99",
@@ -126,24 +128,24 @@ const en = {
     priceBackup: "$1.99",
     priceDatabase: "$3.99",
     githubButtonText:
-      "Wanna help us build this website? Commit a change at our Github",
-    madeByText: "Made by KingIronMan2011",
+      "Want to help build this site? Commit a change on our GitHub",
+    madeByText: "Created by KingIronMan2011",
     customPlanName: "Custom",
-    customPlanDesc: "Contact us for a custom server tailored to your needs.",
+    customPlanDesc: "Contact us for a personalized server plan.",
     // Test server connection instructions
     javaTitle: "For Minecraft Java Edition:",
     javaDesc:
       "Open Minecraft Java Edition, click Multiplayer, then Add Server. Enter the following as the Server Address:",
     bedrockTitle: "For Minecraft Bedrock Edition:",
     bedrockDesc:
-      "Open Minecraft Bedrock Edition, go to Servers, then Add Server. Enter the following as the Server Address and Port:",
+      "Open Minecraft Bedrock Edition, go to Servers, then Add Server. Enter the following as the Address and Port:",
     copyDomain: "Copy Domain",
     copyPort: "Copy Port",
     howToConnect: "How to Connect",
     // Legal and privacy
     legalTitle: "Legal Notice",
     legalIntro:
-      "This page contains legal information and the site operator's contact details.",
+      "This page includes legal information and contact details for the site operator.",
     legalOperator: "Site Operator",
     legalCompany: "Company Name: PixelHubHost",
     legalWebsite: "Website: https://www.pixelhubhost.com",
@@ -153,48 +155,54 @@ const en = {
     legalPhone: "Support Phone: +55 16 99398-1473",
     legalContact: "Contact",
     legalDisclaimer:
-      "Disclaimer: All information is provided without guarantee. For questions, please contact us.",
+      "Disclaimer: All information is provided without guarantee. Contact us with any questions.",
     legalCopyright:
-      "All content on this website is © PixelHubHost unless otherwise stated.",
+      "All content on this site is © PixelHubHost unless indicated otherwise.",
     legalLiability:
-      "Liability for content: While we strive to keep the information on our website up to date, we do not accept any liability for the content provided. External links are the responsibility of the respective operators.",
+      "While we strive to keep website info current, we do not accept liability for the content. External links remain under their operators’ responsibility.",
     legalJurisdiction:
-      "Jurisdiction: The laws of Brazil apply. Place of jurisdiction is Igarapava, SP.",
+      "Jurisdiction: Brazilian law applies. The forum is in Igarapava, SP.",
     privacyIntro:
-      "We take your privacy seriously. This page explains what data we collect and how we use it.",
+      "We take your privacy seriously. This page explains the data we collect and how we use it.",
     privacyData:
-      "We only collect data necessary for providing our services. This may include your email address, username, and usage data.",
+      "We only collect data necessary to provide our services, such as your email address, username, and usage data.",
     privacyCookies:
-      "We may use cookies to improve your experience. You can disable cookies in your browser settings.",
+      "We may use cookies to enhance your experience. You can disable cookies in your browser settings.",
     privacyThirdParty:
-      "We do not share your data with third parties except as required by law or to provide our services.",
+      "No data is shared with third parties except where required by law or to deliver our services.",
     privacyContact:
-      "If you have questions about our privacy policy, please contact us.",
+      "If you have questions regarding our privacy policy, please contact us.",
     tosIntro:
       "By using our website and services, you agree to the following terms.",
     tosUsage: "You must not use our services for illegal or abusive purposes.",
-    tosAccount:
-      "You are responsible for maintaining the security of your account.",
+    tosAccount: "You are responsible for keeping your account secure.",
     tosChanges:
-      "We may update these terms at any time. Continued use means acceptance of the new terms.",
-    tosContact: "If you have questions about our terms, please contact us.",
-    // Construction/maintenance mode
+      "We may update these terms at any time. Continued use implies acceptance of any changes.",
+    tosContact: "For questions about our terms, please reach out.",
     underConstruction: "Under Construction",
-    constructionWorking: "We're working hard to bring you something awesome.",
-    constructionCheckBack: "Please check back soon!",
-    constructionContactUs: "Contact us",
+    constructionWorking: "We're working hard to bring you something great.",
+    constructionCheckBack: "Check back soon!",
+    constructionContactUs: "Contact Us",
     constructionLanguage: "Language",
     constructionVisitWebsite: "Visit Website",
-    // Privacy and sitemap notes
     privacyMinecraft:
-      "All Minecraft server data is stored securely and is only accessible by you and our support team for troubleshooting.",
+      "All Minecraft server data is securely stored and accessible only to you and our support team for troubleshooting.",
     sitemapMinecraftNote:
       "PixelHub Host offers premium Minecraft server hosting, test servers, and 24/7 support for your community.",
-    // Test server status states
     testServerStarting: "Starting",
     testServerRunning: "Running",
     testServerStopping: "Stopping",
     testServerOffline: "Offline",
+    brand: "PixelHub Host",
+    description:
+      "PixelHubHost – Premium Minecraft server hosting with high performance, instant setup, custom domains, and 24/7 support.",
+    languageNames: {
+      en: "English",
+      de: "German",
+      pt: "Portuguese",
+      fr: "French",
+      it: "Italian",
+    },
   },
 };
 

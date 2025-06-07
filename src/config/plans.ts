@@ -19,49 +19,84 @@ const getCurrencyByLanguage = (language: Language) => {
 
 // Type for a feature included in a plan
 export type PlanFeature = {
-  nameKey: string; // Key for translation (used for all languages)
-  included: boolean; // Whether this feature is included in the plan
+  nameKey: string; // translation key
+  included: boolean;
 };
 
 // Type for a hosting plan
 export type Plan = {
-  id: string; // Unique plan ID
-  name: { [key in Language]: string }; // Plan name in all supported languages
-  description: { [key in Language]: string }; // Description in all supported languages
+  id: string;
+  name: { [key in Language]: string };
+  description: { [key in Language]: string };
   price: {
-    base_amount: number; // Base price in BRL (Brazilian Real)
-    // Function to get price and currency info for a given language
+    base_amount: number;
     getCurrencyInfo: (language: Language) => {
-      amount: number; // Monthly price in selected currency
-      quarterlyAmount: number; // Quarterly price (with 10% discount)
-      currency: string; // Currency symbol
+      amount: number;
+      quarterlyAmount: number;
+      currency: string;
     };
   };
-  features: PlanFeature[]; // List of features for this plan
-  available: boolean; // Is this plan available for purchase?
-  popular: boolean; // Is this plan marked as "popular"?
-  color: string; // Color code for UI display
+  features: PlanFeature[];
+  available: boolean;
+  popular: boolean;
+  color: string;
   specs: {
-    threads: number; // Number of CPU threads/vCores
-    ram: number; // RAM in GB
-    storage: number; // Storage in GB
-    backups: number; // Number of backup slots
-    databases: number; // Number of databases
-    ports: number; // Number of ports
+    threads: number;
+    ram: number;
+    storage: number;
+    backups: number;
+    databases: number;
+    ports: number;
   };
 };
 
-// Common features included in all plans
-export const commonFeatures: PlanFeature[] = [
-  { nameKey: "ddosProtection", included: true },
-  { nameKey: "xeonCpu", included: true },
-  { nameKey: "networkSpeed", included: true },
-  { nameKey: "reliableSupport", included: true },
-];
-
-// Array of all available hosting plans
-// Each plan includes translated names/descriptions, pricing logic, features, and specs
-export const plans: Plan[] = [
+// Example of how you might define an array of plans
+export const PLANS: Plan[] = [
+  {
+    id: "plan1",
+    name: {
+      en: "Basic Plan",
+      de: "Basisplan",
+      fr: "Forfait Basique",
+      it: "Piano Base",
+      pt: "Plano Básico",
+    },
+    description: {
+      en: "A solid start for small communities.",
+      de: "Ein solider Start für kleine Communities.",
+      fr: "Un bon départ pour les petites communautés.",
+      it: "Una base solida per piccole comunità.",
+      pt: "Um bom início para comunidades pequenas.",
+    },
+    price: {
+      base_amount: 20, // 20 BRL
+      getCurrencyInfo: (language: Language) => {
+        const { symbol, rate } = getCurrencyByLanguage(language);
+        const monthly = 20 * rate;
+        return {
+          amount: parseFloat(monthly.toFixed(2)),
+          quarterlyAmount: parseFloat((monthly * 3 * 0.9).toFixed(2)),
+          currency: symbol,
+        };
+      },
+    },
+    features: [
+      { nameKey: "ddosProtection", included: true },
+      { nameKey: "reliableSupport", included: true },
+      { nameKey: "dailyBackups", included: false },
+    ],
+    available: true,
+    popular: false,
+    color: "#3b82f6",
+    specs: {
+      threads: 2,
+      ram: 2,
+      storage: 10,
+      backups: 1,
+      databases: 1,
+      ports: 2,
+    },
+  },
   {
     id: "oak",
     name: {
@@ -89,7 +124,12 @@ export const plans: Plan[] = [
         };
       },
     },
-    features: commonFeatures,
+    features: [
+      { nameKey: "ddosProtection", included: true },
+      { nameKey: "xeonCpu", included: true },
+      { nameKey: "networkSpeed", included: true },
+      { nameKey: "reliableSupport", included: true },
+    ],
     available: true,
     popular: false,
     color: "#854d0e",
@@ -129,7 +169,12 @@ export const plans: Plan[] = [
         };
       },
     },
-    features: commonFeatures,
+    features: [
+      { nameKey: "ddosProtection", included: true },
+      { nameKey: "xeonCpu", included: true },
+      { nameKey: "networkSpeed", included: true },
+      { nameKey: "reliableSupport", included: true },
+    ],
     available: true,
     popular: false,
     color: "#78716c",
@@ -169,7 +214,12 @@ export const plans: Plan[] = [
         };
       },
     },
-    features: commonFeatures,
+    features: [
+      { nameKey: "ddosProtection", included: true },
+      { nameKey: "xeonCpu", included: true },
+      { nameKey: "networkSpeed", included: true },
+      { nameKey: "reliableSupport", included: true },
+    ],
     available: true,
     popular: true,
     color: "#71717a",
@@ -209,7 +259,12 @@ export const plans: Plan[] = [
         };
       },
     },
-    features: commonFeatures,
+    features: [
+      { nameKey: "ddosProtection", included: true },
+      { nameKey: "xeonCpu", included: true },
+      { nameKey: "networkSpeed", included: true },
+      { nameKey: "reliableSupport", included: true },
+    ],
     available: true,
     popular: false,
     color: "#2563eb",
@@ -249,7 +304,12 @@ export const plans: Plan[] = [
         };
       },
     },
-    features: commonFeatures,
+    features: [
+      { nameKey: "ddosProtection", included: true },
+      { nameKey: "xeonCpu", included: true },
+      { nameKey: "networkSpeed", included: true },
+      { nameKey: "reliableSupport", included: true },
+    ],
     available: true,
     popular: false,
     color: "#44403c",
@@ -289,7 +349,12 @@ export const plans: Plan[] = [
         };
       },
     },
-    features: commonFeatures,
+    features: [
+      { nameKey: "ddosProtection", included: true },
+      { nameKey: "xeonCpu", included: true },
+      { nameKey: "networkSpeed", included: true },
+      { nameKey: "reliableSupport", included: true },
+    ],
     available: true,
     popular: false,
     color: "#581c87",

@@ -29,7 +29,6 @@ const mobileLinkMotion = {
   },
 };
 
-// Main Header component
 const Header: React.FC = () => {
   // Get current language from context
   const { language } = useLanguage() as { language: LanguageKey };
@@ -53,11 +52,12 @@ const Header: React.FC = () => {
         <nav className="flex justify-between items-center">
           {/* Logo (left side) */}
           <a
-            href="/"
+            href="#home"
             className="text-2xl font-bold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent hover:from-blue-300 hover:to-purple-300 transition-all duration-500"
           >
-            PixelHub Host
+            {t.brand}
           </a>
+
           {/* Desktop navigation links (center) */}
           <div className="hidden md:flex items-center space-x-8">
             {navLinks.map((link) => (
@@ -70,6 +70,7 @@ const Header: React.FC = () => {
               </a>
             ))}
           </div>
+
           {/* Right side: language selector, theme toggle, status/login buttons, mobile menu button */}
           <div className="flex items-center space-x-3">
             <div className="flex items-center space-x-2">
@@ -98,43 +99,36 @@ const Header: React.FC = () => {
               whileFocus={linkHover}
               style={{ willChange: "transform, color" }}
             >
-              {t.loginSignup || "Login / Signup"}
+              {t.loginSignup}
             </motion.a>
-            {/* Hamburger menu button (mobile only) */}
+            {/* Mobile menu button */}
             <button
-              className="md:hidden flex flex-col justify-center items-center w-10 h-10 focus:outline-none ml-2"
+              className="md:hidden text-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500"
               onClick={() => setMenuOpen(!menuOpen)}
-              aria-label="Open menu"
+              aria-label="Toggle menu"
             >
-              {/* Hamburger icon (animated to X when open) */}
-              <span
-                className={`block w-6 h-0.5 bg-white mb-1 rounded transition-all duration-500 ${
-                  menuOpen ? "rotate-45 translate-y-2" : ""
-                }`}
-              ></span>
-              <span
-                className={`block w-6 h-0.5 bg-white mb-1 rounded transition-all duration-500 ${
-                  menuOpen ? "opacity-0" : ""
-                }`}
-              ></span>
-              <span
-                className={`block w-6 h-0.5 bg-white rounded transition-all duration-500 ${
-                  menuOpen ? "-rotate-45 -translate-y-2" : ""
-                }`}
-              ></span>
+              {/* Simple large "Menu" text or an icon can be used here */}☰
             </button>
           </div>
         </nav>
-        {/* Mobile menu dropdown (shows when menuOpen is true) */}
+
+        {/* Mobile navigation menu (shown/hidden with state) */}
         {menuOpen && (
-          <div className="md:hidden mt-4 bg-gray-900/95 backdrop-blur-md rounded-xl shadow-lg p-5 space-y-3 animate-fade-in-down">
+          <motion.div
+            className="mt-4 bg-gray-900 rounded-lg p-4 md:hidden"
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.2 }}
+          >
             {navLinks.map((link) => (
               <motion.a
                 key={link.href}
                 href={link.href}
-                className="block text-gray-100 font-medium"
+                className="block text-gray-200 py-2 font-medium"
+                variants={mobileLinkMotion}
+                whileHover="whileHover"
+                whileTap="whileTap"
                 onClick={() => setMenuOpen(false)}
-                {...mobileLinkMotion}
               >
                 {link.label}
               </motion.a>
@@ -163,23 +157,11 @@ const Header: React.FC = () => {
               style={{ willChange: "transform, color, background-color" }}
               onClick={() => setMenuOpen(false)}
             >
-              {t.loginSignup || "Login / Signup"}
+              {t.loginSignup}
             </motion.a>
-          </div>
+          </motion.div>
         )}
       </div>
-      {/* Animation for mobile menu dropdown */}
-      <style>
-        {`
-          .animate-fade-in-down {
-            animation: fadeInDown 0.25s cubic-bezier(.4,0,.2,1);
-          }
-          @keyframes fadeInDown {
-            0% { opacity: 0; transform: translateY(-16px);}
-            100% { opacity: 1; transform: translateY(0);}
-          }
-        `}
-      </style>
     </header>
   );
 };

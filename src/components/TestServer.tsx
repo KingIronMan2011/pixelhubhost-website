@@ -246,7 +246,7 @@ const TestServer: React.FC = () => {
   // State for copy feedback and popups
   const [copied, setCopied] = useState(false);
   const [copiedPort, setCopiedPort] = useState(false);
-  const [showNotification, setShowNotification] = useState(false);
+  const [showNotification, setShowNotification] = useState(false); // <-- Add this line
   const [showConnectPopup, setShowConnectPopup] = useState(false);
   // Server connection info
   const serverDomain = "test.pixelhubhost.com";
@@ -277,7 +277,11 @@ const TestServer: React.FC = () => {
       }
       toast.success(translations[language].domainCopied);
       setCopiedFn(true);
-      setTimeout(() => setCopiedFn(false), 1500);
+      setShowNotification(true); // <-- Show notification
+      setTimeout(() => {
+        setCopiedFn(false);
+        setShowNotification(false); // <-- Hide notification after timeout
+      }, 1500);
     } catch (err) {
       toast.error("Copy failed");
     }

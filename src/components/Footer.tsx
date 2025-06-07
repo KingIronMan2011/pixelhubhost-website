@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import { Globe, Youtube } from "lucide-react";
 import { useLanguage } from "../context/LanguageContext";
 import languagesConfig from "../config/languages/Languages";
@@ -40,24 +39,26 @@ const Footer: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-8">
           {/* Brand & Description */}
           <div>
-            <h3 className="text-2xl font-bold mb-4 bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent drop-shadow">
-              PixelHub Host
-            </h3>
-            <p className="text-gray-400 mb-6 leading-relaxed text-sm">
+            <a
+              href="#home"
+              className="font-semibold text-lg mb-4 text-white tracking-wide inline-block hover:text-blue-400 transition-colors"
+              aria-label="PixelHub Host"
+            >
+              {t.brand}
+            </a>
+            <p className="text-sm text-gray-400 leading-relaxed mb-4">
               {t.footerDescription}
             </p>
-            <div className="flex space-x-3 mt-2">
-              <motion.a
-                href="https://www.youtube.com/@PIXELHUBHOST"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="YouTube"
-                className="hover:text-red-500 transition-colors duration-200"
-                {...hoverMotion}
-              >
-                <Youtube size={22} />
-              </motion.a>
-            </div>
+            {/* Social icons example (e.g., YouTube) */}
+            <a
+              href="https://www.youtube.com/channel/..."
+              className="flex items-center gap-2 text-sm text-gray-400 hover:text-white transition-colors"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Youtube size={16} />
+              YouTube
+            </a>
           </div>
 
           {/* Company */}
@@ -205,21 +206,6 @@ const Footer: React.FC = () => {
               {...hoverMotion}
             >
               {t.termsOfService}
-            </motion.a>
-            <motion.div {...hoverMotion} className="hover:text-blue-400 transition-colors">
-              <Link
-                to="/sitemap"
-                className="hover:text-blue-400 transition-colors"
-              >
-                {t.sitemap}
-              </Link>
-            </motion.div>
-            <motion.a
-              href="/legal"
-              className="hover:text-blue-400 transition-colors"
-              {...hoverMotion}
-            >
-              {t.legal}
             </motion.a>
           </div>
         </div>

@@ -1,17 +1,19 @@
 import { useState, useRef, useEffect } from "react";
 import { useLanguage } from "../context/LanguageContext";
 import { Globe, ChevronDown } from "lucide-react";
+import languagesConfig from "../config/languages/Languages";
 
-// Mapping of language codes to display names
-const languageNames: Record<string, string> = {
-  en: "English",
-  pt: "Português",
-  de: "Deutsch",
-  fr: "Français",
-  it: "Italiano", // Added Italian
+type LanguagesConfigType = typeof languagesConfig;
+type LanguageKey = keyof LanguagesConfigType;
+
+// Use languageNames from the current language config for better integration
+const getLanguageNames = (language: LanguageKey) => {
+  return (
+    languagesConfig[language]?.texts.languageNames ||
+    languagesConfig.en.texts.languageNames
+  );
 };
 
-// Main LanguageSelector component
 const LanguageSelector = () => {
   // Get current language and setter from context
   const { language, setLanguage } = useLanguage();
@@ -19,6 +21,9 @@ const LanguageSelector = () => {
   const [isOpen, setIsOpen] = useState(false);
   // Ref for the dropdown container (used for outside click detection)
   const dropdownRef = useRef<HTMLDivElement>(null);
+
+  // Get language names from config
+  const languageNames = getLanguageNames(language);
 
   // On mount: load language from localStorage if available
   useEffect(() => {
@@ -59,12 +64,17 @@ const LanguageSelector = () => {
     return () => document.removeEventListener("keydown", handleKeyDown);
   }, [isOpen]);
 
+  // Toggle dropdown open/close
+  const toggleDropdown = () => {
+    setIsOpen((prev) => !prev);
+  };
+
   return (
     // Dropdown container
     <div className="relative" ref={dropdownRef}>
       {/* Button to open/close the language dropdown */}
       <button
-        onClick={() => setIsOpen((v) => !v)}
+        onClick={toggleDropdown}
         className={`flex items-center gap-1.5 text-gray-300 hover:text-white transition-colors px-3 py-2 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 ${
           isOpen ? "bg-gray-800" : ""
         }`}
@@ -105,6 +115,7 @@ const LanguageSelector = () => {
           </div>
         </div>
       )}
+
       {/* Animation for dropdown appearance */}
       <style>
         {`

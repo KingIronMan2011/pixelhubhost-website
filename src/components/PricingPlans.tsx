@@ -1,6 +1,6 @@
 import { useMemo, useState } from "react";
 import { useLanguage } from "../context/LanguageContext";
-import { plans as basePlans } from "../config/plans";
+import { PLANS as basePlans } from "../config/plans";
 import { config, planLinks } from "../config/config";
 import languagesConfig from "../config/languages/Languages";
 import { motion } from "framer-motion"; // Animation library
@@ -165,9 +165,6 @@ const PricingPlans = () => {
                 whileHover={{
                   ...cardHover,
                   boxShadow: "0 8px 32px 0 rgba(0,0,0,0.13)",
-                  borderColor: "#3b82f6", // Tailwind blue-500
-                  borderWidth: "2px",
-                  outline: "none",
                 }}
                 whileFocus={{
                   ...cardHover,
@@ -187,7 +184,7 @@ const PricingPlans = () => {
                     duration: 0.13,
                     ease: "easeInOut",
                   },
-                }} // mobile tap animation
+                }}
                 style={{
                   willChange:
                     "transform, box-shadow, border-color, border-width",
@@ -255,7 +252,7 @@ const PricingPlans = () => {
                     aria-disabled={!plan.available}
                     whileHover={plan.available ? buttonHover : undefined}
                     whileFocus={plan.available ? buttonHover : undefined}
-                    whileTap={plan.available ? { scale: 1.04 } : undefined} // mobile tap animation
+                    whileTap={plan.available ? { scale: 1.04 } : undefined}
                     style={{ willChange: "transform" }}
                   >
                     {/* Overlay for sold out plans */}

@@ -9,6 +9,13 @@ interface PricingCardProps {
     id: string;
     name: Record<string, string>;
     description: Record<string, string>;
+    price: {
+      getCurrencyInfo: (lang: string) => {
+        currency: string;
+        amount: string | number;
+        quarterlyAmount?: string | number;
+      };
+    };
   };
   isPopular?: boolean;
   billingInterval?: "monthly" | "quarterly";
@@ -34,29 +41,24 @@ const PricingCard = ({
       ? t.monthly || "Monthly"
       : t.quarterly || "Quarterly";
 
-  // Framer Motion hover animation for card and button
-  const cardHover = {
-    scale: 1.025,
+  // Framer Motion tap animation
+  const tapAnimation = {
+    scale: 0.97,
     boxShadow: "0 8px 32px 0 rgba(0,0,0,0.13)",
-    transition: { type: "tween", duration: 0.16, ease: "easeInOut" },
-  };
-  const buttonHover = {
-    scale: 1.04,
     transition: { type: "tween", duration: 0.13, ease: "easeInOut" },
   };
 
   return (
     // Animated card container
     <motion.div
-      className={`relative bg-white/90 dark:bg-gray-900/90 rounded-2xl shadow-lg overflow-hidden transition-all duration-300 ${
-        isPopular ? "ring-2 ring-blue-500 scale-[1.03]" : ""
-      }`}
-      whileHover={cardHover}
-      whileTap={{
-        scale: 1.04,
+      className="relative bg-white/90 dark:bg-gray-900/90 rounded-2xl border border-gray-200 dark:border-gray-800 shadow-md p-7"
+      initial={{ scale: 1, boxShadow: "none" }}
+      whileHover={{
+        scale: 1.025,
         boxShadow: "0 8px 32px 0 rgba(0,0,0,0.13)",
         transition: { type: "tween", duration: 0.13, ease: "easeInOut" },
-      }} // mobile tap animation
+      }}
+      whileTap={tapAnimation} // mobile tap animation
       style={{ willChange: "transform, box-shadow" }}
     >
       {/* Popular plan badge */}
@@ -80,7 +82,7 @@ const PricingCard = ({
         {/* Price and billing label */}
         <div className="flex items-baseline justify-center mb-4">
           <span className="text-4xl font-bold text-gray-900 dark:text-white">
-            $ 14
+            {/* This example hardcodes a demo price, adapt as needed */}$ 14
           </span>
           <span className="text-gray-700 dark:text-gray-400 ml-2">
             /{billingLabel.toLowerCase()}
@@ -99,8 +101,14 @@ const PricingCard = ({
                 : "bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-white hover:bg-gray-200 dark:hover:bg-gray-700"
             }
           `}
-          whileHover={buttonHover}
-          whileFocus={buttonHover}
+          whileHover={{
+            scale: 1.04,
+            transition: { type: "tween", duration: 0.13, ease: "easeInOut" },
+          }}
+          whileFocus={{
+            scale: 1.04,
+            transition: { type: "tween", duration: 0.13, ease: "easeInOut" },
+          }}
           whileTap={{ scale: 0.97 }} // mobile tap animation
           style={{ willChange: "transform" }}
         >

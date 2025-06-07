@@ -103,7 +103,7 @@ const Addons: React.FC = () => {
               whileHover="hover"
               whileTap="tap" // tap animation for mobile
               className="group bg-white/90 dark:bg-gray-900/90 rounded-2xl p-6 shadow-md border border-gray-200 dark:border-gray-800 flex items-center gap-5 transition-all duration-150"
-              style={{ willChange: "transform, box-shadow" }}
+              style={{ willChange: "transform, boxShadow" }}
             >
               {/* Icon with its own animation */}
               <motion.div
