@@ -3,18 +3,6 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Minecraft font for special headings only */
-@font-face {
-  font-family: 'Minecraft'; /* Custom font for Minecraft-style headings */
-  src: url('https://cdn.jsdelivr.net/gh/South-Paw/typeface-minecraft@master/font/minecraft.woff2') format('woff2');
-  font-weight: normal;
-  font-style: normal;
-  font-display: swap;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-rendering: optimizeLegibility;
-}
-
 /* Enable smooth scrolling for anchor links */
 html {
   scroll-behavior: smooth;
@@ -23,17 +11,9 @@ html {
 /* Base body styles: font, color, and background gradient */
 body {
   @apply text-gray-900 antialiased;
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Helvetica, Arial, sans-serif;
   background: linear-gradient(to bottom, #f0f6ff 0%, #fff 50%, #f3e8ff 100%);
-}
-
-/* Utility class for Minecraft font headings */
-.font-minecraft {
-  font-family: 'Minecraft', monospace;
-  letter-spacing: 0.05em;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-rendering: optimizeLegibility;
 }
 
 /* 3D perspective effect for Minecraft block elements */
@@ -44,7 +24,7 @@ body {
 .minecraft-block > div {
   position: relative;
   transform-style: preserve-3d;
-  transition: transform 0.3s cubic-bezier(.4,0,.2,1);
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* On hover, slightly "pop" the block forward */
@@ -54,15 +34,15 @@ body {
 
 /* Floating and fade-in animations for UI elements */
 .animate-float {
-  animation: float 6s cubic-bezier(.4,0,.2,1) infinite;
+  animation: float 6s cubic-bezier(0.4, 0, 0.2, 1) infinite;
 }
 
 .animate-float-slow {
-  animation: float 8s cubic-bezier(.4,0,.2,1) infinite;
+  animation: float 8s cubic-bezier(0.4, 0, 0.2, 1) infinite;
 }
 
 .animate-float-reverse {
-  animation: float 7s cubic-bezier(.4,0,.2,1) infinite reverse;
+  animation: float 7s cubic-bezier(0.4, 0, 0.2, 1) infinite reverse;
 }
 
 .animate-pulse-slow {
@@ -82,14 +62,15 @@ body {
 
 /* Fade-in animation for elements */
 .animate-fade-in {
-  animation: fade-in 1s cubic-bezier(.4,0,.2,1) forwards;
+  animation: fade-in 1s cubic-bezier(0.4, 0, 0.2, 1) forwards;
 }
 
 /* Animation for elements that fade in on scroll */
 .animate-on-scroll {
   opacity: 0;
   transform: translateY(20px);
-  transition: opacity 0.8s cubic-bezier(.4,0,.2,1), transform 0.8s cubic-bezier(.4,0,.2,1);
+  transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1),
+    transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
 }
 .animate-on-scroll.animate-fade-in {
   opacity: 1;
@@ -110,7 +91,8 @@ body {
 }
 
 @keyframes pulse-slow {
-  0%, 100% {
+  0%,
+  100% {
     opacity: 1;
   }
   50% {
@@ -130,8 +112,10 @@ body {
 }
 
 /* Smoother shadows for cards and popups */
-.shadow-xl, .shadow-lg {
-  box-shadow: 0 8px 32px 0 rgba(60, 72, 100, 0.12), 0 1.5px 4px 0 rgba(60, 72, 100, 0.08);
+.shadow-xl,
+.shadow-lg {
+  box-shadow: 0 8px 32px 0 rgba(60, 72, 100, 0.12),
+    0 1.5px 4px 0 rgba(60, 72, 100, 0.08);
 }
 
 /* Smoother border radius for cards */
@@ -140,6 +124,7 @@ body {
 }
 
 /* Subtle hover effect for interactive elements */
-a, button {
+a,
+button {
   transition: color 0.2s, background 0.2s, box-shadow 0.2s, border 0.2s;
 }

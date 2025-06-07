@@ -1,9 +1,7 @@
 /** @type {import('tailwindcss').Config} */
 
-// This file configures Tailwind CSS for the project,
-// specifying where Tailwind should look for class names (content),
-// customizing colors, fonts, and enabling dark mode.
-export default {
+// Use CommonJS export for compatibility with most build tools
+module.exports = {
   // Tailwind will scan these files and folders for class names to generate styles.
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
 

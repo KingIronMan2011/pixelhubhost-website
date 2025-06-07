@@ -2,7 +2,7 @@
 // PostCSS is a tool for transforming CSS with JavaScript plugins.
 
 // Export the PostCSS config object
-export default {
+module.exports = {
   plugins: {
     tailwindcss: {}, // Enables Tailwind CSS for utility-first styling
     autoprefixer: {}, // Automatically adds vendor prefixes for better browser compatibility
