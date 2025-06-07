@@ -3,6 +3,7 @@ import { Globe, Youtube } from "lucide-react";
 import { useLanguage } from "../context/LanguageContext";
 import languagesConfig from "../config/languages/Languages";
 import { motion } from "framer-motion";
+import DOMPurify from "dompurify";
 
 const languages = [
   { code: "en", name: "English" },
@@ -180,9 +181,11 @@ const Footer: React.FC = () => {
           <span className="text-gray-500 text-xs">
             <span
               dangerouslySetInnerHTML={{
-                __html: t.madeByText.replace(
-                  "KingIronMan2011",
-                  `<a href="https://github.com/KingIronMan2011" target="_blank" rel="noopener noreferrer" class="underline hover:text-blue-400 transition-colors">KingIronMan2011</a>`
+                __html: DOMPurify.sanitize(
+                  t.madeByText.replace(
+                    "KingIronMan2011",
+                    `<a href="https://github.com/KingIronMan2011" target="_blank" rel="noopener noreferrer" class="underline hover:text-blue-400 transition-colors">KingIronMan2011</a>`
+                  )
                 ),
               }}
             />

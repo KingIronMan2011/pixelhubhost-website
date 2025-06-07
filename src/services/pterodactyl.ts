@@ -1,5 +1,6 @@
 import axios from "axios";
 import type { ServerStatus } from "../config/config";
+import languagesConfig from "../config/languages/Languages";
 
 // Get Supabase environment variables for API base URL and anonymous key
 const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
@@ -15,33 +16,37 @@ const api = axios.create({
   timeout: 10000, // 10 seconds timeout for requests
 });
 
+// Helper function to get error messages by key and language
+function getErrorMessage(key: string, language: string, fallback: string) {
+  return (
+    ((languagesConfig as unknown) as Record<string, { texts?: Record<string, string> }>)?.[language]?.texts?.[key] ||
+    fallback
+  );
+}
+
 // Helper function to handle and throw user-friendly errors for API calls
-function handleAxiosError(error: any, action: string) {
+function handleAxiosError(error: any, action: string, language = "en") {
   if (error?.response?.status) {
     const status = error.response.status;
-    const msg =
-      error.response.data?.error ||
-      error.response.data?.details ||
-      error.message;
     switch (status) {
       case 401:
-        throw new Error("Authentication failed: Invalid API key");
+        throw new Error(getErrorMessage("errorAuth", language, "Authentication error"));
       case 403:
-        throw new Error("Access forbidden: Insufficient permissions");
+        throw new Error(getErrorMessage("errorForbidden", language, "Forbidden"));
       case 404:
-        throw new Error("Server not found: Invalid server ID");
+        throw new Error(getErrorMessage("errorNotFound", language, "Not found"));
       case 500:
-        throw new Error(`Pterodactyl server error: ${msg}`);
+        throw new Error(getErrorMessage("errorServer", language, "Server error"));
       case 502:
-        throw new Error("Unable to reach Pterodactyl server");
+        throw new Error(getErrorMessage("errorBadGateway", language, "Bad gateway"));
       case 504:
-        throw new Error("Pterodactyl server timeout");
+        throw new Error(getErrorMessage("errorTimeout", language, "Gateway timeout"));
       default:
-        throw new Error(`Failed to ${action} server: ${msg}`);
+        throw new Error(getErrorMessage("errorDefault", language, "An error occurred"));
     }
   }
   throw new Error(
-    `An unexpected error occurred while trying to ${action} server`
+    getErrorMessage("errorUnexpected", language, `An unexpected error occurred while trying to ${action} server`)
   );
 }
 

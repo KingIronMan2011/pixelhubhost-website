@@ -38,8 +38,8 @@ const PricingCard = ({
   // Get the billing label ("Monthly" or "Quarterly") in the current language
   const billingLabel =
     billingInterval === "monthly"
-      ? t.monthly || "Monthly"
-      : t.quarterly || "Quarterly";
+      ? t.monthly
+      : t.quarterly;
 
   // Framer Motion tap animation
   const tapAnimation = {
@@ -112,7 +112,7 @@ const PricingCard = ({
           whileTap={{ scale: 0.97 }} // mobile tap animation
           style={{ willChange: "transform" }}
         >
-          {t.buyNow || "Buy Now"}
+          {t.buyNow}
         </motion.a>
         {/* Discount badge (always shown here for demo) */}
         <span className="ml-2 text-sm bg-green-500 text-white px-2 py-0.5 rounded shadow font-semibold">

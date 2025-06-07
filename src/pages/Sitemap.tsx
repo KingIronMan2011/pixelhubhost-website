@@ -51,7 +51,11 @@ const Sitemap: React.FC = () => {
                 to={link.path}
                 className="block px-5 py-3 rounded-xl font-medium text-base text-blue-700 dark:text-blue-300 bg-blue-50/60 dark:bg-blue-900/30 hover:bg-blue-100 dark:hover:bg-blue-800 transition-colors duration-200 shadow-sm"
               >
-                {texts[link.labelKey as keyof typeof texts]}
+                {typeof texts[link.labelKey as keyof typeof texts] === "string"
+                  ? texts[link.labelKey as keyof typeof texts]
+                  : (texts[link.labelKey as keyof typeof texts] as any)?.[language] ||
+                    (texts[link.labelKey as keyof typeof texts] as any)?.en ||
+                    link.labelKey}
               </Link>
             </motion.div>
           </li>

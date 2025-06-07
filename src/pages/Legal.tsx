@@ -36,8 +36,7 @@ const Legal: React.FC = () => {
         </h1>
         {/* Introductory legal statement */}
         <p className="mb-4 text-lg">
-          {t.legalIntro ||
-            "PixelHub Host is committed to providing secure, reliable, and high-performance Minecraft server hosting. Please review our legal information and policies below."}
+          {t.legalIntro}
         </p>
         {/* Site operator/company info */}
         <h2 className="text-2xl font-semibold mt-8 mb-2 text-blue-300">
@@ -156,27 +155,22 @@ const Legal: React.FC = () => {
             }} // mobile tap animation
             style={{ willChange: "transform, box-shadow" }}
           >
-            {t.aboutUsContact ||
-              "Join our Discord for Minecraft Hosting Support"}
+            {t.aboutUsContact}
           </motion.a>
         </div>
         {/* Legal disclaimers and copyright */}
         <div className="mt-8 space-y-3 text-gray-400 text-sm">
           <p>
-            {t.legalDisclaimer ||
-              "PixelHub Host provides Minecraft server hosting only. We are not affiliated with Mojang AB or Microsoft. All Minecraft trademarks are property of their respective owners."}
+            {t.legalDisclaimer}
           </p>
           <p>
-            {t.legalLiability ||
-              "We strive to keep your Minecraft servers online and secure, but cannot be held liable for data loss, downtime, or third-party actions."}
+            {t.legalLiability}
           </p>
           <p>
-            {t.legalJurisdiction ||
-              "All legal matters are subject to the jurisdiction specified in our Terms of Service."}
+            {t.legalJurisdiction}
           </p>
           <p>
-            {t.legalCopyright ||
-              "© PixelHub Host. All rights reserved. Minecraft is a trademark of Mojang AB."}
+            {t.legalCopyright}
           </p>
         </div>
       </div>

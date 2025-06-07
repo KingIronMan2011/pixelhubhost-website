@@ -68,6 +68,7 @@ const pt = {
     bedrockPort: "Porta Bedrock",
     cpu: "CPU",
     memory: "Memória",
+    loading: "Carregando...",
     checking: "Verificando...",
     connectToTestServer: "Conectar ao Servidor de Teste",
     // Addons
@@ -197,6 +198,7 @@ const pt = {
     testServerRunning: "Em execução",
     testServerStopping: "Parando",
     testServerOffline: "Offline",
+    noServerStatus: "Nenhum status de servidor disponível.",
     brand: "PixelHub Host",
     description:
       "PixelHubHost – Hospedagem premium de servidores Minecraft com alto desempenho, configuração imediata, domínios personalizados e suporte 24/7.",
@@ -210,6 +212,14 @@ const pt = {
     notFoundTitle: "Página não encontrada",
     notFoundMessage: "A página solicitada não existe ou foi movida.",
     backToHome: "Voltar ao Início",
+    errorAuth: "Falha na autenticação: chave de API inválida",
+    errorForbidden: "Acesso negado: permissões insuficientes",
+    errorNotFound: "Servidor não encontrado: ID do servidor inválido",
+    errorServer: "Erro no servidor Pterodactyl",
+    errorBadGateway: "Não foi possível acessar o servidor Pterodactyl",
+    errorTimeout: "Tempo limite do servidor Pterodactyl excedido",
+    errorDefault: "Ocorreu um erro ao processar sua solicitação.",
+    errorUnexpected: "Ocorreu um erro inesperado.",
   },
 };
 

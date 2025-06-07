@@ -31,8 +31,7 @@ const Privacy: React.FC = () => {
         </h1>
         {/* Introductory privacy statement */}
         <p className="mb-4 text-lg">
-          {texts.privacyIntro ||
-            "At PixelHub Host, your privacy is our priority. We are committed to protecting your data while you enjoy our Minecraft server hosting services."}
+          {texts.privacyIntro}
         </p>
         {/* Company name */}
         <h2 className="text-2xl font-semibold mt-8 mb-2 text-blue-300">
@@ -41,26 +40,21 @@ const Privacy: React.FC = () => {
         {/* List of privacy-related points */}
         <ul className="list-disc list-inside mb-4 space-y-2">
           <li>
-            {texts.privacyData ||
-              "We collect only the data necessary to manage your Minecraft server and account securely."}
+            {texts.privacyData}
           </li>
           <li>
-            {texts.privacyCookies ||
-              "Cookies are used to keep you logged in and to improve your experience on our hosting platform."}
+            {texts.privacyCookies}
           </li>
           <li>
-            {texts.privacyThirdParty ||
-              "We never sell your data. Third-party services are only used for payments and server infrastructure."}
+            {texts.privacyThirdParty}
           </li>
           <li>
-            {texts.privacyMinecraft ||
-              "All Minecraft server data is stored securely and is only accessible by you and our support team for troubleshooting."}
+            {texts.privacyMinecraft}
           </li>
         </ul>
         {/* Contact/support info */}
         <p className="mb-4">
-          {texts.privacyContact ||
-            "If you have any questions about your privacy or data, please contact our support team."}
+          {texts.privacyContact}
         </p>
         {/* Discord/contact button with animation */}
         <div className="mt-8 text-center">
@@ -78,8 +72,7 @@ const Privacy: React.FC = () => {
             }} // mobile tap animation
             style={{ willChange: "transform, box-shadow" }}
           >
-            {texts.aboutUsContact ||
-              "Join our Discord for Minecraft Hosting Support"}
+            {texts.aboutUsContact}
           </motion.a>
         </div>
       </div>

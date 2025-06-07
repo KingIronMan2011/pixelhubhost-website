@@ -67,6 +67,7 @@ const fr = {
     bedrockPort: "Port Bedrock",
     cpu: "CPU",
     memory: "Mémoire",
+    loading: "Chargement...",
     checking: "Vérification...",
     connectToTestServer: "Se Connecter au Serveur de Test",
     // Addons
@@ -210,6 +211,16 @@ const fr = {
     notFoundTitle: "Page introuvable",
     notFoundMessage: "La page demandée n’existe pas ou a été déplacée.",
     backToHome: "Retour à l’accueil",
+    noServerStatus: "Aucun statut de serveur disponible.",
+    errorAuth: "Échec de l’authentification : clé API invalide",
+    errorForbidden: "Accès refusé : permissions insuffisantes",
+    errorNotFound: "Serveur introuvable : identifiant du serveur invalide",
+    errorServer: "Erreur du serveur Pterodactyl",
+    errorBadGateway: "Impossible de joindre le serveur Pterodactyl",
+    errorTimeout: "Délai d’attente du serveur Pterodactyl dépassé",
+    errorDefault:
+      "Une erreur est survenue lors du traitement de votre demande.",
+    errorUnexpected: "Une erreur inattendue est survenue.",
   },
 };
 

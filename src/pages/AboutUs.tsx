@@ -32,8 +32,7 @@ const AboutUs: React.FC = () => {
         {/* Introductory paragraph about the hosting service */}
         <p className="mb-4 text-lg">
           {/* Uses translation if available, otherwise fallback English */}
-          {texts.aboutUsIntro ||
-            "Welcome to PixelHub Host – your trusted Minecraft hosting provider! We are passionate gamers and server admins dedicated to delivering the best Minecraft hosting experience for players and communities worldwide."}
+          {texts.aboutUsIntro}
         </p>
         {/* Company name */}
         <h2 className="text-2xl font-semibold mt-8 mb-2 text-blue-300">
@@ -41,8 +40,7 @@ const AboutUs: React.FC = () => {
         </h2>
         {/* Mission statement */}
         <p className="mb-4">
-          {texts.aboutUsMission ||
-            "Our mission is to empower Minecraft players with reliable, high-performance servers, easy-to-use management tools, and top-tier support. Whether you're running a small friends-only world or a massive public network, PixelHub Host has you covered."}
+          {texts.aboutUsMission}
         </p>
         {/* Values section */}
         <h3 className="text-xl font-semibold mt-8 mb-2 text-purple-300">
@@ -68,8 +66,7 @@ const AboutUs: React.FC = () => {
         </h3>
         <p className="mb-4">
           {/* Team description */}
-          {texts.aboutUsTeam ||
-            "Our team is made up of experienced Minecraft server admins, developers, and support staff who love the game as much as you do. We're always here to help you build, grow, and protect your Minecraft community."}
+          {texts.aboutUsTeam}
         </p>
         {/* Contact/Discord button with animation */}
         <div className="mt-8 text-center">
@@ -87,7 +84,7 @@ const AboutUs: React.FC = () => {
             }} // mobile tap animation
             style={{ willChange: "transform, box-shadow" }}
           >
-            {texts.aboutUsContact || "Join our Discord for Support"}
+            {texts.aboutUsContact}
           </motion.a>
         </div>
       </div>

@@ -15,16 +15,16 @@ const translations = Object.fromEntries(
   Object.entries(languagesConfig).map(([lang, obj]) => [
     lang,
     {
-      domainCopied: obj.texts?.domainCopied || "Domain copied!",
-      serverOffline: obj.texts?.testServerOffline || "Server Offline",
-      checking: obj.texts?.checking || "Checking...",
-      testServer: obj.texts?.testServer || "Test Server",
+      domainCopied: obj.texts?.domainCopied,
+      serverOffline: obj.texts?.testServerOffline,
+      checking: obj.texts?.checking,
+      testServer: obj.texts?.testServer,
       connectToTestServer:
-        obj.texts?.connectToTestServer || "Connect to Test Server",
-      domain: obj.texts?.domain || "Domain",
-      bedrockPort: obj.texts?.bedrockPort || "Bedrock Port",
-      cpu: obj.texts?.cpu || "CPU",
-      memory: obj.texts?.memory || "Memory",
+        obj.texts?.connectToTestServer,
+      domain: obj.texts?.domain,
+      bedrockPort: obj.texts?.bedrockPort,
+      cpu: obj.texts?.cpu,
+      memory: obj.texts?.memory,
     },
   ])
 );
@@ -344,6 +344,16 @@ const TestServer: React.FC = () => {
     );
   }
 
+  // After loading is false, check for empty data
+  if (!loading && (!status || Object.keys(status).length === 0)) {
+    return (
+      <div className="text-center text-gray-500 py-8">
+        {siteConfig.texts[language].noServerStatus ||
+          "No server status available."}
+      </div>
+    );
+  }
+
   // Helper to get translated server status
   const getServerStatusText = () => {
     if (loading) return siteConfig.texts[language].checking;
@@ -466,7 +476,7 @@ const TestServer: React.FC = () => {
                   <span className="font-mono text-sm text-gray-900 dark:text-white font-medium">
                     {bedrockPort}
                   </span>
-                  {/* Copy port button */}
+                  {/* Copy bedrock port button */}
                   <motion.button
                     onClick={() => handleCopy(bedrockPort, setCopiedPort)}
                     className="ml-2 p-1 rounded transition-colors text-gray-700 dark:text-white"

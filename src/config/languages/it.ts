@@ -205,6 +205,16 @@ const it = {
       fr: "Francese",
       it: "Italiano",
     },
+    noServerStatus: "Nessuno stato del server disponibile.",
+    errorAuth: "Autenticazione fallita: chiave API non valida",
+    errorForbidden: "Accesso negato: permessi insufficienti",
+    errorNotFound: "Server non trovato: ID server non valido",
+    errorServer: "Errore del server Pterodactyl",
+    errorBadGateway: "Impossibile raggiungere il server Pterodactyl",
+    errorTimeout: "Timeout del server Pterodactyl",
+    errorDefault:
+      "Si è verificato un errore durante l’elaborazione della richiesta.",
+    errorUnexpected: "Si è verificato un errore imprevisto.",
   },
 };
 

@@ -58,5 +58,12 @@
   >
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
+    <script>
+      if (sessionStorage.redirect) {
+        var redirect = sessionStorage.redirect;
+        sessionStorage.removeItem("redirect");
+        history.replaceState(null, null, redirect);
+      }
+    </script>
   </body>
 </html>

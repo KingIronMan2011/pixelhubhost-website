@@ -20,6 +20,7 @@ import Legal from "./pages/Legal";
 import Sitemap from "./pages/Sitemap";
 import NotFound from "./pages/NotFound";
 import { HelmetProvider } from "react-helmet-async";
+import languages from "./config/languages/Languages";
 
 // Main App component that sets up routing, layout, and global providers
 function App() {
@@ -29,6 +30,10 @@ function App() {
   useTranslation();
   // Get current location for routing
   const location = useLocation();
+
+  // Get current language from i18next or LanguageContext
+  const { i18n } = useTranslation();
+  const language = i18n.language;
 
   // Show a loading spinner while authentication state is being determined
   if (loading) {
@@ -47,7 +52,7 @@ function App() {
             }}
           />
           <span className="text-blue-600 dark:text-blue-300 font-semibold text-lg mt-2">
-            Loading...
+            {(languages as Record<string, any>)?.[language]?.texts?.checking}
           </span>
         </div>
       </div>

@@ -206,6 +206,15 @@ const en = {
       fr: "French",
       it: "Italian",
     },
+    noServerStatus: "No server status available.",
+    errorAuth: "Authentication failed: Invalid API key",
+    errorForbidden: "Access forbidden: Insufficient permissions",
+    errorNotFound: "Server not found: Invalid server ID",
+    errorServer: "Pterodactyl server error",
+    errorBadGateway: "Unable to reach Pterodactyl server",
+    errorTimeout: "Pterodactyl server timeout",
+    errorDefault: "An error occurred while processing your request.",
+    errorUnexpected: "An unexpected error occurred.",
   },
 };
 

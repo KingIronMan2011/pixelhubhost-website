@@ -45,13 +45,13 @@ const ThemeToggle: React.FC = () => {
     <motion.button
       onClick={toggleTheme}
       className="p-2 rounded-xl border border-transparent bg-gray-800/60 hover:bg-gray-700/80 transition-all duration-200 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
-      aria-label={texts.toggleTheme || "Toggle theme"}
+      aria-label={texts.toggleTheme}
       {...buttonMotion}
       type="button"
       style={{ willChange: "transform, box-shadow" }}
     >
       {/* Visually hidden label for accessibility */}
-      <span className="sr-only">{texts.toggleTheme || "Toggle theme"}</span>
+      <span className="sr-only">{texts.toggleTheme}</span>
       {/* Show sun icon (animated spin) if dark mode, or moon if light mode */}
       {theme === "dark" ? (
         <motion.span {...iconSpin}>

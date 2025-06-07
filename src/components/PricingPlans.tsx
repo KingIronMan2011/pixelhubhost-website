@@ -103,10 +103,10 @@ const PricingPlans = () => {
         {/* Section title and subtitle */}
         <div className="text-center max-w-3xl mx-auto mb-16">
           <h2 className="text-3xl md:text-4xl font-bold mb-4 text-gray-900 dark:text-white drop-shadow-sm">
-            {texts.pricingTitle || "Pricing"}
+            {texts.pricingTitle}
           </h2>
           <p className="text-lg text-gray-700 dark:text-gray-400">
-            {texts.pricingSubtitle || ""}
+            {texts.pricingSubtitle}
           </p>
           {/* Billing interval toggle buttons */}
           <div className="mt-8 flex justify-center gap-4">
@@ -122,7 +122,7 @@ const PricingPlans = () => {
               type="button"
               style={{ willChange: "transform" }}
             >
-              {texts.monthly || "Monthly"}
+              {texts.monthly}
             </motion.button>
             <motion.button
               onClick={() => setBillingInterval("quarterly")}
@@ -136,7 +136,7 @@ const PricingPlans = () => {
               type="button"
               style={{ willChange: "transform" }}
             >
-              {texts.quarterly || "Quarterly"}
+              {texts.quarterly}
               <span className="ml-2 text-sm bg-green-500 text-white px-2 py-0.5 rounded shadow">
                 -10% OFF
               </span>
@@ -225,8 +225,8 @@ const PricingPlans = () => {
                         <span className="text-gray-700 dark:text-gray-400 ml-2">
                           /
                           {billingInterval === "monthly"
-                            ? texts.monthly?.toLowerCase?.() || "month"
-                            : texts.quarterly?.toLowerCase?.() || "quarterly"}
+                            ? texts.monthly?.toLowerCase?.()
+                            : texts.quarterly?.toLowerCase?.()}
                         </span>
                       )}
                     </div>
@@ -259,13 +259,13 @@ const PricingPlans = () => {
                     {!plan.available && (
                       <div className="absolute inset-0 flex items-center justify-center bg-gray-900/50 dark:bg-gray-900/70 rounded-lg backdrop-blur-sm">
                         <span className="text-white font-bold text-lg">
-                          {texts.soldOut || "SOLD OUT"}
+                          {texts.soldOut}
                         </span>
                       </div>
                     )}
                     {plan.id === "custom"
-                      ? texts.contactUs || "Contact us"
-                      : texts.buyNow || texts.selectPlan || "Select Plan"}
+                      ? texts.contactUs
+                      : texts.buyNow || texts.selectPlan}
                   </motion.a>
 
                   {/* Plan specs list */}
@@ -275,7 +275,7 @@ const PricingPlans = () => {
                     }`}
                   >
                     <div className="flex items-center justify-between text-sm text-gray-700 dark:text-gray-400">
-                      <span>{texts.cpuThreads || "CPU"}</span>
+                      <span>{texts.cpuThreads}</span>
                       <span className="font-medium text-gray-900 dark:text-white">
                         {plan.id === "custom"
                           ? texts.custom || "-"
@@ -283,7 +283,7 @@ const PricingPlans = () => {
                       </span>
                     </div>
                     <div className="flex items-center justify-between text-sm text-gray-700 dark:text-gray-400">
-                      <span>{texts.ram || "RAM"}</span>
+                      <span>{texts.ram}</span>
                       <span className="font-medium text-gray-900 dark:text-white">
                         {plan.id === "custom"
                           ? texts.custom || "-"
@@ -291,7 +291,7 @@ const PricingPlans = () => {
                       </span>
                     </div>
                     <div className="flex items-center justify-between text-sm text-gray-700 dark:text-gray-400">
-                      <span>{texts.storage || "Storage"}</span>
+                      <span>{texts.storage}</span>
                       <span className="font-medium text-gray-900 dark:text-white">
                         {plan.id === "custom"
                           ? texts.custom || "-"
@@ -299,7 +299,7 @@ const PricingPlans = () => {
                       </span>
                     </div>
                     <div className="flex items-center justify-between text-sm text-gray-700 dark:text-gray-400">
-                      <span>{texts.backups || "Backups"}</span>
+                      <span>{texts.backups}</span>
                       <span className="font-medium text-gray-900 dark:text-white">
                         {plan.id === "custom"
                           ? texts.custom || "-"
@@ -307,7 +307,7 @@ const PricingPlans = () => {
                       </span>
                     </div>
                     <div className="flex items-center justify-between text-sm text-gray-700 dark:text-gray-400">
-                      <span>{texts.databases || "Databases"}</span>
+                      <span>{texts.databases}</span>
                       <span className="font-medium text-gray-900 dark:text-white">
                         {plan.id === "custom"
                           ? texts.custom || "-"
@@ -315,7 +315,7 @@ const PricingPlans = () => {
                       </span>
                     </div>
                     <div className="flex items-center justify-between text-sm text-gray-700 dark:text-gray-400">
-                      <span>{texts.ports || "Ports"}</span>
+                      <span>{texts.ports}</span>
                       <span className="font-medium text-gray-900 dark:text-white">
                         {plan.id === "custom"
                           ? texts.custom || "-"

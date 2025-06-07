@@ -218,6 +218,15 @@ const de = {
       fr: "Französisch",
       it: "Italienisch",
     },
+    noServerStatus: "Kein Serverstatus verfügbar.",
+    errorAuth: "Authentifizierung fehlgeschlagen: Ungültiger API-Schlüssel",
+    errorForbidden: "Zugriff verweigert: Unzureichende Berechtigungen",
+    errorNotFound: "Server nicht gefunden: Ungültige Server-ID",
+    errorServer: "Pterodactyl-Serverfehler",
+    errorBadGateway: "Pterodactyl-Server nicht erreichbar",
+    errorTimeout: "Zeitüberschreitung beim Pterodactyl-Server",
+    errorDefault: "Beim Verarbeiten Ihrer Anfrage ist ein Fehler aufgetreten.",
+    errorUnexpected: "Ein unerwarteter Fehler ist aufgetreten.",
   },
 };
 
