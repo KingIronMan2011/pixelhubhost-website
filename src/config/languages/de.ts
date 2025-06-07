@@ -227,6 +227,10 @@ const de = {
     errorTimeout: "Zeitüberschreitung beim Pterodactyl-Server",
     errorDefault: "Beim Verarbeiten Ihrer Anfrage ist ein Fehler aufgetreten.",
     errorUnexpected: "Ein unerwarteter Fehler ist aufgetreten.",
+    errorBoundaryTitle: "Etwas ist schiefgelaufen",
+    errorBoundaryMessage:
+      "Wir entschuldigen uns für die Unannehmlichkeiten. Bitte versuchen Sie es später erneut.",
+    errorBoundaryButton: "Seite neu laden",
   },
 };
 

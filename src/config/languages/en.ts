@@ -215,6 +215,10 @@ const en = {
     errorTimeout: "Pterodactyl server timeout",
     errorDefault: "An error occurred while processing your request.",
     errorUnexpected: "An unexpected error occurred.",
+    errorBoundaryTitle: "Something went wrong",
+    errorBoundaryMessage:
+      "We're sorry, but something went wrong with your request. Please try again later.",
+    errorBoundaryButton: "Reload Page",
   },
 };
 

@@ -220,6 +220,10 @@ const pt = {
     errorTimeout: "Tempo limite do servidor Pterodactyl excedido",
     errorDefault: "Ocorreu um erro ao processar sua solicitação.",
     errorUnexpected: "Ocorreu um erro inesperado.",
+    errorBoundaryTitle: "Algo deu errado",
+    errorBoundaryMessage:
+      "Desculpe, ocorreu um erro ao processar sua solicitação. Por favor, tente novamente mais tarde.",
+    errorBoundaryButton: "Recarregar página",
   },
 };
 

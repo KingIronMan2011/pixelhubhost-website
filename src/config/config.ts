@@ -4,6 +4,7 @@
 export const config = {
   name: "PixelHub Host", // Company/site name
   underConstruction: false, // Toggle for construction mode
+  testErrorHandling: true, // Toggle for test error handling
   website: "https://www.pixelhubhost.com", // Main website URL
   contact: {
     email: "contato@pixelhubhost.com", // Support email

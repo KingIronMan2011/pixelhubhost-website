@@ -9,6 +9,7 @@ import {
   DatabaseBackup,
 } from "lucide-react";
 import { motion } from "framer-motion";
+import { config } from "../config/config"; // Make sure this import points to your config file
 
 // Features section component
 const Features = () => {
@@ -83,6 +84,12 @@ const Features = () => {
       transition: { duration: 0.13, ease: "easeOut" },
     },
   };
+
+  // Trigger a test error if enabled in config
+  if (config.testErrorHandling) {
+    // @ts-expect-error // Intentionally cause a TypeScript error to test error handling
+    const test = doesNotExist.property;
+  }
 
   return (
     // Section for Features, with gradient background and padding
