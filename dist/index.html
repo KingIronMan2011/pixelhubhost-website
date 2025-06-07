@@ -1,18 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Primary Meta Tags -->
     <title>PixelHub Host</title>
-    <!-- SEO meta description for search engines -->
+    <meta name="title" content="PixelHub Host" />
     <meta
       name="description"
       content="PixelHubHost - Premium Minecraft server hosting with high performance, instant setup, custom domains, and 24/7 support."
     />
 
-    <!-- Open Graph / Discord / Facebook Meta Tags for social sharing -->
-    <meta property="og:url" content="https://www.pixelhubhost.com" />
+    <!-- Open Graph / Facebook / Discord -->
     <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://www.pixelhubhost.com/" />
     <meta property="og:title" content="PixelHub Host" />
     <meta
       property="og:description"
@@ -22,14 +21,10 @@
       property="og:image"
       content="https://www.pixelhubhost.com/android-chrome-512x512.png"
     />
-    <meta property="og:image:type" content="image/png" />
-    <meta property="og:image:width" content="512" />
-    <meta property="og:image:height" content="512" />
 
-    <!-- Twitter Meta Tags for Twitter card previews -->
+    <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta property="twitter:domain" content="pixelhubhost.com" />
-    <meta property="twitter:url" content="https://www.pixelhubhost.com" />
+    <meta name="twitter:url" content="https://www.pixelhubhost.com/" />
     <meta name="twitter:title" content="PixelHub Host" />
     <meta
       name="twitter:description"
@@ -40,18 +35,16 @@
       content="https://www.pixelhubhost.com/android-chrome-512x512.png"
     />
 
-    <!-- Apple and standard favicons for various devices and browsers -->
+    <!-- Favicons and manifest -->
     <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon-BJ4_wtwG.png" />
     <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32-BYrzA609.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16-DBpcnDkz.png" />
     <link rel="shortcut icon" href="/assets/favicon-32x32-BYrzA609.png" />
     <link rel="manifest" href="/assets/site-DO4cV-oZ.webmanifest" />
 
-    <!-- Preconnect to Google Fonts for performance -->
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-
-    <!-- Import Inter font from Google Fonts for UI text -->
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
       rel="stylesheet"
@@ -59,24 +52,12 @@
 
     <!-- Fallback favicon for older browsers -->
     <link rel="icon" href="/assets/favicon-BrQlBixw.ico" />
-
-    <!-- Fallback for query parameters: redirect to root if only query string is present
-         This helps with static hosting where query params might break routing -->
-    <script>
-      // If the path is "/" and there are query parameters, reload to "/" (for static hosting)
-      if (location.pathname === "/" && location.search && !location.hash) {
-        history.replaceState(null, "", "/");
-        location.reload();
-      }
-    </script>
-    <script type="module" crossorigin src="/assets/index-CFkPOpRp.js"></script>
-    <link rel="stylesheet" crossorigin href="/assets/index-DFHNEfo3.css">
+    <script type="module" crossorigin src="/assets/index-DhI_j_Kg.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-CERBHpcE.css">
   </head>
   <body
     class="antialiased bg-gradient-to-b from-[#f0f6ff] via-white to-[#f3e8ff] min-h-screen"
   >
-    <!-- React app will mount here -->
     <div id="root"></div>
-    <!-- Main entry point for the Vite/React app -->
   </body>
 </html>
