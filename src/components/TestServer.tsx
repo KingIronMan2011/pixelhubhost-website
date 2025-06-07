@@ -9,6 +9,7 @@ import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Dialog } from "@headlessui/react";
 import { motion } from "framer-motion";
+import ReactCountryFlag from "react-country-flag";
 
 // Use translations from new languagesConfig
 const translations = Object.fromEntries(
@@ -19,8 +20,7 @@ const translations = Object.fromEntries(
       serverOffline: obj.texts?.testServerOffline,
       checking: obj.texts?.checking,
       testServer: obj.texts?.testServer,
-      connectToTestServer:
-        obj.texts?.connectToTestServer,
+      connectToTestServer: obj.texts?.connectToTestServer,
       domain: obj.texts?.domain,
       bedrockPort: obj.texts?.bedrockPort,
       cpu: obj.texts?.cpu,
@@ -494,10 +494,15 @@ const TestServer: React.FC = () => {
                 </div>
                 {/* Server location info */}
                 <div className="flex items-center justify-end space-x-2 mt-1">
-                  <img
-                    src="https://flagcdn.com/w40/br.png"
-                    alt="Brazil flag"
-                    className="w-5 h-3"
+                  <ReactCountryFlag
+                    countryCode="BR"
+                    svg
+                    style={{
+                      width: "1.25em",
+                      height: "1em",
+                    }}
+                    title="Brazil"
+                    aria-label="Brazil flag"
                   />
                   <span className="text-sm text-gray-900 dark:text-white">
                     Igarapava, SP

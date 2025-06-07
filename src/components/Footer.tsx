@@ -4,6 +4,7 @@ import { useLanguage } from "../context/LanguageContext";
 import languagesConfig from "../config/languages/Languages";
 import { motion } from "framer-motion";
 import DOMPurify from "dompurify";
+import { useLocation } from "react-router-dom";
 
 const languages = [
   { code: "en", name: "English" },
@@ -33,6 +34,8 @@ const Footer: React.FC = () => {
   const t = languagesConfig[langKey]?.texts || languagesConfig.en.texts;
   const contact =
     languagesConfig[langKey]?.contact || languagesConfig.en.contact;
+  const location = useLocation();
+  const isHome = location.pathname === "/" || location.pathname === "/#home";
 
   return (
     <footer className="bg-gradient-to-b from-gray-900 via-gray-950 to-black text-gray-300 pt-14 pb-8 border-t border-gray-800">
@@ -41,15 +44,14 @@ const Footer: React.FC = () => {
           {/* Brand & Description */}
           <div>
             <a
-              href="#home"
+              href={isHome ? "#home" : "/"}
               className="font-semibold text-lg mb-4 text-white tracking-wide hover:text-blue-400 transition-colors flex items-center gap-2"
               aria-label="PixelHub Host"
             >
               <img
                 src="/pixel_hub_host.png"
                 alt="PixelHub Host Logo"
-                className="h-7 w-auto mr-2"
-                style={{ display: "inline-block", verticalAlign: "middle" }}
+                className="h-8 w-auto"
               />
               {t.brand}
             </a>

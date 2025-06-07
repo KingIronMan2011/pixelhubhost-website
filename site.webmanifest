@@ -3,17 +3,17 @@
   "short_name": "PixelHub",
   "icons": [
     {
-      "src": "/android-chrome-192x192.png",
+      "src": "/pixel_hub_host.png",
       "sizes": "192x192",
       "type": "image/png"
     },
     {
-      "src": "/android-chrome-512x512.png",
+      "src": "/pixel_hub_host.png",
       "sizes": "512x512",
       "type": "image/png"
     }
   ],
-  "theme_color": "#f0f6ff",
+  "theme_color": "#3b82f6",
   "background_color": "#ffffff",
   "display": "standalone",
   "start_url": "/",

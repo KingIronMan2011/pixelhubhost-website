@@ -4,6 +4,7 @@ import languagesConfig from "../config/languages/Languages";
 import LanguageSelector from "./LanguageSelector";
 import ThemeToggle from "./ThemeToggle";
 import { motion } from "framer-motion";
+import { useLocation } from "react-router-dom";
 
 // Infer the language keys from the config
 type LanguageKey = keyof typeof languagesConfig;
@@ -36,6 +37,8 @@ const Header: React.FC = () => {
   const t = languagesConfig[language]?.texts || languagesConfig.en.texts;
   // State for mobile menu open/close
   const [menuOpen, setMenuOpen] = useState(false);
+  const location = useLocation();
+  const isHome = location.pathname === "/" || location.pathname === "/#home";
 
   // Navigation links (labels are translated)
   const navLinks = [
@@ -52,7 +55,7 @@ const Header: React.FC = () => {
         <nav className="flex justify-between items-center">
           {/* Logo (left side) */}
           <a
-            href="#home"
+            href={isHome ? "#home" : "/"}
             className="flex items-center gap-2 text-2xl font-bold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent hover:from-blue-300 hover:to-purple-300 transition-all duration-500"
             aria-label="PixelHub Host"
           >
@@ -60,7 +63,6 @@ const Header: React.FC = () => {
               src="/pixel_hub_host.png"
               alt="PixelHub Host Logo"
               className="h-8 w-auto"
-              style={{ display: "inline-block", verticalAlign: "middle" }}
             />
             {t.brand}
           </a>

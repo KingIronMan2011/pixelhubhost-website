@@ -6,8 +6,8 @@
 
 ### SEO & Accessibility
 
-- [ ] Make sure all pages have proper `<title>` and `<meta>` tags (your MetaTags component helps).
-- [ ] Use `alt` attributes for all images.
+- [x] Make sure all pages have proper `<title>` and `<meta>` tags (your MetaTags component helps).
+- [x] Use `alt` attributes for all images.
 - [ ] Use semantic HTML (headings, lists, etc.).
 
 ### Loading & Empty States
