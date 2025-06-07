@@ -216,6 +216,20 @@ const Footer: React.FC = () => {
             >
               {t.termsOfService}
             </motion.a>
+            <motion.a
+              href="/sitemap"
+              className="hover:text-blue-400 transition-colors"
+              {...hoverMotion}
+            >
+              {t.sitemap}
+            </motion.a>
+            <motion.a
+              href="/legal"
+              className="hover:text-blue-400 transition-colors"
+              {...hoverMotion}
+            >
+              {t.legal}
+            </motion.a>
           </div>
         </div>
       </div>

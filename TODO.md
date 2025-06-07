@@ -23,7 +23,7 @@
 ### Performance
 
 - [x] Optimize images and assets.
-- [ ] Use code splitting/lazy loading for large pages or components.
+- [x] Use code splitting/lazy loading for large pages.
 
 ### Dependencies
 

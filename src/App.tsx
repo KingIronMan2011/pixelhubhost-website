@@ -12,15 +12,18 @@ import Features from "./components/Features";
 import PricingPlans from "./components/PricingPlans";
 import Addons from "./components/Addons";
 import Contact from "./components/Contact";
-import UnderConstruction from "./pages/UnderConstruction";
-import AboutUs from "./pages/AboutUs";
-import Privacy from "./pages/Privacy";
-import Terms from "./pages/Terms";
-import Legal from "./pages/Legal";
-import Sitemap from "./pages/Sitemap";
-import NotFound from "./pages/NotFound";
 import { HelmetProvider } from "react-helmet-async";
 import languages from "./config/languages/Languages";
+import { Suspense, lazy } from "react";
+
+// Lazy load large pages
+const AboutUs = lazy(() => import("./pages/AboutUs"));
+const Privacy = lazy(() => import("./pages/Privacy"));
+const Terms = lazy(() => import("./pages/Terms"));
+const Legal = lazy(() => import("./pages/Legal"));
+const Sitemap = lazy(() => import("./pages/Sitemap"));
+const NotFound = lazy(() => import("./pages/NotFound"));
+const UnderConstruction = lazy(() => import("./pages/UnderConstruction"));
 
 // Main App component that sets up routing, layout, and global providers
 function App() {
@@ -76,43 +79,45 @@ function App() {
           <Header />
           {/* Main content area with route-based rendering */}
           <main className="flex-grow">
-            <Routes location={location}>
-              <Route
-                path="/"
-                element={
-                  <>
-                    <Hero />
-                    <TestServer />
-                    <Features />
-                    <PricingPlans />
-                    <Addons />
-                    <Contact />
-                  </>
-                }
-              />
-              <Route path="/aboutus" element={<AboutUs />} />
-              <Route path="/privacy" element={<Privacy />} />
-              <Route path="/terms" element={<Terms />} />
-              <Route path="/legal" element={<Legal />} />
-              <Route path="/sitemap" element={<Sitemap />} />
-              <Route path="/not-found" element={<NotFound />} />
-              {/* Catch-all route for under construction page */}
-              <Route
-                path="/under-construction"
-                element={<UnderConstruction />}
-              />
+            <Suspense fallback={<div>Loading...</div>}>
+              <Routes location={location}>
+                <Route
+                  path="/"
+                  element={
+                    <>
+                      <Hero />
+                      <TestServer />
+                      <Features />
+                      <PricingPlans />
+                      <Addons />
+                      <Contact />
+                    </>
+                  }
+                />
+                <Route path="/aboutus" element={<AboutUs />} />
+                <Route path="/privacy" element={<Privacy />} />
+                <Route path="/terms" element={<Terms />} />
+                <Route path="/legal" element={<Legal />} />
+                <Route path="/sitemap" element={<Sitemap />} />
+                <Route path="/not-found" element={<NotFound />} />
+                {/* Catch-all route for under construction page */}
+                <Route
+                  path="/under-construction"
+                  element={<UnderConstruction />}
+                />
 
-              {/* Example route to display the icon file */}
-              <Route
-                path="pixel_hub_host.png"
-                element={
-                  <img src="/pixel_hub_host.png" alt="PixelHubHost Logo" />
-                }
-              />
+                {/* Example route to display the icon file */}
+                <Route
+                  path="pixel_hub_host.png"
+                  element={
+                    <img src="/pixel_hub_host.png" alt="PixelHubHost Logo" />
+                  }
+                />
 
-              {/* Show custom not found page for unknown routes */}
-              <Route path="*" element={<NotFound />} />
-            </Routes>
+                {/* Show custom not found page for unknown routes */}
+                <Route path="*" element={<NotFound />} />
+              </Routes>
+            </Suspense>
           </main>
           {/* Site footer */}
           <Footer />
