@@ -13,14 +13,18 @@ const api = axios.create({
     Authorization: `Bearer ${supabaseAnonKey}`,
     "Content-Type": "application/json",
   },
-  timeout: 10000, // 10 seconds timeout for requests
+  timeout: 30000, // 30 seconds timeout for requests
 });
 
 // Helper function to get error messages by key and language
 function getErrorMessage(key: string, language: string, fallback: string) {
   return (
-    ((languagesConfig as unknown) as Record<string, { texts?: Record<string, string> }>)?.[language]?.texts?.[key] ||
-    fallback
+    (
+      languagesConfig as unknown as Record<
+        string,
+        { texts?: Record<string, string> }
+      >
+    )?.[language]?.texts?.[key] || fallback
   );
 }
 
@@ -30,23 +34,41 @@ function handleAxiosError(error: any, action: string, language = "en") {
     const status = error.response.status;
     switch (status) {
       case 401:
-        throw new Error(getErrorMessage("errorAuth", language, "Authentication error"));
+        throw new Error(
+          getErrorMessage("errorAuth", language, "Authentication error")
+        );
       case 403:
-        throw new Error(getErrorMessage("errorForbidden", language, "Forbidden"));
+        throw new Error(
+          getErrorMessage("errorForbidden", language, "Forbidden")
+        );
       case 404:
-        throw new Error(getErrorMessage("errorNotFound", language, "Not found"));
+        throw new Error(
+          getErrorMessage("errorNotFound", language, "Not found")
+        );
       case 500:
-        throw new Error(getErrorMessage("errorServer", language, "Server error"));
+        throw new Error(
+          getErrorMessage("errorServer", language, "Server error")
+        );
       case 502:
-        throw new Error(getErrorMessage("errorBadGateway", language, "Bad gateway"));
+        throw new Error(
+          getErrorMessage("errorBadGateway", language, "Bad gateway")
+        );
       case 504:
-        throw new Error(getErrorMessage("errorTimeout", language, "Gateway timeout"));
+        throw new Error(
+          getErrorMessage("errorTimeout", language, "Gateway timeout")
+        );
       default:
-        throw new Error(getErrorMessage("errorDefault", language, "An error occurred"));
+        throw new Error(
+          getErrorMessage("errorDefault", language, "An error occurred")
+        );
     }
   }
   throw new Error(
-    getErrorMessage("errorUnexpected", language, `An unexpected error occurred while trying to ${action} server`)
+    getErrorMessage(
+      "errorUnexpected",
+      language,
+      `An unexpected error occurred while trying to ${action} server`
+    )
   );
 }
 

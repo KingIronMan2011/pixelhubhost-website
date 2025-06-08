@@ -359,10 +359,10 @@ const TestServer: React.FC = () => {
   }
 
   // Helper to get translated server status
-  const getServerStatusText = () => {
+  const getServerStatusText = (mappedState?: string) => {
     if (loading) return siteConfig.texts[language].checking;
-    if (!status?.state) return siteConfig.texts[language].testServerOffline;
-    switch (status.state) {
+    if (!mappedState) return siteConfig.texts[language].testServerOffline;
+    switch (mappedState) {
       case "testServerStarting":
         return siteConfig.texts[language].testServerStarting;
       case "testServerRunning":
@@ -383,6 +383,8 @@ const TestServer: React.FC = () => {
     if (state === "offline") return "testServerOffline";
     return "testServerOffline";
   }
+
+  const mappedState = mapServerState(status?.state);
 
   return (
     // Main section with background and padding
@@ -429,19 +431,19 @@ const TestServer: React.FC = () => {
               <div className="flex items-center space-x-2">
                 <Signal
                   className={`w-5 h-5 ${
-                    status?.state === "testServerRunning"
+                    mappedState === "testServerRunning"
                       ? "text-green-500"
                       : "text-red-500"
                   }`}
                 />
                 <span
                   className={`text-sm font-medium ${
-                    status?.state === "testServerRunning"
+                    mappedState === "testServerRunning"
                       ? "text-green-500"
                       : "text-red-500"
                   }`}
                 >
-                  {getServerStatusText()}
+                  {getServerStatusText(mappedState)}
                 </span>
               </div>
             </div>
