@@ -15,6 +15,7 @@ import Contact from "./components/Contact";
 import { HelmetProvider } from "react-helmet-async";
 import languages from "./config/languages/Languages";
 import { Suspense, lazy } from "react";
+import { useGoogleAnalytics } from "./analytics";
 
 // Lazy load large pages
 const AboutUs = lazy(() => import("./pages/AboutUs"));
@@ -31,6 +32,7 @@ const disableExternalServices =
 
 // Main App component that sets up routing, layout, and global providers
 function App() {
+  useGoogleAnalytics();
   // Get authentication loading state from AuthContext
   const { loading } = useAuth();
   // Initialize translations (i18next)
