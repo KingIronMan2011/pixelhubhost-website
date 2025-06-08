@@ -1,14 +1,14 @@
 import React from "react";
+import { useLanguage } from "../context/LanguageContext";
 import { config } from "../config/config";
 import languagesConfig from "../config/languages/Languages";
-import i18n from "../i18n";
 import { motion } from "framer-motion";
 import MetaTags from "../components/MetaTags";
 
 // AboutUs page component displays information about PixelHub Host
 const AboutUs: React.FC = () => {
-  // Use i18n.language for the current language
-  const language = i18n.language;
+  // Get the current language from context
+  const { language } = useLanguage();
   // Get the correct set of translated texts for the current language
   const texts = languagesConfig[language]?.texts || languagesConfig.en.texts;
 
@@ -48,7 +48,7 @@ const AboutUs: React.FC = () => {
           <p className="mb-4">{texts.aboutUsMission}</p>
           {/* Values section */}
           <h3 className="text-xl font-semibold mt-8 mb-2 text-purple-300">
-            {texts.ourValues || "Our Values"}
+            {"Our Values"}
           </h3>
           <ul className="list-disc list-inside mb-4">
             {/* Render each value from the translations */}
@@ -66,7 +66,7 @@ const AboutUs: React.FC = () => {
           </ul>
           {/* Team section */}
           <h3 className="text-xl font-semibold mt-8 mb-2 text-blue-300">
-            {texts.team || "Team"}
+            {"Team"}
           </h3>
           <p className="mb-4">
             {/* Team description */}

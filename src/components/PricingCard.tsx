@@ -1,4 +1,4 @@
-import i18n from "../i18n";
+import { useLanguage } from "../context/LanguageContext";
 import { planLinks } from "../config/config";
 import languagesConfig from "../config/languages/Languages";
 import { motion } from "framer-motion";
@@ -27,15 +27,19 @@ const PricingCard = ({
   isPopular,
   billingInterval = "monthly",
 }: PricingCardProps) => {
-  // Use i18n.language for the current language
-  const language = i18n.language || "en";
+  // Get current language from context
+  const { language } = useLanguage();
   // Get translations for the current language, fallback to English
-  const t = languagesConfig[language]?.texts || languagesConfig.en.texts;
+  const langs = (languagesConfig as any).default || languagesConfig;
+  const t = langs[language]?.texts || langs.en.texts;
   // Get the correct plan link for the selected billing interval
   const planLink = planLinks[product.id]?.[billingInterval] || "#";
 
   // Get the billing label ("Monthly" or "Quarterly") in the current language
-  const billingLabel = billingInterval === "monthly" ? t.monthly : t.quarterly;
+  const billingLabel =
+    billingInterval === "monthly"
+      ? t.monthly
+      : t.quarterly;
 
   // Framer Motion tap animation
   const tapAnimation = {

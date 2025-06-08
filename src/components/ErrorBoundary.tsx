@@ -1,9 +1,10 @@
 import React from "react";
-import i18n from "../i18n";
 import languagesConfig from "../config/languages/Languages";
 
 type ErrorBoundaryProps = {
   children: React.ReactNode;
+  language?: string;
+  setLanguage?: (lang: string) => void;
 };
 
 type ErrorBoundaryState = {
@@ -29,29 +30,34 @@ class ErrorBoundary extends React.Component<
   }
 
   handleLanguageChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    i18n.changeLanguage(e.target.value);
+    localStorage.setItem("language", e.target.value);
     this.forceUpdate();
   };
 
   render() {
     if (this.state.hasError) {
-      const currentLanguage = i18n.language;
+      let language =
+        this.props.language || localStorage.getItem("language");
       let t = { ...languagesConfig.en.texts };
       if (
-        currentLanguage &&
-        Object.prototype.hasOwnProperty.call(languagesConfig, currentLanguage)
+        language &&
+        Object.prototype.hasOwnProperty.call(languagesConfig, language)
       ) {
         t = {
           ...t,
-          ...languagesConfig[currentLanguage as keyof typeof languagesConfig]
-            .texts,
+          ...languagesConfig[language as keyof typeof languagesConfig].texts,
         };
       }
 
       const languageOptions = Object.entries(languagesConfig).map(
         ([code, lang]) => (
+          // @ts-ignore
           <option key={code} value={code}>
-            {lang.texts.languageNames?.[code] || code.toUpperCase()}
+            {/* @ts-ignore */}
+            {languagesConfig[language]?.texts?.languageNames?.[code] ||
+              // @ts-ignore
+              lang.texts.languageNames?.[code] ||
+              code.toUpperCase()}
           </option>
         )
       );
@@ -84,7 +90,7 @@ class ErrorBoundary extends React.Component<
                 </label>
                 <select
                   id="error-lang"
-                  value={currentLanguage ?? ""}
+                  value={language ?? ""}
                   onChange={this.handleLanguageChange}
                   className="mx-auto bg-gray-100 dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-lg px-4 py-3 text-gray-700 dark:text-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-400 transition-all w-full max-w-[220px] text-base"
                   style={{ display: "block" }}

@@ -1,6 +1,6 @@
-import i18n from "../i18n";
+import { useLanguage } from "../context/LanguageContext";
+import { config, Language } from "../config/config";
 import languagesConfig from "../config/languages/Languages";
-import { config } from "../config/config";
 import { motion } from "framer-motion";
 import { FaDiscord, FaWhatsapp, FaEnvelope, FaCube } from "react-icons/fa";
 import MetaTags from "../components/MetaTags";
@@ -11,8 +11,8 @@ const website = config.website;
 
 // UnderConstruction page component displays a maintenance/coming soon message
 const UnderConstruction = () => {
-  // Use i18n.language for the current language
-  const language = i18n.language || "en";
+  // Get current language and setter from context
+  const { language, setLanguage } = useLanguage();
   // Get translated texts for the current language, fallback to English if missing
   const texts = languagesConfig[language]?.texts || languagesConfig.en.texts;
 
@@ -31,11 +31,6 @@ const UnderConstruction = () => {
     scale: 1.045,
     boxShadow: "0 8px 32px 0 rgba(59,130,246,0.07)",
     transition: { type: "tween", duration: 0.13, ease: "easeInOut" },
-  };
-
-  // Language change handler
-  const handleLanguageChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    i18n.changeLanguage(e.target.value);
   };
 
   return (
@@ -165,7 +160,7 @@ const UnderConstruction = () => {
               <select
                 id="lang"
                 value={language}
-                onChange={handleLanguageChange}
+                onChange={(e) => setLanguage(e.target.value as Language)}
                 className="appearance-none bg-gray-100 dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-full px-4 py-2 pr-10 text-gray-700 dark:text-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-400 transition-all duration-150 shadow-sm font-medium"
               >
                 <option value="en">English</option>

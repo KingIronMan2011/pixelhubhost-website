@@ -1,7 +1,6 @@
 import React from "react";
 import { Globe, Youtube } from "lucide-react";
 import { useLanguage } from "../context/LanguageContext";
-import i18n from "../i18n";
 import languagesConfig from "../config/languages/Languages";
 import { motion } from "framer-motion";
 import DOMPurify from "dompurify";
@@ -31,11 +30,10 @@ const hoverMotion = {
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const Footer: React.FC = () => {
   const { language, setLanguage } = useLanguage();
-  const currentLanguage = i18n.language;
-  const t = languagesConfig[currentLanguage]?.texts || languagesConfig.en.texts;
+  const langKey = language as keyof typeof languagesConfig;
+  const t = languagesConfig[langKey]?.texts || languagesConfig.en.texts;
   const contact =
-    languagesConfig[language as keyof typeof languagesConfig]?.contact ||
-    languagesConfig.en.contact;
+    languagesConfig[langKey]?.contact || languagesConfig.en.contact;
   const location = useLocation();
   const isHome = location.pathname === "/" || location.pathname === "/#home";
 

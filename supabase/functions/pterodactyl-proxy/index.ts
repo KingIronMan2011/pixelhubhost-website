@@ -1,5 +1,5 @@
 // @deno-types="https://deno.land/std@0.168.0/http/server.d.ts"
-import { serve } from "https://deno.land/std@0.168.0/http/server.ts"; // <-- Use the real Deno serve
+// If running in Deno, ensure you have the correct permissions and Deno version.
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
@@ -8,18 +8,17 @@ const corsHeaders = {
   "Access-Control-Allow-Methods": "POST, GET, OPTIONS",
 };
 
-// serve(...) must be imported from Deno’s standard library
+// --- BEGIN: Disable external services option ---
+const disableExternalServices =
+  Deno.env.get("VITE_DISABLE_EXTERNAL_SERVICES") === "true";
+// --- END: Disable external services option ---
+
 serve(async (req) => {
-  // Handle CORS preflight first:
   if (req.method === "OPTIONS") {
     return new Response("ok", { headers: corsHeaders });
   }
 
-  // Read environment variables AFTER we pass OPTIONS
-  const disableExternalServices =
-    Deno.env.get("VITE_DISABLE_EXTERNAL_SERVICES") === "true";
-
-  // Skip all logic if external services are disabled
+  // --- BEGIN: Skip all logic if disabled ---
   if (disableExternalServices) {
     return new Response(
       JSON.stringify({
@@ -32,6 +31,7 @@ serve(async (req) => {
       }
     );
   }
+  // --- END: Skip all logic if disabled ---
 
   try {
     const url = new URL(req.url);
@@ -40,32 +40,57 @@ serve(async (req) => {
       Deno.env.get("VITE_PTERODACTYL_TEST_SERVER_ID");
     const action = url.searchParams.get("action");
 
-    const pterodactylUrl = Deno.env.get("VITE_PTERODACTYL_API_URL");
-    const clientApiKey = Deno.env.get("VITE_PTERODACTYL_CLIENT_API_KEY");
+    // Enhanced debug logging
+    const envVars = {
+      apiUrl: Deno.env.get("VITE_PTERODACTYL_API_URL"),
+      clientKey:
+        Deno.env.get("VITE_PTERODACTYL_CLIENT_API_KEY")?.slice(0, 8) + "...",
+      serverId,
+      applicationKey:
+        Deno.env.get("VITE_PTERODACTYL_APPLICATION_API_KEY")?.slice(0, 8) +
+        "...",
+    };
 
-    // Validate environment
-    if (!pterodactylUrl || !clientApiKey) {
+    console.log("Environment variables and configuration:", envVars);
+
+    // Enhanced input validation
+    if (!serverId || typeof serverId !== "string" || serverId.trim() === "") {
+      console.error("Invalid server ID:", { serverId, type: typeof serverId });
       return new Response(
         JSON.stringify({
-          error: "Pterodactyl configuration is missing",
-          details: "Missing required environment variables",
+          error: "Invalid server ID provided",
+          details: "Server ID must be a non-empty string",
+          debug: { serverId, type: typeof serverId },
         }),
         {
-          status: 500,
+          status: 400,
           headers: { ...corsHeaders, "Content-Type": "application/json" },
         }
       );
     }
 
-    // Validate server ID
-    if (!serverId || !serverId.trim()) {
+    const pterodactylUrl = Deno.env.get("VITE_PTERODACTYL_API_URL");
+    const clientApiKey = Deno.env.get("VITE_PTERODACTYL_CLIENT_API_KEY");
+
+    // Enhanced environment validation
+    if (!pterodactylUrl || !clientApiKey) {
+      console.error("Missing environment variables:", {
+        hasUrl: !!pterodactylUrl,
+        hasKey: !!clientApiKey,
+      });
+      const missingVars: string[] = [];
+      if (!pterodactylUrl) missingVars.push("VITE_PTERODACTYL_API_URL");
+      if (!clientApiKey) missingVars.push("VITE_PTERODACTYL_CLIENT_API_KEY");
+
       return new Response(
         JSON.stringify({
-          error: "Invalid server ID",
-          details: "Server ID must be a non-empty string",
+          error: "Pterodactyl configuration is missing",
+          details: `Missing required environment variables: ${missingVars.join(
+            ", "
+          )}`,
         }),
         {
-          status: 400,
+          status: 500,
           headers: { ...corsHeaders, "Content-Type": "application/json" },
         }
       );
@@ -75,13 +100,12 @@ serve(async (req) => {
     let method = "GET";
     let body: string | null = null;
 
-    // If we have an action (start/stop/restart), override endpoint/method
     if (action) {
       if (!["start", "stop", "restart"].includes(action)) {
         return new Response(
           JSON.stringify({
-            error: "Invalid action",
-            details: "Action must be start, stop, or restart",
+            error: "Invalid action provided",
+            details: "Action must be one of: start, stop, restart",
           }),
           {
             status: 400,
@@ -94,8 +118,14 @@ serve(async (req) => {
       body = JSON.stringify({ signal: action });
     }
 
+    console.log("Making request to Pterodactyl:", {
+      url: `${pterodactylUrl}${endpoint}`,
+      method,
+      hasBody: !!body,
+    });
+
     const controller = new AbortController();
-    const timeout = setTimeout(() => controller.abort(), 8000); // 8 seconds
+    const timeout = setTimeout(() => controller.abort(), 8000); // 8 second timeout
 
     try {
       const response = await fetch(`${pterodactylUrl}${endpoint}`, {
@@ -115,11 +145,36 @@ serve(async (req) => {
         const errorData = await response
           .json()
           .catch(() => ({ message: "Unknown error" }));
+        console.error("Pterodactyl API error:", {
+          status: response.status,
+          statusText: response.statusText,
+          error: errorData,
+          endpoint,
+          method,
+        });
+
+        // Centralized error messages for translation/localization
+        const errorMessages: Record<number, string> = {
+          401: "errorAuth", // Authentication failed: Invalid API key
+          403: "errorForbidden", // Access forbidden: Insufficient permissions
+          404: "errorNotFound", // Server not found: Invalid server ID
+          500: "errorServer", // Internal Pterodactyl server error
+          502: "errorBadGateway", // Unable to reach Pterodactyl server
+          504: "errorTimeout", // Pterodactyl server timeout
+        };
+        const defaultErrorKey = "errorDefault";
+
+        const errorKey = errorMessages[response.status] || defaultErrorKey;
+
         return new Response(
           JSON.stringify({
-            error: "Pterodactyl error",
+            error: errorKey, // <-- return the error key instead of the message
             details: errorData.message || response.statusText,
-            debug: { status: response.status, endpoint, method },
+            debug: {
+              status: response.status,
+              endpoint,
+              method,
+            },
           }),
           {
             status: response.status,
@@ -129,6 +184,8 @@ serve(async (req) => {
       }
 
       const data = await response.json();
+      console.log("Pterodactyl API response:", data);
+
       return new Response(JSON.stringify(data), {
         headers: { ...corsHeaders, "Content-Type": "application/json" },
       });
@@ -149,6 +206,10 @@ serve(async (req) => {
       throw fetchError;
     }
   } catch (error) {
+    console.error("Proxy error:", {
+      message: error.message,
+      stack: error.stack,
+    });
     return new Response(
       JSON.stringify({
         error: "Internal server error",
@@ -161,3 +222,7 @@ serve(async (req) => {
     );
   }
 });
+
+function serve(arg0: (req: any) => Promise<Response>) {
+  throw new Error("Function not implemented.");
+}

@@ -1,16 +1,16 @@
 import React from "react";
 import { Sun, Moon } from "lucide-react";
 import { useTheme } from "../context/ThemeContext";
+import { useLanguage } from "../context/LanguageContext";
 import languagesConfig from "../config/languages/Languages";
-import i18n from "../i18n";
 import { motion } from "framer-motion";
 
 // ThemeToggle component: toggles between light and dark mode
 const ThemeToggle: React.FC = () => {
   // Get current theme and toggle function from context
   const { theme, toggleTheme } = useTheme();
-  // Use i18n.language for the current language
-  const language = i18n.language || "en";
+  // Get current language from context
+  const { language } = useLanguage();
   // Get translations for the current language, fallback to English
   const texts =
     languagesConfig[language as keyof typeof languagesConfig]?.texts ||

@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from "react";
+import { useLanguage } from "../context/LanguageContext";
 import { Globe, ChevronDown } from "lucide-react";
 import languagesConfig from "../config/languages/Languages";
-import i18n from "../i18n";
 
 type LanguagesConfigType = typeof languagesConfig;
 type LanguageKey = keyof LanguagesConfigType;
@@ -15,10 +15,8 @@ const getLanguageNames = (language: LanguageKey) => {
 };
 
 const LanguageSelector = () => {
-  // Use i18n.language as the source of truth
-  const [language, setLanguage] = useState<LanguageKey>(
-    (i18n.language as LanguageKey) || "en"
-  );
+  // Get current language and setter from context
+  const { language, setLanguage } = useLanguage();
   // State to control dropdown open/close
   const [isOpen, setIsOpen] = useState(false);
   // Ref for the dropdown container (used for outside click detection)
@@ -27,22 +25,19 @@ const LanguageSelector = () => {
   // Get language names from config
   const languageNames = getLanguageNames(language);
 
-  // Sync with i18n.language on mount and when it changes
+  // On mount: load language from localStorage if available
   useEffect(() => {
-    const syncLang = () => setLanguage(i18n.language as LanguageKey);
-    i18n.on("languageChanged", syncLang);
-    return () => {
-      i18n.off("languageChanged", syncLang);
-    };
+    const savedLang = localStorage.getItem("language");
+    if (savedLang && savedLang !== language) {
+      setLanguage(savedLang as any);
+    }
+    // eslint-disable-next-line
   }, []);
 
-  // Whenever language changes, update i18n and persist to localStorage
-  const handleSetLanguage = (lang: LanguageKey) => {
-    i18n.changeLanguage(lang);
-    setLanguage(lang);
-    localStorage.setItem("language", lang);
-    setIsOpen(false);
-  };
+  // Whenever language changes, persist it to localStorage
+  useEffect(() => {
+    localStorage.setItem("language", language);
+  }, [language]);
 
   // Close dropdown when clicking outside the component
   useEffect(() => {
@@ -102,7 +97,10 @@ const LanguageSelector = () => {
             {Object.entries(languageNames).map(([code, name]) => (
               <button
                 key={code}
-                onClick={() => handleSetLanguage(code as LanguageKey)}
+                onClick={() => {
+                  setLanguage(code as any);
+                  setIsOpen(false);
+                }}
                 className={`${
                   language === code
                     ? "bg-blue-600 text-white"

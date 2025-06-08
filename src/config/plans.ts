@@ -322,44 +322,4 @@ export const PLANS: Plan[] = [
       ports: 3,
     },
   },
-  {
-    id: "custom",
-    name: {
-      en: "Custom",
-      pt: "Personalizado",
-      de: "Individuell",
-      fr: "Personnalisé",
-      it: "Personalizzato",
-    },
-    description: {
-      en: "Contact us for a custom plan tailored to your needs.",
-      pt: "Entre em contato para um plano personalizado para você.",
-      de: "Kontaktieren Sie uns für einen individuell zugeschnittenen Plan.",
-      fr: "Contactez-nous pour un plan personnalisé adapté à vos besoins.",
-      it: "Contattaci per un piano personalizzato su misura per te.",
-    },
-    price: {
-      base_amount: 0,
-      getCurrencyInfo: (language) => {
-        const { symbol } = getCurrencyByLanguage(language);
-        return {
-          amount: 0,
-          quarterlyAmount: 0,
-          currency: symbol,
-        };
-      },
-    },
-    features: [{ nameKey: "customFeatures", included: true }],
-    available: true,
-    popular: false,
-    color: "#10b981",
-    specs: {
-      threads: 0,
-      ram: 0,
-      storage: 0,
-      backups: 0,
-      databases: 0,
-      ports: 0,
-    },
-  },
 ];

@@ -2,7 +2,6 @@ import React, { useMemo } from "react";
 import { Helmet } from "react-helmet-async";
 import { config } from "../config/config";
 import languagesConfig from "../config/languages/Languages";
-import i18n from "../i18n";
 
 type SupportedLanguage = keyof typeof languagesConfig;
 
@@ -19,11 +18,8 @@ const MetaTags: React.FC<MetaTagsProps> = ({
   description,
   image = "/images/og-image.jpg",
   type = "website",
-  language,
+  language = "en",
 }) => {
-  // Use i18n.language as the default if language prop is not provided
-  const currentLanguage = language || i18n.language || "en";
-
   const pageTitle = useMemo(() => {
     return title ? `${title} | ${config.name}` : config.name;
   }, [title]);
@@ -31,7 +27,7 @@ const MetaTags: React.FC<MetaTagsProps> = ({
   const pageDescription = useMemo(() => {
     if (description) return description;
     const langDesc =
-      languagesConfig?.[currentLanguage as SupportedLanguage]?.description ||
+      languagesConfig?.[language as SupportedLanguage]?.description ||
       languagesConfig?.en?.description;
     if (langDesc) return langDesc;
     if (typeof document !== "undefined") {
@@ -41,7 +37,7 @@ const MetaTags: React.FC<MetaTagsProps> = ({
       }
     }
     return "";
-  }, [description, currentLanguage]);
+  }, [description, language]);
 
   const currentUrl = typeof window !== "undefined" ? window.location.href : "";
   const languages = ["en", "pt", "de", "fr"];
@@ -72,7 +68,7 @@ const MetaTags: React.FC<MetaTagsProps> = ({
           hrefLang={code}
         />
       ))}
-      <html lang={currentLanguage} />
+      <html lang={language} />
     </Helmet>
   );
 };
