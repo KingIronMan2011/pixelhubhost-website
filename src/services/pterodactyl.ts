@@ -1,6 +1,7 @@
 import axios from 'axios';
 import type { ServerStatus } from '../config/config';
 import languagesConfig from '../config/languages/Languages';
+import i18n from '../i18n'; // <-- Add this import
 
 // Get Supabase environment variables for API base URL and anonymous key
 const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
@@ -25,30 +26,32 @@ function getErrorMessage(key: string, language: string, fallback: string) {
 }
 
 // Helper function to handle and throw user-friendly errors for API calls
-function handleAxiosError(error: any, action: string, language = 'en') {
+function handleAxiosError(error: any, action: string, language?: string) {
+  // Use i18n.language if language is not provided
+  const lang = language || i18n.language || 'en';
   if (error?.response?.status) {
     const status = error.response.status;
     switch (status) {
       case 401:
-        throw new Error(getErrorMessage('errorAuth', language, 'Authentication error'));
+        throw new Error(getErrorMessage('errorAuth', lang, 'Authentication error'));
       case 403:
-        throw new Error(getErrorMessage('errorForbidden', language, 'Forbidden'));
+        throw new Error(getErrorMessage('errorForbidden', lang, 'Forbidden'));
       case 404:
-        throw new Error(getErrorMessage('errorNotFound', language, 'Not found'));
+        throw new Error(getErrorMessage('errorNotFound', lang, 'Not found'));
       case 500:
-        throw new Error(getErrorMessage('errorServer', language, 'Server error'));
+        throw new Error(getErrorMessage('errorServer', lang, 'Server error'));
       case 502:
-        throw new Error(getErrorMessage('errorBadGateway', language, 'Bad gateway'));
+        throw new Error(getErrorMessage('errorBadGateway', lang, 'Bad gateway'));
       case 504:
-        throw new Error(getErrorMessage('errorTimeout', language, 'Gateway timeout'));
+        throw new Error(getErrorMessage('errorTimeout', lang, 'Gateway timeout'));
       default:
-        throw new Error(getErrorMessage('errorDefault', language, 'An error occurred'));
+        throw new Error(getErrorMessage('errorDefault', lang, 'An error occurred'));
     }
   }
   throw new Error(
     getErrorMessage(
       'errorUnexpected',
-      language,
+      lang,
       `An unexpected error occurred while trying to ${action} server`,
     ),
   );
@@ -57,56 +60,96 @@ function handleAxiosError(error: any, action: string, language = 'en') {
 // Service object for interacting with the Pterodactyl server management API
 export const pterodactylService = {
   // Fetch the current status of a server by its ID
-  async getServerStatus(serverId: string): Promise<ServerStatus> {
+  async getServerStatus(serverId: string, language?: string): Promise<ServerStatus> {
     try {
-      if (!serverId?.trim()) throw new Error('Invalid server ID provided');
+      if (!serverId?.trim())
+        throw new Error(
+          getErrorMessage(
+            'errorInvalidServerId',
+            language || i18n.language || 'en',
+            'Invalid server ID provided',
+          ),
+        );
       const { data } = await api.get('/pterodactyl-proxy', {
         params: { serverId },
       });
       // The backend already returns { state, memory, cpu }
       if (typeof data.state !== 'string' || !data.memory || !data.cpu) {
-        throw new Error('Invalid response format');
+        throw new Error(
+          getErrorMessage(
+            'errorInvalidResponse',
+            language || i18n.language || 'en',
+            'Invalid response format',
+          ),
+        );
       }
       return data as ServerStatus;
     } catch (error) {
-      handleAxiosError(error, 'fetch server status');
-      throw new Error('Failed to fetch server status');
+      handleAxiosError(error, 'fetch server status', language);
+      throw new Error(
+        getErrorMessage(
+          'errorFetchStatus',
+          language || i18n.language || 'en',
+          'Failed to fetch server status',
+        ),
+      );
     }
   },
 
   // Start the server with the given ID
-  async startServer(serverId: string): Promise<void> {
+  async startServer(serverId: string, language?: string): Promise<void> {
     try {
-      if (!serverId?.trim()) throw new Error('Invalid server ID provided');
+      if (!serverId?.trim())
+        throw new Error(
+          getErrorMessage(
+            'errorInvalidServerId',
+            language || i18n.language || 'en',
+            'Invalid server ID provided',
+          ),
+        );
       await api.get('/pterodactyl-proxy', {
         params: { serverId, action: 'start' },
       });
     } catch (error) {
-      handleAxiosError(error, 'start');
+      handleAxiosError(error, 'start', language);
     }
   },
 
   // Stop the server with the given ID
-  async stopServer(serverId: string): Promise<void> {
+  async stopServer(serverId: string, language?: string): Promise<void> {
     try {
-      if (!serverId?.trim()) throw new Error('Invalid server ID provided');
+      if (!serverId?.trim())
+        throw new Error(
+          getErrorMessage(
+            'errorInvalidServerId',
+            language || i18n.language || 'en',
+            'Invalid server ID provided',
+          ),
+        );
       await api.get('/pterodactyl-proxy', {
         params: { serverId, action: 'stop' },
       });
     } catch (error) {
-      handleAxiosError(error, 'stop');
+      handleAxiosError(error, 'stop', language);
     }
   },
 
   // Restart the server with the given ID
-  async restartServer(serverId: string): Promise<void> {
+  async restartServer(serverId: string, language?: string): Promise<void> {
     try {
-      if (!serverId?.trim()) throw new Error('Invalid server ID provided');
+      if (!serverId?.trim())
+        throw new Error(
+          getErrorMessage(
+            'errorInvalidServerId',
+            language || i18n.language || 'en',
+            'Invalid server ID provided',
+          ),
+        );
       await api.get('/pterodactyl-proxy', {
         params: { serverId, action: 'restart' },
       });
     } catch (error) {
-      handleAxiosError(error, 'restart');
+      handleAxiosError(error, 'restart', language);
     }
   },
 };
