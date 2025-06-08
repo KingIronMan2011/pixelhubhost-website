@@ -1,9 +1,8 @@
-import { useState, useEffect, useCallback } from "react";
-import { pterodactylService } from "../services/pterodactyl";
-import type { ServerStatus } from "../config/config";
+import { useState, useEffect, useCallback } from 'react';
+import { pterodactylService } from '../services/pterodactyl';
+import type { ServerStatus } from '../config/config';
 
-const disableExternalServices =
-  import.meta.env.VITE_DISABLE_EXTERNAL_SERVICES === "true";
+const disableExternalServices = import.meta.env.VITE_DISABLE_EXTERNAL_SERVICES === 'true';
 
 // Custom React hook to fetch and manage the status of a Pterodactyl server
 export function usePterodactyl(serverId: string) {
@@ -25,7 +24,7 @@ export function usePterodactyl(serverId: string) {
       const data = await pterodactylService.getServerStatus(serverId); // Call service to get status
       setStatus(data); // Update status state
     } catch {
-      setError("Failed to fetch server status"); // Set error if fetch fails
+      setError('Failed to fetch server status'); // Set error if fetch fails
     } finally {
       setLoading(false); // Always stop loading after fetch
     }

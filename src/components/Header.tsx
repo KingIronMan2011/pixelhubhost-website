@@ -1,10 +1,10 @@
-import React, { useState } from "react";
-import { useLanguage } from "../context/LanguageContext";
-import languagesConfig from "../config/languages/Languages";
-import LanguageSelector from "./LanguageSelector";
-import ThemeToggle from "./ThemeToggle";
-import { motion } from "framer-motion";
-import { useLocation } from "react-router-dom";
+import React, { useState } from 'react';
+import { useLanguage } from '../context/LanguageContext';
+import languagesConfig from '../config/languages/Languages';
+import LanguageSelector from './LanguageSelector';
+import ThemeToggle from './ThemeToggle';
+import { motion } from 'framer-motion';
+import { useLocation } from 'react-router-dom';
 
 // Infer the language keys from the config
 type LanguageKey = keyof typeof languagesConfig;
@@ -12,21 +12,21 @@ type LanguageKey = keyof typeof languagesConfig;
 // Animation for link hover (desktop)
 const linkHover = {
   scale: 1.045,
-  color: "#fff",
-  transition: { type: "tween", duration: 0.13, ease: "easeInOut" },
+  color: '#fff',
+  transition: { type: 'tween', duration: 0.13, ease: 'easeInOut' },
 };
 
 // Animation for mobile nav links (hover/tap)
 const mobileLinkMotion = {
   whileHover: {
     scale: 1.04,
-    color: "#fff",
-    transition: { type: "tween", duration: 0.13, ease: "easeInOut" },
+    color: '#fff',
+    transition: { type: 'tween', duration: 0.13, ease: 'easeInOut' },
   },
   whileTap: {
     scale: 1.04,
-    color: "#a5b4fc",
-    transition: { type: "tween", duration: 0.13, ease: "easeInOut" },
+    color: '#a5b4fc',
+    transition: { type: 'tween', duration: 0.13, ease: 'easeInOut' },
   },
 };
 
@@ -38,14 +38,14 @@ const Header: React.FC = () => {
   // State for mobile menu open/close
   const [menuOpen, setMenuOpen] = useState(false);
   const location = useLocation();
-  const isHome = location.pathname === "/" || location.pathname === "/#home";
+  const isHome = location.pathname === '/' || location.pathname === '/#home';
 
   // Navigation links (labels are translated)
   const navLinks = [
-    { href: "#features", label: t.features },
-    { href: "#pricing", label: t.pricing },
-    { href: "#addons", label: t.addons },
-    { href: "#contact", label: t.contact },
+    { href: '#features', label: t.features },
+    { href: '#pricing', label: t.pricing },
+    { href: '#addons', label: t.addons },
+    { href: '#contact', label: t.contact },
   ];
 
   return (
@@ -55,26 +55,18 @@ const Header: React.FC = () => {
         <nav className="flex justify-between items-center">
           {/* Logo (left side) */}
           <a
-            href={isHome ? "#home" : "/"}
+            href={isHome ? '#home' : '/'}
             className="flex items-center gap-2 text-2xl font-bold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent hover:from-blue-300 hover:to-purple-300 transition-all duration-500"
             aria-label="PixelHub Host"
           >
-            <img
-              src="/pixel_hub_host.png"
-              alt="PixelHub Host Logo"
-              className="h-8 w-auto"
-            />
+            <img src="/pixel_hub_host.png" alt="PixelHub Host Logo" className="h-8 w-auto" />
             {t.brand}
           </a>
 
           {/* Desktop navigation links (center) */}
           <div className="hidden md:flex items-center space-x-8">
             {navLinks.map((link) => (
-              <a
-                key={link.href}
-                href={link.href}
-                className="text-gray-100 font-medium"
-              >
+              <a key={link.href} href={link.href} className="text-gray-100 font-medium">
                 {link.label}
               </a>
             ))}
@@ -94,7 +86,7 @@ const Header: React.FC = () => {
               className="hidden md:inline-flex items-center bg-blue-600 text-white px-5 py-2 rounded-lg hover:bg-blue-700 transition-colors font-medium shadow"
               whileHover={linkHover}
               whileFocus={linkHover}
-              style={{ willChange: "transform, color" }}
+              style={{ willChange: 'transform, color' }}
             >
               {t.systemStatus}
             </motion.a>
@@ -106,7 +98,7 @@ const Header: React.FC = () => {
               className="hidden md:inline-flex items-center bg-purple-600 text-white px-5 py-2 rounded-lg hover:bg-purple-700 transition-colors font-medium shadow"
               whileHover={linkHover}
               whileFocus={linkHover}
-              style={{ willChange: "transform, color" }}
+              style={{ willChange: 'transform, color' }}
             >
               {t.loginSignup}
             </motion.a>
@@ -149,8 +141,8 @@ const Header: React.FC = () => {
               rel="noopener noreferrer"
               className="block bg-blue-600 text-white px-5 py-2 rounded-lg hover:bg-blue-700 transition-colors font-medium mt-2 text-center shadow"
               whileHover={linkHover}
-              whileTap={{ scale: 0.97, backgroundColor: "#2563eb" }}
-              style={{ willChange: "transform, color, background-color" }}
+              whileTap={{ scale: 0.97, backgroundColor: '#2563eb' }}
+              style={{ willChange: 'transform, color, background-color' }}
               onClick={() => setMenuOpen(false)}
             >
               {t.systemStatus}
@@ -162,8 +154,8 @@ const Header: React.FC = () => {
               rel="noopener noreferrer"
               className="block bg-purple-600 text-white px-5 py-2 rounded-lg hover:bg-purple-700 transition-colors font-medium mt-2 text-center shadow"
               whileHover={linkHover}
-              whileTap={{ scale: 0.97, backgroundColor: "#7c3aed" }}
-              style={{ willChange: "transform, color, background-color" }}
+              whileTap={{ scale: 0.97, backgroundColor: '#7c3aed' }}
+              style={{ willChange: 'transform, color, background-color' }}
               onClick={() => setMenuOpen(false)}
             >
               {t.loginSignup}

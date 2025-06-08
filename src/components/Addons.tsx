@@ -1,16 +1,15 @@
-import React from "react";
-import { Globe, Database, HardDrive } from "lucide-react";
-import { useLanguage } from "../context/LanguageContext";
-import languagesConfig from "../config/languages/Languages";
-import { motion } from "framer-motion";
+import React from 'react';
+import { Globe, Database, HardDrive } from 'lucide-react';
+import { useLanguage } from '../context/LanguageContext';
+import languagesConfig from '../config/languages/Languages';
+import { motion } from 'framer-motion';
 
 // Main Addons component
 const Addons: React.FC = () => {
   // Get current language and translations
   const { language } = useLanguage();
   const t =
-    languagesConfig[language as keyof typeof languagesConfig]?.texts ||
-    languagesConfig.en.texts;
+    languagesConfig[language as keyof typeof languagesConfig]?.texts || languagesConfig.en.texts;
 
   // Define the list of addon options, each with icon, name, description, and price
   const addons = [
@@ -57,17 +56,17 @@ const Addons: React.FC = () => {
       opacity: 1,
       y: 0,
       scale: 1,
-      transition: { type: "spring", stiffness: 90, damping: 14 },
+      transition: { type: 'spring', stiffness: 90, damping: 14 },
     },
     hover: {
       scale: 1.04,
-      boxShadow: "0 8px 32px 0 rgba(0,0,0,0.13)",
-      transition: { duration: 0.13, ease: "easeOut" },
+      boxShadow: '0 8px 32px 0 rgba(0,0,0,0.13)',
+      transition: { duration: 0.13, ease: 'easeOut' },
     },
     tap: {
       scale: 1.04,
-      boxShadow: "0 8px 32px 0 rgba(0,0,0,0.13)",
-      transition: { duration: 0.13, ease: "easeOut" },
+      boxShadow: '0 8px 32px 0 rgba(0,0,0,0.13)',
+      transition: { duration: 0.13, ease: 'easeOut' },
     },
   };
 
@@ -103,7 +102,7 @@ const Addons: React.FC = () => {
               whileHover="hover"
               whileTap="tap" // tap animation for mobile
               className="group bg-white/90 dark:bg-gray-900/90 rounded-2xl p-6 shadow-md border border-gray-200 dark:border-gray-800 flex items-center gap-5 transition-all duration-150"
-              style={{ willChange: "transform, boxShadow" }}
+              style={{ willChange: 'transform, boxShadow' }}
             >
               {/* Icon with its own animation */}
               <motion.div
@@ -111,7 +110,7 @@ const Addons: React.FC = () => {
                 initial={{ scale: 0.9, opacity: 0.7 }}
                 animate={{ scale: 1, opacity: 1 }}
                 transition={{
-                  type: "spring",
+                  type: 'spring',
                   stiffness: 120,
                   damping: 12,
                   delay: 0.13 * index,
@@ -141,9 +140,7 @@ const Addons: React.FC = () => {
                   <motion.button
                     type="button"
                     onClick={() => {
-                      document
-                        .getElementById("contact")
-                        ?.scrollIntoView({ behavior: "smooth" });
+                      document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
                     }}
                     className="inline-flex items-center gap-1 px-4 py-2 rounded-lg bg-blue-600 hover:bg-blue-700 dark:bg-blue-700 dark:hover:bg-blue-600 text-white font-medium shadow transition-all duration-150"
                     whileTap={{ scale: 0.96 }}

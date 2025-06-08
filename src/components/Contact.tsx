@@ -1,8 +1,8 @@
-import React from "react";
-import { FaDiscord, FaWhatsapp, FaEnvelope } from "react-icons/fa";
-import { useLanguage } from "../context/LanguageContext";
-import languagesConfig from "../config/languages/Languages";
-import { motion } from "framer-motion";
+import React from 'react';
+import { FaDiscord, FaWhatsapp, FaEnvelope } from 'react-icons/fa';
+import { useLanguage } from '../context/LanguageContext';
+import languagesConfig from '../config/languages/Languages';
+import { motion } from 'framer-motion';
 
 // Define the type for language keys
 type LanguageKey = keyof typeof languagesConfig;
@@ -12,9 +12,7 @@ const Contact: React.FC = () => {
   // Get current language from context
   const { language } = useLanguage();
   // Fallback to English if language not found
-  const langKey = (
-    language in languagesConfig ? language : "en"
-  ) as LanguageKey;
+  const langKey = (language in languagesConfig ? language : 'en') as LanguageKey;
   // Get translations and contact info for current language
   const t = languagesConfig[langKey].texts;
   const contact = languagesConfig[langKey].contact;
@@ -36,12 +34,12 @@ const Contact: React.FC = () => {
       opacity: 1,
       y: 0,
       scale: 1,
-      transition: { type: "spring", stiffness: 120, damping: 16 },
+      transition: { type: 'spring', stiffness: 120, damping: 16 },
     },
     hover: {
       scale: 1.05,
-      boxShadow: "0 8px 32px 0 rgba(0,0,0,0.13)",
-      transition: { duration: 0.13, ease: "easeOut" },
+      boxShadow: '0 8px 32px 0 rgba(0,0,0,0.13)',
+      transition: { duration: 0.13, ease: 'easeOut' },
     },
   };
 
@@ -50,23 +48,23 @@ const Contact: React.FC = () => {
     {
       href: contact.discord,
       icon: <FaDiscord className="w-7 h-7" />,
-      label: "Discord",
+      label: 'Discord',
       className:
-        "bg-blue-600 dark:bg-blue-700 border-blue-700 dark:border-blue-500 text-white hover:text-white",
+        'bg-blue-600 dark:bg-blue-700 border-blue-700 dark:border-blue-500 text-white hover:text-white',
     },
     {
       href: contact.whatsapp,
       icon: <FaWhatsapp className="w-7 h-7" />,
-      label: "WhatsApp",
+      label: 'WhatsApp',
       className:
-        "bg-green-500 dark:bg-green-600 border-green-700 dark:border-green-500 text-white hover:text-white",
+        'bg-green-500 dark:bg-green-600 border-green-700 dark:border-green-500 text-white hover:text-white',
     },
     {
       href: `mailto:${contact.email}`,
       icon: <FaEnvelope className="w-7 h-7" />,
-      label: "Email",
+      label: 'Email',
       className:
-        "bg-gray-100 dark:bg-gray-800 border-gray-300 dark:border-gray-700 text-blue-700 dark:text-blue-400 hover:text-blue-900 dark:hover:text-blue-300",
+        'bg-gray-100 dark:bg-gray-800 border-gray-300 dark:border-gray-700 text-blue-700 dark:text-blue-400 hover:text-blue-900 dark:hover:text-blue-300',
     },
   ];
 
@@ -82,9 +80,7 @@ const Contact: React.FC = () => {
           <h2 className="text-4xl font-extrabold text-gray-900 dark:text-white mb-3 tracking-tight drop-shadow-sm">
             {t.contactTitle}
           </h2>
-          <p className="text-gray-700 dark:text-gray-400 mb-10 text-lg">
-            {t.contactSubtitle}
-          </p>
+          <p className="text-gray-700 dark:text-gray-400 mb-10 text-lg">{t.contactSubtitle}</p>
 
           {/* Animated contact cards */}
           <motion.div
@@ -105,10 +101,10 @@ const Contact: React.FC = () => {
                 whileHover="hover"
                 whileTap={{
                   scale: 1.04,
-                  boxShadow: "0 8px 32px 0 rgba(0,0,0,0.13)",
+                  boxShadow: '0 8px 32px 0 rgba(0,0,0,0.13)',
                 }}
                 className={`flex items-center justify-center gap-3 px-8 py-5 rounded-2xl border shadow transition-all duration-100 font-medium text-lg will-change-transform will-change-shadow hover:-translate-y-1 hover:scale-105 hover:shadow-2xl ${c.className}`}
-                style={{ willChange: "transform, box-shadow" }}
+                style={{ willChange: 'transform, box-shadow' }}
               >
                 {c.icon}
                 {c.label}

@@ -1,15 +1,15 @@
-import React, { useState, useEffect } from "react";
-import { Server, Signal, Copy, Check, Info } from "lucide-react";
-import { usePterodactyl } from "../hooks/usePterodactyl";
-import { useLanguage } from "../context/LanguageContext";
-import languagesConfig from "../config/languages/Languages";
-import { SERVER_LIMITS } from "../config/config";
-import type { Language } from "../config/config";
-import { toast, ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-import { Dialog } from "@headlessui/react";
-import { motion } from "framer-motion";
-import ReactCountryFlag from "react-country-flag";
+import React, { useState, useEffect } from 'react';
+import { Server, Signal, Copy, Check, Info } from 'lucide-react';
+import { usePterodactyl } from '../hooks/usePterodactyl';
+import { useLanguage } from '../context/LanguageContext';
+import languagesConfig from '../config/languages/Languages';
+import { SERVER_LIMITS } from '../config/config';
+import type { Language } from '../config/config';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { Dialog } from '@headlessui/react';
+import { motion } from 'framer-motion';
+import ReactCountryFlag from 'react-country-flag';
 
 // Use translations from new languagesConfig
 const translations = Object.fromEntries(
@@ -26,15 +26,12 @@ const translations = Object.fromEntries(
       cpu: obj.texts?.cpu,
       memory: obj.texts?.memory,
     },
-  ])
+  ]),
 );
 
 const siteConfig = {
   texts: Object.fromEntries(
-    Object.entries(languagesConfig).map(([lang, obj]) => [
-      lang,
-      obj.texts || {},
-    ])
+    Object.entries(languagesConfig).map(([lang, obj]) => [lang, obj.texts || {}]),
   ),
 };
 
@@ -43,10 +40,7 @@ type NotificationProps = {
   language: Language;
 };
 
-const CopyNotification: React.FC<NotificationProps> = ({
-  onClose,
-  language,
-}) => {
+const CopyNotification: React.FC<NotificationProps> = ({ onClose, language }) => {
   useEffect(() => {
     const timer = setTimeout(onClose, 1500);
     return () => clearTimeout(timer);
@@ -91,48 +85,39 @@ const ConnectPopup: React.FC<ConnectPopupProps> = ({
   bedrockPort,
 }) => {
   const t =
-    languagesConfig[language as keyof typeof languagesConfig]?.texts ||
-    languagesConfig.en.texts;
+    languagesConfig[language as keyof typeof languagesConfig]?.texts || languagesConfig.en.texts;
   const [copiedDomain, setCopiedDomain] = useState(false);
   const [copiedPort, setCopiedPort] = useState(false);
 
   // Use react-toastify for all copy notifications
   const handleCopy = async (
     value: string,
-    setCopiedFn: React.Dispatch<React.SetStateAction<boolean>>
+    setCopiedFn: React.Dispatch<React.SetStateAction<boolean>>,
   ) => {
     try {
       if (navigator.clipboard && window.isSecureContext) {
         await navigator.clipboard.writeText(value);
       } else {
-        const textArea = document.createElement("textarea");
+        const textArea = document.createElement('textarea');
         textArea.value = value;
-        textArea.style.position = "fixed";
-        textArea.style.left = "-9999px";
+        textArea.style.position = 'fixed';
+        textArea.style.left = '-9999px';
         document.body.appendChild(textArea);
         textArea.focus();
         textArea.select();
-        document.execCommand("copy");
+        document.execCommand('copy');
         document.body.removeChild(textArea);
       }
       setCopiedFn(true);
       toast.success(translations[language].domainCopied);
       setTimeout(() => setCopiedFn(false), 1500);
     } catch (err) {
-      toast.error("Copy failed");
+      toast.error('Copy failed');
     }
   };
 
-  const buttonIcon = copiedDomain ? (
-    <Check className="w-4 h-4" />
-  ) : (
-    <Copy className="w-4 h-4" />
-  );
-  const buttonIconPort = copiedPort ? (
-    <Check className="w-4 h-4" />
-  ) : (
-    <Copy className="w-4 h-4" />
-  );
+  const buttonIcon = copiedDomain ? <Check className="w-4 h-4" /> : <Copy className="w-4 h-4" />;
+  const buttonIconPort = copiedPort ? <Check className="w-4 h-4" /> : <Copy className="w-4 h-4" />;
 
   // Framer Motion hover animation for copy and connect buttons
 
@@ -150,18 +135,12 @@ const ConnectPopup: React.FC<ConnectPopupProps> = ({
             </button>
             <div className="flex items-center mb-4">
               <Info className="w-6 h-6 text-blue-500 mr-2" />
-              <h3 className="text-xl font-bold text-gray-900 dark:text-white">
-                {t.howToConnect}
-              </h3>
+              <h3 className="text-xl font-bold text-gray-900 dark:text-white">{t.howToConnect}</h3>
             </div>
             <div className="space-y-8">
               <div>
-                <p className="font-semibold text-gray-800 dark:text-gray-200 mb-1">
-                  {t.javaTitle}
-                </p>
-                <p className="text-gray-700 dark:text-gray-300 text-sm mb-3">
-                  {t.javaDesc}
-                </p>
+                <p className="font-semibold text-gray-800 dark:text-gray-200 mb-1">{t.javaTitle}</p>
+                <p className="text-gray-700 dark:text-gray-300 text-sm mb-3">{t.javaDesc}</p>
                 <div className="flex items-center gap-2">
                   <span className="px-3 py-2 bg-gray-100 dark:bg-gray-800 rounded font-mono text-blue-600 dark:text-blue-400 text-sm select-all shadow-inner">
                     {serverDomain}
@@ -169,7 +148,7 @@ const ConnectPopup: React.FC<ConnectPopupProps> = ({
                   <button
                     onClick={() => handleCopy(serverDomain, setCopiedDomain)}
                     className={`p-1 rounded transition-all duration-200 text-gray-700 dark:text-white hover:bg-blue-100 dark:hover:bg-blue-900/30 ${
-                      copiedDomain ? "bg-blue-100 dark:bg-blue-900/30" : ""
+                      copiedDomain ? 'bg-blue-100 dark:bg-blue-900/30' : ''
                     }`}
                     title={t.copyDomain}
                   >
@@ -181,9 +160,7 @@ const ConnectPopup: React.FC<ConnectPopupProps> = ({
                 <p className="font-semibold text-gray-800 dark:text-gray-200 mb-1">
                   {t.bedrockTitle}
                 </p>
-                <p className="text-gray-700 dark:text-gray-300 text-sm mb-3">
-                  {t.bedrockDesc}
-                </p>
+                <p className="text-gray-700 dark:text-gray-300 text-sm mb-3">{t.bedrockDesc}</p>
                 <div className="flex items-center gap-2 mb-2">
                   <span className="px-3 py-2 bg-gray-100 dark:bg-gray-800 rounded font-mono text-blue-600 dark:text-blue-400 text-sm select-all shadow-inner">
                     {serverDomain}
@@ -191,7 +168,7 @@ const ConnectPopup: React.FC<ConnectPopupProps> = ({
                   <button
                     onClick={() => handleCopy(serverDomain, setCopiedDomain)}
                     className={`p-1 rounded transition-all duration-200 text-gray-700 dark:text-white hover:bg-blue-100 dark:hover:bg-blue-900/30 ${
-                      copiedDomain ? "bg-blue-100 dark:bg-blue-900/30" : ""
+                      copiedDomain ? 'bg-blue-100 dark:bg-blue-900/30' : ''
                     }`}
                     title={t.copyDomain}
                   >
@@ -205,7 +182,7 @@ const ConnectPopup: React.FC<ConnectPopupProps> = ({
                   <button
                     onClick={() => handleCopy(bedrockPort, setCopiedPort)}
                     className={`p-1 rounded transition-all duration-200 text-gray-700 dark:text-white hover:bg-green-100 dark:hover:bg-green-900/30 ${
-                      copiedPort ? "bg-green-100 dark:bg-green-900/30" : ""
+                      copiedPort ? 'bg-green-100 dark:bg-green-900/30' : ''
                     }`}
                     title={t.copyPort}
                   >
@@ -227,19 +204,14 @@ const ConnectPopup: React.FC<ConnectPopupProps> = ({
             `}
           </style>
         </div>
-        <ToastContainer
-          position="bottom-center"
-          autoClose={1500}
-          hideProgressBar
-        />
+        <ToastContainer position="bottom-center" autoClose={1500} hideProgressBar />
       </Dialog.Panel>
     </Dialog>
   );
 };
 
 const testServerId = import.meta.env.VITE_PTERODACTYL_TEST_SERVER_ID;
-const disableExternalServices =
-  import.meta.env.VITE_DISABLE_EXTERNAL_SERVICES === "true";
+const disableExternalServices = import.meta.env.VITE_DISABLE_EXTERNAL_SERVICES === 'true';
 
 // Main TestServer component
 const TestServer: React.FC = () => {
@@ -251,8 +223,8 @@ const TestServer: React.FC = () => {
   const [showNotification, setShowNotification] = useState(false); // <-- Add this line
   const [showConnectPopup, setShowConnectPopup] = useState(false);
   // Server connection info
-  const serverDomain = "survival.pixelhubhost.com";
-  const bedrockPort = "19132";
+  const serverDomain = 'survival.pixelhubhost.com';
+  const bedrockPort = '19132';
 
   // Only call usePterodactyl if not disabled
   const { status, loading, error } = disableExternalServices
@@ -262,21 +234,21 @@ const TestServer: React.FC = () => {
   // Copy-to-clipboard handler for domain/port
   const handleCopy = async (
     value: string,
-    setCopiedFn: React.Dispatch<React.SetStateAction<boolean>>
+    setCopiedFn: React.Dispatch<React.SetStateAction<boolean>>,
   ) => {
     try {
       if (navigator.clipboard && window.isSecureContext) {
         await navigator.clipboard.writeText(value);
       } else {
         // Fallback for insecure context
-        const textArea = document.createElement("textarea");
+        const textArea = document.createElement('textarea');
         textArea.value = value;
-        textArea.style.position = "fixed";
-        textArea.style.left = "-9999px";
+        textArea.style.position = 'fixed';
+        textArea.style.left = '-9999px';
         document.body.appendChild(textArea);
         textArea.focus();
         textArea.select();
-        document.execCommand("copy");
+        document.execCommand('copy');
         document.body.removeChild(textArea);
       }
       toast.success(translations[language].domainCopied);
@@ -287,37 +259,29 @@ const TestServer: React.FC = () => {
         setShowNotification(false); // <-- Hide notification after timeout
       }, 1500);
     } catch (err) {
-      toast.error("Copy failed");
+      toast.error('Copy failed');
     }
   };
 
   // Icons for copy buttons (checkmark if copied)
-  const buttonIcon = copied ? (
-    <Check className="w-4 h-4" />
-  ) : (
-    <Copy className="w-4 h-4" />
-  );
-  const buttonIconPort = copiedPort ? (
-    <Check className="w-4 h-4" />
-  ) : (
-    <Copy className="w-4 h-4" />
-  );
+  const buttonIcon = copied ? <Check className="w-4 h-4" /> : <Copy className="w-4 h-4" />;
+  const buttonIconPort = copiedPort ? <Check className="w-4 h-4" /> : <Copy className="w-4 h-4" />;
 
   // Framer Motion hover animation for copy and connect buttons
   const buttonHover = {
     scale: 1.045,
-    boxShadow: "0 8px 32px 0 rgba(16,185,129,0.13)",
-    transition: { type: "tween", duration: 0.13, ease: "easeInOut" },
+    boxShadow: '0 8px 32px 0 rgba(16,185,129,0.13)',
+    transition: { type: 'tween', duration: 0.13, ease: 'easeInOut' },
   };
   const copyHover = {
     scale: 1.13,
-    backgroundColor: "rgba(59,130,246,0.13)", // blue-500/20
-    transition: { type: "tween", duration: 0.13, ease: "easeInOut" },
+    backgroundColor: 'rgba(59,130,246,0.13)', // blue-500/20
+    transition: { type: 'tween', duration: 0.13, ease: 'easeInOut' },
   };
   const copyHoverGreen = {
     scale: 1.13,
-    backgroundColor: "rgba(16,185,129,0.13)", // emerald-500/20
-    transition: { type: "tween", duration: 0.13, ease: "easeInOut" },
+    backgroundColor: 'rgba(16,185,129,0.13)', // emerald-500/20
+    transition: { type: 'tween', duration: 0.13, ease: 'easeInOut' },
   };
 
   // Calculate memory and CPU usage as percentages
@@ -352,8 +316,7 @@ const TestServer: React.FC = () => {
   if (!loading && (!status || Object.keys(status).length === 0)) {
     return (
       <div className="text-center text-gray-500 py-8">
-        {siteConfig.texts[language].noServerStatus ||
-          "No server status available."}
+        {siteConfig.texts[language].noServerStatus || 'No server status available.'}
       </div>
     );
   }
@@ -363,13 +326,13 @@ const TestServer: React.FC = () => {
     if (loading) return siteConfig.texts[language].checking;
     if (!mappedState) return siteConfig.texts[language].testServerOffline;
     switch (mappedState) {
-      case "testServerStarting":
+      case 'testServerStarting':
         return siteConfig.texts[language].testServerStarting;
-      case "testServerRunning":
+      case 'testServerRunning':
         return siteConfig.texts[language].testServerRunning;
-      case "testServerStopping":
+      case 'testServerStopping':
         return siteConfig.texts[language].testServerStopping;
-      case "testServerOffline":
+      case 'testServerOffline':
         return siteConfig.texts[language].testServerOffline;
       default:
         return siteConfig.texts[language].testServerOffline;
@@ -377,11 +340,11 @@ const TestServer: React.FC = () => {
   };
 
   function mapServerState(state?: string) {
-    if (state === "running") return "testServerRunning";
-    if (state === "starting") return "testServerStarting";
-    if (state === "stopping") return "testServerStopping";
-    if (state === "offline") return "testServerOffline";
-    return "testServerOffline";
+    if (state === 'running') return 'testServerRunning';
+    if (state === 'starting') return 'testServerStarting';
+    if (state === 'stopping') return 'testServerStopping';
+    if (state === 'offline') return 'testServerOffline';
+    return 'testServerOffline';
   }
 
   const mappedState = mapServerState(status?.state);
@@ -391,10 +354,7 @@ const TestServer: React.FC = () => {
     <section className="pt-8 pb-8 bg-gradient-to-b from-gray-50 via-white to-gray-100 dark:from-gray-950 dark:via-gray-900 dark:to-gray-950 transition-colors duration-500 relative overflow-hidden">
       {/* Show notification when something is copied */}
       {showNotification && (
-        <CopyNotification
-          onClose={() => setShowNotification(false)}
-          language={language}
-        />
+        <CopyNotification onClose={() => setShowNotification(false)} language={language} />
       )}
       {/* Show popup with connection instructions */}
       {showConnectPopup && (
@@ -412,7 +372,7 @@ const TestServer: React.FC = () => {
             className="bg-white/90 dark:bg-gray-900/90 backdrop-blur-sm rounded-2xl shadow-xl p-8 border border-gray-200 dark:border-gray-800 transition-all duration-300"
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4, ease: "easeOut" }}
+            transition={{ duration: 0.4, ease: 'easeOut' }}
           >
             {/* Header: server icon, name, and version info */}
             <div className="flex items-center justify-between mb-6">
@@ -422,25 +382,19 @@ const TestServer: React.FC = () => {
                   <h2 className="text-xl font-bold text-gray-900 dark:text-white">
                     {siteConfig.texts[language].testServer}
                   </h2>
-                  <p className="text-sm text-gray-600 dark:text-gray-400">
-                    (1.7.2 - 1.21.5)
-                  </p>
+                  <p className="text-sm text-gray-600 dark:text-gray-400">(1.7.2 - 1.21.5)</p>
                 </div>
               </div>
               {/* Server status indicator */}
               <div className="flex items-center space-x-2">
                 <Signal
                   className={`w-5 h-5 ${
-                    mappedState === "testServerRunning"
-                      ? "text-green-500"
-                      : "text-red-500"
+                    mappedState === 'testServerRunning' ? 'text-green-500' : 'text-red-500'
                   }`}
                 />
                 <span
                   className={`text-sm font-medium ${
-                    mappedState === "testServerRunning"
-                      ? "text-green-500"
-                      : "text-red-500"
+                    mappedState === 'testServerRunning' ? 'text-green-500' : 'text-red-500'
                   }`}
                 >
                   {getServerStatusText(mappedState)}
@@ -475,9 +429,9 @@ const TestServer: React.FC = () => {
                     whileFocus={copyHover}
                     whileTap={{
                       scale: 1.04,
-                      backgroundColor: "rgba(59,130,246,0.18)",
+                      backgroundColor: 'rgba(59,130,246,0.18)',
                     }} // mobile tap animation
-                    style={{ willChange: "transform, background-color" }}
+                    style={{ willChange: 'transform, background-color' }}
                   >
                     {buttonIcon}
                   </motion.button>
@@ -499,9 +453,9 @@ const TestServer: React.FC = () => {
                     whileFocus={copyHoverGreen}
                     whileTap={{
                       scale: 1.04,
-                      backgroundColor: "rgba(16,185,129,0.18)",
+                      backgroundColor: 'rgba(16,185,129,0.18)',
                     }} // mobile tap animation
-                    style={{ willChange: "transform, background-color" }}
+                    style={{ willChange: 'transform, background-color' }}
                   >
                     {buttonIconPort}
                   </motion.button>
@@ -512,15 +466,13 @@ const TestServer: React.FC = () => {
                     countryCode="BR"
                     svg
                     style={{
-                      width: "1.25em",
-                      height: "1em",
+                      width: '1.25em',
+                      height: '1em',
                     }}
                     title="Brazil"
                     aria-label="Brazil flag"
                   />
-                  <span className="text-sm text-gray-900 dark:text-white">
-                    Igarapava, SP
-                  </span>
+                  <span className="text-sm text-gray-900 dark:text-white">Igarapava, SP</span>
                 </div>
               </div>
               {/* Server resource usage bars */}
@@ -569,8 +521,8 @@ const TestServer: React.FC = () => {
                 className="w-full px-4 py-2 bg-emerald-600 hover:bg-emerald-700 text-white text-sm rounded-lg transition-all duration-200 shadow-lg"
                 whileHover={buttonHover}
                 whileFocus={buttonHover}
-                whileTap={{ scale: 1.04, backgroundColor: "#059669" }} // mobile tap animation
-                style={{ willChange: "transform, box-shadow" }}
+                whileTap={{ scale: 1.04, backgroundColor: '#059669' }} // mobile tap animation
+                style={{ willChange: 'transform, box-shadow' }}
               >
                 {siteConfig.texts[language].connectToTestServer}
               </motion.button>
@@ -579,11 +531,7 @@ const TestServer: React.FC = () => {
         </div>
       </div>
       {/* Toast notifications for copy actions */}
-      <ToastContainer
-        position="bottom-center"
-        autoClose={1500}
-        hideProgressBar
-      />
+      <ToastContainer position="bottom-center" autoClose={1500} hideProgressBar />
     </section>
   );
 };

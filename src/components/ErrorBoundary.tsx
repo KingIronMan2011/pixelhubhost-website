@@ -1,5 +1,5 @@
-import React from "react";
-import languagesConfig from "../config/languages/Languages";
+import React from 'react';
+import languagesConfig from '../config/languages/Languages';
 
 type ErrorBoundaryProps = {
   children: React.ReactNode;
@@ -12,10 +12,7 @@ type ErrorBoundaryState = {
   error?: Error;
 };
 
-class ErrorBoundary extends React.Component<
-  ErrorBoundaryProps,
-  ErrorBoundaryState
-> {
+class ErrorBoundary extends React.Component<ErrorBoundaryProps, ErrorBoundaryState> {
   constructor(props: ErrorBoundaryProps) {
     super(props);
     this.state = { hasError: false };
@@ -26,49 +23,41 @@ class ErrorBoundary extends React.Component<
   }
 
   componentDidCatch(error: Error, info: React.ErrorInfo) {
-    console.error("ErrorBoundary caught an error", error, info);
+    console.error('ErrorBoundary caught an error', error, info);
   }
 
   handleLanguageChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    localStorage.setItem("language", e.target.value);
+    localStorage.setItem('language', e.target.value);
     this.forceUpdate();
   };
 
   render() {
     if (this.state.hasError) {
-      let language =
-        this.props.language || localStorage.getItem("language");
+      let language = this.props.language || localStorage.getItem('language');
       let t = { ...languagesConfig.en.texts };
-      if (
-        language &&
-        Object.prototype.hasOwnProperty.call(languagesConfig, language)
-      ) {
+      if (language && Object.prototype.hasOwnProperty.call(languagesConfig, language)) {
         t = {
           ...t,
           ...languagesConfig[language as keyof typeof languagesConfig].texts,
         };
       }
 
-      const languageOptions = Object.entries(languagesConfig).map(
-        ([code, lang]) => (
-          // @ts-ignore
-          <option key={code} value={code}>
-            {/* @ts-ignore */}
-            {languagesConfig[language]?.texts?.languageNames?.[code] ||
-              // @ts-ignore
-              lang.texts.languageNames?.[code] ||
-              code.toUpperCase()}
-          </option>
-        )
-      );
+      const languageOptions = Object.entries(languagesConfig).map(([code, lang]) => (
+        // @ts-ignore
+        <option key={code} value={code}>
+          {/* @ts-ignore */}
+          {languagesConfig[language]?.texts?.languageNames?.[code] ||
+            // @ts-ignore
+            lang.texts.languageNames?.[code] ||
+            code.toUpperCase()}
+        </option>
+      ));
 
       return (
         <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-b from-blue-50 via-white to-purple-50 dark:from-gray-950 dark:via-gray-900 dark:to-gray-950 transition-colors duration-500">
           <div className="bg-white/95 dark:bg-gray-900/95 rounded-2xl shadow-xl p-10 flex flex-col items-center max-w-lg w-full animate-fade-in border border-gray-200 dark:border-gray-800">
             <div className="flex flex-col items-center w-full">
-              <span className="text-5xl mb-5 animate-pulse-slow select-none">
-                ⚠️
-              </span>
+              <span className="text-5xl mb-5 animate-pulse-slow select-none">⚠️</span>
               <h1 className="text-3xl font-extrabold text-red-600 mb-3 text-center drop-shadow">
                 {t.errorBoundaryTitle}
               </h1>
@@ -90,10 +79,10 @@ class ErrorBoundary extends React.Component<
                 </label>
                 <select
                   id="error-lang"
-                  value={language ?? ""}
+                  value={language ?? ''}
                   onChange={this.handleLanguageChange}
                   className="mx-auto bg-gray-100 dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-lg px-4 py-3 text-gray-700 dark:text-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-400 transition-all w-full max-w-[220px] text-base"
-                  style={{ display: "block" }}
+                  style={{ display: 'block' }}
                 >
                   {languageOptions}
                 </select>

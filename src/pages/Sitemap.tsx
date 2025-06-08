@@ -1,25 +1,25 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import { motion } from "framer-motion";
-import { useLanguage } from "../context/LanguageContext";
-import languages from "../config/languages/Languages";
-import MetaTags from "../components/MetaTags";
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { motion } from 'framer-motion';
+import { useLanguage } from '../context/LanguageContext';
+import languages from '../config/languages/Languages';
+import MetaTags from '../components/MetaTags';
 
 // List of sitemap links with route paths and translation keys for labels
 const sitemapLinks = [
-  { path: "/", labelKey: "home" },
-  { path: "/aboutus", labelKey: "aboutUsTitle" },
-  { path: "/privacy", labelKey: "privacyPolicy" },
-  { path: "/terms", labelKey: "termsOfService" },
-  { path: "/legal", labelKey: "legal" },
+  { path: '/', labelKey: 'home' },
+  { path: '/aboutus', labelKey: 'aboutUsTitle' },
+  { path: '/privacy', labelKey: 'privacyPolicy' },
+  { path: '/terms', labelKey: 'termsOfService' },
+  { path: '/legal', labelKey: 'legal' },
   // Add more Minecraft hosting-related routes as needed
 ];
 
 // Animation config for link hover/tap effects
 const linkHover = {
   scale: 1.035,
-  boxShadow: "0 8px 32px 0 rgba(59,130,246,0.10)",
-  transition: { type: "tween", duration: 0.13, ease: "easeInOut" },
+  boxShadow: '0 8px 32px 0 rgba(59,130,246,0.10)',
+  transition: { type: 'tween', duration: 0.13, ease: 'easeInOut' },
 };
 
 // Sitemap page component displays a list of important site links
@@ -31,10 +31,7 @@ const Sitemap: React.FC = () => {
 
   return (
     <>
-      <MetaTags
-        title={texts.sitemap}
-        description={texts.sitemapMinecraftNote}
-      />
+      <MetaTags title={texts.sitemap} description={texts.sitemapMinecraftNote} />
       <div className="max-w-lg mx-auto mt-24 mb-12 p-8 rounded-2xl shadow-xl bg-white/90 dark:bg-gray-900/90 border border-gray-200 dark:border-gray-800">
         {/* Page title, translated */}
         <h1
@@ -51,18 +48,15 @@ const Sitemap: React.FC = () => {
                 whileHover={linkHover}
                 whileFocus={linkHover}
                 whileTap={linkHover}
-                style={{ willChange: "transform, box-shadow" }}
+                style={{ willChange: 'transform, box-shadow' }}
               >
                 <Link
                   to={link.path}
                   className="block px-5 py-3 rounded-xl font-medium text-base text-blue-700 dark:text-blue-300 bg-blue-50/60 dark:bg-blue-900/30 hover:bg-blue-100 dark:hover:bg-blue-800 transition-colors duration-200 shadow-sm"
                 >
-                  {typeof texts[link.labelKey as keyof typeof texts] ===
-                  "string"
+                  {typeof texts[link.labelKey as keyof typeof texts] === 'string'
                     ? texts[link.labelKey as keyof typeof texts]
-                    : (texts[link.labelKey as keyof typeof texts] as any)?.[
-                        language
-                      ] ||
+                    : (texts[link.labelKey as keyof typeof texts] as any)?.[language] ||
                       (texts[link.labelKey as keyof typeof texts] as any)?.en ||
                       link.labelKey}
                 </Link>

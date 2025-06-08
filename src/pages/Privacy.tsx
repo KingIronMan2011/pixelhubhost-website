@@ -1,9 +1,9 @@
-import React from "react";
-import { useLanguage } from "../context/LanguageContext";
-import { config } from "../config/config";
-import languagesConfig from "../config/languages/Languages";
-import { motion } from "framer-motion";
-import MetaTags from "../components/MetaTags";
+import React from 'react';
+import { useLanguage } from '../context/LanguageContext';
+import { config } from '../config/config';
+import languagesConfig from '../config/languages/Languages';
+import { motion } from 'framer-motion';
+import MetaTags from '../components/MetaTags';
 
 // Privacy page component displays privacy policy and data protection info
 const Privacy: React.FC = () => {
@@ -15,8 +15,8 @@ const Privacy: React.FC = () => {
   // Framer Motion hover animation for the contact button
   const buttonHover = {
     scale: 1.045,
-    boxShadow: "0 8px 32px 0 rgba(59,130,246,0.13)",
-    transition: { type: "tween", duration: 0.13, ease: "easeInOut" },
+    boxShadow: '0 8px 32px 0 rgba(59,130,246,0.13)',
+    transition: { type: 'tween', duration: 0.13, ease: 'easeInOut' },
   };
 
   return (
@@ -35,9 +35,7 @@ const Privacy: React.FC = () => {
           {/* Introductory privacy statement */}
           <p className="mb-4 text-lg">{texts.privacyIntro}</p>
           {/* Company name */}
-          <h2 className="text-2xl font-semibold mt-8 mb-2 text-blue-300">
-            {config.name}
-          </h2>
+          <h2 className="text-2xl font-semibold mt-8 mb-2 text-blue-300">{config.name}</h2>
           {/* List of privacy-related points */}
           <ul className="list-disc list-inside mb-4 space-y-2">
             <li>{texts.privacyData}</li>
@@ -58,14 +56,14 @@ const Privacy: React.FC = () => {
               whileFocus={buttonHover}
               whileTap={{
                 scale: 1.045,
-                boxShadow: "0 8px 32px 0 rgba(0,0,0,0.13)",
+                boxShadow: '0 8px 32px 0 rgba(0,0,0,0.13)',
                 transition: {
-                  type: "tween",
+                  type: 'tween',
                   duration: 0.13,
-                  ease: "easeInOut",
+                  ease: 'easeInOut',
                 },
               }} // mobile tap animation
-              style={{ willChange: "transform, box-shadow" }}
+              style={{ willChange: 'transform, box-shadow' }}
             >
               {texts.aboutUsContact}
             </motion.a>

@@ -2,53 +2,52 @@
 
 // General site/company configuration
 export const config = {
-  name: "PixelHub Host", // Company/site name
+  name: 'PixelHub Host', // Company/site name
   underConstruction: false, // Toggle for construction mode
   testErrorHandling: false, // Toggle for test error handling
-  website: "https://www.pixelhubhost.com", // Main website URL
+  website: 'https://www.pixelhubhost.com', // Main website URL
   contact: {
-    email: "contato@pixelhubhost.com", // Support email
-    discord: "https://discord.gg/mquaVhs5sr", // Discord invite link
-    whatsapp: "https://wa.me/5516993981473", // WhatsApp contact link
+    email: 'contato@pixelhubhost.com', // Support email
+    discord: 'https://discord.gg/mquaVhs5sr', // Discord invite link
+    whatsapp: 'https://wa.me/5516993981473', // WhatsApp contact link
   },
   yearFounded: 2025, // Year the company was founded
-  copyright: "PixelHub Host", // Copyright holder
+  copyright: 'PixelHub Host', // Copyright holder
 };
 
 // Links for each hosting plan and billing cycle (monthly/quarterly)
-export const planLinks: Record<string, { monthly: string; quarterly: string }> =
-  {
-    oak: {
-      monthly: "https://dash.pixelhubhost.com/market/1/checkout",
-      quarterly: "https://dash.pixelhubhost.com/market/1/checkout",
-    },
-    stone: {
-      monthly: "https://dash.pixelhubhost.com/market/2/checkout",
-      quarterly: "https://dash.pixelhubhost.com/market/2/checkout",
-    },
-    iron: {
-      monthly: "https://dash.pixelhubhost.com/market/3/checkout",
-      quarterly: "https://dash.pixelhubhost.com/market/3/checkout",
-    },
-    diamond: {
-      monthly: "https://dash.pixelhubhost.com/market/4/checkout",
-      quarterly: "https://dash.pixelhubhost.com/market/4/checkout",
-    },
-    netherite: {
-      monthly: "https://dash.pixelhubhost.com/market/5/checkout",
-      quarterly: "https://dash.pixelhubhost.com/market/5/checkout",
-    },
-    dragon: {
-      monthly: "https://dash.pixelhubhost.com/market/6/checkout",
-      quarterly: "https://dash.pixelhubhost.com/market/6/checkout",
-    },
-  };
+export const planLinks: Record<string, { monthly: string; quarterly: string }> = {
+  oak: {
+    monthly: 'https://dash.pixelhubhost.com/market/1/checkout',
+    quarterly: 'https://dash.pixelhubhost.com/market/1/checkout',
+  },
+  stone: {
+    monthly: 'https://dash.pixelhubhost.com/market/2/checkout',
+    quarterly: 'https://dash.pixelhubhost.com/market/2/checkout',
+  },
+  iron: {
+    monthly: 'https://dash.pixelhubhost.com/market/3/checkout',
+    quarterly: 'https://dash.pixelhubhost.com/market/3/checkout',
+  },
+  diamond: {
+    monthly: 'https://dash.pixelhubhost.com/market/4/checkout',
+    quarterly: 'https://dash.pixelhubhost.com/market/4/checkout',
+  },
+  netherite: {
+    monthly: 'https://dash.pixelhubhost.com/market/5/checkout',
+    quarterly: 'https://dash.pixelhubhost.com/market/5/checkout',
+  },
+  dragon: {
+    monthly: 'https://dash.pixelhubhost.com/market/6/checkout',
+    quarterly: 'https://dash.pixelhubhost.com/market/6/checkout',
+  },
+};
 
 // Supported language codes for the site
-export type Language = "en" | "pt" | "de" | "fr" | "it"; // Italian supported
+export type Language = 'en' | 'pt' | 'de' | 'fr' | 'it'; // Italian supported
 
 // Supported theme modes
-export type Theme = "light" | "dark";
+export type Theme = 'light' | 'dark';
 
 // Configuration for Pterodactyl API integration (server management panel)
 export const PTERODACTYL_CONFIG = {
@@ -59,7 +58,7 @@ export const PTERODACTYL_CONFIG = {
 
 // Type definition for server status (used for test server status display)
 export type ServerStatus = {
-  state: "running" | "starting" | "stopping" | "offline";
+  state: 'running' | 'starting' | 'stopping' | 'offline';
   memory: { current: number; limit: number };
   cpu: { current: number; limit: number };
 };

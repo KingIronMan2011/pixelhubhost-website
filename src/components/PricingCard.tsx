@@ -1,7 +1,7 @@
-import { useLanguage } from "../context/LanguageContext";
-import { planLinks } from "../config/config";
-import languagesConfig from "../config/languages/Languages";
-import { motion } from "framer-motion";
+import { useLanguage } from '../context/LanguageContext';
+import { planLinks } from '../config/config';
+import languagesConfig from '../config/languages/Languages';
+import { motion } from 'framer-motion';
 
 // Props for the PricingCard component
 interface PricingCardProps {
@@ -18,48 +18,41 @@ interface PricingCardProps {
     };
   };
   isPopular?: boolean;
-  billingInterval?: "monthly" | "quarterly";
+  billingInterval?: 'monthly' | 'quarterly';
 }
 
 // PricingCard component: displays a single pricing plan card
-const PricingCard = ({
-  product,
-  isPopular,
-  billingInterval = "monthly",
-}: PricingCardProps) => {
+const PricingCard = ({ product, isPopular, billingInterval = 'monthly' }: PricingCardProps) => {
   // Get current language from context
   const { language } = useLanguage();
   // Get translations for the current language, fallback to English
   const langs = (languagesConfig as any).default || languagesConfig;
   const t = langs[language]?.texts || langs.en.texts;
   // Get the correct plan link for the selected billing interval
-  const planLink = planLinks[product.id]?.[billingInterval] || "#";
+  const planLink = planLinks[product.id]?.[billingInterval] || '#';
 
   // Get the billing label ("Monthly" or "Quarterly") in the current language
-  const billingLabel =
-    billingInterval === "monthly"
-      ? t.monthly
-      : t.quarterly;
+  const billingLabel = billingInterval === 'monthly' ? t.monthly : t.quarterly;
 
   // Framer Motion tap animation
   const tapAnimation = {
     scale: 0.97,
-    boxShadow: "0 8px 32px 0 rgba(0,0,0,0.13)",
-    transition: { type: "tween", duration: 0.13, ease: "easeInOut" },
+    boxShadow: '0 8px 32px 0 rgba(0,0,0,0.13)',
+    transition: { type: 'tween', duration: 0.13, ease: 'easeInOut' },
   };
 
   return (
     // Animated card container
     <motion.div
       className="relative bg-white/90 dark:bg-gray-900/90 rounded-2xl border border-gray-200 dark:border-gray-800 shadow-md p-7"
-      initial={{ scale: 1, boxShadow: "none" }}
+      initial={{ scale: 1, boxShadow: 'none' }}
       whileHover={{
         scale: 1.025,
-        boxShadow: "0 8px 32px 0 rgba(0,0,0,0.13)",
-        transition: { type: "tween", duration: 0.13, ease: "easeInOut" },
+        boxShadow: '0 8px 32px 0 rgba(0,0,0,0.13)',
+        transition: { type: 'tween', duration: 0.13, ease: 'easeInOut' },
       }}
       whileTap={tapAnimation} // mobile tap animation
-      style={{ willChange: "transform, box-shadow" }}
+      style={{ willChange: 'transform, box-shadow' }}
     >
       {/* Popular plan badge */}
       {isPopular && (
@@ -69,7 +62,7 @@ const PricingCard = ({
       )}
 
       {/* Card content */}
-      <div className={`p-7 ${isPopular ? "pt-14" : "pt-7"}`}>
+      <div className={`p-7 ${isPopular ? 'pt-14' : 'pt-7'}`}>
         {/* Plan name */}
         <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-2 tracking-tight">
           {product.name[language]}
@@ -97,20 +90,20 @@ const PricingCard = ({
           className={`w-full inline-block text-center py-3 px-4 rounded-xl font-semibold transition-all duration-200 shadow
             ${
               isPopular
-                ? "bg-blue-600 hover:bg-blue-700 text-white"
-                : "bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-white hover:bg-gray-200 dark:hover:bg-gray-700"
+                ? 'bg-blue-600 hover:bg-blue-700 text-white'
+                : 'bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-white hover:bg-gray-200 dark:hover:bg-gray-700'
             }
           `}
           whileHover={{
             scale: 1.04,
-            transition: { type: "tween", duration: 0.13, ease: "easeInOut" },
+            transition: { type: 'tween', duration: 0.13, ease: 'easeInOut' },
           }}
           whileFocus={{
             scale: 1.04,
-            transition: { type: "tween", duration: 0.13, ease: "easeInOut" },
+            transition: { type: 'tween', duration: 0.13, ease: 'easeInOut' },
           }}
           whileTap={{ scale: 0.97 }} // mobile tap animation
-          style={{ willChange: "transform" }}
+          style={{ willChange: 'transform' }}
         >
           {t.buyNow}
         </motion.a>

@@ -1,29 +1,29 @@
-import React from "react";
-import { Globe, Youtube } from "lucide-react";
-import { useLanguage } from "../context/LanguageContext";
-import languagesConfig from "../config/languages/Languages";
-import { motion } from "framer-motion";
-import DOMPurify from "dompurify";
-import { useLocation } from "react-router-dom";
+import React from 'react';
+import { Globe, Youtube } from 'lucide-react';
+import { useLanguage } from '../context/LanguageContext';
+import languagesConfig from '../config/languages/Languages';
+import { motion } from 'framer-motion';
+import DOMPurify from 'dompurify';
+import { useLocation } from 'react-router-dom';
 
 const languages = [
-  { code: "en", name: "English" },
-  { code: "pt", name: "Português" },
-  { code: "de", name: "Deutsch" },
-  { code: "fr", name: "Français" },
-  { code: "it", name: "Italiano" },
+  { code: 'en', name: 'English' },
+  { code: 'pt', name: 'Português' },
+  { code: 'de', name: 'Deutsch' },
+  { code: 'fr', name: 'Français' },
+  { code: 'it', name: 'Italiano' },
 ];
 
 const hoverMotion = {
   whileHover: {
     scale: 1.07,
-    boxShadow: "0 8px 32px 0 rgba(0,0,0,0.13)",
-    transition: { duration: 0.13, ease: "easeOut" },
+    boxShadow: '0 8px 32px 0 rgba(0,0,0,0.13)',
+    transition: { duration: 0.13, ease: 'easeOut' },
   },
   whileTap: {
     scale: 1.07,
-    boxShadow: "0 8px 32px 0 rgba(0,0,0,0.13)",
-    transition: { duration: 0.13, ease: "easeOut" },
+    boxShadow: '0 8px 32px 0 rgba(0,0,0,0.13)',
+    transition: { duration: 0.13, ease: 'easeOut' },
   },
 };
 
@@ -32,10 +32,9 @@ const Footer: React.FC = () => {
   const { language, setLanguage } = useLanguage();
   const langKey = language as keyof typeof languagesConfig;
   const t = languagesConfig[langKey]?.texts || languagesConfig.en.texts;
-  const contact =
-    languagesConfig[langKey]?.contact || languagesConfig.en.contact;
+  const contact = languagesConfig[langKey]?.contact || languagesConfig.en.contact;
   const location = useLocation();
-  const isHome = location.pathname === "/" || location.pathname === "/#home";
+  const isHome = location.pathname === '/' || location.pathname === '/#home';
 
   return (
     <footer className="bg-gradient-to-b from-gray-900 via-gray-950 to-black text-gray-300 pt-14 pb-8 border-t border-gray-800">
@@ -44,20 +43,14 @@ const Footer: React.FC = () => {
           {/* Brand & Description */}
           <div>
             <a
-              href={isHome ? "#home" : "/"}
+              href={isHome ? '#home' : '/'}
               className="font-semibold text-lg mb-4 text-white tracking-wide hover:text-blue-400 transition-colors flex items-center gap-2"
               aria-label="PixelHub Host"
             >
-              <img
-                src="/pixel_hub_host.png"
-                alt="PixelHub Host Logo"
-                className="h-8 w-auto"
-              />
+              <img src="/pixel_hub_host.png" alt="PixelHub Host Logo" className="h-8 w-auto" />
               {t.brand}
             </a>
-            <p className="text-sm text-gray-400 leading-relaxed mb-4">
-              {t.footerDescription}
-            </p>
+            <p className="text-sm text-gray-400 leading-relaxed mb-4">{t.footerDescription}</p>
             {/* Social icons example (e.g., YouTube) */}
             <a
               href="https://www.youtube.com/channel/..."
@@ -72,23 +65,15 @@ const Footer: React.FC = () => {
 
           {/* Company */}
           <div>
-            <h4 className="font-semibold text-lg mb-4 text-white tracking-wide">
-              {t.company}
-            </h4>
+            <h4 className="font-semibold text-lg mb-4 text-white tracking-wide">{t.company}</h4>
             <ul className="space-y-2 text-sm">
               <li>
-                <a
-                  href="/aboutus"
-                  className="hover:text-blue-400 transition-colors"
-                >
+                <a href="/aboutus" className="hover:text-blue-400 transition-colors">
                   {t.aboutUs}
                 </a>
               </li>
               <li>
-                <a
-                  href="#contact"
-                  className="hover:text-blue-400 transition-colors"
-                >
+                <a href="#contact" className="hover:text-blue-400 transition-colors">
                   {t.contact}
                 </a>
               </li>
@@ -97,23 +82,15 @@ const Footer: React.FC = () => {
 
           {/* Services */}
           <div>
-            <h4 className="font-semibold text-lg mb-4 text-white tracking-wide">
-              {t.services}
-            </h4>
+            <h4 className="font-semibold text-lg mb-4 text-white tracking-wide">{t.services}</h4>
             <ul className="space-y-2 text-sm">
               <li>
-                <a
-                  href="#pricing"
-                  className="hover:text-blue-400 transition-colors"
-                >
+                <a href="#pricing" className="hover:text-blue-400 transition-colors">
                   {t.mcHosting}
                 </a>
               </li>
               <li>
-                <a
-                  href="#addons"
-                  className="hover:text-blue-400 transition-colors"
-                >
+                <a href="#addons" className="hover:text-blue-400 transition-colors">
                   {t.addons}
                 </a>
               </li>
@@ -122,9 +99,7 @@ const Footer: React.FC = () => {
 
           {/* Support & Language */}
           <div>
-            <h4 className="font-semibold text-lg mb-4 text-white tracking-wide">
-              {t.support}
-            </h4>
+            <h4 className="font-semibold text-lg mb-4 text-white tracking-wide">{t.support}</h4>
             <ul className="space-y-2 text-sm">
               <li>
                 <a
@@ -191,9 +166,9 @@ const Footer: React.FC = () => {
               dangerouslySetInnerHTML={{
                 __html: DOMPurify.sanitize(
                   t.madeByText.replace(
-                    "KingIronMan2011",
-                    `<a href="https://github.com/KingIronMan2011" target="_blank" rel="noopener noreferrer" class="underline hover:text-blue-400 transition-colors">KingIronMan2011</a>`
-                  )
+                    'KingIronMan2011',
+                    `<a href="https://github.com/KingIronMan2011" target="_blank" rel="noopener noreferrer" class="underline hover:text-blue-400 transition-colors">KingIronMan2011</a>`,
+                  ),
                 ),
               }}
             />

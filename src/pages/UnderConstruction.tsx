@@ -1,9 +1,9 @@
-import { useLanguage } from "../context/LanguageContext";
-import { config, Language } from "../config/config";
-import languagesConfig from "../config/languages/Languages";
-import { motion } from "framer-motion";
-import { FaDiscord, FaWhatsapp, FaEnvelope, FaCube } from "react-icons/fa";
-import MetaTags from "../components/MetaTags";
+import { useLanguage } from '../context/LanguageContext';
+import { config, Language } from '../config/config';
+import languagesConfig from '../config/languages/Languages';
+import { motion } from 'framer-motion';
+import { FaDiscord, FaWhatsapp, FaEnvelope, FaCube } from 'react-icons/fa';
+import MetaTags from '../components/MetaTags';
 
 const brand = config.name;
 const contact = config.contact;
@@ -19,26 +19,23 @@ const UnderConstruction = () => {
   // Framer Motion hover animation configs for contact buttons
   const buttonHover = {
     scale: 1.045,
-    boxShadow: "0 8px 32px 0 rgba(59,130,246,0.13)",
-    transition: { type: "tween", duration: 0.13, ease: "easeInOut" },
+    boxShadow: '0 8px 32px 0 rgba(59,130,246,0.13)',
+    transition: { type: 'tween', duration: 0.13, ease: 'easeInOut' },
   };
   const whatsappHover = {
     scale: 1.045,
-    boxShadow: "0 8px 32px 0 rgba(16,185,129,0.13)",
-    transition: { type: "tween", duration: 0.13, ease: "easeInOut" },
+    boxShadow: '0 8px 32px 0 rgba(16,185,129,0.13)',
+    transition: { type: 'tween', duration: 0.13, ease: 'easeInOut' },
   };
   const emailHover = {
     scale: 1.045,
-    boxShadow: "0 8px 32px 0 rgba(59,130,246,0.07)",
-    transition: { type: "tween", duration: 0.13, ease: "easeInOut" },
+    boxShadow: '0 8px 32px 0 rgba(59,130,246,0.07)',
+    transition: { type: 'tween', duration: 0.13, ease: 'easeInOut' },
   };
 
   return (
     <>
-      <MetaTags
-        title={texts.underConstruction}
-        description={texts.constructionWorking}
-      />
+      <MetaTags title={texts.underConstruction} description={texts.constructionWorking} />
       {/* Main container with background and centered content */}
       <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-b from-gray-900 via-gray-950 to-black text-gray-200 transition-colors duration-500">
         <div className="bg-white/90 dark:bg-gray-900/90 rounded-2xl shadow-xl p-8 border border-gray-200 dark:border-gray-800 flex flex-col items-center max-w-lg w-full">
@@ -82,14 +79,14 @@ const UnderConstruction = () => {
               whileFocus={buttonHover}
               whileTap={{
                 scale: 1.045,
-                boxShadow: "0 8px 32px 0 rgba(16,185,129,0.13)",
+                boxShadow: '0 8px 32px 0 rgba(16,185,129,0.13)',
                 transition: {
-                  type: "tween",
+                  type: 'tween',
                   duration: 0.13,
-                  ease: "easeInOut",
+                  ease: 'easeInOut',
                 },
               }} // mobile tap animation
-              style={{ willChange: "transform, box-shadow" }}
+              style={{ willChange: 'transform, box-shadow' }}
             >
               <FaDiscord size={20} />
               Discord
@@ -102,14 +99,14 @@ const UnderConstruction = () => {
               whileFocus={emailHover}
               whileTap={{
                 scale: 1.045,
-                boxShadow: "0 8px 32px 0 rgba(16,185,129,0.13)",
+                boxShadow: '0 8px 32px 0 rgba(16,185,129,0.13)',
                 transition: {
-                  type: "tween",
+                  type: 'tween',
                   duration: 0.13,
-                  ease: "easeInOut",
+                  ease: 'easeInOut',
                 },
               }} // mobile tap animation
-              style={{ willChange: "transform, box-shadow" }}
+              style={{ willChange: 'transform, box-shadow' }}
             >
               <FaEnvelope size={20} />
               Email
@@ -124,14 +121,14 @@ const UnderConstruction = () => {
               whileFocus={whatsappHover}
               whileTap={{
                 scale: 1.045,
-                boxShadow: "0 8px 32px 0 rgba(16,185,129,0.13)",
+                boxShadow: '0 8px 32px 0 rgba(16,185,129,0.13)',
                 transition: {
-                  type: "tween",
+                  type: 'tween',
                   duration: 0.13,
-                  ease: "easeInOut",
+                  ease: 'easeInOut',
                 },
               }} // mobile tap animation
-              style={{ willChange: "transform, box-shadow" }}
+              style={{ willChange: 'transform, box-shadow' }}
             >
               <FaWhatsapp size={20} />
               WhatsApp
@@ -139,23 +136,20 @@ const UnderConstruction = () => {
           </div>
           {/* Language Switcher Dropdown */}
           <div className="flex items-center gap-2 mt-4">
-            <label
-              htmlFor="lang"
-              className="text-sm text-gray-500 dark:text-gray-400"
-            >
+            <label htmlFor="lang" className="text-sm text-gray-500 dark:text-gray-400">
               {texts.constructionLanguage}:
             </label>
             <motion.div
               className="relative"
               whileHover={{
                 scale: 1.03,
-                boxShadow: "0 4px 16px 0 rgba(59,130,246,0.10)",
+                boxShadow: '0 4px 16px 0 rgba(59,130,246,0.10)',
               }}
               whileFocus={{
                 scale: 1.03,
-                boxShadow: "0 4px 16px 0 rgba(59,130,246,0.13)",
+                boxShadow: '0 4px 16px 0 rgba(59,130,246,0.13)',
               }}
-              style={{ willChange: "transform, box-shadow" }}
+              style={{ willChange: 'transform, box-shadow' }}
             >
               <select
                 id="lang"

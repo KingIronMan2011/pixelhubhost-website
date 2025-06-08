@@ -1,9 +1,9 @@
-import React from "react";
-import { Sun, Moon } from "lucide-react";
-import { useTheme } from "../context/ThemeContext";
-import { useLanguage } from "../context/LanguageContext";
-import languagesConfig from "../config/languages/Languages";
-import { motion } from "framer-motion";
+import React from 'react';
+import { Sun, Moon } from 'lucide-react';
+import { useTheme } from '../context/ThemeContext';
+import { useLanguage } from '../context/LanguageContext';
+import languagesConfig from '../config/languages/Languages';
+import { motion } from 'framer-motion';
 
 // ThemeToggle component: toggles between light and dark mode
 const ThemeToggle: React.FC = () => {
@@ -13,20 +13,19 @@ const ThemeToggle: React.FC = () => {
   const { language } = useLanguage();
   // Get translations for the current language, fallback to English
   const texts =
-    languagesConfig[language as keyof typeof languagesConfig]?.texts ||
-    languagesConfig.en.texts;
+    languagesConfig[language as keyof typeof languagesConfig]?.texts || languagesConfig.en.texts;
 
   // Framer Motion hover animation for the toggle button
   const buttonHover = {
     scale: 1.08,
-    boxShadow: "0 8px 32px 0 rgba(251,191,36,0.13)",
-    transition: { type: "tween", duration: 0.13, ease: "easeInOut" },
+    boxShadow: '0 8px 32px 0 rgba(251,191,36,0.13)',
+    transition: { type: 'tween', duration: 0.13, ease: 'easeInOut' },
   };
 
   // Framer Motion for icon rotation (for dark mode sun)
   const iconSpin = {
     animate: { rotate: 360 },
-    transition: { repeat: Infinity, duration: 15, ease: "linear" },
+    transition: { repeat: Infinity, duration: 15, ease: 'linear' },
   };
 
   // Framer Motion hover/tap animation for the toggle button (mobile and desktop)
@@ -35,8 +34,8 @@ const ThemeToggle: React.FC = () => {
     whileFocus: buttonHover,
     whileTap: {
       scale: 0.96,
-      boxShadow: "0 4px 16px 0 rgba(251,191,36,0.10)",
-      transition: { type: "tween", duration: 0.13, ease: "easeInOut" },
+      boxShadow: '0 4px 16px 0 rgba(251,191,36,0.10)',
+      transition: { type: 'tween', duration: 0.13, ease: 'easeInOut' },
     },
   };
 
@@ -48,17 +47,17 @@ const ThemeToggle: React.FC = () => {
       aria-label={texts.toggleTheme}
       {...buttonMotion}
       type="button"
-      style={{ willChange: "transform, box-shadow" }}
+      style={{ willChange: 'transform, box-shadow' }}
     >
       {/* Visually hidden label for accessibility */}
       <span className="sr-only">{texts.toggleTheme}</span>
       {/* Show sun icon (animated spin) if dark mode, or moon if light mode */}
-      {theme === "dark" ? (
+      {theme === 'dark' ? (
         <motion.span {...iconSpin}>
           <Sun
             size={20}
             className="text-yellow-400"
-            style={{ animation: "spin 20s linear infinite" }}
+            style={{ animation: 'spin 20s linear infinite' }}
           />
         </motion.span>
       ) : (

@@ -1,7 +1,7 @@
-import React, { useMemo } from "react";
-import { Helmet } from "react-helmet-async";
-import { config } from "../config/config";
-import languagesConfig from "../config/languages/Languages";
+import React, { useMemo } from 'react';
+import { Helmet } from 'react-helmet-async';
+import { config } from '../config/config';
+import languagesConfig from '../config/languages/Languages';
 
 type SupportedLanguage = keyof typeof languagesConfig;
 
@@ -16,9 +16,9 @@ type MetaTagsProps = {
 const MetaTags: React.FC<MetaTagsProps> = ({
   title,
   description,
-  image = "/images/og-image.jpg",
-  type = "website",
-  language = "en",
+  image = '/images/og-image.jpg',
+  type = 'website',
+  language = 'en',
 }) => {
   const pageTitle = useMemo(() => {
     return title ? `${title} | ${config.name}` : config.name;
@@ -30,17 +30,17 @@ const MetaTags: React.FC<MetaTagsProps> = ({
       languagesConfig?.[language as SupportedLanguage]?.description ||
       languagesConfig?.en?.description;
     if (langDesc) return langDesc;
-    if (typeof document !== "undefined") {
+    if (typeof document !== 'undefined') {
       const meta = document.querySelector('meta[name="description"]');
-      if (meta && meta.getAttribute("content")) {
-        return meta.getAttribute("content") as string;
+      if (meta && meta.getAttribute('content')) {
+        return meta.getAttribute('content') as string;
       }
     }
-    return "";
+    return '';
   }, [description, language]);
 
-  const currentUrl = typeof window !== "undefined" ? window.location.href : "";
-  const languages = ["en", "pt", "de", "fr"];
+  const currentUrl = typeof window !== 'undefined' ? window.location.href : '';
+  const languages = ['en', 'pt', 'de', 'fr'];
 
   return (
     <Helmet>

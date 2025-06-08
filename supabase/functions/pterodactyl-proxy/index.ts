@@ -1,29 +1,27 @@
 const corsHeaders = {
-  "Access-Control-Allow-Origin": "*",
-  "Access-Control-Allow-Headers":
-    "authorization, x-client-info, apikey, content-type",
-  "Access-Control-Allow-Methods": "POST, GET, OPTIONS",
+  'Access-Control-Allow-Origin': '*',
+  'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
+  'Access-Control-Allow-Methods': 'POST, GET, OPTIONS',
 };
 
 Deno.serve(async (req: Request): Promise<Response> => {
   // Handle OPTIONS
-  if (req.method === "OPTIONS") {
-    return new Response("ok", { headers: corsHeaders });
+  if (req.method === 'OPTIONS') {
+    return new Response('ok', { headers: corsHeaders });
   }
 
   // Check if external services are disabled
-  const disableExternalServices =
-    Deno.env.get("VITE_DISABLE_EXTERNAL_SERVICES") === "true";
+  const disableExternalServices = Deno.env.get('VITE_DISABLE_EXTERNAL_SERVICES') === 'true';
   if (disableExternalServices) {
     return new Response(
       JSON.stringify({
-        message: "External services are disabled.",
-        status: "offline",
+        message: 'External services are disabled.',
+        status: 'offline',
       }),
       {
         status: 200,
-        headers: { ...corsHeaders, "Content-Type": "application/json" },
-      }
+        headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+      },
     );
   }
 
@@ -31,61 +29,59 @@ Deno.serve(async (req: Request): Promise<Response> => {
     // Read search params
     const url = new URL(req.url);
     const serverId =
-      url.searchParams.get("serverId") ||
-      Deno.env.get("VITE_PTERODACTYL_TEST_SERVER_ID");
-    const action = url.searchParams.get("action");
+      url.searchParams.get('serverId') || Deno.env.get('VITE_PTERODACTYL_TEST_SERVER_ID');
+    const action = url.searchParams.get('action');
 
     // Validate server ID
     if (!serverId || !serverId.trim()) {
       return new Response(
         JSON.stringify({
-          error: "Invalid server ID provided",
-          details: "Server ID must be a non-empty string",
+          error: 'Invalid server ID provided',
+          details: 'Server ID must be a non-empty string',
         }),
         {
           status: 400,
-          headers: { ...corsHeaders, "Content-Type": "application/json" },
-        }
+          headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+        },
       );
     }
 
     // Validate required environment variables
-    const pterodactylUrl = Deno.env.get("VITE_PTERODACTYL_API_URL");
-    const clientApiKey = Deno.env.get("VITE_PTERODACTYL_CLIENT_API_KEY");
+    const pterodactylUrl = Deno.env.get('VITE_PTERODACTYL_API_URL');
+    const clientApiKey = Deno.env.get('VITE_PTERODACTYL_CLIENT_API_KEY');
     if (!pterodactylUrl || !clientApiKey) {
       return new Response(
         JSON.stringify({
-          error: "Missing environment variables",
-          details:
-            "VITE_PTERODACTYL_API_URL or VITE_PTERODACTYL_CLIENT_API_KEY not set",
+          error: 'Missing environment variables',
+          details: 'VITE_PTERODACTYL_API_URL or VITE_PTERODACTYL_CLIENT_API_KEY not set',
         }),
         {
           status: 500,
-          headers: { ...corsHeaders, "Content-Type": "application/json" },
-        }
+          headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+        },
       );
     }
 
     // Build request based on "action" param
     let endpoint = `/api/client/servers/${serverId}/resources`;
-    let method = "GET";
+    let method = 'GET';
     let body: string | undefined;
 
     if (action) {
-      if (!["start", "stop", "restart"].includes(action)) {
+      if (!['start', 'stop', 'restart'].includes(action)) {
         return new Response(
           JSON.stringify({
-            error: "Invalid action provided",
-            details: "Must be start, stop, or restart",
+            error: 'Invalid action provided',
+            details: 'Must be start, stop, or restart',
           }),
           {
             status: 400,
-            headers: { ...corsHeaders, "Content-Type": "application/json" },
-          }
+            headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+          },
         );
       }
       endpoint = `/api/client/servers/${serverId}/power`;
-      method = "POST";
+      method = 'POST';
       body = JSON.stringify({ signal: action });
     }
 
@@ -98,8 +94,8 @@ Deno.serve(async (req: Request): Promise<Response> => {
         method,
         headers: {
           Authorization: `Bearer ${clientApiKey}`,
-          "Content-Type": "application/json",
-          Accept: "application/json",
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
         },
         body,
         signal: controller.signal,
@@ -108,25 +104,25 @@ Deno.serve(async (req: Request): Promise<Response> => {
 
       if (!response.ok) {
         const errorData = await response.json().catch(() => ({
-          message: "Unknown error",
+          message: 'Unknown error',
         }));
         return new Response(
           JSON.stringify({
-            error: "Pterodactyl API error",
+            error: 'Pterodactyl API error',
             status: response.status,
             details: errorData.message || response.statusText,
           }),
           {
             status: response.status,
-            headers: { ...corsHeaders, "Content-Type": "application/json" },
-          }
+            headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+          },
         );
       }
 
       // If successful, return the data
       const data = await response.json();
 
-      if (endpoint.endsWith("/resources")) {
+      if (endpoint.endsWith('/resources')) {
         // Transform for frontend
         return new Response(
           JSON.stringify({
@@ -141,27 +137,27 @@ Deno.serve(async (req: Request): Promise<Response> => {
             },
           }),
           {
-            headers: { ...corsHeaders, "Content-Type": "application/json" },
-          }
+            headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+          },
         );
       }
 
       // For power actions, just return the raw data
       return new Response(JSON.stringify(data), {
-        headers: { ...corsHeaders, "Content-Type": "application/json" },
+        headers: { ...corsHeaders, 'Content-Type': 'application/json' },
       });
     } catch (fetchError) {
       clearTimeout(timeout);
-      if (fetchError.name === "AbortError") {
+      if (fetchError.name === 'AbortError') {
         return new Response(
           JSON.stringify({
-            error: "Request timeout",
-            details: "Request to Pterodactyl timed out",
+            error: 'Request timeout',
+            details: 'Request to Pterodactyl timed out',
           }),
           {
             status: 504,
-            headers: { ...corsHeaders, "Content-Type": "application/json" },
-          }
+            headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+          },
         );
       }
       throw fetchError;
@@ -169,13 +165,13 @@ Deno.serve(async (req: Request): Promise<Response> => {
   } catch (error) {
     return new Response(
       JSON.stringify({
-        error: "Internal server error",
+        error: 'Internal server error',
         details: error.message,
       }),
       {
         status: 500,
-        headers: { ...corsHeaders, "Content-Type": "application/json" },
-      }
+        headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+      },
     );
   }
 });

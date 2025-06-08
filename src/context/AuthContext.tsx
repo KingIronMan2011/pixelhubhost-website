@@ -1,16 +1,10 @@
-import {
-  createContext,
-  useContext,
-  useEffect,
-  useState,
-  ReactNode,
-} from "react";
-import { createClient, User } from "@supabase/supabase-js";
+import { createContext, useContext, useEffect, useState, ReactNode } from 'react';
+import { createClient, User } from '@supabase/supabase-js';
 
 // Initialize Supabase client with environment variables
 const supabase = createClient(
   import.meta.env.VITE_SUPABASE_URL!,
-  import.meta.env.VITE_SUPABASE_ANON_KEY!
+  import.meta.env.VITE_SUPABASE_ANON_KEY!,
 );
 
 // Type definition for the authentication context
@@ -87,9 +81,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
   // Provide auth state and functions to children components
   return (
-    <AuthContext.Provider
-      value={{ user, loading, signIn, signUp, signOut, error }}
-    >
+    <AuthContext.Provider value={{ user, loading, signIn, signUp, signOut, error }}>
       {children}
     </AuthContext.Provider>
   );
@@ -98,6 +90,6 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 // Custom hook to use the authentication context in components
 export const useAuth = () => {
   const context = useContext(AuthContext);
-  if (!context) throw new Error("useAuth must be used within an AuthProvider");
+  if (!context) throw new Error('useAuth must be used within an AuthProvider');
   return context;
 };

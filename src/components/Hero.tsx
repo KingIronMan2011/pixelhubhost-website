@@ -1,14 +1,13 @@
-import React, { useEffect, useRef } from "react";
-import { motion } from "framer-motion";
-import { useLanguage } from "../context/LanguageContext";
-import languagesConfig from "../config/languages/Languages";
+import React, { useEffect, useRef } from 'react';
+import { motion } from 'framer-motion';
+import { useLanguage } from '../context/LanguageContext';
+import languagesConfig from '../config/languages/Languages';
 
 const Hero: React.FC = () => {
   const { language } = useLanguage();
   const heroRef = useRef<HTMLDivElement>(null);
   const t =
-    languagesConfig[language as keyof typeof languagesConfig]?.texts ||
-    languagesConfig.en.texts;
+    languagesConfig[language as keyof typeof languagesConfig]?.texts || languagesConfig.en.texts;
 
   // Animate elements with .animate-on-scroll class when they enter the viewport
   useEffect(() => {
@@ -16,14 +15,14 @@ const Hero: React.FC = () => {
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            entry.target.classList.add("animate-fade-in");
+            entry.target.classList.add('animate-fade-in');
           }
         });
       },
-      { threshold: 0.1 }
+      { threshold: 0.1 },
     );
     // Select all elements with .animate-on-scroll inside the hero section
-    const elements = heroRef.current?.querySelectorAll(".animate-on-scroll");
+    const elements = heroRef.current?.querySelectorAll('.animate-on-scroll');
     elements?.forEach((el) => observer.observe(el));
     // Cleanup observer on unmount
     return () => {
@@ -34,27 +33,27 @@ const Hero: React.FC = () => {
   // Framer Motion hover animation for the call-to-action buttons
   const buttonHover = {
     scale: 1.05,
-    boxShadow: "0 8px 32px 0 rgba(59,130,246,0.15)",
-    transition: { duration: 0.13, ease: "easeOut" },
+    boxShadow: '0 8px 32px 0 rgba(59,130,246,0.15)',
+    transition: { duration: 0.13, ease: 'easeOut' },
   };
 
   // Helper function to scroll to a given section by ID
   const scrollToSection = (id: string) => {
     const el = document.getElementById(id);
     if (el) {
-      el.scrollIntoView({ behavior: "smooth" });
+      el.scrollIntoView({ behavior: 'smooth' });
     }
   };
 
   // Scroll to top when #home is triggered
   useEffect(() => {
     const handleHashChange = () => {
-      if (window.location.hash === "#home") {
-        window.scrollTo({ top: 0, behavior: "smooth" });
+      if (window.location.hash === '#home') {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
       }
     };
-    window.addEventListener("hashchange", handleHashChange);
-    return () => window.removeEventListener("hashchange", handleHashChange);
+    window.addEventListener('hashchange', handleHashChange);
+    return () => window.removeEventListener('hashchange', handleHashChange);
   }, []);
 
   return (
@@ -64,7 +63,7 @@ const Hero: React.FC = () => {
       id="home"
       initial={{ opacity: 0, y: 40 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.7, ease: "easeOut" }}
+      transition={{ duration: 0.7, ease: 'easeOut' }}
       className="relative pt-24 pb-4 md:pt-28 md:pb-6 overflow-hidden bg-gradient-to-b from-white via-blue-50 to-indigo-50 dark:from-gray-900 dark:via-gray-900 dark:to-gray-950 transition-colors duration-500"
     >
       {/* Background blobs or decorative elements */}
@@ -79,7 +78,7 @@ const Hero: React.FC = () => {
           <h1
             className="animate-on-scroll text-4xl md:text-6xl font-extrabold mb-7 bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 bg-clip-text text-transparent drop-shadow-lg leading-tight md:leading-[1.13] tracking-tight"
             style={{
-              letterSpacing: "0.01em",
+              letterSpacing: '0.01em',
               lineHeight: 1.18, // Ensures descenders like "g" are visible
             }}
           >
@@ -95,9 +94,9 @@ const Hero: React.FC = () => {
             <motion.button
               whileHover={buttonHover}
               whileFocus={buttonHover}
-              onClick={() => scrollToSection("pricing")}
+              onClick={() => scrollToSection('pricing')}
               className="px-8 py-3 bg-blue-600 text-white font-semibold rounded-xl shadow-lg transition-all duration-200 text-lg"
-              style={{ willChange: "transform, box-shadow" }}
+              style={{ willChange: 'transform, box-shadow' }}
             >
               {t.getStarted}
             </motion.button>
@@ -105,9 +104,9 @@ const Hero: React.FC = () => {
             <motion.button
               whileHover={buttonHover}
               whileFocus={buttonHover}
-              onClick={() => scrollToSection("features")}
+              onClick={() => scrollToSection('features')}
               className="px-8 py-3 bg-white dark:bg-gray-900 text-blue-600 dark:text-blue-400 font-semibold rounded-xl border border-blue-200 dark:border-blue-900 hover:border-blue-400 dark:hover:border-blue-700 shadow transition-all duration-200 text-lg"
-              style={{ willChange: "transform, box-shadow" }}
+              style={{ willChange: 'transform, box-shadow' }}
             >
               {t.learnMore}
             </motion.button>

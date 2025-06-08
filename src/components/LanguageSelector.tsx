@@ -1,17 +1,14 @@
-import { useState, useRef, useEffect } from "react";
-import { useLanguage } from "../context/LanguageContext";
-import { Globe, ChevronDown } from "lucide-react";
-import languagesConfig from "../config/languages/Languages";
+import { useState, useRef, useEffect } from 'react';
+import { useLanguage } from '../context/LanguageContext';
+import { Globe, ChevronDown } from 'lucide-react';
+import languagesConfig from '../config/languages/Languages';
 
 type LanguagesConfigType = typeof languagesConfig;
 type LanguageKey = keyof LanguagesConfigType;
 
 // Use languageNames from the current language config for better integration
 const getLanguageNames = (language: LanguageKey) => {
-  return (
-    languagesConfig[language]?.texts.languageNames ||
-    languagesConfig.en.texts.languageNames
-  );
+  return languagesConfig[language]?.texts.languageNames || languagesConfig.en.texts.languageNames;
 };
 
 const LanguageSelector = () => {
@@ -27,7 +24,7 @@ const LanguageSelector = () => {
 
   // On mount: load language from localStorage if available
   useEffect(() => {
-    const savedLang = localStorage.getItem("language");
+    const savedLang = localStorage.getItem('language');
     if (savedLang && savedLang !== language) {
       setLanguage(savedLang as any);
     }
@@ -36,32 +33,29 @@ const LanguageSelector = () => {
 
   // Whenever language changes, persist it to localStorage
   useEffect(() => {
-    localStorage.setItem("language", language);
+    localStorage.setItem('language', language);
   }, [language]);
 
   // Close dropdown when clicking outside the component
   useEffect(() => {
     if (!isOpen) return;
     function handleClickOutside(event: MouseEvent) {
-      if (
-        dropdownRef.current &&
-        !dropdownRef.current.contains(event.target as Node)
-      ) {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
         setIsOpen(false);
       }
     }
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
   }, [isOpen]);
 
   // Keyboard accessibility: close dropdown on Escape key
   useEffect(() => {
     if (!isOpen) return;
     function handleKeyDown(event: KeyboardEvent) {
-      if (event.key === "Escape") setIsOpen(false);
+      if (event.key === 'Escape') setIsOpen(false);
     }
-    document.addEventListener("keydown", handleKeyDown);
-    return () => document.removeEventListener("keydown", handleKeyDown);
+    document.addEventListener('keydown', handleKeyDown);
+    return () => document.removeEventListener('keydown', handleKeyDown);
   }, [isOpen]);
 
   // Toggle dropdown open/close
@@ -76,7 +70,7 @@ const LanguageSelector = () => {
       <button
         onClick={toggleDropdown}
         className={`flex items-center gap-1.5 text-gray-300 hover:text-white transition-colors px-3 py-2 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 ${
-          isOpen ? "bg-gray-800" : ""
+          isOpen ? 'bg-gray-800' : ''
         }`}
         aria-haspopup="listbox"
         aria-expanded={isOpen}
@@ -84,10 +78,7 @@ const LanguageSelector = () => {
       >
         <Globe size={20} />
         <span className="font-medium">{languageNames[language]}</span>
-        <ChevronDown
-          size={16}
-          className={`transition-transform ${isOpen ? "rotate-180" : ""}`}
-        />
+        <ChevronDown size={16} className={`transition-transform ${isOpen ? 'rotate-180' : ''}`} />
       </button>
 
       {/* Dropdown menu with language options */}
@@ -103,11 +94,11 @@ const LanguageSelector = () => {
                 }}
                 className={`${
                   language === code
-                    ? "bg-blue-600 text-white"
-                    : "text-gray-300 hover:bg-gray-800 hover:text-white"
+                    ? 'bg-blue-600 text-white'
+                    : 'text-gray-300 hover:bg-gray-800 hover:text-white'
                 } block w-full text-left px-4 py-2 text-sm rounded transition-all duration-150`}
                 role="menuitem"
-                aria-current={language === code ? "true" : undefined}
+                aria-current={language === code ? 'true' : undefined}
               >
                 {name}
               </button>

@@ -1,9 +1,9 @@
-import React from "react";
-import { motion } from "framer-motion";
-import { useLanguage } from "../context/LanguageContext";
-import { config } from "../config/config";
-import languagesConfig from "../config/languages/Languages";
-import MetaTags from "../components/MetaTags";
+import React from 'react';
+import { motion } from 'framer-motion';
+import { useLanguage } from '../context/LanguageContext';
+import { config } from '../config/config';
+import languagesConfig from '../config/languages/Languages';
+import MetaTags from '../components/MetaTags';
 
 // Terms of Service page component displays the site's terms in the user's language
 const Terms: React.FC = () => {
@@ -28,9 +28,7 @@ const Terms: React.FC = () => {
           {/* Introductory terms statement */}
           <p className="mb-4 text-lg">{texts.tosIntro}</p>
           {/* Company name */}
-          <h2 className="text-2xl font-semibold mt-8 mb-2 text-blue-300">
-            {config.name}
-          </h2>
+          <h2 className="text-2xl font-semibold mt-8 mb-2 text-blue-300">{config.name}</h2>
           {/* List of main terms points */}
           <ul className="list-disc list-inside mb-4 space-y-2">
             <li>{texts.tosUsage}</li>
@@ -48,32 +46,32 @@ const Terms: React.FC = () => {
               className="inline-block bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-medium transition-colors shadow"
               whileHover={{
                 scale: 1.045,
-                boxShadow: "0 8px 32px 0 rgba(59,130,246,0.13)",
+                boxShadow: '0 8px 32px 0 rgba(59,130,246,0.13)',
                 transition: {
-                  type: "tween",
+                  type: 'tween',
                   duration: 0.13,
-                  ease: "easeInOut",
+                  ease: 'easeInOut',
                 },
               }}
               whileFocus={{
                 scale: 1.045,
-                boxShadow: "0 8px 32px 0 rgba(59,130,246,0.13)",
+                boxShadow: '0 8px 32px 0 rgba(59,130,246,0.13)',
                 transition: {
-                  type: "tween",
+                  type: 'tween',
                   duration: 0.13,
-                  ease: "easeInOut",
+                  ease: 'easeInOut',
                 },
               }}
               whileTap={{
                 scale: 1.045,
-                boxShadow: "0 8px 32px 0 rgba(59,130,246,0.10)",
+                boxShadow: '0 8px 32px 0 rgba(59,130,246,0.10)',
                 transition: {
-                  type: "tween",
+                  type: 'tween',
                   duration: 0.13,
-                  ease: "easeInOut",
+                  ease: 'easeInOut',
                 },
               }} // mobile tap animation
-              style={{ willChange: "transform, box-shadow" }}
+              style={{ willChange: 'transform, box-shadow' }}
             >
               {texts.aboutUsContact}
             </motion.a>

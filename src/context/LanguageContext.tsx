@@ -1,30 +1,21 @@
-import {
-  createContext,
-  useState,
-  useContext,
-  useEffect,
-  ReactNode,
-} from "react";
-import { Language } from "../config/config";
+import { createContext, useState, useContext, useEffect, ReactNode } from 'react';
+import { Language } from '../config/config';
 
 // List of supported language codes
-const supportedLanguages: Language[] = ["en", "pt", "de", "fr", "it"];
+const supportedLanguages: Language[] = ['en', 'pt', 'de', 'fr', 'it'];
 
 // Helper to determine the initial language preference
 const getInitialLanguage = (): Language => {
-  if (typeof window === "undefined") return "pt"; // Default to Portuguese on server
+  if (typeof window === 'undefined') return 'pt'; // Default to Portuguese on server
   try {
     // Try to get language from localStorage
-    const stored = localStorage.getItem("preferred-language");
-    if (stored && supportedLanguages.includes(stored as Language))
-      return stored as Language;
+    const stored = localStorage.getItem('preferred-language');
+    if (stored && supportedLanguages.includes(stored as Language)) return stored as Language;
     // Fallback: try to use browser language if supported
-    const browserLang = navigator.language?.split?.("-")[0];
-    return supportedLanguages.includes(browserLang as Language)
-      ? (browserLang as Language)
-      : "pt"; // Default to Portuguese if not supported
+    const browserLang = navigator.language?.split?.('-')[0];
+    return supportedLanguages.includes(browserLang as Language) ? (browserLang as Language) : 'pt'; // Default to Portuguese if not supported
   } catch {
-    return "pt";
+    return 'pt';
   }
 };
 
@@ -35,9 +26,7 @@ type LanguageContextType = {
 };
 
 // Create the language context
-const LanguageContext = createContext<LanguageContextType | undefined>(
-  undefined
-);
+const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
 
 // Provider component to wrap the app and provide language state/functions
 export const LanguageProvider = ({ children }: { children: ReactNode }) => {
@@ -47,7 +36,7 @@ export const LanguageProvider = ({ children }: { children: ReactNode }) => {
   // Whenever language changes, save it to localStorage
   useEffect(() => {
     try {
-      localStorage.setItem("preferred-language", language);
+      localStorage.setItem('preferred-language', language);
     } catch {}
   }, [language]);
 
@@ -62,7 +51,6 @@ export const LanguageProvider = ({ children }: { children: ReactNode }) => {
 // Custom hook to use the language context in components
 export const useLanguage = () => {
   const context = useContext(LanguageContext);
-  if (!context)
-    throw new Error("useLanguage must be used within a LanguageProvider");
+  if (!context) throw new Error('useLanguage must be used within a LanguageProvider');
   return context;
 };

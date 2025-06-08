@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -33,12 +33,7 @@
     <meta name="theme-color" content="#3b82f6" />
 
     <!-- Favicon and manifest -->
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="32x32"
-      href="/pixel_hub_host.png"
-    />
+    <link rel="icon" type="image/png" sizes="32x32" href="/pixel_hub_host.png" />
     <link rel="manifest" href="/site.webmanifest" />
 
     <!-- Fonts -->
@@ -49,15 +44,13 @@
       rel="stylesheet"
     />
   </head>
-  <body
-    class="antialiased bg-gradient-to-b from-[#f0f6ff] via-white to-[#f3e8ff] min-h-screen"
-  >
+  <body class="antialiased bg-gradient-to-b from-[#f0f6ff] via-white to-[#f3e8ff] min-h-screen">
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
     <script>
       if (sessionStorage.redirect) {
         var redirect = sessionStorage.redirect;
-        sessionStorage.removeItem("redirect");
+        sessionStorage.removeItem('redirect');
         history.replaceState(null, null, redirect);
       }
     </script>

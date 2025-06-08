@@ -1,15 +1,8 @@
-import { useLanguage } from "../context/LanguageContext";
-import languagesConfig from "../config/languages/Languages";
-import {
-  Shield,
-  Cpu,
-  Network,
-  Clock,
-  Globe,
-  DatabaseBackup,
-} from "lucide-react";
-import { motion } from "framer-motion";
-import { config } from "../config/config"; // Make sure this import points to your config file
+import { useLanguage } from '../context/LanguageContext';
+import languagesConfig from '../config/languages/Languages';
+import { Shield, Cpu, Network, Clock, Globe, DatabaseBackup } from 'lucide-react';
+import { motion } from 'framer-motion';
+import { config } from '../config/config'; // Make sure this import points to your config file
 
 // Features section component
 const Features = () => {
@@ -17,39 +10,38 @@ const Features = () => {
   const { language } = useLanguage();
   // Get translations for the current language, fallback to English
   const t =
-    languagesConfig[language as keyof typeof languagesConfig]?.texts ||
-    languagesConfig.en.texts;
+    languagesConfig[language as keyof typeof languagesConfig]?.texts || languagesConfig.en.texts;
 
   // Define the list of features to display, each with an icon, title, and description
   const features = [
     {
       icon: Shield,
-      title: t.ddosProtectionDesc ? t.ddosProtection : "",
+      title: t.ddosProtectionDesc ? t.ddosProtection : '',
       description: t.ddosProtectionDesc,
     },
     {
       icon: Cpu,
-      title: t.xeonCpuDesc ? t.xeonCpu : "",
+      title: t.xeonCpuDesc ? t.xeonCpu : '',
       description: t.xeonCpuDesc,
     },
     {
       icon: Network,
-      title: t.networkSpeedDesc ? t.networkSpeed : "",
+      title: t.networkSpeedDesc ? t.networkSpeed : '',
       description: t.networkSpeedDesc,
     },
     {
       icon: Clock,
-      title: t.reliableSupportDesc ? t.reliableSupport : "",
+      title: t.reliableSupportDesc ? t.reliableSupport : '',
       description: t.reliableSupportDesc,
     },
     {
       icon: Globe,
-      title: t.freeSubdomainDesc ? t.freeSubdomain : "",
+      title: t.freeSubdomainDesc ? t.freeSubdomain : '',
       description: t.freeSubdomainDesc,
     },
     {
       icon: DatabaseBackup,
-      title: t.dailyBackupsDesc ? t.dailyBackups : "",
+      title: t.dailyBackupsDesc ? t.dailyBackups : '',
       description: t.dailyBackupsDesc,
     },
   ];
@@ -71,17 +63,17 @@ const Features = () => {
       opacity: 1,
       y: 0,
       scale: 1,
-      transition: { type: "spring", stiffness: 120, damping: 16 },
+      transition: { type: 'spring', stiffness: 120, damping: 16 },
     },
     hover: {
       scale: 1.05,
-      boxShadow: "0 8px 32px 0 rgba(0,0,0,0.13)",
-      transition: { duration: 0.13, ease: "easeOut" },
+      boxShadow: '0 8px 32px 0 rgba(0,0,0,0.13)',
+      transition: { duration: 0.13, ease: 'easeOut' },
     },
     tap: {
       scale: 1.05,
-      boxShadow: "0 8px 32px 0 rgba(0,0,0,0.13)",
-      transition: { duration: 0.13, ease: "easeOut" },
+      boxShadow: '0 8px 32px 0 rgba(0,0,0,0.13)',
+      transition: { duration: 0.13, ease: 'easeOut' },
     },
   };
 
@@ -124,7 +116,7 @@ const Features = () => {
               whileHover="hover"
               whileTap="tap" // tap animation for mobile
               className="group bg-white/90 dark:bg-gray-900/90 rounded-2xl p-8 border border-gray-200 dark:border-gray-800 shadow-md flex flex-col items-center transition-all duration-100"
-              style={{ willChange: "transform, box-shadow" }}
+              style={{ willChange: 'transform, box-shadow' }}
             >
               {/* Icon with its own animation */}
               <motion.div
@@ -132,7 +124,7 @@ const Features = () => {
                 initial={{ scale: 0.9, opacity: 0.7 }}
                 animate={{ scale: 1, opacity: 1 }}
                 transition={{
-                  type: "spring",
+                  type: 'spring',
                   stiffness: 120,
                   damping: 12,
                   delay: 0.13 * index,
@@ -145,9 +137,7 @@ const Features = () => {
                 {feature.title}
               </h3>
               {/* Feature description */}
-              <p className="text-gray-600 dark:text-gray-400 text-base">
-                {feature.description}
-              </p>
+              <p className="text-gray-600 dark:text-gray-400 text-base">{feature.description}</p>
             </motion.div>
           ))}
         </motion.div>
