@@ -46,7 +46,11 @@ const Footer: React.FC = () => {
               className="font-semibold text-lg mb-4 text-white tracking-wide hover:text-blue-400 transition-colors flex items-center gap-2"
               aria-label="PixelHub Host"
             >
-              <img src="/pixel_hub_host.png" alt="PixelHub Host Logo" className="h-8 w-auto" />
+              <img
+                src="/web-app-manifest-512x512.png"
+                alt="PixelHub Host Logo"
+                className="h-8 w-auto"
+              />
               {t.brand}
             </a>
             <p className="text-sm text-gray-400 leading-relaxed mb-4">{t.footerDescription}</p>

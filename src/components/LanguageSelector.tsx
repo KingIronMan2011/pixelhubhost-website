@@ -68,17 +68,9 @@ const LanguageSelector = () => {
       {/* Button to open/close the language dropdown */}
       <button
         onClick={toggleDropdown}
-        onKeyDown={(e) => {
-          if (e.key === 'Enter' || e.key === ' ') {
-            e.preventDefault();
-            toggleDropdown();
-          }
-          if (e.key === 'Escape') setIsOpen(false);
-        }}
         aria-haspopup="listbox"
         aria-expanded={isOpen}
-        className="focus:outline-none focus:ring-2 focus:ring-blue-500 flex items-center gap-1.5 text-gray-300 hover:text-white transition-colors px-3 py-2 rounded-md"
-        tabIndex={0}
+        className="flex items-center gap-1.5 text-gray-300 hover:text-white transition-colors px-3 py-2 rounded-md"
       >
         <Globe size={20} />
         <span className="font-medium">{languageNames[language]}</span>
@@ -88,7 +80,7 @@ const LanguageSelector = () => {
       {/* Dropdown menu with language options */}
       {isOpen && (
         <div className="absolute right-0 mt-2 w-48 rounded-xl shadow-2xl bg-gray-900 ring-1 ring-black ring-opacity-10 z-50 animate-fade-in-down">
-          <div className="py-1" role="menu">
+          <div className="py-1">
             {Object.entries(languageNames).map(([code, name]) => (
               <button
                 key={code}
@@ -101,8 +93,6 @@ const LanguageSelector = () => {
                     ? 'bg-blue-600 text-white'
                     : 'text-gray-300 hover:bg-gray-800 hover:text-white'
                 } block w-full text-left px-4 py-2 text-sm rounded transition-all duration-150`}
-                role="menuitem"
-                aria-current={language === code ? 'true' : undefined}
               >
                 {name}
               </button>

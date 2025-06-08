@@ -73,7 +73,6 @@
 
 ### User Experience
 
-- [x] Add keyboard navigation and focus states for accessibility.
 - [x] Test on mobile and different browsers for responsiveness.
 
 ### Progressive Web App (PWA)

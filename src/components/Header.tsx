@@ -59,7 +59,11 @@ const Header: React.FC = () => {
             className="flex items-center gap-2 text-2xl font-bold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent hover:from-blue-300 hover:to-purple-300 transition-all duration-500"
             aria-label="PixelHub Host"
           >
-            <img src="/pixel_hub_host.png" alt="PixelHub Host Logo" className="h-8 w-auto" />
+            <img
+              src="/web-app-manifest-512x512.png"
+              alt="PixelHub Host Logo"
+              className="h-8 w-auto"
+            />
             {t.brand}
           </a>
 
