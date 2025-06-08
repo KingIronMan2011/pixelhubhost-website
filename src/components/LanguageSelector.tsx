@@ -28,7 +28,6 @@ const LanguageSelector = () => {
     if (savedLang && savedLang !== language) {
       setLanguage(savedLang as any);
     }
-     
   }, []);
 
   // Whenever language changes, persist it to localStorage
@@ -69,12 +68,17 @@ const LanguageSelector = () => {
       {/* Button to open/close the language dropdown */}
       <button
         onClick={toggleDropdown}
-        className={`flex items-center gap-1.5 text-gray-300 hover:text-white transition-colors px-3 py-2 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 ${
-          isOpen ? 'bg-gray-800' : ''
-        }`}
+        onKeyDown={(e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            toggleDropdown();
+          }
+          if (e.key === 'Escape') setIsOpen(false);
+        }}
         aria-haspopup="listbox"
         aria-expanded={isOpen}
-        aria-label="Select language"
+        className="focus:outline-none focus:ring-2 focus:ring-blue-500 flex items-center gap-1.5 text-gray-300 hover:text-white transition-colors px-3 py-2 rounded-md"
+        tabIndex={0}
       >
         <Globe size={20} />
         <span className="font-medium">{languageNames[language]}</span>

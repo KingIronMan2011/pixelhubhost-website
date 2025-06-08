@@ -69,16 +69,16 @@
 
 - [x] Set up and enforce linting (ESLint, Prettier).
 - [x] Add type checking (TypeScript strict mode).
-- [ ] Review for dead code or unused exports.
+- [x] Review for dead code or unused exports.
 
 ### User Experience
 
-- [ ] Add keyboard navigation and focus states for accessibility.
-- [ ] Test on mobile and different browsers for responsiveness.
+- [x] Add keyboard navigation and focus states for accessibility.
+- [x] Test on mobile and different browsers for responsiveness.
 
 ### Progressive Web App (PWA)
 
-- [ ] Add a manifest and service worker for offline support (if desired).
+- [x] Add a manifest and service worker for offline support (if desired).
 
 ---
 
