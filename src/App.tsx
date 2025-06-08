@@ -35,30 +35,18 @@ function App() {
   useGoogleAnalytics();
   // Get authentication loading state from AuthContext
   const { loading } = useAuth();
+
   // Initialize translations (i18next)
-  const { i18n: i18nextInstance } = useTranslation();
+  // useTranslation returns an instance with the "t()" function
+  const { i18n: i18nextInstance, t } = useTranslation();
+
   // Get current location for routing
   const location = useLocation();
 
-  // --- i18n browser language detection integration ---
+  // Keep <html> lang attribute in sync with the current i18n language
   useEffect(() => {
-    if (typeof window === 'undefined') return;
-    const supportedLangs = Object.keys(languages);
-    let detected = localStorage.getItem('language') || i18n.language;
-    if (!supportedLangs.includes(detected)) {
-      const browserLang = navigator.language.split('-')[0];
-      detected = supportedLangs.includes(browserLang) ? browserLang : 'en';
-    }
-    if (i18n.language !== detected) {
-      i18n.changeLanguage(detected);
-    }
-    if (document.documentElement.lang !== detected) {
-      document.documentElement.lang = detected;
-    }
-    localStorage.setItem('language', detected);
-  }, []);
-
-  const language = i18n.language;
+    document.documentElement.lang = i18n.language;
+  }, [i18n.language]);
 
   // Show a loading spinner while authentication state is being determined
   if (loading) {
@@ -77,7 +65,8 @@ function App() {
             }}
           />
           <span className="text-blue-600 dark:text-blue-300 font-semibold text-lg mt-2">
-            {(languages as Record<string, any>)?.[language]?.texts?.checking}
+            {/* Use the "t" function for the spinner text */}
+            {t('checking')}
           </span>
         </div>
       </div>
