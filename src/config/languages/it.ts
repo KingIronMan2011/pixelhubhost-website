@@ -59,7 +59,7 @@ const it = {
     contactUs: "Contattaci",
     soldOut: "ESAURITO",
     from: "da",
-    testServer: "Server di Test",
+    testServer: "Pixel Survival",
     testServerDesc:
       "Prova le nostre prestazioni con questo server di test gratuito",
     domain: "Dominio",

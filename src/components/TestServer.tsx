@@ -251,7 +251,7 @@ const TestServer: React.FC = () => {
   const [showNotification, setShowNotification] = useState(false); // <-- Add this line
   const [showConnectPopup, setShowConnectPopup] = useState(false);
   // Server connection info
-  const serverDomain = "test.pixelhubhost.com";
+  const serverDomain = "survival.pixelhubhost.com";
   const bedrockPort = "19132";
 
   // Only call usePterodactyl if not disabled

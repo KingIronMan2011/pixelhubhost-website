@@ -61,7 +61,7 @@ const fr = {
     soldOut: "ÉPUISÉ",
     from: "à partir de",
     // Test server section
-    testServer: "Serveur de Test",
+    testServer: "Pixel Survival",
     testServerDesc: "Testez nos performances avec ce serveur de test gratuit",
     domain: "Domaine",
     bedrockPort: "Port Bedrock",

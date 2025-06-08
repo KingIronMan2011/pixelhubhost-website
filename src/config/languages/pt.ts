@@ -61,7 +61,7 @@ const pt = {
     soldOut: "ESGOTADO",
     from: "a partir de",
     // Test server section
-    testServer: "Servidor de Teste",
+    testServer: "Pixel Survival",
     testServerDesc:
       "Experimente nosso desempenho com este servidor de teste gratuito",
     domain: "Domínio",

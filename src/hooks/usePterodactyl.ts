@@ -40,7 +40,7 @@ export function usePterodactyl(serverId: string) {
       return;
     }
     fetchStatus(); // Initial fetch
-    const interval = setInterval(fetchStatus, 4000); // Poll every 4 seconds
+    const interval = setInterval(fetchStatus, 30000); // Poll every 30 seconds
     return () => clearInterval(interval); // Cleanup interval on unmount
   }, [fetchStatus]);
 

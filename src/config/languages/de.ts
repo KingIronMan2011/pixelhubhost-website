@@ -60,7 +60,7 @@ const de = {
     soldOut: "AUSVERKAUFT",
     from: "ab",
     // Test server section
-    testServer: "Testserver",
+    testServer: "Pixel Survival",
     testServerDesc:
       "Probieren Sie unsere Leistung mit diesem kostenlosen Testserver aus",
     domain: "Domain",

@@ -81,20 +81,11 @@ export const pterodactylService = {
       const { data } = await api.get("/pterodactyl-proxy", {
         params: { serverId },
       });
-      const attr = data?.attributes;
-      if (!attr?.resources || typeof attr.current_state === "undefined")
+      // The backend already returns { state, memory, cpu }
+      if (typeof data.state !== "string" || !data.memory || !data.cpu) {
         throw new Error("Invalid response format");
-      return {
-        state: attr.current_state,
-        memory: {
-          current: Number(attr.resources.memory_bytes) || 0,
-          limit: Number(attr.resources.memory_limit_bytes) || 0,
-        },
-        cpu: {
-          current: Number(attr.resources.cpu_absolute) || 0,
-          limit: Number(attr.resources.cpu_limit) || 0,
-        },
-      };
+      }
+      return data as ServerStatus;
     } catch (error) {
       handleAxiosError(error, "fetch server status");
       throw new Error("Failed to fetch server status");
