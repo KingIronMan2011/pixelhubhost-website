@@ -31,28 +31,52 @@ This website serves as the main landing page, offering information about our ser
 
 ## 🚀 Getting Started
 
-To contribute or run the website locally:
+### 🟢 Easiest Way (Recommended for Windows)
+
+Just run the setup script and everything will be done for you:
+
+```cmd
+run.bat
+```
+
+This will:
+
+- Copy `.env.example` to `.env` (if it doesn't exist)
+- Install all dependencies
+- Start the development server
+
+Then, open [http://localhost:5173](http://localhost:5173) in your browser.
+
+---
+
+### ⚙️ Manual Way
 
 1. **Clone the Repository**
 
-   ```bash
+   ```cmd
    git clone https://github.com/KingIronMan2011/pixelhubhost-website.git
    cd pixelhubhost-website
    ```
 
-2. **Install Dependencies**
+2. **Create the .env File**
 
-   ```bash
+   ```cmd
+   copy .env.example .env
+   ```
+
+3. **Install Dependencies**
+
+   ```cmd
    npm install
    ```
 
-3. **Start the Development Server**
+4. **Start the Development Server**
 
-   ```bash
+   ```cmd
    npm run dev
    ```
 
-4. **Open in Browser**  
+5. **Open in Browser**  
    Visit [http://localhost:5173](http://localhost:5173) to view the site.
 
 ---
