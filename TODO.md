@@ -67,8 +67,8 @@
 
 ### Code Quality
 
-- [ ] Set up and enforce linting (ESLint, Prettier).
-- [ ] Add type checking (TypeScript strict mode).
+- [x] Set up and enforce linting (ESLint, Prettier).
+- [x] Add type checking (TypeScript strict mode).
 - [ ] Review for dead code or unused exports.
 
 ### User Experience
