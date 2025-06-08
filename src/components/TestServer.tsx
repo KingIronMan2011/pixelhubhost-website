@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Server, Signal, Copy, Check, Info } from "lucide-react";
 import { usePterodactyl } from "../hooks/usePterodactyl";
 import { useLanguage } from "../context/LanguageContext";
+import i18n from "../i18n";
 import languagesConfig from "../config/languages/Languages";
 import { SERVER_LIMITS } from "../config/config";
 import type { Language } from "../config/config";
@@ -243,8 +244,9 @@ const disableExternalServices =
 
 // Main TestServer component
 const TestServer: React.FC = () => {
-  // Get current language from context
+  const currentLanguage = i18n.language;
   const { language } = useLanguage();
+  const t = languagesConfig[currentLanguage]?.texts || languagesConfig.en.texts;
   // State for copy feedback and popups
   const [copied, setCopied] = useState(false);
   const [copiedPort, setCopiedPort] = useState(false);

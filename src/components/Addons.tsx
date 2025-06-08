@@ -1,16 +1,14 @@
 import React from "react";
 import { Globe, Database, HardDrive } from "lucide-react";
+import i18n from "../i18n";
 import { useLanguage } from "../context/LanguageContext";
 import languagesConfig from "../config/languages/Languages";
 import { motion } from "framer-motion";
 
 // Main Addons component
 const Addons: React.FC = () => {
-  // Get current language and translations
-  const { language } = useLanguage();
-  const t =
-    languagesConfig[language as keyof typeof languagesConfig]?.texts ||
-    languagesConfig.en.texts;
+  const currentLanguage = i18n.language;
+  const t = languagesConfig[currentLanguage]?.texts || languagesConfig.en.texts;
 
   // Define the list of addon options, each with icon, name, description, and price
   const addons = [

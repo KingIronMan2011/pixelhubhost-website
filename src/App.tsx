@@ -13,7 +13,7 @@ import PricingPlans from "./components/PricingPlans";
 import Addons from "./components/Addons";
 import Contact from "./components/Contact";
 import { HelmetProvider } from "react-helmet-async";
-import languages from "./config/languages/Languages";
+import languagesConfig from "./config/languages/Languages";
 import { Suspense, lazy } from "react";
 
 // Lazy load large pages
@@ -34,13 +34,16 @@ function App() {
   // Get authentication loading state from AuthContext
   const { loading } = useAuth();
   // Initialize translations (i18next)
-  useTranslation();
+  const { i18n } = useTranslation();
   // Get current location for routing
   const location = useLocation();
 
-  // Get current language from i18next or LanguageContext
-  const { i18n } = useTranslation();
-  const language = i18n.language;
+  // Get current language from i18next
+  const language = i18n.language || "en";
+  // Get translated texts for the current language, fallback to English
+  const texts =
+    languagesConfig[language as keyof typeof languagesConfig]?.texts ||
+    languagesConfig.en.texts;
 
   // Show a loading spinner while authentication state is being determined
   if (loading) {
@@ -59,7 +62,7 @@ function App() {
             }}
           />
           <span className="text-blue-600 dark:text-blue-300 font-semibold text-lg mt-2">
-            {(languages as Record<string, any>)?.[language]?.texts?.checking}
+            {texts.checking}
           </span>
         </div>
       </div>

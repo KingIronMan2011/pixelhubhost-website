@@ -1,23 +1,16 @@
 import React from "react";
 import { FaDiscord, FaWhatsapp, FaEnvelope } from "react-icons/fa";
-import { useLanguage } from "../context/LanguageContext";
+import i18n from "../i18n";
 import languagesConfig from "../config/languages/Languages";
 import { motion } from "framer-motion";
 
-// Define the type for language keys
-type LanguageKey = keyof typeof languagesConfig;
-
 // Main Contact component
 const Contact: React.FC = () => {
-  // Get current language from context
-  const { language } = useLanguage();
-  // Fallback to English if language not found
-  const langKey = (
-    language in languagesConfig ? language : "en"
-  ) as LanguageKey;
-  // Get translations and contact info for current language
-  const t = languagesConfig[langKey].texts;
-  const contact = languagesConfig[langKey].contact;
+  // Always use i18n.language for detection
+  const currentLanguage = i18n.language;
+  const t = languagesConfig[currentLanguage]?.texts || languagesConfig.en.texts;
+  const contact =
+    languagesConfig[currentLanguage]?.contact || languagesConfig.en.contact;
 
   // Animation variants for the container (stagger children on show)
   const containerVariants = {

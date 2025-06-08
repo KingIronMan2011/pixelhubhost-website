@@ -36,7 +36,7 @@ i18n
     fallbackLng: "en", // Fallback to English if translation is missing
     interpolation: { escapeValue: false }, // React already escapes values
     detection: {
-      order: ["localStorage", "navigator", "htmlTag"], // Check localStorage first, then browser, then <html lang="">
+      order: ["navigator", "localStorage", "htmlTag"], // Check browser first, then localStorage, then <html lang="">
       lookupLocalStorage: "preferred-language", // Key for localStorage
       caches: ["localStorage"], // Cache language preference in localStorage
     },

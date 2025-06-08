@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import i18n from "../i18n";
 import { useLanguage } from "../context/LanguageContext";
 import languagesConfig from "../config/languages/Languages";
 import LanguageSelector from "./LanguageSelector";
@@ -31,10 +32,10 @@ const mobileLinkMotion = {
 };
 
 const Header: React.FC = () => {
+  const currentLanguage = i18n.language;
+  const t = languagesConfig[currentLanguage]?.texts || languagesConfig.en.texts;
   // Get current language from context
   const { language } = useLanguage() as { language: LanguageKey };
-  // Get translations for the current language, fallback to English
-  const t = languagesConfig[language]?.texts || languagesConfig.en.texts;
   // State for mobile menu open/close
   const [menuOpen, setMenuOpen] = useState(false);
   const location = useLocation();

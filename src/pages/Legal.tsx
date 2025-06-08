@@ -1,4 +1,5 @@
 import React from "react";
+import i18n from "../i18n";
 import { useLanguage } from "../context/LanguageContext";
 import { config } from "../config/config";
 import languagesConfig from "../config/languages/Languages";
@@ -7,10 +8,8 @@ import MetaTags from "../components/MetaTags";
 
 // Legal page component displays legal and contact information for PixelHub Host
 const Legal: React.FC = () => {
-  // Get the current language from context
-  const { language } = useLanguage();
-  // Get the correct set of translated texts for the current language
-  const t = languagesConfig[language].texts;
+  const currentLanguage = i18n.language;
+  const t = languagesConfig[currentLanguage]?.texts || languagesConfig.en.texts;
 
   // Framer Motion hover animation for the contact button and links
   const buttonHover = {
