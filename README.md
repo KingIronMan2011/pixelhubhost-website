@@ -73,26 +73,31 @@ Then, open [http://localhost:5173](http://localhost:5173) in your browser.
 
 1. **Clone the Repository**
 
-   ```cmd
+   ```bash
    git clone https://github.com/KingIronMan2011/pixelhubhost-website.git
    cd pixelhubhost-website
    ```
 
 2. **Create the .env File**
 
-   ```cmd
-   copy .env.example .env
-   ```
+   - **On Windows:**
+     ```cmd
+     copy .env.example .env
+     ```
+   - **On Linux/macOS:**
+     ```bash
+     cp .env.example .env
+     ```
 
 3. **Install Dependencies**
 
-   ```cmd
+   ```bash
    npm install
    ```
 
 4. **Start the Development Server**
 
-   ```cmd
+   ```bash
    npm run dev
    ```
 
