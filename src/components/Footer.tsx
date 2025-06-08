@@ -27,7 +27,7 @@ const hoverMotion = {
   },
 };
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
+ 
 const Footer: React.FC = () => {
   const { language, setLanguage } = useLanguage();
   const langKey = language as keyof typeof languagesConfig;

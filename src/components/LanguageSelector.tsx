@@ -28,7 +28,7 @@ const LanguageSelector = () => {
     if (savedLang && savedLang !== language) {
       setLanguage(savedLang as any);
     }
-    // eslint-disable-next-line
+     
   }, []);
 
   // Whenever language changes, persist it to localStorage
