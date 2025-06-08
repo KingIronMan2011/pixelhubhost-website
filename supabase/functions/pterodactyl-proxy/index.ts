@@ -1,3 +1,12 @@
+// @deno-types="https://deno.land/std@0.168.0/http/server.d.ts"
+// If running in Deno, ensure you have the correct permissions and Deno version.
+// If running in Node.js, use a compatible HTTP server like 'express' or 'http'.
+// Example for Node.js environment:
+import express from "express";
+
+const app = express();
+app.use(express.json());
+
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
   "Access-Control-Allow-Headers":
@@ -158,4 +167,8 @@ export default async function pterodactylProxy(
       }
     );
   }
+}
+
+function serve(arg0: (req: any) => Promise<Response>) {
+  throw new Error("Function not implemented.");
 }
