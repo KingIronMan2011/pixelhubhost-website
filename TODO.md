@@ -50,4 +50,42 @@
 
 ---
 
+## Additional TODOs
+
+### Testing
+
+- [ ] Add unit tests for key components and utilities.
+- [ ] Add integration tests for important user flows.
+
+### CI/CD & Automation
+
+- [ ] Set up continuous integration (CI) to run tests and lint on every push.
+- [x] Automate deployments (e.g., with GitHub Actions, Vercel, Netlify, or your own pipeline).
+
+### Analytics & Monitoring
+
+- [ ] Integrate analytics (e.g., Google Analytics, Plausible) for usage tracking.
+
+### Documentation
+
+- [ ] Write or update a README with setup, usage, and contribution guidelines.
+- [ ] Document any custom components, hooks, or utilities.
+
+### Code Quality
+
+- [ ] Set up and enforce linting (ESLint, Prettier).
+- [ ] Add type checking (TypeScript strict mode).
+- [ ] Review for dead code or unused exports.
+
+### User Experience
+
+- [ ] Add keyboard navigation and focus states for accessibility.
+- [ ] Test on mobile and different browsers for responsiveness.
+
+### Progressive Web App (PWA)
+
+- [ ] Add a manifest and service worker for offline support (if desired).
+
+---
+
 **Feel free to add stuff to this list as needed!**
