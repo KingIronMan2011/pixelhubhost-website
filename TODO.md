@@ -63,8 +63,8 @@
 
 ### Documentation
 
-- [ ] Write or update a README with setup, usage, and contribution guidelines.
-- [ ] Document any custom components, hooks, or utilities.
+- [x] Write or update a README with setup, usage, and contribution guidelines.
+- [x] Document any custom components, hooks, or utilities.
 
 ### Code Quality
 
