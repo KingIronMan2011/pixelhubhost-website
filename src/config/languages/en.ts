@@ -210,6 +210,7 @@ const en = {
     errorBoundaryMessage:
       "We're sorry, but something went wrong with your request. Please try again later.",
     errorBoundaryButton: 'Reload Page',
+    javaOnly: 'Currently only available for Minecraft Java Edition',
   },
 };
 

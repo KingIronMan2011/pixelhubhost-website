@@ -228,7 +228,7 @@ const TestServer: React.FC = () => {
   const [showConnectPopup, setShowConnectPopup] = useState(false);
 
   // Server connection info
-  const serverDomain = 'survival.pixelhubhost.com';
+  const serverDomain = 'jogar.pixelhubhost.com';
   const bedrockPort = '19132';
 
   // Only call usePterodactyl if not disabled
@@ -416,6 +416,12 @@ const TestServer: React.FC = () => {
 
             {/* Domain and port info with copy buttons */}
             <div className="space-y-4">
+              {/* Info message: currently only support java */}
+              <div className="mb-2">
+                <span className="inline-block px-3 py-1 rounded bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200 text-xs font-semibold">
+                  {siteConfig.texts[currentLanguage].javaOnly}
+                </span>
+              </div>
               <div className="flex flex-col gap-2">
                 {/* Java/Bedrock domain */}
                 <div className="flex items-center bg-gray-100/70 dark:bg-gray-800/70 rounded-lg px-3 py-2">

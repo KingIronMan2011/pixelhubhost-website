@@ -65,6 +65,6 @@ export type ServerStatus = {
 
 // Limits for the test server (used for progress bars, etc.)
 export const SERVER_LIMITS = {
-  MEMORY: 27.5 * 1024 * 1024 * 1024, // 3GB in bytes
-  CPU: 1000, // 200% (likely for multi-core virtualized CPU)
+  MEMORY: 63.5 * 1024 * 1024 * 1024, // 3GB in bytes
+  CPU: 3200, // 200% (likely for multi-core virtualized CPU)
 };
