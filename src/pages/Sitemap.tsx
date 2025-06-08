@@ -2,8 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import i18n from '../i18n';
-import { useLanguage } from '../context/LanguageContext';
-import languagesConfig from '../config/languages/Languages';
+import languages from '../config/languages/Languages';
 import MetaTags from '../components/MetaTags';
 
 // List of sitemap links with route paths and translation keys for labels
@@ -26,9 +25,9 @@ const linkHover = {
 // Sitemap page component displays a list of important site links
 const Sitemap: React.FC = () => {
   // Always use i18n.language for detection
-  const currentLanguage = i18n.language;
+  const currentLanguage = i18n.language || 'en';
   // Get the correct set of translated texts for the current language, fallback to English if missing
-  const texts = languagesConfig[currentLanguage]?.texts || languagesConfig.en.texts;
+  const texts = languages[currentLanguage]?.texts || languages.en.texts;
 
   return (
     <>

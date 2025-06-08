@@ -1,7 +1,10 @@
 import i18n from '../i18n';
-import { planLinks } from '../config/config';
-import languagesConfig from '../config/languages/Languages';
+import languages from '../config/languages/Languages'; // Use 'languages' instead of 'languagesConfig'
 import { motion } from 'framer-motion';
+import { planLinks } from '../config/config';
+
+const language = i18n.language || 'en';
+const texts = languages[language]?.texts || languages.en.texts;
 
 // Props for the PricingCard component
 interface PricingCardProps {
@@ -23,17 +26,15 @@ interface PricingCardProps {
 
 // PricingCard component: displays a single pricing plan card
 const PricingCard = ({ product, isPopular, billingInterval = 'monthly' }: PricingCardProps) => {
-  // Use i18n.language for the current language
-  const language = i18n.language || 'en';
-
-  // Get translations for the current language, fallback to English
-  const t = languagesConfig[language]?.texts || languagesConfig.en.texts;
-
   // Get the correct plan link for the selected billing interval
   const planLink = planLinks[product.id]?.[billingInterval] || '#';
 
   // Get the billing label ("Monthly" or "Quarterly") in the current language
-  const billingLabel = billingInterval === 'monthly' ? t.monthly : t.quarterly;
+  const billingLabel = billingInterval === 'monthly' ? texts.monthly : texts.quarterly;
+
+  // Get currency and price info
+  const { currency, amount, quarterlyAmount } = product.price.getCurrencyInfo(language);
+  const displayAmount = billingInterval === 'monthly' ? amount : quarterlyAmount;
 
   // Framer Motion tap animation
   const tapAnimation = {
@@ -58,7 +59,7 @@ const PricingCard = ({ product, isPopular, billingInterval = 'monthly' }: Pricin
       {/* Popular plan badge */}
       {isPopular && (
         <div className="absolute top-0 inset-x-0 px-4 py-1 bg-gradient-to-r from-blue-500 to-purple-500 text-white text-sm text-center font-semibold rounded-t-2xl shadow">
-          {t.popularPlan}
+          {texts.popularPlan}
         </div>
       )}
 
@@ -76,7 +77,7 @@ const PricingCard = ({ product, isPopular, billingInterval = 'monthly' }: Pricin
         {/* Price and billing label */}
         <div className="flex items-baseline justify-center mb-4">
           <span className="text-4xl font-bold text-gray-900 dark:text-white">
-            {/* This example hardcodes a demo price, adapt as needed */}$ 14
+            {currency} {displayAmount}
           </span>
           <span className="text-gray-700 dark:text-gray-400 ml-2">
             /{billingLabel.toLowerCase()}
@@ -106,7 +107,7 @@ const PricingCard = ({ product, isPopular, billingInterval = 'monthly' }: Pricin
           whileTap={{ scale: 0.97 }} // mobile tap animation
           style={{ willChange: 'transform' }}
         >
-          {t.buyNow}
+          {texts.buyNow}
         </motion.a>
         {/* Discount badge (always shown here for demo) */}
         <span className="ml-2 text-sm bg-green-500 text-white px-2 py-0.5 rounded shadow font-semibold">

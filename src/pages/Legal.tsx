@@ -1,16 +1,15 @@
 import React from 'react';
 import i18n from '../i18n';
-import { useLanguage } from '../context/LanguageContext';
+import languages from '../config/languages/Languages';
 import { config } from '../config/config';
-import languagesConfig from '../config/languages/Languages';
 import { motion } from 'framer-motion';
 import MetaTags from '../components/MetaTags';
 
 // Legal page component displays legal and contact information for PixelHub Host
 const Legal: React.FC = () => {
   // Always use i18n.language for detection
-  const currentLanguage = i18n.language;
-  const t = languagesConfig[currentLanguage]?.texts || languagesConfig.en.texts;
+  const currentLanguage = i18n.language || 'en';
+  const t = languages[currentLanguage]?.texts || languages.en.texts;
 
   // Framer Motion hover animation for the contact button and links
   const buttonHover = {

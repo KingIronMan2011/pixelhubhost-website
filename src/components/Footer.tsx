@@ -2,44 +2,42 @@ import React from 'react';
 import { Globe, Youtube } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 import i18n from '../i18n';
-import languagesConfig from '../config/languages/Languages';
+import languages from '../config/languages/Languages';
 import { motion } from 'framer-motion';
 import DOMPurify from 'dompurify';
 import { useLocation } from 'react-router-dom';
 
-const languages = [
-  { code: 'en', name: 'English' },
-  { code: 'pt', name: 'Português' },
-  { code: 'de', name: 'Deutsch' },
-  { code: 'fr', name: 'Français' },
-  { code: 'it', name: 'Italiano' },
-];
-
-const hoverMotion = {
-  whileHover: {
-    scale: 1.07,
-    boxShadow: '0 8px 32px 0 rgba(0,0,0,0.13)',
-    transition: { duration: 0.13, ease: 'easeOut' },
-  },
-  whileTap: {
-    scale: 1.07,
-    boxShadow: '0 8px 32px 0 rgba(0,0,0,0.13)',
-    transition: { duration: 0.13, ease: 'easeOut' },
-  },
-};
-
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
+// Always use the current i18n language for translations
 const Footer: React.FC = () => {
   const { language, setLanguage } = useLanguage();
 
-  const currentLanguage = i18n.language;
-  const t = languagesConfig[currentLanguage]?.texts || languagesConfig.en.texts;
+  // Use i18n.language as the source of truth, fallback to context, then 'en'
+  const currentLanguage = i18n.language || language || 'en';
+  const t = languages[currentLanguage]?.texts || languages.en.texts;
   const contact =
-    languagesConfig[currentLanguage as keyof typeof languagesConfig]?.contact ||
-    languagesConfig.en.contact;
+    languages[currentLanguage as keyof typeof languages]?.contact || languages.en.contact;
 
   const location = useLocation();
   const isHome = location.pathname === '/' || location.pathname === '/#home';
+
+  const hoverMotion = {
+    whileHover: {
+      scale: 1.07,
+      boxShadow: '0 8px 32px 0 rgba(0,0,0,0.13)',
+      transition: { duration: 0.13, ease: 'easeOut' },
+    },
+    whileTap: {
+      scale: 1.07,
+      boxShadow: '0 8px 32px 0 rgba(0,0,0,0.13)',
+      transition: { duration: 0.13, ease: 'easeOut' },
+    },
+  };
+
+  // Language options for the selector
+  const languageOptions = Object.keys(languages).map((code) => ({
+    code,
+    name: languages[code]?.texts?.languageNames?.[code] || code.toUpperCase(),
+  }));
 
   return (
     <footer className="bg-gradient-to-b from-gray-900 via-gray-950 to-black text-gray-300 pt-14 pb-8 border-t border-gray-800">
@@ -139,7 +137,7 @@ const Footer: React.FC = () => {
                     className="bg-gray-900 border border-gray-700 rounded px-2 py-1 text-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
                     aria-label="Select language"
                   >
-                    {languages.map((lang) => (
+                    {languageOptions.map((lang) => (
                       <option
                         key={lang.code}
                         value={lang.code}

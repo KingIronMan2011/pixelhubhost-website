@@ -3,19 +3,19 @@ import { useLanguage } from '../context/LanguageContext';
 import i18n from '../i18n';
 import { PLANS as basePlans } from '../config/plans';
 import { config, planLinks } from '../config/config';
-import languagesConfig from '../config/languages/Languages';
+import languages from '../config/languages/Languages';
 import { motion } from 'framer-motion'; // Animation library
 
 const PricingPlans = () => {
-  // Use i18n.language for the current language
-  const language = i18n.language;
+  // Use i18n.language as the source of truth, fallback to context, then 'en'
+  const { language: contextLanguage } = useLanguage();
+  const language = i18n.language || contextLanguage || 'en';
 
   // State for selected billing interval (monthly or quarterly)
   const [billingInterval, setBillingInterval] = useState<'monthly' | 'quarterly'>('monthly');
 
   // Get translations for the current language, fallback to English
-  const texts =
-    languagesConfig[language as keyof typeof languagesConfig]?.texts || languagesConfig.en.texts;
+  const texts = languages[language as keyof typeof languages]?.texts || languages.en.texts;
 
   // Use only the plans from config (custom plan is now only in config/plans.ts)
   const plans = useMemo(() => [...basePlans], [basePlans]);

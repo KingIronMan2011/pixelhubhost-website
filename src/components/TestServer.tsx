@@ -3,7 +3,7 @@ import { Server, Signal, Copy, Check, Info } from 'lucide-react';
 import { usePterodactyl } from '../hooks/usePterodactyl';
 import { useLanguage } from '../context/LanguageContext';
 import i18n from '../i18n';
-import languagesConfig from '../config/languages/Languages';
+import languages from '../config/languages/Languages';
 import { SERVER_LIMITS } from '../config/config';
 import type { Language } from '../config/config';
 import { toast, ToastContainer } from 'react-toastify';
@@ -12,9 +12,13 @@ import { Dialog } from '@headlessui/react';
 import { motion } from 'framer-motion';
 import ReactCountryFlag from 'react-country-flag';
 
-// Use translations from new languagesConfig
+// Always use i18n.language as the source of truth for language
+const currentLanguage = i18n.language || 'en';
+const texts = languages[currentLanguage]?.texts || languages.en.texts;
+
+// Use translations from languages config
 const translations = Object.fromEntries(
-  Object.entries(languagesConfig).map(([lang, obj]) => [
+  Object.entries(languages).map(([lang, obj]) => [
     lang,
     {
       domainCopied: obj.texts?.domainCopied,
@@ -32,7 +36,7 @@ const translations = Object.fromEntries(
 
 const siteConfig = {
   texts: Object.fromEntries(
-    Object.entries(languagesConfig).map(([lang, obj]) => [lang, obj.texts || {}]),
+    Object.entries(languages).map(([lang, obj]) => [lang, obj.texts || {}]),
   ),
 };
 
@@ -85,8 +89,7 @@ const ConnectPopup: React.FC<ConnectPopupProps> = ({
   serverDomain,
   bedrockPort,
 }) => {
-  const t =
-    languagesConfig[language as keyof typeof languagesConfig]?.texts || languagesConfig.en.texts;
+  const t = languages[language as keyof typeof languages]?.texts || languages.en.texts;
   const [copiedDomain, setCopiedDomain] = useState(false);
   const [copiedPort, setCopiedPort] = useState(false);
 
@@ -119,8 +122,6 @@ const ConnectPopup: React.FC<ConnectPopupProps> = ({
 
   const buttonIcon = copiedDomain ? <Check className="w-4 h-4" /> : <Copy className="w-4 h-4" />;
   const buttonIconPort = copiedPort ? <Check className="w-4 h-4" /> : <Copy className="w-4 h-4" />;
-
-  // Framer Motion hover animation for copy and connect buttons
 
   return (
     <Dialog open={true} onClose={onClose}>
@@ -217,8 +218,8 @@ const disableExternalServices = import.meta.env.VITE_DISABLE_EXTERNAL_SERVICES =
 // Main TestServer component
 const TestServer: React.FC = () => {
   // Always use i18n.language for detection
-  const currentLanguage = i18n.language;
-  const t = languagesConfig[currentLanguage]?.texts || languagesConfig.en.texts;
+  const currentLanguage = i18n.language || 'en';
+  const t = languages[currentLanguage]?.texts || languages.en.texts;
 
   // State for copy feedback and popups
   const [copied, setCopied] = useState(false);

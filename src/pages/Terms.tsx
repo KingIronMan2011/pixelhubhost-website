@@ -2,8 +2,8 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { useLanguage } from '../context/LanguageContext';
 import { config } from '../config/config';
-import languagesConfig from '../config/languages/Languages';
 import i18n from '../i18n';
+import languages from '../config/languages/Languages';
 import MetaTags from '../components/MetaTags';
 
 // Terms of Service page component displays the site's terms in the user's language
@@ -11,7 +11,7 @@ const Terms: React.FC = () => {
   // Always use i18n.language for detection
   const language = i18n.language || 'en';
   // Get the correct set of translated texts for the current language, fallback to English if missing
-  const texts = languagesConfig[language]?.texts || languagesConfig.en.texts;
+  const texts = languages[language]?.texts || languages.en.texts;
 
   return (
     <>

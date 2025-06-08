@@ -1,7 +1,7 @@
 import React from 'react';
 import { useLanguage } from '../context/LanguageContext';
 import { config } from '../config/config';
-import languagesConfig from '../config/languages/Languages';
+import languages from '../config/languages/Languages';
 import i18n from '../i18n';
 import { motion } from 'framer-motion';
 import MetaTags from '../components/MetaTags';
@@ -9,9 +9,9 @@ import MetaTags from '../components/MetaTags';
 // AboutUs page component displays information about PixelHub Host
 const AboutUs: React.FC = () => {
   // Always use i18n.language for detection
-  const language = i18n.language;
+  const language = i18n.language || 'en';
   // Get the correct set of translated texts for the current language
-  const texts = languagesConfig[language]?.texts || languagesConfig.en.texts;
+  const texts = languages[language]?.texts || languages.en.texts;
 
   // Framer Motion animation for the contact button and values
   const buttonHover = {

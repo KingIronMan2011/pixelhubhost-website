@@ -1,6 +1,6 @@
 import React from 'react';
 import i18n from '../i18n';
-import languagesConfig from '../config/languages/Languages';
+import languages from '../config/languages/Languages'; // Use 'languages' instead of 'languagesConfig'
 
 type ErrorBoundaryProps = {
   children: React.ReactNode;
@@ -28,28 +28,22 @@ class ErrorBoundary extends React.Component<ErrorBoundaryProps, ErrorBoundarySta
   }
 
   handleLanguageChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    localStorage.setItem('language', e.target.value);
     i18n.changeLanguage(e.target.value);
     this.forceUpdate();
   };
 
   render() {
     if (this.state.hasError) {
-      let language = this.props.language || localStorage.getItem('language');
-      const currentLanguage = i18n.language;
-
-      let t = { ...languagesConfig.en.texts };
-      if (
-        currentLanguage &&
-        Object.prototype.hasOwnProperty.call(languagesConfig, currentLanguage)
-      ) {
+      const currentLanguage = i18n.language || this.props.language || 'en';
+      let t = { ...languages.en.texts };
+      if (currentLanguage && Object.prototype.hasOwnProperty.call(languages, currentLanguage)) {
         t = {
           ...t,
-          ...languagesConfig[currentLanguage as keyof typeof languagesConfig].texts,
+          ...languages[currentLanguage as keyof typeof languages].texts,
         };
       }
 
-      const languageOptions = Object.entries(languagesConfig).map(([code, lang]) => (
+      const languageOptions = Object.entries(languages).map(([code, lang]) => (
         <option key={code} value={code}>
           {lang.texts.languageNames?.[code] || code.toUpperCase()}
         </option>
@@ -81,7 +75,7 @@ class ErrorBoundary extends React.Component<ErrorBoundaryProps, ErrorBoundarySta
                 </label>
                 <select
                   id="error-lang"
-                  value={currentLanguage ?? ''}
+                  value={currentLanguage}
                   onChange={this.handleLanguageChange}
                   className="mx-auto bg-gray-100 dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-lg px-4 py-3 text-gray-700 dark:text-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-400 transition-all w-full max-w-[220px] text-base"
                   style={{ display: 'block' }}

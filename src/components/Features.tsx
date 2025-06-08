@@ -1,15 +1,14 @@
-import { useLanguage } from '../context/LanguageContext';
-import languagesConfig from '../config/languages/Languages';
 import { Shield, Cpu, Network, Clock, Globe, DatabaseBackup } from 'lucide-react';
 import { motion } from 'framer-motion';
-import { config } from '../config/config'; // Make sure this import points to your config file
+import { config } from '../config/config';
 import i18n from '../i18n';
+import languages from '../config/languages/Languages';
 
 // Features section component
 const Features = () => {
   // Always use i18n.language for detection
-  const currentLanguage = i18n.language;
-  const t = languagesConfig[currentLanguage]?.texts || languagesConfig.en.texts;
+  const language = i18n.language || 'en';
+  const t = languages[language]?.texts || languages.en.texts;
 
   // Define the list of features to display, each with an icon, title, and description
   const features = [
@@ -50,14 +49,14 @@ const Features = () => {
     hidden: {},
     show: {
       transition: {
-        staggerChildren: 0.13, // Animate each child with a delay
+        staggerChildren: 0.13,
       },
     },
   };
 
   // Animation variants for each feature card (entrance, hover, tap)
   const cardVariants = {
-    hidden: { opacity: 0, y: 30, scale: 0.97 }, // Initial state: faded, moved down, slightly smaller
+    hidden: { opacity: 0, y: 30, scale: 0.97 },
     show: {
       opacity: 1,
       y: 0,
@@ -78,12 +77,11 @@ const Features = () => {
 
   // Trigger a test error if enabled in config
   if (config.testErrorHandling) {
-    // @ts-expect-error // Intentionally cause a TypeScript error to test error handling
+    // @ts-expect-error
     const test = doesNotExist.property;
   }
 
   return (
-    // Section for Features, with gradient background and padding
     <section
       id="features"
       className="py-8 bg-gradient-to-b from-gray-100 via-white to-gray-100 dark:from-gray-950 dark:via-gray-900 dark:to-gray-950 transition-colors duration-500"
@@ -108,12 +106,11 @@ const Features = () => {
           viewport={{ once: true, amount: 0.2 }}
         >
           {features.map((feature, index) => (
-            // Each feature card with animation and hover/tap effects
             <motion.div
               key={index}
               variants={cardVariants}
               whileHover="hover"
-              whileTap="tap" // tap animation for mobile
+              whileTap="tap"
               className="group bg-white/90 dark:bg-gray-900/90 rounded-2xl p-8 border border-gray-200 dark:border-gray-800 shadow-md flex flex-col items-center transition-all duration-100"
               style={{ willChange: 'transform, box-shadow' }}
             >

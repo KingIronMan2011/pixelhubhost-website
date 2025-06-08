@@ -2,7 +2,7 @@ import React from 'react';
 import { Sun, Moon } from 'lucide-react';
 import { useTheme } from '../context/ThemeContext';
 import { useLanguage } from '../context/LanguageContext';
-import languagesConfig from '../config/languages/Languages';
+import languages from '../config/languages/Languages';
 import i18n from '../i18n';
 import { motion } from 'framer-motion';
 
@@ -15,8 +15,7 @@ const ThemeToggle: React.FC = () => {
   const language = i18n.language || 'en';
 
   // Get translations for the current language, fallback to English
-  const texts =
-    languagesConfig[language as keyof typeof languagesConfig]?.texts || languagesConfig.en.texts;
+  const texts = languages[language as keyof typeof languages]?.texts || languages.en.texts;
 
   // Framer Motion hover animation for the toggle button
   const buttonHover = {

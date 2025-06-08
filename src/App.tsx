@@ -16,6 +16,7 @@ import { HelmetProvider } from 'react-helmet-async';
 import languages from './config/languages/Languages';
 import { Suspense, lazy, useEffect } from 'react';
 import { useGoogleAnalytics } from './analytics';
+import i18n from './i18n';
 
 // Lazy load large pages
 const AboutUs = lazy(() => import('./pages/AboutUs'));
@@ -35,11 +36,11 @@ function App() {
   // Get authentication loading state from AuthContext
   const { loading } = useAuth();
   // Initialize translations (i18next)
-  const { i18n } = useTranslation();
+  const { i18n: i18nextInstance } = useTranslation();
   // Get current location for routing
   const location = useLocation();
 
-  // --- FIX: i18n browser language detection integration ---
+  // --- i18n browser language detection integration ---
   useEffect(() => {
     if (typeof window === 'undefined') return;
     const supportedLangs = Object.keys(languages);
@@ -55,7 +56,7 @@ function App() {
       document.documentElement.lang = detected;
     }
     localStorage.setItem('language', detected);
-  }, [i18n]);
+  }, []);
 
   const language = i18n.language;
 

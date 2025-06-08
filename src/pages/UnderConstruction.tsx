@@ -1,7 +1,7 @@
 import { useLanguage } from '../context/LanguageContext';
 import { config, Language } from '../config/config';
 import i18n from '../i18n';
-import languagesConfig from '../config/languages/Languages';
+import languages from '../config/languages/Languages';
 import { motion } from 'framer-motion';
 import { FaDiscord, FaWhatsapp, FaEnvelope, FaCube } from 'react-icons/fa';
 import MetaTags from '../components/MetaTags';
@@ -12,14 +12,11 @@ const website = config.website;
 
 // UnderConstruction page component displays a maintenance/coming soon message
 const UnderConstruction = () => {
-  // Get current language and setter from context
-  const { language, setLanguage } = useLanguage();
-
   // Use i18n.language for the current language
   const currentLanguage = i18n.language || 'en';
 
   // Get translated texts for the current language, fallback to English if missing
-  const texts = languagesConfig[currentLanguage]?.texts || languagesConfig.en.texts;
+  const texts = languages[currentLanguage]?.texts || languages.en.texts;
 
   // Framer Motion hover animation configs for contact buttons
   const buttonHover = {

@@ -1,10 +1,10 @@
 import React, { useMemo } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { config } from '../config/config';
-import languagesConfig from '../config/languages/Languages';
+import languages from '../config/languages/Languages';
 import i18n from '../i18n';
 
-type SupportedLanguage = keyof typeof languagesConfig;
+type SupportedLanguage = keyof typeof languages;
 
 type MetaTagsProps = {
   title?: string;
@@ -24,6 +24,8 @@ const MetaTags: React.FC<MetaTagsProps> = ({
   // Use i18n.language as the default if language prop is not provided
   const currentLanguage = language || i18n.language || 'en';
 
+  const texts = languages[currentLanguage as SupportedLanguage]?.texts || languages.en.texts;
+
   const pageTitle = useMemo(() => {
     return title ? `${title} | ${config.name}` : config.name;
   }, [title]);
@@ -31,9 +33,7 @@ const MetaTags: React.FC<MetaTagsProps> = ({
   const pageDescription = useMemo(() => {
     if (description) return description;
     const langDesc =
-      languagesConfig?.[language as SupportedLanguage]?.description ||
-      languagesConfig?.[currentLanguage as SupportedLanguage]?.description ||
-      languagesConfig?.en?.description;
+      languages?.[currentLanguage as SupportedLanguage]?.description || languages?.en?.description;
     if (langDesc) return langDesc;
     if (typeof document !== 'undefined') {
       const meta = document.querySelector('meta[name="description"]');
@@ -45,7 +45,7 @@ const MetaTags: React.FC<MetaTagsProps> = ({
   }, [description, currentLanguage]);
 
   const currentUrl = typeof window !== 'undefined' ? window.location.href : '';
-  const languages = ['en', 'pt', 'de', 'fr'];
+  const languagesList = Object.keys(languages);
 
   return (
     <Helmet>
@@ -65,11 +65,11 @@ const MetaTags: React.FC<MetaTagsProps> = ({
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <link rel="canonical" href={currentUrl} />
       <link rel="alternate" href={currentUrl} hrefLang="x-default" />
-      {languages.map((code) => (
+      {languagesList.map((code) => (
         <link
           key={code}
           rel="alternate"
-          href={`https://www.pixelhubhost.com${location.pathname}?lang=${code}`}
+          href={`https://www.pixelhubhost.com${window.location.pathname}?lang=${code}`}
           hrefLang={code}
         />
       ))}

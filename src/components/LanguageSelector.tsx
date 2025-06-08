@@ -1,15 +1,16 @@
 import { useState, useRef, useEffect } from 'react';
 import { useLanguage } from '../context/LanguageContext';
 import { Globe, ChevronDown } from 'lucide-react';
-import languagesConfig from '../config/languages/Languages';
 import i18n from '../i18n';
+import languages from '../config/languages/Languages';
 
-type LanguagesConfigType = typeof languagesConfig;
-type LanguageKey = keyof LanguagesConfigType;
+// Type definitions for languages
+type LanguagesType = typeof languages;
+type LanguageKey = keyof LanguagesType;
 
 // Use languageNames from the current language config for better integration
 const getLanguageNames = (language: LanguageKey) => {
-  return languagesConfig[language]?.texts.languageNames || languagesConfig.en.texts.languageNames;
+  return languages[language]?.texts.languageNames || languages.en.texts.languageNames;
 };
 
 const LanguageSelector = () => {
@@ -37,7 +38,6 @@ const LanguageSelector = () => {
   const handleSetLanguage = (lang: LanguageKey) => {
     i18n.changeLanguage(lang);
     setLanguage(lang);
-    localStorage.setItem('language', lang);
     setIsOpen(false);
   };
 
@@ -69,7 +69,6 @@ const LanguageSelector = () => {
   };
 
   return (
-    // Dropdown container
     <div className="relative" ref={dropdownRef}>
       {/* Button to open/close the language dropdown */}
       <button

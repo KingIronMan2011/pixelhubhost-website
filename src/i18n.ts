@@ -32,20 +32,26 @@ function flattenTranslations(obj: any, prefix = ''): any {
 
 // Initialize i18next with language detection and React integration
 i18n
-  .use(LanguageDetector) // Detects user's preferred language (browser/localStorage)
-  .use(initReactI18next) // Integrates with React
-  .init({
-    resources, // All translations for all supported languages
-    fallbackLng: 'en', // Fallback to English if translation is missing
-    interpolation: { escapeValue: false }, // React already escapes values
-    detection: {
-      order: ['navigator', 'localStorage', 'htmlTag'], // Check browser first, then localStorage, then <html lang="">
-      lookupLocalStorage: 'preferred-language', // Key for localStorage
-      caches: ['localStorage'], // Cache language preference in localStorage
+  .use(LanguageDetector)
+  .use(initReactI18next)
+  .init(
+    {
+      resources,
+      fallbackLng: 'en',
+      interpolation: { escapeValue: false },
+      detection: {
+        order: ['navigator', 'localStorage', 'htmlTag'],
+        lookupLocalStorage: 'preferred-language',
+        caches: ['localStorage'],
+      },
+      supportedLngs: Object.keys(languages),
+      nonExplicitSupportedLngs: true,
+      load: 'languageOnly',
     },
-    supportedLngs: Object.keys(languages), // Only allow languages you provide
-    nonExplicitSupportedLngs: true, // Match "en-US" to "en", etc.
-    load: 'languageOnly', // Only use base language code (e.g., "en" from "en-US")
-  });
+    () => {
+      // Log the detected language after initialization
+      console.log('i18n detected language:', i18n.language);
+    },
+  );
 
 export default i18n;

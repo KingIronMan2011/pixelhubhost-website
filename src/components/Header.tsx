@@ -1,14 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import i18n from '../i18n';
 import { useLanguage } from '../context/LanguageContext';
-import languagesConfig from '../config/languages/Languages';
+import languages from '../config/languages/Languages';
 import LanguageSelector from './LanguageSelector';
 import ThemeToggle from './ThemeToggle';
 import { motion } from 'framer-motion';
 import { useLocation } from 'react-router-dom';
 
 // Infer the language keys from the config
-type LanguageKey = keyof typeof languagesConfig;
+type LanguageKey = keyof typeof languages;
 
 // Animation for link hover (desktop)
 const linkHover = {
@@ -32,10 +32,22 @@ const mobileLinkMotion = {
 };
 
 const Header: React.FC = () => {
-  // Get current language from context
+  // Get current language from context (synced with i18n)
   const { language } = useLanguage() as { language: LanguageKey };
-  // Get translations for the current language, fallback to English
-  const t = languagesConfig[language]?.texts || languagesConfig.en.texts;
+
+  // Detect browser language on mount if not set or not supported
+  useEffect(() => {
+    if (!language || !languages[language]) {
+      const browserLang = navigator.language.split('-')[0];
+      if (browserLang && languages[browserLang as LanguageKey] && i18n.language !== browserLang) {
+        i18n.changeLanguage(browserLang);
+      }
+    }
+  }, [language]);
+
+  // Always use the current language from context for translations
+  const t = languages[language]?.texts || languages.en.texts;
+
   // State for mobile menu open/close
   const [menuOpen, setMenuOpen] = useState(false);
   const location = useLocation();
@@ -50,7 +62,6 @@ const Header: React.FC = () => {
   ];
 
   return (
-    // Header bar with fixed position and background
     <header className="fixed top-0 left-0 right-0 z-50 bg-gray-900/95 backdrop-blur-md py-4 shadow transition-colors duration-500">
       <div className="container mx-auto px-4">
         <nav className="flex justify-between items-center">

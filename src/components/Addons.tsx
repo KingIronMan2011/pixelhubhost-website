@@ -1,15 +1,18 @@
 import React from 'react';
 import { Globe, Database, HardDrive } from 'lucide-react';
-import i18n from '../i18n';
 import { useLanguage } from '../context/LanguageContext';
-import languagesConfig from '../config/languages/Languages';
+import languages from '../config/languages/Languages';
+import i18n from '../i18n'; // <-- Ensure i18n is imported
 import { motion } from 'framer-motion';
 
 // Main Addons component
 const Addons: React.FC = () => {
-  // Get current language and translations
-  const currentLanguage = i18n.language;
-  const t = languagesConfig[currentLanguage]?.texts || languagesConfig.en.texts;
+  // Use the language from context, which is synced with i18n
+  const { language } = useLanguage();
+
+  // Always use the current i18n language for translations (in case context is out of sync)
+  const currentLanguage = i18n.language || language || 'en';
+  const t = languages[currentLanguage]?.texts || languages.en.texts;
 
   // Define the list of addon options, each with icon, name, description, and price
   const addons = [
