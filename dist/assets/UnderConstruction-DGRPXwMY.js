@@ -1,1 +1,193 @@
-import{u as p,l as x,j as e,M as b,c as s,F as c,m as a,a as m,b as w,d as f}from"./index-Cy43OS7K.js";const g=s.name,r=s.contact,y=s.website,v=()=>{var d;const{language:n,setLanguage:h}=p(),t=((d=x[n])==null?void 0:d.texts)||x.en.texts,o={scale:1.045,boxShadow:"0 8px 32px 0 rgba(59,130,246,0.13)",transition:{type:"tween",duration:.13,ease:"easeInOut"}},l={scale:1.045,boxShadow:"0 8px 32px 0 rgba(16,185,129,0.13)",transition:{type:"tween",duration:.13,ease:"easeInOut"}},i={scale:1.045,boxShadow:"0 8px 32px 0 rgba(59,130,246,0.07)",transition:{type:"tween",duration:.13,ease:"easeInOut"}};return e.jsxs(e.Fragment,{children:[e.jsx(b,{title:t.underConstruction,description:t.constructionWorking}),e.jsxs("div",{className:"min-h-screen flex flex-col items-center justify-center bg-gradient-to-b from-gray-900 via-gray-950 to-black text-gray-200 transition-colors duration-500",children:[e.jsxs("div",{className:"bg-white/90 dark:bg-gray-900/90 rounded-2xl shadow-xl p-8 border border-gray-200 dark:border-gray-800 flex flex-col items-center max-w-lg w-full",children:[e.jsxs("a",{href:y,target:"_blank",rel:"noopener noreferrer",className:"flex items-center gap-2 mb-2 group",children:[e.jsx(c,{size:28,className:"text-indigo-500 drop-shadow"}),e.jsx("span",{className:"text-2xl font-bold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent drop-shadow",children:g})]}),e.jsx("span",{className:"text-5xl mb-4 animate-pulse",children:"🚧"}),e.jsx("h1",{className:"text-3xl md:text-4xl font-bold mb-3 text-gray-900 dark:text-white text-center",style:{lineHeight:1.18},children:t.underConstruction}),e.jsx("p",{className:"text-lg text-gray-700 dark:text-gray-300 text-center mb-2",children:t.constructionWorking}),e.jsx("p",{className:"text-base text-gray-500 dark:text-gray-400 text-center mb-4",children:t.constructionCheckBack}),e.jsxs("div",{className:"flex gap-4 mb-4",children:[e.jsxs(a.a,{href:r.discord,target:"_blank",rel:"noopener noreferrer",className:"inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-5 py-2 rounded-lg font-medium transition-colors shadow",whileHover:o,whileFocus:o,whileTap:{scale:1.045,boxShadow:"0 8px 32px 0 rgba(16,185,129,0.13)",transition:{type:"tween",duration:.13,ease:"easeInOut"}},style:{willChange:"transform, box-shadow"},children:[e.jsx(m,{size:20}),"Discord"]}),e.jsxs(a.a,{href:`mailto:${r.email}`,className:"inline-flex items-center gap-2 bg-gray-100 dark:bg-gray-800 text-blue-600 dark:text-blue-400 px-5 py-2 rounded-lg font-medium border border-blue-200 dark:border-blue-900 hover:border-blue-400 dark:hover:border-blue-700 shadow transition-colors",whileHover:i,whileFocus:i,whileTap:{scale:1.045,boxShadow:"0 8px 32px 0 rgba(16,185,129,0.13)",transition:{type:"tween",duration:.13,ease:"easeInOut"}},style:{willChange:"transform, box-shadow"},children:[e.jsx(w,{size:20}),"Email"]}),e.jsxs(a.a,{href:r.whatsapp,target:"_blank",rel:"noopener noreferrer",className:"inline-flex items-center gap-2 bg-green-500 hover:bg-green-600 text-white px-5 py-2 rounded-lg font-medium transition-colors shadow",whileHover:l,whileFocus:l,whileTap:{scale:1.045,boxShadow:"0 8px 32px 0 rgba(16,185,129,0.13)",transition:{type:"tween",duration:.13,ease:"easeInOut"}},style:{willChange:"transform, box-shadow"},children:[e.jsx(f,{size:20}),"WhatsApp"]})]}),e.jsxs("div",{className:"flex items-center gap-2 mt-4",children:[e.jsxs("label",{htmlFor:"lang",className:"text-sm text-gray-500 dark:text-gray-400",children:[t.constructionLanguage,":"]}),e.jsxs(a.div,{className:"relative",whileHover:{scale:1.03,boxShadow:"0 4px 16px 0 rgba(59,130,246,0.10)"},whileFocus:{scale:1.03,boxShadow:"0 4px 16px 0 rgba(59,130,246,0.13)"},style:{willChange:"transform, box-shadow"},children:[e.jsxs("select",{id:"lang",value:n,onChange:u=>h(u.target.value),className:"appearance-none bg-gray-100 dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-full px-4 py-2 pr-10 text-gray-700 dark:text-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-400 transition-all duration-150 shadow-sm font-medium",children:[e.jsx("option",{value:"en",children:"English"}),e.jsx("option",{value:"de",children:"Deutsch"}),e.jsx("option",{value:"fr",children:"Français"}),e.jsx("option",{value:"pt",children:"Português"}),e.jsx("option",{value:"it",children:"Italiano"})]}),e.jsx("span",{className:"pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-blue-400 dark:text-blue-300",children:e.jsx("svg",{width:"18",height:"18",fill:"none",viewBox:"0 0 20 20",children:e.jsx("path",{d:"M6 8l4 4 4-4",stroke:"currentColor",strokeWidth:"2",strokeLinecap:"round",strokeLinejoin:"round"})})})]})]})]}),e.jsxs("footer",{className:"mt-6 text-xs text-gray-500 dark:text-gray-400 text-center flex items-center justify-center gap-1",children:[e.jsx(c,{size:14,className:"inline-block mb-0.5 text-indigo-400"}),new Date().getFullYear()," ",g,". All rights reserved."]})]})]})};export{v as default};
+import {
+  u as p,
+  l as x,
+  j as e,
+  M as b,
+  c as s,
+  F as c,
+  m as a,
+  a as m,
+  b as w,
+  d as f,
+} from './index-Cy43OS7K.js';
+const g = s.name,
+  r = s.contact,
+  y = s.website,
+  v = () => {
+    var d;
+    const { language: n, setLanguage: h } = p(),
+      t = ((d = x[n]) == null ? void 0 : d.texts) || x.en.texts,
+      o = {
+        scale: 1.045,
+        boxShadow: '0 8px 32px 0 rgba(59,130,246,0.13)',
+        transition: { type: 'tween', duration: 0.13, ease: 'easeInOut' },
+      },
+      l = {
+        scale: 1.045,
+        boxShadow: '0 8px 32px 0 rgba(16,185,129,0.13)',
+        transition: { type: 'tween', duration: 0.13, ease: 'easeInOut' },
+      },
+      i = {
+        scale: 1.045,
+        boxShadow: '0 8px 32px 0 rgba(59,130,246,0.07)',
+        transition: { type: 'tween', duration: 0.13, ease: 'easeInOut' },
+      };
+    return e.jsxs(e.Fragment, {
+      children: [
+        e.jsx(b, { title: t.underConstruction, description: t.constructionWorking }),
+        e.jsxs('div', {
+          className:
+            'min-h-screen flex flex-col items-center justify-center bg-gradient-to-b from-gray-900 via-gray-950 to-black text-gray-200 transition-colors duration-500',
+          children: [
+            e.jsxs('div', {
+              className:
+                'bg-white/90 dark:bg-gray-900/90 rounded-2xl shadow-xl p-8 border border-gray-200 dark:border-gray-800 flex flex-col items-center max-w-lg w-full',
+              children: [
+                e.jsxs('a', {
+                  href: y,
+                  target: '_blank',
+                  rel: 'noopener noreferrer',
+                  className: 'flex items-center gap-2 mb-2 group',
+                  children: [
+                    e.jsx(c, { size: 28, className: 'text-indigo-500 drop-shadow' }),
+                    e.jsx('span', {
+                      className:
+                        'text-2xl font-bold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent drop-shadow',
+                      children: g,
+                    }),
+                  ],
+                }),
+                e.jsx('span', { className: 'text-5xl mb-4 animate-pulse', children: '🚧' }),
+                e.jsx('h1', {
+                  className:
+                    'text-3xl md:text-4xl font-bold mb-3 text-gray-900 dark:text-white text-center',
+                  style: { lineHeight: 1.18 },
+                  children: t.underConstruction,
+                }),
+                e.jsx('p', {
+                  className: 'text-lg text-gray-700 dark:text-gray-300 text-center mb-2',
+                  children: t.constructionWorking,
+                }),
+                e.jsx('p', {
+                  className: 'text-base text-gray-500 dark:text-gray-400 text-center mb-4',
+                  children: t.constructionCheckBack,
+                }),
+                e.jsxs('div', {
+                  className: 'flex gap-4 mb-4',
+                  children: [
+                    e.jsxs(a.a, {
+                      href: r.discord,
+                      target: '_blank',
+                      rel: 'noopener noreferrer',
+                      className:
+                        'inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-5 py-2 rounded-lg font-medium transition-colors shadow',
+                      whileHover: o,
+                      whileFocus: o,
+                      whileTap: {
+                        scale: 1.045,
+                        boxShadow: '0 8px 32px 0 rgba(16,185,129,0.13)',
+                        transition: { type: 'tween', duration: 0.13, ease: 'easeInOut' },
+                      },
+                      style: { willChange: 'transform, box-shadow' },
+                      children: [e.jsx(m, { size: 20 }), 'Discord'],
+                    }),
+                    e.jsxs(a.a, {
+                      href: `mailto:${r.email}`,
+                      className:
+                        'inline-flex items-center gap-2 bg-gray-100 dark:bg-gray-800 text-blue-600 dark:text-blue-400 px-5 py-2 rounded-lg font-medium border border-blue-200 dark:border-blue-900 hover:border-blue-400 dark:hover:border-blue-700 shadow transition-colors',
+                      whileHover: i,
+                      whileFocus: i,
+                      whileTap: {
+                        scale: 1.045,
+                        boxShadow: '0 8px 32px 0 rgba(16,185,129,0.13)',
+                        transition: { type: 'tween', duration: 0.13, ease: 'easeInOut' },
+                      },
+                      style: { willChange: 'transform, box-shadow' },
+                      children: [e.jsx(w, { size: 20 }), 'Email'],
+                    }),
+                    e.jsxs(a.a, {
+                      href: r.whatsapp,
+                      target: '_blank',
+                      rel: 'noopener noreferrer',
+                      className:
+                        'inline-flex items-center gap-2 bg-green-500 hover:bg-green-600 text-white px-5 py-2 rounded-lg font-medium transition-colors shadow',
+                      whileHover: l,
+                      whileFocus: l,
+                      whileTap: {
+                        scale: 1.045,
+                        boxShadow: '0 8px 32px 0 rgba(16,185,129,0.13)',
+                        transition: { type: 'tween', duration: 0.13, ease: 'easeInOut' },
+                      },
+                      style: { willChange: 'transform, box-shadow' },
+                      children: [e.jsx(f, { size: 20 }), 'WhatsApp'],
+                    }),
+                  ],
+                }),
+                e.jsxs('div', {
+                  className: 'flex items-center gap-2 mt-4',
+                  children: [
+                    e.jsxs('label', {
+                      htmlFor: 'lang',
+                      className: 'text-sm text-gray-500 dark:text-gray-400',
+                      children: [t.constructionLanguage, ':'],
+                    }),
+                    e.jsxs(a.div, {
+                      className: 'relative',
+                      whileHover: { scale: 1.03, boxShadow: '0 4px 16px 0 rgba(59,130,246,0.10)' },
+                      whileFocus: { scale: 1.03, boxShadow: '0 4px 16px 0 rgba(59,130,246,0.13)' },
+                      style: { willChange: 'transform, box-shadow' },
+                      children: [
+                        e.jsxs('select', {
+                          id: 'lang',
+                          value: n,
+                          onChange: (u) => h(u.target.value),
+                          className:
+                            'appearance-none bg-gray-100 dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-full px-4 py-2 pr-10 text-gray-700 dark:text-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-400 transition-all duration-150 shadow-sm font-medium',
+                          children: [
+                            e.jsx('option', { value: 'en', children: 'English' }),
+                            e.jsx('option', { value: 'de', children: 'Deutsch' }),
+                            e.jsx('option', { value: 'fr', children: 'Français' }),
+                            e.jsx('option', { value: 'pt', children: 'Português' }),
+                            e.jsx('option', { value: 'it', children: 'Italiano' }),
+                          ],
+                        }),
+                        e.jsx('span', {
+                          className:
+                            'pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-blue-400 dark:text-blue-300',
+                          children: e.jsx('svg', {
+                            width: '18',
+                            height: '18',
+                            fill: 'none',
+                            viewBox: '0 0 20 20',
+                            children: e.jsx('path', {
+                              d: 'M6 8l4 4 4-4',
+                              stroke: 'currentColor',
+                              strokeWidth: '2',
+                              strokeLinecap: 'round',
+                              strokeLinejoin: 'round',
+                            }),
+                          }),
+                        }),
+                      ],
+                    }),
+                  ],
+                }),
+              ],
+            }),
+            e.jsxs('footer', {
+              className:
+                'mt-6 text-xs text-gray-500 dark:text-gray-400 text-center flex items-center justify-center gap-1',
+              children: [
+                e.jsx(c, { size: 14, className: 'inline-block mb-0.5 text-indigo-400' }),
+                new Date().getFullYear(),
+                ' ',
+                g,
+                '. All rights reserved.',
+              ],
+            }),
+          ],
+        }),
+      ],
+    });
+  };
+export { v as default };

@@ -27,7 +27,6 @@ const hoverMotion = {
   },
 };
 
- 
 const Footer: React.FC = () => {
   const { language, setLanguage } = useLanguage();
   const langKey = language as keyof typeof languagesConfig;
