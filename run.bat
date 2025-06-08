@@ -25,12 +25,21 @@ IF NOT EXIST .env (
     echo [NOT FOUND]
     echo .env not found. Running install.bat...
     call install.bat
+    if errorlevel 1 (
+        echo [ERROR] There was an error running install.bat. Please check the output above.
+        pause
+        exit /b 1
+    )
 ) else (
     echo [FOUND]
     <nul set /p="Installing dependencies... "
     call npm install --silent
     echo [DONE]
-    <nul set /p="Starting the development server... "
+    echo Starting the development server...
     call npm run dev --silent
-    echo [DONE]
+    if errorlevel 1 (
+        echo [ERROR] There was an error starting the development server.
+        pause
+        exit /b 1
+    )
 )
