@@ -31,7 +31,7 @@ This website serves as the main landing page, offering information about our ser
 
 ## 🚀 Getting Started
 
-### 🟢 Easiest Way (Recommended for Windows)
+### 🟢 Easiest Way (Made for Windows)
 
 Just run the setup script and everything will be done for you:
 
@@ -41,6 +41,26 @@ run.bat
 
 This will:
 
+- Copy `.env.example` to `.env` (if it doesn't exist)
+- Update npm to the latest compatible version for your Node.js
+- Install all dependencies
+- Start the development server
+
+Then, open [http://localhost:5173](http://localhost:5173) in your browser.
+
+---
+
+### 🟢 Easiest Way (Made for Linux/Ubuntu)
+
+Just run the setup script and everything will be done for you:
+
+```bash
+./run.sh
+```
+
+This will:
+
+- Install or update Node.js (LTS) and npm to the latest compatible version
 - Copy `.env.example` to `.env` (if it doesn't exist)
 - Install all dependencies
 - Start the development server
