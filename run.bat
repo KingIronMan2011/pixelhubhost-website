@@ -9,7 +9,8 @@ echo ============================
 REM Check Node.js version (require v22.x)
 node -v >nul 2>&1
 if errorlevel 1 (
-    echo [ERROR] Node.js is not installed or not in your PATH. Please install Node.js v22.x or newer.
+    echo [ERROR] Node.js is not installed.
+    echo Please install Node.js v22.x or newer from: https://nodejs.org/en
     pause
     exit /b 1
 )
@@ -29,6 +30,7 @@ IF NOT EXIST .env (
     <nul set /p="Installing dependencies... "
     call npm install --silent
     echo [DONE]
-    echo Starting the development server...
+    <nul set /p="Starting the development server... "
     call npm run dev --silent
+    echo [DONE]
 )
