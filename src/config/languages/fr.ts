@@ -211,7 +211,7 @@ const fr = {
     errorBoundaryTitle: "Une erreur s'est produite",
     errorBoundaryMessage: 'Désolé, quelque chose a mal tourné. Veuillez réessayer plus tard.',
     errorBoundaryButton: 'Recharger la page',
-    javaOnly: 'Actuellement disponible uniquement pour Minecraft Java Edition',
+    javaOnly: '⚠️ Actuellement disponible uniquement pour Minecraft Java Edition',
   },
 };
 

@@ -204,7 +204,7 @@ const it = {
     errorBoundaryTitle: 'Qualcosa è andato storto',
     errorBoundaryMessage: "Ci scusiamo per l'inconveniente. Ricarica la pagina o torna più tardi.",
     errorBoundaryButton: 'Ricarica la pagina',
-    javaOnly: 'Attualmente disponibile solo per Minecraft Java Edition',
+    javaOnly: '⚠️ Attualmente disponibile solo per Minecraft Java Edition',
   },
 };
 
