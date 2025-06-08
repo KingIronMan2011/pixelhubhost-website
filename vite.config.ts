@@ -25,4 +25,8 @@ export default defineConfig({
     },
     allowedHosts: ["website.pixelhubhost.com", "www.pixelhubhost.com"], // Only allow these hosts to access the dev server
   },
+
+  build: {
+    sourcemap: false, // Disable source maps for the production build
+  },
 });

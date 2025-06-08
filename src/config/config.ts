@@ -59,17 +59,13 @@ export const PTERODACTYL_CONFIG = {
 
 // Type definition for server status (used for test server status display)
 export type ServerStatus = {
-  state:
-    | "testServerStarting"
-    | "testServerRunning"
-    | "testServerStopping"
-    | "testServerOffline";
-  memory: { current: number; limit: number }; // Memory usage in bytes
-  cpu: { current: number; limit: number }; // CPU usage in percent
+  state: "running" | "starting" | "stopping" | "offline";
+  memory: { current: number; limit: number };
+  cpu: { current: number; limit: number };
 };
 
 // Limits for the test server (used for progress bars, etc.)
 export const SERVER_LIMITS = {
-  MEMORY: 3 * 1024 * 1024 * 1024, // 3GB in bytes
-  CPU: 200, // 200% (likely for multi-core virtualized CPU)
+  MEMORY: 27.5 * 1024 * 1024 * 1024, // 3GB in bytes
+  CPU: 1000, // 200% (likely for multi-core virtualized CPU)
 };

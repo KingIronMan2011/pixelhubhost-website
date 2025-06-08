@@ -125,6 +125,28 @@ Deno.serve(async (req: Request): Promise<Response> => {
 
       // If successful, return the data
       const data = await response.json();
+
+      if (endpoint.endsWith("/resources")) {
+        // Transform for frontend
+        return new Response(
+          JSON.stringify({
+            state: data.attributes.current_state,
+            memory: {
+              current: data.attributes.resources.memory_bytes,
+              limit: data.attributes.resources.memory_limit_bytes ?? 0,
+            },
+            cpu: {
+              current: data.attributes.resources.cpu_absolute,
+              limit: data.attributes.resources.cpu_limit ?? 100,
+            },
+          }),
+          {
+            headers: { ...corsHeaders, "Content-Type": "application/json" },
+          }
+        );
+      }
+
+      // For power actions, just return the raw data
       return new Response(JSON.stringify(data), {
         headers: { ...corsHeaders, "Content-Type": "application/json" },
       });

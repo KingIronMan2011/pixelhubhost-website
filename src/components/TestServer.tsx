@@ -376,6 +376,14 @@ const TestServer: React.FC = () => {
     }
   };
 
+  function mapServerState(state?: string) {
+    if (state === "running") return "testServerRunning";
+    if (state === "starting") return "testServerStarting";
+    if (state === "stopping") return "testServerStopping";
+    if (state === "offline") return "testServerOffline";
+    return "testServerOffline";
+  }
+
   return (
     // Main section with background and padding
     <section className="pt-8 pb-8 bg-gradient-to-b from-gray-50 via-white to-gray-100 dark:from-gray-950 dark:via-gray-900 dark:to-gray-950 transition-colors duration-500 relative overflow-hidden">
