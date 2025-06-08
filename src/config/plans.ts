@@ -53,51 +53,6 @@ export type Plan = {
 // Example of how you might define an array of plans
 export const PLANS: Plan[] = [
   {
-    id: "plan1",
-    name: {
-      en: "Basic Plan",
-      de: "Basisplan",
-      fr: "Forfait Basique",
-      it: "Piano Base",
-      pt: "Plano Básico",
-    },
-    description: {
-      en: "A solid start for small communities.",
-      de: "Ein solider Start für kleine Communities.",
-      fr: "Un bon départ pour les petites communautés.",
-      it: "Una base solida per piccole comunità.",
-      pt: "Um bom início para comunidades pequenas.",
-    },
-    price: {
-      base_amount: 20, // 20 BRL
-      getCurrencyInfo: (language: Language) => {
-        const { symbol, rate } = getCurrencyByLanguage(language);
-        const monthly = 20 * rate;
-        return {
-          amount: parseFloat(monthly.toFixed(2)),
-          quarterlyAmount: parseFloat((monthly * 3 * 0.9).toFixed(2)),
-          currency: symbol,
-        };
-      },
-    },
-    features: [
-      { nameKey: "ddosProtection", included: true },
-      { nameKey: "reliableSupport", included: true },
-      { nameKey: "dailyBackups", included: false },
-    ],
-    available: true,
-    popular: false,
-    color: "#3b82f6",
-    specs: {
-      threads: 2,
-      ram: 2,
-      storage: 10,
-      backups: 1,
-      databases: 1,
-      ports: 2,
-    },
-  },
-  {
     id: "oak",
     name: {
       en: "Oak",
