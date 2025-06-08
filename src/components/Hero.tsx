@@ -1,13 +1,15 @@
 import React, { useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
+import i18n from '../i18n';
 import { useLanguage } from '../context/LanguageContext';
 import languagesConfig from '../config/languages/Languages';
 
 const Hero: React.FC = () => {
-  const { language } = useLanguage();
+  // Always use i18n.language for detection
+  const currentLanguage = i18n.language;
+  const t = languagesConfig[currentLanguage]?.texts || languagesConfig.en.texts;
+
   const heroRef = useRef<HTMLDivElement>(null);
-  const t =
-    languagesConfig[language as keyof typeof languagesConfig]?.texts || languagesConfig.en.texts;
 
   // Animate elements with .animate-on-scroll class when they enter the viewport
   useEffect(() => {

@@ -1,13 +1,15 @@
 import { useMemo, useState } from 'react';
 import { useLanguage } from '../context/LanguageContext';
+import i18n from '../i18n';
 import { PLANS as basePlans } from '../config/plans';
 import { config, planLinks } from '../config/config';
 import languagesConfig from '../config/languages/Languages';
 import { motion } from 'framer-motion'; // Animation library
 
 const PricingPlans = () => {
-  // Get current language from context
-  const { language } = useLanguage();
+  // Use i18n.language for the current language
+  const language = i18n.language;
+
   // State for selected billing interval (monthly or quarterly)
   const [billingInterval, setBillingInterval] = useState<'monthly' | 'quarterly'>('monthly');
 
@@ -15,44 +17,8 @@ const PricingPlans = () => {
   const texts =
     languagesConfig[language as keyof typeof languagesConfig]?.texts || languagesConfig.en.texts;
 
-  // Define a custom plan (for "Contact us" option)
-  const customPlan = {
-    id: 'custom',
-    name: {
-      en: texts.customPlanName,
-      de: texts.customPlanName,
-      fr: texts.customPlanName,
-      pt: texts.customPlanName,
-      it: texts.customPlanName,
-    },
-    description: {
-      en: texts.customPlanDesc,
-      de: texts.customPlanDesc,
-      fr: texts.customPlanDesc,
-      pt: texts.customPlanDesc,
-      it: texts.customPlanDesc,
-    },
-    price: {
-      getCurrencyInfo: () => ({
-        currency: '',
-        amount: '',
-        quarterlyAmount: '',
-      }),
-    },
-    specs: {
-      threads: '-',
-      ram: '-',
-      storage: '-',
-      backups: '-',
-      databases: '-',
-      ports: '-',
-    },
-    available: true,
-    popular: false,
-  };
-
-  // Combine base plans with the custom plan
-  const plans = useMemo(() => [...basePlans, customPlan], [basePlans, texts]);
+  // Use only the plans from config (custom plan is now only in config/plans.ts)
+  const plans = useMemo(() => [...basePlans], [basePlans]);
 
   // Helper to get currency and price display for a plan
   const getCurrencyDisplay = useMemo(() => {
@@ -139,11 +105,8 @@ const PricingPlans = () => {
           {plans.map((plan) => {
             // Get currency and price for this plan
             const { currency, displayAmount } = getCurrencyDisplay(plan);
-            // Get the correct plan link (or contact for custom)
-            const planLink =
-              plan.id === 'custom'
-                ? config.contact?.discord || '#'
-                : planLinks[plan.id]?.[billingInterval] || '#';
+            // Get the correct plan link
+            const planLink = planLinks[plan.id]?.[billingInterval] || '#';
 
             return (
               // Animated pricing card
@@ -202,20 +165,18 @@ const PricingPlans = () => {
                   <div className="mt-8 mb-6">
                     <div className="flex items-baseline justify-center">
                       <span className="text-4xl font-bold text-gray-900 dark:text-white">
-                        {plan.id === 'custom' ? '-' : `${currency} ${displayAmount}`}
+                        {`${currency} ${displayAmount}`}
                       </span>
-                      {plan.id !== 'custom' && (
-                        <span className="text-gray-700 dark:text-gray-400 ml-2">
-                          /
-                          {billingInterval === 'monthly'
-                            ? texts.monthly?.toLowerCase?.()
-                            : texts.quarterly?.toLowerCase?.()}
-                        </span>
-                      )}
+                      <span className="text-gray-700 dark:text-gray-400 ml-2">
+                        /
+                        {billingInterval === 'monthly'
+                          ? texts.monthly?.toLowerCase?.()
+                          : texts.quarterly?.toLowerCase?.()}
+                      </span>
                     </div>
                   </div>
 
-                  {/* Buy Now / Contact Us button */}
+                  {/* Buy Now button */}
                   <motion.a
                     href={planLink}
                     target="_blank"
@@ -223,9 +184,7 @@ const PricingPlans = () => {
                     className={`w-full inline-block text-center py-3 px-4 rounded-xl font-semibold transition-all duration-200 shadow ${
                       plan.popular
                         ? 'bg-blue-600 hover:bg-blue-700 text-white'
-                        : plan.id === 'custom'
-                          ? 'bg-emerald-600 hover:bg-emerald-700 text-white'
-                          : 'bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-white hover:bg-gray-200 dark:hover:bg-gray-700'
+                        : 'bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-white hover:bg-gray-200 dark:hover:bg-gray-700'
                     } ${
                       !plan.available
                         ? 'opacity-75 cursor-not-allowed bg-gray-500 dark:bg-gray-700 pointer-events-none'
@@ -244,45 +203,45 @@ const PricingPlans = () => {
                         <span className="text-white font-bold text-lg">{texts.soldOut}</span>
                       </div>
                     )}
-                    {plan.id === 'custom' ? texts.contactUs : texts.buyNow || texts.selectPlan}
+                    {texts.buyNow || texts.selectPlan}
                   </motion.a>
 
                   {/* Plan specs list */}
-                  <div className={`mt-6 space-y-4 ${plan.id === 'custom' ? 'opacity-50' : ''}`}>
+                  <div className="mt-6 space-y-4">
                     <div className="flex items-center justify-between text-sm text-gray-700 dark:text-gray-400">
                       <span>{texts.cpuThreads}</span>
                       <span className="font-medium text-gray-900 dark:text-white">
-                        {plan.id === 'custom' ? texts.custom || '-' : plan.specs.threads}
+                        {plan.specs.threads}
                       </span>
                     </div>
                     <div className="flex items-center justify-between text-sm text-gray-700 dark:text-gray-400">
                       <span>{texts.ram}</span>
                       <span className="font-medium text-gray-900 dark:text-white">
-                        {plan.id === 'custom' ? texts.custom || '-' : `${plan.specs.ram}GB`}
+                        {`${plan.specs.ram}GB`}
                       </span>
                     </div>
                     <div className="flex items-center justify-between text-sm text-gray-700 dark:text-gray-400">
                       <span>{texts.storage}</span>
                       <span className="font-medium text-gray-900 dark:text-white">
-                        {plan.id === 'custom' ? texts.custom || '-' : `${plan.specs.storage}GB`}
+                        {`${plan.specs.storage}GB`}
                       </span>
                     </div>
                     <div className="flex items-center justify-between text-sm text-gray-700 dark:text-gray-400">
                       <span>{texts.backups}</span>
                       <span className="font-medium text-gray-900 dark:text-white">
-                        {plan.id === 'custom' ? texts.custom || '-' : plan.specs.backups}
+                        {plan.specs.backups}
                       </span>
                     </div>
                     <div className="flex items-center justify-between text-sm text-gray-700 dark:text-gray-400">
                       <span>{texts.databases}</span>
                       <span className="font-medium text-gray-900 dark:text-white">
-                        {plan.id === 'custom' ? texts.custom || '-' : plan.specs.databases}
+                        {plan.specs.databases}
                       </span>
                     </div>
                     <div className="flex items-center justify-between text-sm text-gray-700 dark:text-gray-400">
                       <span>{texts.ports}</span>
                       <span className="font-medium text-gray-900 dark:text-white">
-                        {plan.id === 'custom' ? texts.custom || '-' : plan.specs.ports}
+                        {plan.specs.ports}
                       </span>
                     </div>
                   </div>

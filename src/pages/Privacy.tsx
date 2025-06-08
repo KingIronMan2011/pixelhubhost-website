@@ -2,13 +2,14 @@ import React from 'react';
 import { useLanguage } from '../context/LanguageContext';
 import { config } from '../config/config';
 import languagesConfig from '../config/languages/Languages';
+import i18n from '../i18n';
 import { motion } from 'framer-motion';
 import MetaTags from '../components/MetaTags';
 
 // Privacy page component displays privacy policy and data protection info
 const Privacy: React.FC = () => {
-  // Get the current language from context
-  const { language } = useLanguage();
+  // Always use i18n.language for detection
+  const language = i18n.language;
   // Get the correct set of translated texts for the current language
   const texts = languagesConfig[language]?.texts || languagesConfig.en.texts;
 

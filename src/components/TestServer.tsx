@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Server, Signal, Copy, Check, Info } from 'lucide-react';
 import { usePterodactyl } from '../hooks/usePterodactyl';
 import { useLanguage } from '../context/LanguageContext';
+import i18n from '../i18n';
 import languagesConfig from '../config/languages/Languages';
 import { SERVER_LIMITS } from '../config/config';
 import type { Language } from '../config/config';
@@ -215,13 +216,16 @@ const disableExternalServices = import.meta.env.VITE_DISABLE_EXTERNAL_SERVICES =
 
 // Main TestServer component
 const TestServer: React.FC = () => {
-  // Get current language from context
-  const { language } = useLanguage();
+  // Always use i18n.language for detection
+  const currentLanguage = i18n.language;
+  const t = languagesConfig[currentLanguage]?.texts || languagesConfig.en.texts;
+
   // State for copy feedback and popups
   const [copied, setCopied] = useState(false);
   const [copiedPort, setCopiedPort] = useState(false);
-  const [showNotification, setShowNotification] = useState(false); // <-- Add this line
+  const [showNotification, setShowNotification] = useState(false);
   const [showConnectPopup, setShowConnectPopup] = useState(false);
+
   // Server connection info
   const serverDomain = 'survival.pixelhubhost.com';
   const bedrockPort = '19132';
@@ -231,7 +235,7 @@ const TestServer: React.FC = () => {
     ? { status: null, loading: false, error: null }
     : usePterodactyl(testServerId);
 
-  // Copy-to-clipboard handler for domain/port
+  // Use currentLanguage everywhere instead of undefined variable "language"
   const handleCopy = async (
     value: string,
     setCopiedFn: React.Dispatch<React.SetStateAction<boolean>>,
@@ -251,12 +255,12 @@ const TestServer: React.FC = () => {
         document.execCommand('copy');
         document.body.removeChild(textArea);
       }
-      toast.success(translations[language].domainCopied);
+      toast.success(translations[currentLanguage].domainCopied);
       setCopiedFn(true);
-      setShowNotification(true); // <-- Show notification
+      setShowNotification(true);
       setTimeout(() => {
         setCopiedFn(false);
-        setShowNotification(false); // <-- Hide notification after timeout
+        setShowNotification(false);
       }, 1500);
     } catch (err) {
       toast.error('Copy failed');
@@ -316,26 +320,26 @@ const TestServer: React.FC = () => {
   if (!loading && (!status || Object.keys(status).length === 0)) {
     return (
       <div className="text-center text-gray-500 py-8">
-        {siteConfig.texts[language].noServerStatus || 'No server status available.'}
+        {siteConfig.texts[currentLanguage].noServerStatus || 'No server status available.'}
       </div>
     );
   }
 
   // Helper to get translated server status
   const getServerStatusText = (mappedState?: string) => {
-    if (loading) return siteConfig.texts[language].checking;
-    if (!mappedState) return siteConfig.texts[language].testServerOffline;
+    if (loading) return siteConfig.texts[currentLanguage].checking;
+    if (!mappedState) return siteConfig.texts[currentLanguage].testServerOffline;
     switch (mappedState) {
       case 'testServerStarting':
-        return siteConfig.texts[language].testServerStarting;
+        return siteConfig.texts[currentLanguage].testServerStarting;
       case 'testServerRunning':
-        return siteConfig.texts[language].testServerRunning;
+        return siteConfig.texts[currentLanguage].testServerRunning;
       case 'testServerStopping':
-        return siteConfig.texts[language].testServerStopping;
+        return siteConfig.texts[currentLanguage].testServerStopping;
       case 'testServerOffline':
-        return siteConfig.texts[language].testServerOffline;
+        return siteConfig.texts[currentLanguage].testServerOffline;
       default:
-        return siteConfig.texts[language].testServerOffline;
+        return siteConfig.texts[currentLanguage].testServerOffline;
     }
   };
 
@@ -354,13 +358,13 @@ const TestServer: React.FC = () => {
     <section className="pt-8 pb-8 bg-gradient-to-b from-gray-50 via-white to-gray-100 dark:from-gray-950 dark:via-gray-900 dark:to-gray-950 transition-colors duration-500 relative overflow-hidden">
       {/* Show notification when something is copied */}
       {showNotification && (
-        <CopyNotification onClose={() => setShowNotification(false)} language={language} />
+        <CopyNotification onClose={() => setShowNotification(false)} language={currentLanguage} />
       )}
       {/* Show popup with connection instructions */}
       {showConnectPopup && (
         <ConnectPopup
           onClose={() => setShowConnectPopup(false)}
-          language={language}
+          language={currentLanguage}
           serverDomain={serverDomain}
           bedrockPort={bedrockPort}
         />
@@ -380,7 +384,7 @@ const TestServer: React.FC = () => {
                 <Server className="w-7 h-7 text-blue-500" />
                 <div>
                   <h2 className="text-xl font-bold text-gray-900 dark:text-white">
-                    {siteConfig.texts[language].testServer}
+                    {siteConfig.texts[currentLanguage].testServer}
                   </h2>
                   <p className="text-sm text-gray-600 dark:text-gray-400">(1.7.2 - 1.21.5)</p>
                 </div>
@@ -415,7 +419,7 @@ const TestServer: React.FC = () => {
                 {/* Java/Bedrock domain */}
                 <div className="flex items-center bg-gray-100/70 dark:bg-gray-800/70 rounded-lg px-3 py-2">
                   <span className="text-sm text-gray-600 dark:text-gray-400 mr-2">
-                    {siteConfig.texts[language].domain}:
+                    {siteConfig.texts[currentLanguage].domain}:
                   </span>
                   <span className="font-mono text-blue-600 dark:text-blue-400 text-sm font-medium">
                     {serverDomain}
@@ -424,7 +428,7 @@ const TestServer: React.FC = () => {
                   <motion.button
                     onClick={() => handleCopy(serverDomain, setCopied)}
                     className="ml-2 p-1 rounded transition-colors text-gray-700 dark:text-white"
-                    title={translations[language].domainCopied}
+                    title={translations[currentLanguage].domainCopied}
                     whileHover={copyHover}
                     whileFocus={copyHover}
                     whileTap={{
@@ -439,7 +443,7 @@ const TestServer: React.FC = () => {
                 {/* Bedrock port */}
                 <div className="flex items-center bg-gray-100/70 dark:bg-gray-800/70 rounded-lg px-3 py-2">
                   <span className="text-sm text-gray-600 dark:text-gray-400 mr-2">
-                    {siteConfig.texts[language].bedrockPort}:
+                    {siteConfig.texts[currentLanguage].bedrockPort}:
                   </span>
                   <span className="font-mono text-sm text-gray-900 dark:text-white font-medium">
                     {bedrockPort}
@@ -448,7 +452,7 @@ const TestServer: React.FC = () => {
                   <motion.button
                     onClick={() => handleCopy(bedrockPort, setCopiedPort)}
                     className="ml-2 p-1 rounded transition-colors text-gray-700 dark:text-white"
-                    title={translations[language].domainCopied}
+                    title={translations[currentLanguage].domainCopied}
                     whileHover={copyHoverGreen}
                     whileFocus={copyHoverGreen}
                     whileTap={{
@@ -481,7 +485,7 @@ const TestServer: React.FC = () => {
                   <div>
                     <div className="flex items-center justify-between mb-1">
                       <span className="text-sm text-gray-500">
-                        {siteConfig.texts[language].cpu}
+                        {siteConfig.texts[currentLanguage].cpu}
                       </span>
                       <span className="text-sm font-medium text-gray-900 dark:text-white">
                         {Math.floor(cpuUsagePercent)}%
@@ -497,7 +501,7 @@ const TestServer: React.FC = () => {
                   <div>
                     <div className="flex items-center justify-between mb-1">
                       <span className="text-sm text-gray-500">
-                        {siteConfig.texts[language].memory}
+                        {siteConfig.texts[currentLanguage].memory}
                       </span>
                       <span className="text-sm font-medium text-gray-900 dark:text-white">
                         {Math.round(status.memory.current / 1024 / 1024)}MB
@@ -524,7 +528,7 @@ const TestServer: React.FC = () => {
                 whileTap={{ scale: 1.04, backgroundColor: '#059669' }} // mobile tap animation
                 style={{ willChange: 'transform, box-shadow' }}
               >
-                {siteConfig.texts[language].connectToTestServer}
+                {siteConfig.texts[currentLanguage].connectToTestServer}
               </motion.button>
             </div>
           </motion.div>

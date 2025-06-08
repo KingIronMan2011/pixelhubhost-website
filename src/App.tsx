@@ -14,7 +14,7 @@ import Addons from './components/Addons';
 import Contact from './components/Contact';
 import { HelmetProvider } from 'react-helmet-async';
 import languages from './config/languages/Languages';
-import { Suspense, lazy } from 'react';
+import { Suspense, lazy, useEffect } from 'react';
 import { useGoogleAnalytics } from './analytics';
 
 // Lazy load large pages
@@ -35,12 +35,28 @@ function App() {
   // Get authentication loading state from AuthContext
   const { loading } = useAuth();
   // Initialize translations (i18next)
-  useTranslation();
+  const { i18n } = useTranslation();
   // Get current location for routing
   const location = useLocation();
 
-  // Get current language from i18next or LanguageContext
-  const { i18n } = useTranslation();
+  // --- FIX: i18n browser language detection integration ---
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    const supportedLangs = Object.keys(languages);
+    let detected = localStorage.getItem('language') || i18n.language;
+    if (!supportedLangs.includes(detected)) {
+      const browserLang = navigator.language.split('-')[0];
+      detected = supportedLangs.includes(browserLang) ? browserLang : 'en';
+    }
+    if (i18n.language !== detected) {
+      i18n.changeLanguage(detected);
+    }
+    if (document.documentElement.lang !== detected) {
+      document.documentElement.lang = detected;
+    }
+    localStorage.setItem('language', detected);
+  }, [i18n]);
+
   const language = i18n.language;
 
   // Show a loading spinner while authentication state is being determined

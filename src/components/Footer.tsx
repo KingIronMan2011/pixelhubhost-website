@@ -1,6 +1,7 @@
 import React from 'react';
 import { Globe, Youtube } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
+import i18n from '../i18n';
 import languagesConfig from '../config/languages/Languages';
 import { motion } from 'framer-motion';
 import DOMPurify from 'dompurify';
@@ -27,11 +28,16 @@ const hoverMotion = {
   },
 };
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const Footer: React.FC = () => {
   const { language, setLanguage } = useLanguage();
-  const langKey = language as keyof typeof languagesConfig;
-  const t = languagesConfig[langKey]?.texts || languagesConfig.en.texts;
-  const contact = languagesConfig[langKey]?.contact || languagesConfig.en.contact;
+
+  const currentLanguage = i18n.language;
+  const t = languagesConfig[currentLanguage]?.texts || languagesConfig.en.texts;
+  const contact =
+    languagesConfig[currentLanguage as keyof typeof languagesConfig]?.contact ||
+    languagesConfig.en.contact;
+
   const location = useLocation();
   const isHome = location.pathname === '/' || location.pathname === '/#home';
 
@@ -128,7 +134,7 @@ const Footer: React.FC = () => {
                 <div className="flex items-center mt-3">
                   <Globe size={16} className="mr-2 text-gray-400" />
                   <select
-                    value={language}
+                    value={currentLanguage}
                     onChange={(e) => setLanguage(e.target.value as any)}
                     className="bg-gray-900 border border-gray-700 rounded px-2 py-1 text-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
                     aria-label="Select language"

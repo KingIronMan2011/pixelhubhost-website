@@ -3,14 +3,13 @@ import languagesConfig from '../config/languages/Languages';
 import { Shield, Cpu, Network, Clock, Globe, DatabaseBackup } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { config } from '../config/config'; // Make sure this import points to your config file
+import i18n from '../i18n';
 
 // Features section component
 const Features = () => {
-  // Get current language from context
-  const { language } = useLanguage();
-  // Get translations for the current language, fallback to English
-  const t =
-    languagesConfig[language as keyof typeof languagesConfig]?.texts || languagesConfig.en.texts;
+  // Always use i18n.language for detection
+  const currentLanguage = i18n.language;
+  const t = languagesConfig[currentLanguage]?.texts || languagesConfig.en.texts;
 
   // Define the list of features to display, each with an icon, title, and description
   const features = [

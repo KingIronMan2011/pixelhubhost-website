@@ -1,4 +1,4 @@
-import { useLanguage } from '../context/LanguageContext';
+import i18n from '../i18n';
 import { planLinks } from '../config/config';
 import languagesConfig from '../config/languages/Languages';
 import { motion } from 'framer-motion';
@@ -23,11 +23,12 @@ interface PricingCardProps {
 
 // PricingCard component: displays a single pricing plan card
 const PricingCard = ({ product, isPopular, billingInterval = 'monthly' }: PricingCardProps) => {
-  // Get current language from context
-  const { language } = useLanguage();
+  // Use i18n.language for the current language
+  const language = i18n.language || 'en';
+
   // Get translations for the current language, fallback to English
-  const langs = (languagesConfig as any).default || languagesConfig;
-  const t = langs[language]?.texts || langs.en.texts;
+  const t = languagesConfig[language]?.texts || languagesConfig.en.texts;
+
   // Get the correct plan link for the selected billing interval
   const planLink = planLinks[product.id]?.[billingInterval] || '#';
 
