@@ -7,7 +7,7 @@ on:
     branches: [main, master]
 
 jobs:
-  build-and-test:
+  build-and-lint:
     runs-on: ubuntu-latest
 
     steps:
@@ -23,3 +23,6 @@ jobs:
 
       - name: Lint
         run: npx eslint . --ext .js,.jsx,.ts,.tsx
+
+      - name: Check Prettier formatting
+        run: npx prettier --check .
