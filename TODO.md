@@ -59,7 +59,7 @@
 
 ### Analytics & Monitoring
 
-- [ ] Integrate analytics (e.g., Google Analytics, Plausible) for usage tracking.
+- [x] Integrate analytics (e.g., Google Analytics, Plausible) for usage tracking.
 
 ### Documentation
 

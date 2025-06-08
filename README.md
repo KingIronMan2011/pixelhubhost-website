@@ -146,10 +146,31 @@ See [TODO.md](./TODO.md) for the current project tasks and checks.
 
 ---
 
-## 🤝 Contributing
+## 🤝 Contribution Guidelines
 
-Contributions are welcome!  
-Feel free to submit issues and pull requests for improvements, bug fixes, or translations.
+We welcome contributions from everyone! To contribute:
+
+1. **Fork** this repository.
+2. **Create a new branch** for your feature or bugfix:
+   ```bash
+   git checkout -b my-feature
+   ```
+3. **Make your changes** and commit with clear messages.
+4. **Test your changes** locally to ensure nothing is broken.
+5. **Push** your branch to your forked repo:
+   ```bash
+   git push origin my-feature
+   ```
+6. **Open a Pull Request** on GitHub, describing your changes and referencing any related issues.
+
+**Tips:**
+
+- Please follow the existing code style.
+- Add translations if you add new user-facing text.
+- For major changes, open an issue first to discuss what you’d like to change.
+- Be respectful and constructive in code reviews and discussions.
+
+Thank you for helping improve PixelHub Host!
 
 ---
 
