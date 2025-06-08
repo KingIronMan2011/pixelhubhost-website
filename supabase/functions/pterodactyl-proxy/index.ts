@@ -1,11 +1,5 @@
 // @deno-types="https://deno.land/std@0.168.0/http/server.d.ts"
 // If running in Deno, ensure you have the correct permissions and Deno version.
-// If running in Node.js, use a compatible HTTP server like 'express' or 'http'.
-// Example for Node.js environment:
-import express from "express";
-
-const app = express();
-app.use(express.json());
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
@@ -14,10 +8,30 @@ const corsHeaders = {
   "Access-Control-Allow-Methods": "POST, GET, OPTIONS",
 };
 
+// --- BEGIN: Disable external services option ---
+const disableExternalServices =
+  Deno.env.get("VITE_DISABLE_EXTERNAL_SERVICES") === "true";
+// --- END: Disable external services option ---
+
 serve(async (req) => {
   if (req.method === "OPTIONS") {
     return new Response("ok", { headers: corsHeaders });
   }
+
+  // --- BEGIN: Skip all logic if disabled ---
+  if (disableExternalServices) {
+    return new Response(
+      JSON.stringify({
+        message: "External services are disabled.",
+        status: "offline",
+      }),
+      {
+        status: 200,
+        headers: { ...corsHeaders, "Content-Type": "application/json" },
+      }
+    );
+  }
+  // --- END: Skip all logic if disabled ---
 
   try {
     const url = new URL(req.url);

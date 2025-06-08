@@ -238,6 +238,8 @@ const ConnectPopup: React.FC<ConnectPopupProps> = ({
 };
 
 const testServerId = import.meta.env.VITE_PTERODACTYL_TEST_SERVER_ID;
+const disableExternalServices =
+  import.meta.env.VITE_DISABLE_EXTERNAL_SERVICES === "true";
 
 // Main TestServer component
 const TestServer: React.FC = () => {
@@ -252,8 +254,10 @@ const TestServer: React.FC = () => {
   const serverDomain = "test.pixelhubhost.com";
   const bedrockPort = "19132";
 
-  // Get test server status from custom hook
-  const { status, loading, error } = usePterodactyl(testServerId);
+  // Only call usePterodactyl if not disabled
+  const { status, loading, error } = disableExternalServices
+    ? { status: null, loading: false, error: null }
+    : usePterodactyl(testServerId);
 
   // Copy-to-clipboard handler for domain/port
   const handleCopy = async (

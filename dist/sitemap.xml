@@ -14,32 +14,6 @@
     <priority>1.0</priority>
   </url>
 
-  <!-- Login Page -->
-  <url>
-    <loc>https://www.pixelhubhost.com/login</loc>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.pixelhubhost.com/login"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.pixelhubhost.com/login?lang=en"/>
-    <xhtml:link rel="alternate" hreflang="pt" href="https://www.pixelhubhost.com/login?lang=pt"/>
-    <xhtml:link rel="alternate" hreflang="de" href="https://www.pixelhubhost.com/login?lang=de"/>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://www.pixelhubhost.com/login?lang=fr"/>
-    <lastmod>2025-05-01</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-  <!-- Sign Up Page -->
-  <url>
-    <loc>https://www.pixelhubhost.com/signup</loc>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.pixelhubhost.com/signup"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.pixelhubhost.com/signup?lang=en"/>
-    <xhtml:link rel="alternate" hreflang="pt" href="https://www.pixelhubhost.com/signup?lang=pt"/>
-    <xhtml:link rel="alternate" hreflang="de" href="https://www.pixelhubhost.com/signup?lang=de"/>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://www.pixelhubhost.com/signup?lang=fr"/>
-    <lastmod>2025-05-01</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
   <!-- Features Section -->
   <url>
     <loc>https://www.pixelhubhost.com/#features</loc>

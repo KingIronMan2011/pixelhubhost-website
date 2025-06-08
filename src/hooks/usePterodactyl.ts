@@ -2,6 +2,9 @@ import { useState, useEffect, useCallback } from "react";
 import { pterodactylService } from "../services/pterodactyl";
 import type { ServerStatus } from "../config/config";
 
+const disableExternalServices =
+  import.meta.env.VITE_DISABLE_EXTERNAL_SERVICES === "true";
+
 // Custom React hook to fetch and manage the status of a Pterodactyl server
 export function usePterodactyl(serverId: string) {
   const [status, setStatus] = useState<ServerStatus | null>(null); // Holds the current server status
@@ -10,6 +13,12 @@ export function usePterodactyl(serverId: string) {
 
   // Function to fetch server status from the API
   const fetchStatus = useCallback(async () => {
+    if (disableExternalServices) {
+      setStatus(null);
+      setLoading(false);
+      setError(null);
+      return;
+    }
     setLoading(true);
     setError(null);
     try {
@@ -24,6 +33,12 @@ export function usePterodactyl(serverId: string) {
 
   // On mount and when serverId changes, start polling for server status
   useEffect(() => {
+    if (disableExternalServices) {
+      setStatus(null);
+      setLoading(false);
+      setError(null);
+      return;
+    }
     fetchStatus(); // Initial fetch
     const interval = setInterval(fetchStatus, 4000); // Poll every 4 seconds
     return () => clearInterval(interval); // Cleanup interval on unmount

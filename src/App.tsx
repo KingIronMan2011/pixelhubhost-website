@@ -25,6 +25,10 @@ const Sitemap = lazy(() => import("./pages/Sitemap"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 const UnderConstruction = lazy(() => import("./pages/UnderConstruction"));
 
+// Disable external services based on environment variable
+const disableExternalServices =
+  import.meta.env.VITE_DISABLE_EXTERNAL_SERVICES === "true";
+
 // Main App component that sets up routing, layout, and global providers
 function App() {
   // Get authentication loading state from AuthContext
@@ -86,7 +90,7 @@ function App() {
                   element={
                     <>
                       <Hero />
-                      <TestServer />
+                      {!disableExternalServices && <TestServer />}
                       <Features />
                       <PricingPlans />
                       <Addons />
