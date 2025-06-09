@@ -2,6 +2,13 @@ import { useEffect } from 'react';
 
 const GA_MEASUREMENT_ID = 'G-G2Q7J5CB6C'; // Your GA4 Measurement ID
 
+declare global {
+  interface Window {
+    dataLayer: any[];
+    gtag: (...args: any[]) => void;
+  }
+}
+
 export function useGoogleAnalytics() {
   useEffect(() => {
     if (!GA_MEASUREMENT_ID) return;
@@ -18,7 +25,7 @@ export function useGoogleAnalytics() {
       function gtag(...args: any[]) {
         window.dataLayer.push(args);
       }
-      (window as any).gtag = gtag;
+      window.gtag = gtag;
 
       gtag('js', new Date());
       gtag('config', GA_MEASUREMENT_ID);
