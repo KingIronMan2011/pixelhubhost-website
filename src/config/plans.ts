@@ -1,4 +1,4 @@
-import { Language } from './config';
+import type { Language } from './languages/Languages';
 
 // Helper function to get currency symbol and conversion rate based on language
 // - English: USD ($), rate 0.2 (likely for BRL to USD conversion)
@@ -26,8 +26,8 @@ export type PlanFeature = {
 // Type for a hosting plan
 export type Plan = {
   id: string;
-  name: { [key in Language]: string };
-  description: { [key in Language]: string };
+  nameKey: string; // e.g. 'plans.oak.name'
+  descriptionKey: string; // e.g. 'plans.oak.description'
   price: {
     base_amount: number;
     getCurrencyInfo: (language: Language) => {
@@ -47,6 +47,7 @@ export type Plan = {
     backups: number;
     databases: number;
     ports: number;
+    splits: number;
   };
 };
 
@@ -54,20 +55,8 @@ export type Plan = {
 export const PLANS: Plan[] = [
   {
     id: 'oak',
-    name: {
-      en: 'Oak',
-      pt: 'Carvalho',
-      de: 'Eiche',
-      fr: 'Chêne',
-      it: 'Quercia',
-    },
-    description: {
-      en: 'Great for growing Minecraft servers',
-      pt: 'Ótimo para servidores Minecraft em crescimento',
-      de: 'Ideal für wachsende Minecraft-Server',
-      fr: 'Idéal pour les serveurs Minecraft en croissance',
-      it: 'Ottimo per server Minecraft in crescita',
-    },
+    nameKey: 'plans.oak.name',
+    descriptionKey: 'plans.oak.description',
     price: {
       base_amount: 34,
       getCurrencyInfo: (language) => {
@@ -95,24 +84,13 @@ export const PLANS: Plan[] = [
       backups: 1,
       databases: 3,
       ports: 3,
+      splits: 0,
     },
   },
   {
     id: 'stone',
-    name: {
-      en: 'Stone',
-      pt: 'Pedra',
-      de: 'Stein',
-      fr: 'Pierre',
-      it: 'Pietra',
-    },
-    description: {
-      en: 'Solid performance for medium-sized servers',
-      pt: 'Desempenho sólido para servidores médios',
-      de: 'Solide Leistung für mittelgroße Server',
-      fr: 'Performance solide pour serveurs moyens',
-      it: 'Prestazioni solide per server di medie dimensioni',
-    },
+    nameKey: 'plans.stone.name',
+    descriptionKey: 'plans.stone.description',
     price: {
       base_amount: 51,
       getCurrencyInfo: (language) => {
@@ -140,24 +118,13 @@ export const PLANS: Plan[] = [
       backups: 1,
       databases: 3,
       ports: 3,
+      splits: 1,
     },
   },
   {
     id: 'iron',
-    name: {
-      en: 'Iron',
-      pt: 'Ferro',
-      de: 'Eisen',
-      fr: 'Fer',
-      it: 'Ferro',
-    },
-    description: {
-      en: 'Powerful hosting for established communities',
-      pt: 'Hospedagem poderosa para comunidades estabelecidas',
-      de: 'Leistungsstarkes Hosting für etablierte Communities',
-      fr: 'Hébergement puissant pour communautés établies',
-      it: 'Hosting potente per community consolidate',
-    },
+    nameKey: 'plans.iron.name',
+    descriptionKey: 'plans.iron.description',
     price: {
       base_amount: 68,
       getCurrencyInfo: (language) => {
@@ -185,24 +152,13 @@ export const PLANS: Plan[] = [
       backups: 1,
       databases: 3,
       ports: 3,
+      splits: 2,
     },
   },
   {
     id: 'diamond',
-    name: {
-      en: 'Diamond',
-      pt: 'Diamante',
-      de: 'Diamant',
-      fr: 'Diamant',
-      it: 'Diamante',
-    },
-    description: {
-      en: 'Premium hosting for large communities',
-      pt: 'Hospedagem premium para grandes comunidades',
-      de: 'Premium-Hosting für große Communities',
-      fr: 'Hébergement premium pour grandes communautés',
-      it: 'Hosting premium per grandi community',
-    },
+    nameKey: 'plans.diamond.name',
+    descriptionKey: 'plans.diamond.description',
     price: {
       base_amount: 100,
       getCurrencyInfo: (language) => {
@@ -230,24 +186,13 @@ export const PLANS: Plan[] = [
       backups: 1,
       databases: 3,
       ports: 3,
+      splits: 3,
     },
   },
   {
     id: 'netherite',
-    name: {
-      en: 'Netherite',
-      pt: 'Netherita',
-      de: 'Netherit',
-      fr: 'Netherite',
-      it: 'Netherite',
-    },
-    description: {
-      en: 'Ultimate performance for demanding servers',
-      pt: 'Performance máxima para servidores exigentes',
-      de: 'Ultimative Leistung für anspruchsvolle Server',
-      fr: 'Performance ultime pour serveurs exigeants',
-      it: 'Prestazioni estreme per server esigenti',
-    },
+    nameKey: 'plans.netherite.name',
+    descriptionKey: 'plans.netherite.description',
     price: {
       base_amount: 130,
       getCurrencyInfo: (language) => {
@@ -275,24 +220,13 @@ export const PLANS: Plan[] = [
       backups: 1,
       databases: 3,
       ports: 3,
+      splits: 4,
     },
   },
   {
     id: 'dragon',
-    name: {
-      en: 'Ender Dragon',
-      pt: 'Dragão do Fim',
-      de: 'Enderdrache',
-      fr: "Dragon de l'Ender",
-      it: 'Drago Ender',
-    },
-    description: {
-      en: 'Maximum power for large networks',
-      pt: 'Poder máximo para grandes redes',
-      de: 'Maximale Leistung für große Netzwerke',
-      fr: 'Puissance maximale pour grands réseaux',
-      it: 'Potenza massima per grandi reti',
-    },
+    nameKey: 'plans.dragon.name',
+    descriptionKey: 'plans.dragon.description',
     price: {
       base_amount: 248,
       getCurrencyInfo: (language) => {
@@ -320,24 +254,47 @@ export const PLANS: Plan[] = [
       backups: 1,
       databases: 3,
       ports: 3,
+      splits: 5,
+    },
+  },
+  {
+    id: 'dedicated',
+    nameKey: 'plans.dedicated.name',
+    descriptionKey: 'plans.dedicated.description',
+    price: {
+      base_amount: 1032,
+      getCurrencyInfo: (language) => {
+        const { symbol, rate } = getCurrencyByLanguage(language);
+        return {
+          amount: Math.round(1032 * rate),
+          quarterlyAmount: Math.round(1032 * 3 * rate * 0.9), // 10% discount for quarterly
+          currency: symbol,
+        };
+      },
+    },
+    features: [
+      { nameKey: 'ddosProtection', included: true },
+      { nameKey: 'xeonCpu', included: true },
+      { nameKey: 'networkSpeed', included: true },
+      { nameKey: 'reliableSupport', included: true },
+    ],
+    available: true,
+    popular: false,
+    color: '#581c87',
+    specs: {
+      threads: 32,
+      ram: 128,
+      storage: 1000,
+      backups: 0,
+      databases: 0,
+      ports: 0,
+      splits: 0,
     },
   },
   {
     id: 'custom',
-    name: {
-      en: 'Custom',
-      pt: 'Personalizado',
-      de: 'Individuell',
-      fr: 'Personnalisé',
-      it: 'Personalizzato',
-    },
-    description: {
-      en: 'Contact us for a custom plan tailored to your needs.',
-      pt: 'Entre em contato para um plano personalizado para você.',
-      de: 'Kontaktieren Sie uns für einen individuell zugeschnittenen Plan.',
-      fr: 'Contactez-nous pour un plan personnalisé adapté à vos besoins.',
-      it: 'Contattaci per un piano personalizzato su misura per te.',
-    },
+    nameKey: 'plans.custom.name',
+    descriptionKey: 'plans.custom.description',
     price: {
       base_amount: 0,
       getCurrencyInfo: (language) => {
@@ -360,6 +317,7 @@ export const PLANS: Plan[] = [
       backups: 0,
       databases: 0,
       ports: 0,
+      splits: 0,
     },
   },
 ];

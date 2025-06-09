@@ -213,6 +213,43 @@ const fr = {
     errorBoundaryButton: 'Recharger la page',
     javaOnly: '⚠️ Actuellement disponible uniquement pour Minecraft Java Edition',
     loadingPage: 'Chargement de la page...',
+    plans: {
+      oak: {
+        name: 'Oak',
+        description: 'Idéal pour faire croître les serveurs Minecraft',
+      },
+      stone: {
+        name: 'Stone',
+        description: 'Performances solides pour les serveurs de taille moyenne',
+      },
+      iron: {
+        name: 'Iron',
+        description: 'Hébergement puissant pour les communautés établies',
+      },
+      diamond: {
+        name: 'Diamond',
+        description: 'Hébergement premium pour les grandes communautés',
+      },
+      netherite: {
+        name: 'Netherite',
+        description: 'Performances ultimes pour les serveurs exigeants',
+      },
+      dragon: {
+        name: 'Ender Dragon',
+        description: 'Puissance maximale pour les grands réseaux',
+      },
+      dedicated: {
+        name: 'Dedicated',
+        description:
+          'Serveur dédié de qualité entreprise pour des performances, un contrôle et une fiabilité ultimes.',
+      },
+      custom: {
+        name: 'Custom',
+        description: 'Contactez-nous pour un plan personnalisé adapté à vos besoins.',
+      },
+    },
+    splits: 'Splits',
+    splitsDesc: 'Nombre de divisions de serveur possibles par offre',
   },
 };
 
