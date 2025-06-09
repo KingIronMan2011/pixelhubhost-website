@@ -225,43 +225,25 @@ const de = {
     errorBoundaryButton: 'Seite neu laden',
     javaOnly: '⚠️ Aktuell nur für Minecraft Java Edition verfügbar',
     loadingPage: 'Lade Seite...',
-    plans: {
-      oak: {
-        name: 'Oak',
-        description: 'Ideal für wachsende Minecraft-Server',
-      },
-      stone: {
-        name: 'Stone',
-        description: 'Solide Leistung für mittelgroße Server',
-      },
-      iron: {
-        name: 'Iron',
-        description: 'Leistungsstarkes Hosting für etablierte Communities',
-      },
-      diamond: {
-        name: 'Diamond',
-        description: 'Premium-Hosting für große Communities',
-      },
-      netherite: {
-        name: 'Netherite',
-        description: 'Maximale Performance für anspruchsvolle Server',
-      },
-      dragon: {
-        name: 'Ender Dragon',
-        description: 'Höchste Leistung für große Netzwerke',
-      },
-      dedicated: {
-        name: 'Dedicated',
-        description:
-          'Dedizierter Server auf Enterprise-Niveau für maximale Leistung, Kontrolle und Zuverlässigkeit.',
-      },
-      custom: {
-        name: 'Custom',
-        description: 'Kontaktieren Sie uns für einen individuell angepassten Plan.',
-      },
-    },
     splits: 'Splits',
     splitsDesc: 'Anzahl der möglichen Serveraufteilungen pro Plan',
+    plan_oak_name: 'Eiche',
+    plan_oak_description: 'Ideal für wachsende Minecraft-Server',
+    plan_stone_name: 'Stein',
+    plan_stone_description: 'Solide Leistung für mittelgroße Server',
+    plan_iron_name: 'Eisen',
+    plan_iron_description: 'Leistungsstarkes Hosting für etablierte Communities',
+    plan_diamond_name: 'Diamant',
+    plan_diamond_description: 'Premium-Hosting für große Communities',
+    plan_netherite_name: 'Netherite',
+    plan_netherite_description: 'Maximale Performance für anspruchsvolle Server',
+    plan_dragon_name: 'Ender Drache',
+    plan_dragon_description: 'Höchste Leistung für große Netzwerke',
+    plan_dedicated_name: 'Dediziert',
+    plan_dedicated_description:
+      'Dedizierter Server auf Enterprise-Niveau für maximale Leistung, Kontrolle und Zuverlässigkeit.',
+    plan_custom_name: 'Individuell',
+    plan_custom_description: 'Kontaktieren Sie uns für einen individuell angepassten Plan.',
   },
 };
 

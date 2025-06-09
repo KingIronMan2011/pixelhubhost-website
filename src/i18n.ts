@@ -6,57 +6,44 @@ import languages from './config/languages/Languages';
 // Helper to flatten nested translation objects into dot notation keys
 function flattenTranslations(obj: any, prefix = ''): Record<string, string> {
   const result: Record<string, string> = {};
-
   for (const key in obj) {
     if (Object.prototype.hasOwnProperty.call(obj, key)) {
       const value = obj[key];
       const newKey = prefix ? `${prefix}.${key}` : key;
-
       if (typeof value === 'object' && value !== null && !Array.isArray(value)) {
-        // Recursively flatten nested objects
         Object.assign(result, flattenTranslations(value, newKey));
       } else {
-        // Assign the value to the flattened key
         result[newKey] = value;
       }
     }
   }
-
   return result;
 }
 
 // Build the resources object for i18next using all language configs
 const resources = Object.fromEntries(
-  Object.entries(languages).map(([lang, data]) => [
-    lang,
-    { translation: flattenTranslations(data) },
-  ]),
+  Object.entries(languages).map(([lang, data]) => {
+    const flatTranslations = flattenTranslations(data);
+    return [lang, { translation: flatTranslations }];
+  }),
 );
-
-// Debug: Log the resources object
-console.log('i18n resources:', resources);
 
 i18n
   .use(LanguageDetector)
   .use(initReactI18next)
-  .init(
-    {
-      resources,
-      fallbackLng: 'en',
-      interpolation: { escapeValue: false },
-      detection: {
-        order: ['navigator', 'localStorage', 'htmlTag'],
-        lookupLocalStorage: 'preferred-language',
-        caches: ['localStorage'],
-      },
-      supportedLngs: Object.keys(languages),
-      nonExplicitSupportedLngs: true,
-      load: 'languageOnly',
+  .init({
+    resources,
+    fallbackLng: 'en',
+    interpolation: { escapeValue: false },
+    detection: {
+      order: ['navigator', 'localStorage', 'htmlTag'],
+      lookupLocalStorage: 'preferred-language',
+      caches: ['localStorage'],
     },
-    () => {
-      // Log the detected language after initialization
-      console.log('i18n detected language:', i18n.language);
-    },
-  );
+    supportedLngs: Object.keys(languages),
+    nonExplicitSupportedLngs: true,
+    load: 'languageOnly',
+    debug: false,
+  });
 
 export default i18n;

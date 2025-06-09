@@ -213,41 +213,25 @@ const fr = {
     errorBoundaryButton: 'Recharger la page',
     javaOnly: '⚠️ Actuellement disponible uniquement pour Minecraft Java Edition',
     loadingPage: 'Chargement de la page...',
-    plans: {
-      oak: {
-        name: 'Oak',
-        description: 'Idéal pour faire croître les serveurs Minecraft',
-      },
-      stone: {
-        name: 'Stone',
-        description: 'Performances solides pour les serveurs de taille moyenne',
-      },
-      iron: {
-        name: 'Iron',
-        description: 'Hébergement puissant pour les communautés établies',
-      },
-      diamond: {
-        name: 'Diamond',
-        description: 'Hébergement premium pour les grandes communautés',
-      },
-      netherite: {
-        name: 'Netherite',
-        description: 'Performances ultimes pour les serveurs exigeants',
-      },
-      dragon: {
-        name: 'Ender Dragon',
-        description: 'Puissance maximale pour les grands réseaux',
-      },
-      dedicated: {
-        name: 'Dedicated',
-        description:
-          'Serveur dédié de qualité entreprise pour des performances, un contrôle et une fiabilité ultimes.',
-      },
-      custom: {
-        name: 'Custom',
-        description: 'Contactez-nous pour un plan personnalisé adapté à vos besoins.',
-      },
-    },
+    // Plans (flattened, translated)
+    plan_oak_name: 'Chêne',
+    plan_oak_description: 'Idéal pour faire croître les serveurs Minecraft',
+    plan_stone_name: 'Pierre',
+    plan_stone_description: 'Performances solides pour les serveurs de taille moyenne',
+    plan_iron_name: 'Fer',
+    plan_iron_description: 'Hébergement puissant pour les communautés établies',
+    plan_diamond_name: 'Diamant',
+    plan_diamond_description: 'Hébergement premium pour les grandes communautés',
+    plan_netherite_name: 'Netherite',
+    plan_netherite_description: 'Performances ultimes pour les serveurs exigeants',
+    plan_dragon_name: 'Ender Dragon',
+    plan_dragon_description: 'Puissance maximale pour les grands réseaux',
+    plan_dedicated_name: 'Dédié',
+    plan_dedicated_description:
+      'Serveur dédié de qualité entreprise pour des performances, un contrôle et une fiabilité ultimes.',
+    plan_custom_name: 'Personnalisé',
+    plan_custom_description: 'Contactez-nous pour un plan personnalisé adapté à vos besoins.',
+
     splits: 'Splits',
     splitsDesc: 'Nombre de divisions de serveur possibles par offre',
   },

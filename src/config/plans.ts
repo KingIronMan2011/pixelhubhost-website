@@ -1,9 +1,6 @@
 import type { Language } from './languages/Languages';
 
 // Helper function to get currency symbol and conversion rate based on language
-// - English: USD ($), rate 0.2 (likely for BRL to USD conversion)
-// - German, French, Italian: Euro (€), rate 0.19
-// - Default (Portuguese/Brazil): Real (R$), rate 1 (no conversion)
 const getCurrencyByLanguage = (language: Language) => {
   switch (language) {
     case 'en':
@@ -17,17 +14,15 @@ const getCurrencyByLanguage = (language: Language) => {
   }
 };
 
-// Type for a feature included in a plan
 export type PlanFeature = {
-  nameKey: string; // translation key
+  nameKey: string;
   included: boolean;
 };
 
-// Type for a hosting plan
 export type Plan = {
   id: string;
-  nameKey: string; // e.g. 'plans.oak.name'
-  descriptionKey: string; // e.g. 'plans.oak.description'
+  nameKey: string; // e.g. 'texts.plan_oak_name'
+  descriptionKey: string; // e.g. 'texts.plan_oak_description'
   price: {
     base_amount: number;
     getCurrencyInfo: (language: Language) => {
@@ -51,19 +46,18 @@ export type Plan = {
   };
 };
 
-// Example of how you might define an array of plans
 export const PLANS: Plan[] = [
   {
     id: 'oak',
-    nameKey: 'plans.oak.name',
-    descriptionKey: 'plans.oak.description',
+    nameKey: 'texts.plan_oak_name',
+    descriptionKey: 'texts.plan_oak_description',
     price: {
       base_amount: 34,
       getCurrencyInfo: (language) => {
         const { symbol, rate } = getCurrencyByLanguage(language);
         return {
           amount: Math.round(34 * rate),
-          quarterlyAmount: Math.round(34 * 3 * rate * 0.9), // 10% discount for quarterly
+          quarterlyAmount: Math.round(34 * 3 * rate * 0.9),
           currency: symbol,
         };
       },
@@ -89,15 +83,15 @@ export const PLANS: Plan[] = [
   },
   {
     id: 'stone',
-    nameKey: 'plans.stone.name',
-    descriptionKey: 'plans.stone.description',
+    nameKey: 'texts.plan_stone_name',
+    descriptionKey: 'texts.plan_stone_description',
     price: {
       base_amount: 51,
       getCurrencyInfo: (language) => {
         const { symbol, rate } = getCurrencyByLanguage(language);
         return {
           amount: Math.round(51 * rate),
-          quarterlyAmount: Math.round(51 * 3 * rate * 0.9), // 10% discount for quarterly
+          quarterlyAmount: Math.round(51 * 3 * rate * 0.9),
           currency: symbol,
         };
       },
@@ -123,15 +117,15 @@ export const PLANS: Plan[] = [
   },
   {
     id: 'iron',
-    nameKey: 'plans.iron.name',
-    descriptionKey: 'plans.iron.description',
+    nameKey: 'texts.plan_iron_name',
+    descriptionKey: 'texts.plan_iron_description',
     price: {
       base_amount: 68,
       getCurrencyInfo: (language) => {
         const { symbol, rate } = getCurrencyByLanguage(language);
         return {
           amount: Math.round(68 * rate),
-          quarterlyAmount: Math.round(68 * 3 * rate * 0.9), // 10% discount for quarterly
+          quarterlyAmount: Math.round(68 * 3 * rate * 0.9),
           currency: symbol,
         };
       },
@@ -157,15 +151,15 @@ export const PLANS: Plan[] = [
   },
   {
     id: 'diamond',
-    nameKey: 'plans.diamond.name',
-    descriptionKey: 'plans.diamond.description',
+    nameKey: 'texts.plan_diamond_name',
+    descriptionKey: 'texts.plan_diamond_description',
     price: {
       base_amount: 100,
       getCurrencyInfo: (language) => {
         const { symbol, rate } = getCurrencyByLanguage(language);
         return {
           amount: Math.round(100 * rate),
-          quarterlyAmount: Math.round(100 * 3 * rate * 0.9), // 10% discount for quarterly
+          quarterlyAmount: Math.round(100 * 3 * rate * 0.9),
           currency: symbol,
         };
       },
@@ -191,15 +185,15 @@ export const PLANS: Plan[] = [
   },
   {
     id: 'netherite',
-    nameKey: 'plans.netherite.name',
-    descriptionKey: 'plans.netherite.description',
+    nameKey: 'texts.plan_netherite_name',
+    descriptionKey: 'texts.plan_netherite_description',
     price: {
       base_amount: 130,
       getCurrencyInfo: (language) => {
         const { symbol, rate } = getCurrencyByLanguage(language);
         return {
           amount: Math.round(130 * rate),
-          quarterlyAmount: Math.round(130 * 3 * rate * 0.9), // 10% discount for quarterly
+          quarterlyAmount: Math.round(130 * 3 * rate * 0.9),
           currency: symbol,
         };
       },
@@ -225,15 +219,15 @@ export const PLANS: Plan[] = [
   },
   {
     id: 'dragon',
-    nameKey: 'plans.dragon.name',
-    descriptionKey: 'plans.dragon.description',
+    nameKey: 'texts.plan_dragon_name',
+    descriptionKey: 'texts.plan_dragon_description',
     price: {
       base_amount: 248,
       getCurrencyInfo: (language) => {
         const { symbol, rate } = getCurrencyByLanguage(language);
         return {
           amount: Math.round(248 * rate),
-          quarterlyAmount: Math.round(248 * 3 * rate * 0.9), // 10% discount for quarterly
+          quarterlyAmount: Math.round(248 * 3 * rate * 0.9),
           currency: symbol,
         };
       },
@@ -259,15 +253,15 @@ export const PLANS: Plan[] = [
   },
   {
     id: 'dedicated',
-    nameKey: 'plans.dedicated.name',
-    descriptionKey: 'plans.dedicated.description',
+    nameKey: 'texts.plan_dedicated_name',
+    descriptionKey: 'texts.plan_dedicated_description',
     price: {
       base_amount: 1032,
       getCurrencyInfo: (language) => {
         const { symbol, rate } = getCurrencyByLanguage(language);
         return {
           amount: Math.round(1032 * rate),
-          quarterlyAmount: Math.round(1032 * 3 * rate * 0.9), // 10% discount for quarterly
+          quarterlyAmount: Math.round(1032 * 3 * rate * 0.9),
           currency: symbol,
         };
       },
@@ -293,8 +287,8 @@ export const PLANS: Plan[] = [
   },
   {
     id: 'custom',
-    nameKey: 'plans.custom.name',
-    descriptionKey: 'plans.custom.description',
+    nameKey: 'texts.plan_custom_name',
+    descriptionKey: 'texts.plan_custom_description',
     price: {
       base_amount: 0,
       getCurrencyInfo: (language) => {

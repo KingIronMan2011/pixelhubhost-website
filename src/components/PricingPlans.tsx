@@ -13,9 +13,6 @@ const PricingPlans = () => {
   const { language: contextLanguage } = useLanguage();
   const language = i18n.language || contextLanguage || 'en';
 
-  // Debug: Log the active language
-  console.log('Active language:', language);
-
   // Force reload of translations when language changes
   useEffect(() => {
     i18n.reloadResources();
@@ -109,10 +106,6 @@ const PricingPlans = () => {
         {/* Pricing cards grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {plans.map((plan) => {
-            // Debug: Log translation results
-            console.log('Translation for', plan.nameKey, ':', t(plan.nameKey));
-            console.log('Translation for', plan.descriptionKey, ':', t(plan.descriptionKey));
-
             // Get currency and price for this plan
             const { currency, displayAmount } = getCurrencyDisplay(plan);
             // Get the correct plan link

@@ -212,41 +212,25 @@ const en = {
     errorBoundaryButton: 'Reload Page',
     javaOnly: '⚠️ Currently only available for Minecraft Java Edition',
     loadingPage: 'Loading page...',
-    plans: {
-      oak: {
-        name: 'Oak',
-        description: 'Great for growing Minecraft servers',
-      },
-      stone: {
-        name: 'Stone',
-        description: 'Solid performance for medium-sized servers',
-      },
-      iron: {
-        name: 'Iron',
-        description: 'Powerful hosting for established communities',
-      },
-      diamond: {
-        name: 'Diamond',
-        description: 'Premium hosting for large communities',
-      },
-      netherite: {
-        name: 'Netherite',
-        description: 'Ultimate performance for demanding servers',
-      },
-      dragon: {
-        name: 'Ender Dragon',
-        description: 'Maximum power for large networks',
-      },
-      dedicated: {
-        name: 'Dedicated',
-        description:
-          'Enterprise-grade dedicated server for ultimate performance, control, and reliability.',
-      },
-      custom: {
-        name: 'Custom',
-        description: 'Contact us for a custom plan tailored to your needs.',
-      },
-    },
+    // Plans (flattened)
+    plan_oak_name: 'Oak',
+    plan_oak_description: 'Great for growing Minecraft servers',
+    plan_stone_name: 'Stone',
+    plan_stone_description: 'Solid performance for medium-sized servers',
+    plan_iron_name: 'Iron',
+    plan_iron_description: 'Powerful hosting for established communities',
+    plan_diamond_name: 'Diamond',
+    plan_diamond_description: 'Premium hosting for large communities',
+    plan_netherite_name: 'Netherite',
+    plan_netherite_description: 'Ultimate performance for demanding servers',
+    plan_dragon_name: 'Ender Dragon',
+    plan_dragon_description: 'Maximum power for large networks',
+    plan_dedicated_name: 'Dedicated',
+    plan_dedicated_description:
+      'Enterprise-grade dedicated server for ultimate performance, control, and reliability.',
+    plan_custom_name: 'Custom',
+    plan_custom_description: 'Contact us for a custom plan tailored to your needs.',
+
     splits: 'Splits',
     splitsDesc: 'Number of possible server splits per plan',
   },
