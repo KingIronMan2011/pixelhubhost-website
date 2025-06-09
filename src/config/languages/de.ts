@@ -224,6 +224,7 @@ const de = {
       'Wir entschuldigen uns für die Unannehmlichkeiten. Bitte versuchen Sie es später erneut.',
     errorBoundaryButton: 'Seite neu laden',
     javaOnly: '⚠️ Aktuell nur für Minecraft Java Edition verfügbar',
+    loadingPage: 'Lade Seite...',
   },
 };
 

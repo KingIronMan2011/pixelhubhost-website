@@ -12,11 +12,14 @@ import { Dialog } from '@headlessui/react';
 import { motion } from 'framer-motion';
 import ReactCountryFlag from 'react-country-flag';
 
-// Always use i18n.language as the source of truth for language
-const currentLanguage = i18n.language || 'en';
-const texts = languages[currentLanguage]?.texts || languages.en.texts;
+// siteConfig now only holds the texts, without top-level language detection
+const siteConfig = {
+  texts: Object.fromEntries(
+    Object.entries(languages).map(([lang, obj]) => [lang, obj.texts || {}]),
+  ),
+};
 
-// Use translations from languages config
+// Translations are still generated for each language
 const translations = Object.fromEntries(
   Object.entries(languages).map(([lang, obj]) => [
     lang,
@@ -30,15 +33,12 @@ const translations = Object.fromEntries(
       bedrockPort: obj.texts?.bedrockPort,
       cpu: obj.texts?.cpu,
       memory: obj.texts?.memory,
+      copyDomain: obj.texts?.copyDomain,
+      copyPort: obj.texts?.copyPort,
+      javaOnly: obj.texts?.javaOnly,
     },
   ]),
 );
-
-const siteConfig = {
-  texts: Object.fromEntries(
-    Object.entries(languages).map(([lang, obj]) => [lang, obj.texts || {}]),
-  ),
-};
 
 type NotificationProps = {
   onClose: () => void;
@@ -149,9 +149,7 @@ const ConnectPopup: React.FC<ConnectPopupProps> = ({
                   </span>
                   <button
                     onClick={() => handleCopy(serverDomain, setCopiedDomain)}
-                    className={`p-1 rounded transition-all duration-200 text-gray-700 dark:text-white hover:bg-blue-100 dark:hover:bg-blue-900/30 ${
-                      copiedDomain ? 'bg-blue-100 dark:bg-blue-900/30' : ''
-                    }`}
+                    className="p-1 rounded transition-all duration-200 text-gray-700 dark:text-white hover:bg-blue-100 dark:hover:bg-blue-900/30"
                     title={t.copyDomain}
                   >
                     {buttonIcon}
@@ -169,9 +167,7 @@ const ConnectPopup: React.FC<ConnectPopupProps> = ({
                   </span>
                   <button
                     onClick={() => handleCopy(serverDomain, setCopiedDomain)}
-                    className={`p-1 rounded transition-all duration-200 text-gray-700 dark:text-white hover:bg-blue-100 dark:hover:bg-blue-900/30 ${
-                      copiedDomain ? 'bg-blue-100 dark:bg-blue-900/30' : ''
-                    }`}
+                    className="p-1 rounded transition-all duration-200 text-gray-700 dark:text-white hover:bg-blue-100 dark:hover:bg-blue-900/30"
                     title={t.copyDomain}
                   >
                     {buttonIcon}
@@ -183,9 +179,7 @@ const ConnectPopup: React.FC<ConnectPopupProps> = ({
                   </span>
                   <button
                     onClick={() => handleCopy(bedrockPort, setCopiedPort)}
-                    className={`p-1 rounded transition-all duration-200 text-gray-700 dark:text-white hover:bg-green-100 dark:hover:bg-green-900/30 ${
-                      copiedPort ? 'bg-green-100 dark:bg-green-900/30' : ''
-                    }`}
+                    className="p-1 rounded transition-all duration-200 text-gray-700 dark:text-white hover:bg-green-100 dark:hover:bg-green-900/30"
                     title={t.copyPort}
                   >
                     {buttonIconPort}
@@ -217,9 +211,8 @@ const disableExternalServices = import.meta.env.VITE_DISABLE_EXTERNAL_SERVICES =
 
 // Main TestServer component
 const TestServer: React.FC = () => {
-  // Always use i18n.language for detection
   const currentLanguage = i18n.language || 'en';
-  const t = languages[currentLanguage]?.texts || languages.en.texts;
+  const texts = siteConfig.texts[currentLanguage] || siteConfig.texts.en;
 
   // State for copy feedback and popups
   const [copied, setCopied] = useState(false);
@@ -256,7 +249,7 @@ const TestServer: React.FC = () => {
         document.execCommand('copy');
         document.body.removeChild(textArea);
       }
-      toast.success(translations[currentLanguage].domainCopied);
+      toast.success(getTranslation('domainCopied'));
       setCopiedFn(true);
       setShowNotification(true);
       setTimeout(() => {
@@ -326,21 +319,23 @@ const TestServer: React.FC = () => {
     );
   }
 
-  // Helper to get translated server status
+  const getText = (key: string) =>
+    siteConfig.texts[currentLanguage]?.[key] ?? siteConfig.texts.en?.[key] ?? key;
+
   const getServerStatusText = (mappedState?: string) => {
-    if (loading) return siteConfig.texts[currentLanguage].checking;
-    if (!mappedState) return siteConfig.texts[currentLanguage].testServerOffline;
+    if (loading) return getText('checking');
+    if (!mappedState) return getText('testServerOffline');
     switch (mappedState) {
       case 'testServerStarting':
-        return siteConfig.texts[currentLanguage].testServerStarting;
+        return getText('testServerStarting');
       case 'testServerRunning':
-        return siteConfig.texts[currentLanguage].testServerRunning;
+        return getText('testServerRunning');
       case 'testServerStopping':
-        return siteConfig.texts[currentLanguage].testServerStopping;
+        return getText('testServerStopping');
       case 'testServerOffline':
-        return siteConfig.texts[currentLanguage].testServerOffline;
+        return getText('testServerOffline');
       default:
-        return siteConfig.texts[currentLanguage].testServerOffline;
+        return getText('testServerOffline');
     }
   };
 
@@ -353,6 +348,10 @@ const TestServer: React.FC = () => {
   }
 
   const mappedState = mapServerState(status?.state);
+
+  // Add this helper if not already present in your component:
+  const getTranslation = (key: string) =>
+    translations[currentLanguage]?.[key] ?? translations.en?.[key] ?? key;
 
   return (
     // Main section with background and padding
@@ -385,7 +384,7 @@ const TestServer: React.FC = () => {
                 <Server className="w-7 h-7 text-blue-500" />
                 <div>
                   <h2 className="text-xl font-bold text-gray-900 dark:text-white">
-                    {siteConfig.texts[currentLanguage].testServer}
+                    {texts.testServer}
                   </h2>
                   <p className="text-sm text-gray-600 dark:text-gray-400">(1.7.2 - 1.21.5)</p>
                 </div>
@@ -419,14 +418,14 @@ const TestServer: React.FC = () => {
               {/* Info message: currently only support java */}
               <div className="mb-2">
                 <span className="inline-block px-3 py-1 rounded bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200 text-xs font-semibold">
-                  {siteConfig.texts[currentLanguage].javaOnly}
+                  {getText('javaOnly')}
                 </span>
               </div>
               <div className="flex flex-col gap-2">
                 {/* Java/Bedrock domain */}
                 <div className="flex items-center bg-gray-100/70 dark:bg-gray-800/70 rounded-lg px-3 py-2">
                   <span className="text-sm text-gray-600 dark:text-gray-400 mr-2">
-                    {siteConfig.texts[currentLanguage].domain}:
+                    {getText('domain')}:
                   </span>
                   <span className="font-mono text-blue-600 dark:text-blue-400 text-sm font-medium">
                     {serverDomain}
@@ -435,22 +434,21 @@ const TestServer: React.FC = () => {
                   <motion.button
                     onClick={() => handleCopy(serverDomain, setCopied)}
                     className="ml-2 p-1 rounded transition-colors text-gray-700 dark:text-white"
-                    title={translations[currentLanguage].domainCopied}
+                    title={getTranslation('domainCopied')}
                     whileHover={copyHover}
                     whileFocus={copyHover}
                     whileTap={{
                       scale: 1.04,
                       backgroundColor: 'rgba(59,130,246,0.18)',
-                    }} // mobile tap animation
+                    }}
                     style={{ willChange: 'transform, background-color' }}
                   >
                     {buttonIcon}
                   </motion.button>
                 </div>
-                {/* Bedrock port */}
                 <div className="flex items-center bg-gray-100/70 dark:bg-gray-800/70 rounded-lg px-3 py-2">
                   <span className="text-sm text-gray-600 dark:text-gray-400 mr-2">
-                    {siteConfig.texts[currentLanguage].bedrockPort}:
+                    {getText('bedrockPort')}:
                   </span>
                   <span className="font-mono text-sm text-gray-900 dark:text-white font-medium">
                     {bedrockPort}
@@ -459,13 +457,13 @@ const TestServer: React.FC = () => {
                   <motion.button
                     onClick={() => handleCopy(bedrockPort, setCopiedPort)}
                     className="ml-2 p-1 rounded transition-colors text-gray-700 dark:text-white"
-                    title={translations[currentLanguage].domainCopied}
+                    title={getTranslation('domainCopied')}
                     whileHover={copyHoverGreen}
                     whileFocus={copyHoverGreen}
                     whileTap={{
                       scale: 1.04,
                       backgroundColor: 'rgba(16,185,129,0.18)',
-                    }} // mobile tap animation
+                    }}
                     style={{ willChange: 'transform, background-color' }}
                   >
                     {buttonIconPort}
@@ -494,8 +492,8 @@ const TestServer: React.FC = () => {
                       <span className="text-sm text-gray-500">
                         {siteConfig.texts[currentLanguage].cpu}
                       </span>
-                      <span className="text-sm font-medium text-gray-900 dark:text-white">
-                        {Math.floor(cpuUsagePercent)}%
+                      <span className="text-sm text-gray-500">
+                        {siteConfig.texts[currentLanguage].memory}
                       </span>
                     </div>
                     <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-1.5">
@@ -535,7 +533,7 @@ const TestServer: React.FC = () => {
                 whileTap={{ scale: 1.04, backgroundColor: '#059669' }} // mobile tap animation
                 style={{ willChange: 'transform, box-shadow' }}
               >
-                {siteConfig.texts[currentLanguage].connectToTestServer}
+                {getText('connectToTestServer')}
               </motion.button>
             </div>
           </motion.div>

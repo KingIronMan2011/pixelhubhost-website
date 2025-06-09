@@ -205,6 +205,7 @@ const it = {
     errorBoundaryMessage: "Ci scusiamo per l'inconveniente. Ricarica la pagina o torna più tardi.",
     errorBoundaryButton: 'Ricarica la pagina',
     javaOnly: '⚠️ Attualmente disponibile solo per Minecraft Java Edition',
+    loadingPage: 'Caricamento pagina...',
   },
 };
 

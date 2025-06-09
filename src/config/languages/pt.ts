@@ -212,6 +212,7 @@ const pt = {
       'Desculpe, ocorreu um erro ao processar sua solicitação. Por favor, tente novamente mais tarde.',
     errorBoundaryButton: 'Recarregar página',
     javaOnly: '⚠️ Atualmente disponível apenas para Minecraft Java Edition',
+    loadingPage: 'Carregando página...',
   },
 };
 

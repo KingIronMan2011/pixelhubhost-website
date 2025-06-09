@@ -66,7 +66,7 @@ function App() {
           />
           <span className="text-blue-600 dark:text-blue-300 font-semibold text-lg mt-2">
             {/* Use the "t" function for the spinner text */}
-            {t('checking')}
+            {t('loadingPage')}
           </span>
         </div>
       </div>
