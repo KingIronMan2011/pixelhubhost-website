@@ -2,12 +2,42 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>PixelHub Host</title>
-    <meta
-      name="description"
-      content="PixelHubHost - Premium Minecraft server hosting with high performance, instant setup, custom domains, and 24/7 support."
+
+    <!-- Preconnect to Google Fonts domains -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <!-- Asynchronously load Google Fonts CSS -->
+    <link
+      rel="preload"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      as="style"
+      onload="this.onload=null;this.rel='stylesheet'"
     />
+    <noscript>
+      <link
+        rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      />
+    </noscript>
+
+    <!-- Google Tag Manager -->
+    <script>
+      (function (w, d, s, l, i) {
+        w[l] = w[l] || [];
+        w[l].push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
+        var f = d.getElementsByTagName(s)[0],
+          j = d.createElement(s),
+          dl = l != 'dataLayer' ? '&l=' + l : '';
+        j.async = true;
+        j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+        f.parentNode.insertBefore(j, f);
+      })(window, document, 'script', 'dataLayer', 'GTM-NGZ24X7K');
+    </script>
+    <!-- End Google Tag Manager -->
 
     <!-- Open Graph / Facebook / Discord -->
     <meta property="og:type" content="website" />
@@ -40,25 +70,22 @@
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <meta name="apple-mobile-web-app-title" content="PixelHubHost" />
     <link rel="manifest" href="/site.webmanifest" />
+    <script type="module" crossorigin src="/assets/index-CY3K9RV_.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-BBzG_HRw.css" />
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <script id="vite-plugin-pwa:register-sw" src="/registerSW.js"></script>
+  </head>
+  <body>
+    <!-- Make sure the GTM noscript tag is right after the opening body tag if you have it -->
+    <noscript
+      ><iframe
+        src="https://www.googletagmanager.com/ns.html?id=GTM-NGZ24X7K"
+        height="0"
+        width="0"
+        style="display: none; visibility: hidden"
+      ></iframe
+    ></noscript>
 
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
-      rel="stylesheet"
-    />
-    <script type="module" crossorigin src="/assets/index-CoYkUFT-.js"></script>
-    <link rel="stylesheet" crossorigin href="/assets/index-CznqXmT5.css">
-  <link rel="manifest" href="/manifest.webmanifest"><script id="vite-plugin-pwa:register-sw" src="/registerSW.js"></script></head>
-  <body class="antialiased bg-gradient-to-b from-[#f0f6ff] via-white to-[#f3e8ff] min-h-screen">
     <div id="root"></div>
-    <script>
-      if (sessionStorage.redirect) {
-        var redirect = sessionStorage.redirect;
-        sessionStorage.removeItem('redirect');
-        history.replaceState(null, null, redirect);
-      }
-    </script>
   </body>
 </html>
