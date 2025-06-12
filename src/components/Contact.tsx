@@ -1,19 +1,22 @@
 import React from 'react';
 import { FaDiscord, FaWhatsapp, FaEnvelope } from 'react-icons/fa';
-import { useLanguage } from '../context/LanguageContext';
+import { useTranslation } from 'react-i18next';
 import i18n from '../i18n';
 import languages from '../config/languages/Languages';
 import { motion } from 'framer-motion';
 
-// Define the type for language keys
-type LanguageKey = keyof typeof languages;
-
 // Main Contact component
 const Contact: React.FC = () => {
-  // Use the language from context, which is synced with i18n
-  const { language } = useLanguage();
-  const t = languages[language]?.texts || languages.en.texts;
-  const contact = languages[language]?.contact || languages.en.contact;
+  const { t } = useTranslation();
+
+  // Define the type for the language keys
+  type LanguageKey = keyof typeof languages;
+
+  // Get contact info from languages config using current i18n language, fallback to 'en'
+  const langKey: LanguageKey = Object.keys(languages).includes(i18n.language)
+    ? (i18n.language as LanguageKey)
+    : 'en';
+  const contact = languages[langKey].contact;
 
   // Animation variants for the container (stagger children on show)
   const containerVariants = {
@@ -67,20 +70,16 @@ const Contact: React.FC = () => {
   ];
 
   return (
-    // Contact section with gradient background and padding
     <section
       id="contact"
       className="py-8 bg-gradient-to-b from-gray-50 via-white to-gray-100 dark:from-gray-950 dark:via-gray-900 dark:to-gray-950 transition-colors duration-500"
     >
       <div className="container mx-auto px-4">
         <div className="max-w-3xl mx-auto text-center">
-          {/* Section title and subtitle */}
           <h2 className="text-4xl font-extrabold text-gray-900 dark:text-white mb-3 tracking-tight drop-shadow-sm">
-            {t.contactTitle}
+            {t('contactTitle')}
           </h2>
-          <p className="text-gray-700 dark:text-gray-400 mb-10 text-lg">{t.contactSubtitle}</p>
-
-          {/* Animated contact cards */}
+          <p className="text-gray-700 dark:text-gray-400 mb-10 text-lg">{t('contactSubtitle')}</p>
           <motion.div
             className="flex flex-col sm:flex-row justify-center gap-6 sm:gap-12 mt-8"
             variants={containerVariants}
@@ -89,7 +88,6 @@ const Contact: React.FC = () => {
             viewport={{ once: true, amount: 0.2 }}
           >
             {contacts.map((c) => (
-              // Each contact method as an animated card
               <motion.a
                 key={c.label}
                 href={c.href}

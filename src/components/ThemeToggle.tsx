@@ -1,7 +1,6 @@
 import React from 'react';
 import { Sun, Moon } from 'lucide-react';
 import { useTheme } from '../context/ThemeContext';
-import { useLanguage } from '../context/LanguageContext';
 import languages from '../config/languages/Languages';
 import i18n from '../i18n';
 import { motion } from 'framer-motion';
