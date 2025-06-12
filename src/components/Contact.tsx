@@ -1,22 +1,18 @@
 import React from 'react';
 import { FaDiscord, FaWhatsapp, FaEnvelope } from 'react-icons/fa';
 import { useTranslation } from 'react-i18next';
-import i18n from '../i18n';
-import languages from '../config/languages/Languages';
 import { motion } from 'framer-motion';
+import { config } from '../config/config';
 
-// Main Contact component
 const Contact: React.FC = () => {
   const { t } = useTranslation();
 
-  // Define the type for the language keys
-  type LanguageKey = keyof typeof languages;
-
-  // Get contact info from languages config using current i18n language, fallback to 'en'
-  const langKey: LanguageKey = Object.keys(languages).includes(i18n.language)
-    ? (i18n.language as LanguageKey)
-    : 'en';
-  const contact = languages[langKey].contact;
+  // Use contact info from config
+  const contact = {
+    discord: config.contact.discord,
+    whatsapp: config.contact.whatsapp,
+    email: config.contact.email,
+  };
 
   // Animation variants for the container (stagger children on show)
   const containerVariants = {
@@ -49,21 +45,21 @@ const Contact: React.FC = () => {
     {
       href: contact.discord,
       icon: <FaDiscord className="w-7 h-7" />,
-      label: 'Discord',
+      label: t('discord'),
       className:
         'bg-blue-600 dark:bg-blue-700 border-blue-700 dark:border-blue-500 text-white hover:text-white',
     },
     {
       href: contact.whatsapp,
       icon: <FaWhatsapp className="w-7 h-7" />,
-      label: 'WhatsApp',
+      label: t('whatsapp'),
       className:
         'bg-green-500 dark:bg-green-600 border-green-700 dark:border-green-500 text-white hover:text-white',
     },
     {
       href: `mailto:${contact.email}`,
       icon: <FaEnvelope className="w-7 h-7" />,
-      label: 'Email',
+      label: t('email'),
       className:
         'bg-gray-100 dark:bg-gray-800 border-gray-300 dark:border-gray-700 text-blue-700 dark:text-blue-400 hover:text-blue-900 dark:hover:text-blue-300',
     },
@@ -77,9 +73,11 @@ const Contact: React.FC = () => {
       <div className="container mx-auto px-4">
         <div className="max-w-3xl mx-auto text-center">
           <h2 className="text-4xl font-extrabold text-gray-900 dark:text-white mb-3 tracking-tight drop-shadow-sm">
-            {t('contactTitle')}
+            {t('texts.contactTitle')}
           </h2>
-          <p className="text-gray-700 dark:text-gray-400 mb-10 text-lg">{t('contactSubtitle')}</p>
+          <p className="text-gray-700 dark:text-gray-400 mb-10 text-lg">
+            {t('texts.contactSubtitle')}
+          </p>
           <motion.div
             className="flex flex-col sm:flex-row justify-center gap-6 sm:gap-12 mt-8"
             variants={containerVariants}

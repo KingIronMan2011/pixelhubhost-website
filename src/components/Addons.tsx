@@ -5,6 +5,7 @@ import languages from '../config/languages/Languages';
 import i18n from '../i18n'; // <-- Ensure i18n is imported
 import { motion } from 'framer-motion';
 
+
 // Main Addons component
 const Addons: React.FC = () => {
   // Use the language from context, which is synced with i18n

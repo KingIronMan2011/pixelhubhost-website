@@ -44,7 +44,7 @@ export const planLinks: Record<string, { monthly: string; quarterly: string }> =
 };
 
 // Supported language codes for the site
-export type Language = 'en' | 'pt' | 'de' | 'fr' | 'it'; // Italian supported
+export type LanguageKey = 'en' | 'pt' | 'de' | 'fr' | 'it'; // Italian supported
 
 // Supported theme modes
 export type Theme = 'light' | 'dark';

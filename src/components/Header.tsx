@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import i18n from '../i18n';
 import { useLanguage } from '../context/LanguageContext';
 import languages from '../config/languages/Languages';
@@ -32,7 +33,7 @@ const mobileLinkMotion = {
 };
 
 const Header: React.FC = () => {
-  // Get current language from context (synced with i18n)
+  const { t } = useTranslation();
   const { language } = useLanguage() as { language: LanguageKey };
 
   // Detect browser language on mount if not set or not supported
@@ -45,9 +46,6 @@ const Header: React.FC = () => {
     }
   }, [language]);
 
-  // Always use the current language from context for translations
-  const t = languages[language]?.texts || languages.en.texts;
-
   // State for mobile menu open/close
   const [menuOpen, setMenuOpen] = useState(false);
   const location = useLocation();
@@ -55,10 +53,10 @@ const Header: React.FC = () => {
 
   // Navigation links (labels are translated)
   const navLinks = [
-    { href: '#features', label: t.features },
-    { href: '#pricing', label: t.pricing },
-    { href: '#addons', label: t.addons },
-    { href: '#contact', label: t.contact },
+    { href: '#features', label: t('texts.features') },
+    { href: '#pricing', label: t('texts.pricing') },
+    { href: '#addons', label: t('texts.addons') },
+    { href: '#contact', label: t('texts.contact') },
   ];
 
   return (
@@ -76,7 +74,7 @@ const Header: React.FC = () => {
               alt="PixelHub Host Logo"
               className="h-8 w-auto"
             />
-            {t.brand}
+            {t('brand')}
           </a>
 
           {/* Desktop navigation links (center) */}
@@ -104,7 +102,7 @@ const Header: React.FC = () => {
               whileFocus={linkHover}
               style={{ willChange: 'transform, color' }}
             >
-              {t.systemStatus}
+              {t('systemStatus')}
             </motion.a>
             {/* Login/Signup button (desktop only) */}
             <motion.a
@@ -116,7 +114,7 @@ const Header: React.FC = () => {
               whileFocus={linkHover}
               style={{ willChange: 'transform, color' }}
             >
-              {t.loginSignup}
+              {t('loginSignup')}
             </motion.a>
             {/* Mobile menu button */}
             <button
@@ -161,7 +159,7 @@ const Header: React.FC = () => {
               style={{ willChange: 'transform, color, background-color' }}
               onClick={() => setMenuOpen(false)}
             >
-              {t.systemStatus}
+              {t('systemStatus')}
             </motion.a>
             {/* Login/Signup button (mobile) */}
             <motion.a
@@ -174,7 +172,7 @@ const Header: React.FC = () => {
               style={{ willChange: 'transform, color, background-color' }}
               onClick={() => setMenuOpen(false)}
             >
-              {t.loginSignup}
+              {t('loginSignup')}
             </motion.a>
           </motion.div>
         )}
