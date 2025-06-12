@@ -74,7 +74,7 @@ const Header: React.FC = () => {
               alt="PixelHub Host Logo"
               className="h-8 w-auto"
             />
-            {t('brand')}
+            {t('texts.brand')}
           </a>
 
           {/* Desktop navigation links (center) */}
@@ -102,7 +102,7 @@ const Header: React.FC = () => {
               whileFocus={linkHover}
               style={{ willChange: 'transform, color' }}
             >
-              {t('systemStatus')}
+              {t('texts.systemStatus')}
             </motion.a>
             {/* Login/Signup button (desktop only) */}
             <motion.a
@@ -114,7 +114,7 @@ const Header: React.FC = () => {
               whileFocus={linkHover}
               style={{ willChange: 'transform, color' }}
             >
-              {t('loginSignup')}
+              {t('texts.loginSignup')}
             </motion.a>
             {/* Mobile menu button */}
             <button

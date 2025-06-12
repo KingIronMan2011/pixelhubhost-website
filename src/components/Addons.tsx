@@ -1,45 +1,37 @@
 import React from 'react';
 import { Globe, Database, HardDrive } from 'lucide-react';
-import { useLanguage } from '../context/LanguageContext';
-import languages from '../config/languages/Languages';
-import i18n from '../i18n'; // <-- Ensure i18n is imported
+import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
-
 
 // Main Addons component
 const Addons: React.FC = () => {
-  // Use the language from context, which is synced with i18n
-  const { language } = useLanguage();
-
-  // Always use the current i18n language for translations (in case context is out of sync)
-  const currentLanguage = i18n.language || language || 'en';
-  const t = languages[currentLanguage]?.texts || languages.en.texts;
+  const { t } = useTranslation();
 
   // Define the list of addon options, each with icon, name, description, and price
   const addons = [
     {
       icon: Globe,
-      name: t.customDomain,
-      description: t.customDomainDesc,
-      price: t.priceDomain,
+      name: t('texts.customDomain'),
+      description: t('texts.customDomainDesc'),
+      price: t('texts.priceDomain'),
     },
     {
       icon: Globe,
-      name: t.extraPort,
-      description: t.extraPortDesc,
-      price: t.pricePort,
+      name: t('texts.extraPort'),
+      description: t('texts.extraPortDesc'),
+      price: t('texts.pricePort'),
     },
     {
       icon: HardDrive,
-      name: t.extraBackup,
-      description: t.extraBackupDesc,
-      price: t.priceBackup,
+      name: t('texts.extraBackup'),
+      description: t('texts.extraBackupDesc'),
+      price: t('texts.priceBackup'),
     },
     {
       icon: Database,
-      name: t.extraDatabase,
-      description: t.extraDatabaseDesc,
-      price: t.priceDatabase,
+      name: t('texts.extraDatabase'),
+      description: t('texts.extraDatabaseDesc'),
+      price: t('texts.priceDatabase'),
     },
   ];
 
@@ -84,10 +76,10 @@ const Addons: React.FC = () => {
         {/* Section header */}
         <div className="text-center mb-12">
           <h2 className="text-4xl font-extrabold text-gray-900 dark:text-white mb-3 tracking-tight drop-shadow-sm">
-            {t.addons}
+            {t('texts.addons')}
           </h2>
           <p className="text-gray-700 dark:text-gray-400 max-w-2xl mx-auto text-lg">
-            {t.addonsSubtitle}
+            {t('texts.addonsSubtitle')}
           </p>
         </div>
         {/* Animated list of addon cards */}
@@ -149,7 +141,7 @@ const Addons: React.FC = () => {
                     className="inline-flex items-center gap-1 px-4 py-2 rounded-lg bg-blue-600 hover:bg-blue-700 dark:bg-blue-700 dark:hover:bg-blue-600 text-white font-medium shadow transition-all duration-150"
                     whileTap={{ scale: 0.96 }}
                   >
-                    {t.contactUs}
+                    {t('texts.contactUs')}
                   </motion.button>
                 </div>
               </div>
