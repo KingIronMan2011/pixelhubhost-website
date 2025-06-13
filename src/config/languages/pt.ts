@@ -234,6 +234,9 @@ const pt = {
       'Entre em contato para um plano personalizado adaptado às suas necessidades.',
     splits: 'Splits',
     splitsDesc: 'Quantidade de divisões de servidor permitidas por plano',
+    discord: 'Discord',
+    whatsapp: 'Whatsapp',
+    email: 'Email',
   },
 };
 
