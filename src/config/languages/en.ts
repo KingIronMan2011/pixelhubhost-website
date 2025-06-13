@@ -233,6 +233,9 @@ const en = {
 
     splits: 'Splits',
     splitsDesc: 'Number of possible server splits per plan',
+    discord: 'Discord',
+    whatsapp: 'Whatsapp',
+    email: 'Email',
   },
 };
 
