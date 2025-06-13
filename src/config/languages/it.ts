@@ -262,6 +262,9 @@ const it = {
 
     splits: 'Splits',
     splitsDesc: 'Numero di suddivisioni server consentite per piano',
+    discord: 'Discord',
+    whatsapp: 'Whatsapp',
+    email: 'Email',
   },
 };
 
