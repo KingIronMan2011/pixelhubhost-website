@@ -45,21 +45,21 @@ const Contact: React.FC = () => {
     {
       href: contact.discord,
       icon: <FaDiscord className="w-7 h-7" />,
-      label: t('discord'),
+      label: t('texts.discord'),
       className:
         'bg-blue-600 dark:bg-blue-700 border-blue-700 dark:border-blue-500 text-white hover:text-white',
     },
     {
       href: contact.whatsapp,
       icon: <FaWhatsapp className="w-7 h-7" />,
-      label: t('whatsapp'),
+      label: t('texts.whatsapp'),
       className:
         'bg-green-500 dark:bg-green-600 border-green-700 dark:border-green-500 text-white hover:text-white',
     },
     {
       href: `mailto:${contact.email}`,
       icon: <FaEnvelope className="w-7 h-7" />,
-      label: t('email'),
+      label: t('texts.email'),
       className:
         'bg-gray-100 dark:bg-gray-800 border-gray-300 dark:border-gray-700 text-blue-700 dark:text-blue-400 hover:text-blue-900 dark:hover:text-blue-300',
     },
