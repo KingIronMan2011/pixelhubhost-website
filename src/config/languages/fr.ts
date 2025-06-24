@@ -236,6 +236,9 @@ const fr = {
 
     splits: 'Splits',
     splitsDesc: 'Nombre de divisions de serveur possibles par offre',
+    discord: 'Discord',
+    whatsapp: 'Whatsapp',
+    email: 'Email',
   },
 };
 

@@ -246,6 +246,9 @@ const de = {
       'Dedizierter Server auf Enterprise-Niveau für maximale Leistung, Kontrolle und Zuverlässigkeit.',
     plan_custom_name: 'Individuell',
     plan_custom_description: 'Kontaktieren Sie uns für einen individuell angepassten Plan.',
+    discord: 'Discord',
+    whatsapp: 'Whatsapp',
+    email: 'Email',
   },
 };
 
