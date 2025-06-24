@@ -214,6 +214,8 @@ const pt = {
     javaOnly: '⚠️ Atualmente disponível apenas para Minecraft Java Edition',
     loadingPage: 'Carregando página...',
     // Planos (flattened, translated)
+    plan_leaf_name: 'Folha',
+    plan_leaf_description: 'Perfeito para servidores pequenos e iniciantes',
     plan_oak_name: 'Carvalho',
     plan_oak_description: 'Ótimo para servidores Minecraft em crescimento',
     plan_stone_name: 'Pedra',

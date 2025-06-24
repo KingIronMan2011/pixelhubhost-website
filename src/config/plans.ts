@@ -1,4 +1,4 @@
-import type { Language } from './languages/Languages';
+import Language from "./languages/Languages";
 
 // Helper function to get currency symbol and conversion rate based on language
 const getCurrencyByLanguage = (language: Language) => {
@@ -48,16 +48,50 @@ export type Plan = {
 
 export const PLANS: Plan[] = [
   {
+    id: 'leaf',
+    nameKey: 'texts.plan_leaf_name',
+    descriptionKey: 'texts.plan_leaf_description',
+    price: {
+      base_amount: 16,
+      getCurrencyInfo: (language) => {
+        const { symbol, rate } = getCurrencyByLanguage(language);
+        return {
+          amount: Math.round(16 * rate),
+          quarterlyAmount: Math.round(16 * 3 * rate * 0.9),
+          currency: symbol,
+        };
+      },
+    },
+    features: [
+      { nameKey: 'ddosProtection', included: true },
+      { nameKey: 'xeonCpu', included: true },
+      { nameKey: 'networkSpeed', included: true },
+      { nameKey: 'reliableSupport', included: true },
+    ],
+    available: true,
+    popular: false,
+    color: '#854d0e',
+    specs: {
+      threads: 1,
+      ram: 2,
+      storage: 5,
+      backups: 1,
+      databases: 3,
+      ports: 3,
+      splits: 0,
+    },
+  },
+  {
     id: 'oak',
     nameKey: 'texts.plan_oak_name',
     descriptionKey: 'texts.plan_oak_description',
     price: {
-      base_amount: 34,
+      base_amount: 31,
       getCurrencyInfo: (language) => {
         const { symbol, rate } = getCurrencyByLanguage(language);
         return {
-          amount: Math.round(34 * rate),
-          quarterlyAmount: Math.round(34 * 3 * rate * 0.9),
+          amount: Math.round(31 * rate),
+          quarterlyAmount: Math.round(31 * 3 * rate * 0.9),
           currency: symbol,
         };
       },
@@ -86,12 +120,12 @@ export const PLANS: Plan[] = [
     nameKey: 'texts.plan_stone_name',
     descriptionKey: 'texts.plan_stone_description',
     price: {
-      base_amount: 51,
+      base_amount: 47,
       getCurrencyInfo: (language) => {
         const { symbol, rate } = getCurrencyByLanguage(language);
         return {
-          amount: Math.round(51 * rate),
-          quarterlyAmount: Math.round(51 * 3 * rate * 0.9),
+          amount: Math.round(47 * rate),
+          quarterlyAmount: Math.round(47 * 3 * rate * 0.9),
           currency: symbol,
         };
       },
@@ -120,12 +154,12 @@ export const PLANS: Plan[] = [
     nameKey: 'texts.plan_iron_name',
     descriptionKey: 'texts.plan_iron_description',
     price: {
-      base_amount: 68,
+      base_amount: 63,
       getCurrencyInfo: (language) => {
         const { symbol, rate } = getCurrencyByLanguage(language);
         return {
-          amount: Math.round(68 * rate),
-          quarterlyAmount: Math.round(68 * 3 * rate * 0.9),
+          amount: Math.round(63 * rate),
+          quarterlyAmount: Math.round(63 * 3 * rate * 0.9),
           currency: symbol,
         };
       },
@@ -154,12 +188,12 @@ export const PLANS: Plan[] = [
     nameKey: 'texts.plan_diamond_name',
     descriptionKey: 'texts.plan_diamond_description',
     price: {
-      base_amount: 100,
+      base_amount: 94,
       getCurrencyInfo: (language) => {
         const { symbol, rate } = getCurrencyByLanguage(language);
         return {
-          amount: Math.round(100 * rate),
-          quarterlyAmount: Math.round(100 * 3 * rate * 0.9),
+          amount: Math.round(94 * rate),
+          quarterlyAmount: Math.round(94 * 3 * rate * 0.9),
           currency: symbol,
         };
       },
@@ -188,12 +222,12 @@ export const PLANS: Plan[] = [
     nameKey: 'texts.plan_netherite_name',
     descriptionKey: 'texts.plan_netherite_description',
     price: {
-      base_amount: 130,
+      base_amount: 122,
       getCurrencyInfo: (language) => {
         const { symbol, rate } = getCurrencyByLanguage(language);
         return {
-          amount: Math.round(130 * rate),
-          quarterlyAmount: Math.round(130 * 3 * rate * 0.9),
+          amount: Math.round(122 * rate),
+          quarterlyAmount: Math.round(122 * 3 * rate * 0.9),
           currency: symbol,
         };
       },
@@ -249,40 +283,6 @@ export const PLANS: Plan[] = [
       databases: 3,
       ports: 3,
       splits: 5,
-    },
-  },
-  {
-    id: 'dedicated',
-    nameKey: 'texts.plan_dedicated_name',
-    descriptionKey: 'texts.plan_dedicated_description',
-    price: {
-      base_amount: 1032,
-      getCurrencyInfo: (language) => {
-        const { symbol, rate } = getCurrencyByLanguage(language);
-        return {
-          amount: Math.round(1032 * rate),
-          quarterlyAmount: Math.round(1032 * 3 * rate * 0.9),
-          currency: symbol,
-        };
-      },
-    },
-    features: [
-      { nameKey: 'ddosProtection', included: true },
-      { nameKey: 'xeonCpu', included: true },
-      { nameKey: 'networkSpeed', included: true },
-      { nameKey: 'reliableSupport', included: true },
-    ],
-    available: true,
-    popular: false,
-    color: '#581c87',
-    specs: {
-      threads: 32,
-      ram: 128,
-      storage: 1000,
-      backups: 0,
-      databases: 0,
-      ports: 0,
-      splits: 0,
     },
   },
   {

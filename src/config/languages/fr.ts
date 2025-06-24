@@ -214,6 +214,8 @@ const fr = {
     javaOnly: '⚠️ Actuellement disponible uniquement pour Minecraft Java Edition',
     loadingPage: 'Chargement de la page...',
     // Plans (flattened, translated)
+    plan_leaf_name: 'Feuille',
+    plan_leaf_description: 'Idéal pour les petits serveurs Minecraft',
     plan_oak_name: 'Chêne',
     plan_oak_description: 'Idéal pour faire croître les serveurs Minecraft',
     plan_stone_name: 'Pierre',

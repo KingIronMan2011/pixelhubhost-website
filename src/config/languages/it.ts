@@ -242,6 +242,8 @@ const it = {
       },
     },
     // Piani (flattened, translated)
+    plan_leaf_name: 'Foglia',
+    plan_leaf_description: 'Hosting economico per server di piccole dimensioni',
     plan_oak_name: 'Quercia',
     plan_oak_description: 'Ottimo per server Minecraft in crescita',
     plan_stone_name: 'Pietra',

@@ -227,6 +227,8 @@ const de = {
     loadingPage: 'Lade Seite...',
     splits: 'Splits',
     splitsDesc: 'Anzahl der möglichen Serveraufteilungen pro Plan',
+    plan_leaf_name: 'Blatt',
+    plan_leaf_description: 'Perfekt für kleine Minecraft-Server',
     plan_oak_name: 'Eiche',
     plan_oak_description: 'Ideal für wachsende Minecraft-Server',
     plan_stone_name: 'Stein',

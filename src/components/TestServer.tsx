@@ -5,7 +5,7 @@ import { useLanguage } from '../context/LanguageContext';
 import i18n from '../i18n';
 import languages from '../config/languages/Languages';
 import { SERVER_LIMITS } from '../config/config';
-import type { Language } from '../config/config';
+import type { LanguageKey } from '../config/config';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Dialog } from '@headlessui/react';
@@ -42,7 +42,7 @@ const translations = Object.fromEntries(
 
 type NotificationProps = {
   onClose: () => void;
-  language: Language;
+  language: LanguageKey;
 };
 
 const CopyNotification: React.FC<NotificationProps> = ({ onClose, language }) => {
@@ -78,7 +78,7 @@ const CopyNotification: React.FC<NotificationProps> = ({ onClose, language }) =>
 
 type ConnectPopupProps = {
   onClose: () => void;
-  language: Language;
+  language: LanguageKey;
   serverDomain: string;
   bedrockPort: string;
 };

@@ -213,6 +213,8 @@ const en = {
     javaOnly: '⚠️ Currently only available for Minecraft Java Edition',
     loadingPage: 'Loading page...',
     // Plans (flattened)
+    plan_leaf_name: 'Leaf',
+    plan_leaf_description: 'Perfect for small servers and communities',
     plan_oak_name: 'Oak',
     plan_oak_description: 'Great for growing Minecraft servers',
     plan_stone_name: 'Stone',
