@@ -3,8 +3,11 @@ import languages from '../config/languages/Languages'; // Use 'languages' instea
 import { motion } from 'framer-motion';
 import { planLinks } from '../config/config';
 
-const language = i18n.language || 'en';
-const texts = languages[language]?.texts || languages.en.texts;
+type LanguageKey = keyof typeof languages;
+const language = (i18n.language in languages ? i18n.language : 'en') as LanguageKey;
+
+// Get the texts for the current language, fallback to English if not found
+const texts = languages[language].texts;
 
 // Props for the PricingCard component
 interface PricingCardProps {

@@ -13,7 +13,6 @@ import PricingPlans from './components/PricingPlans';
 import Addons from './components/Addons';
 import Contact from './components/Contact';
 import { HelmetProvider } from 'react-helmet-async';
-import languages from './config/languages/Languages';
 import { Suspense, lazy, useEffect } from 'react';
 import { useGoogleAnalytics } from './analytics';
 import i18n from './i18n';
@@ -38,7 +37,7 @@ function App() {
 
   // Initialize translations (i18next)
   // useTranslation returns an instance with the "t()" function
-  const { i18n: i18nextInstance, t } = useTranslation();
+  const { t } = useTranslation();
 
   // Get current location for routing
   const location = useLocation();

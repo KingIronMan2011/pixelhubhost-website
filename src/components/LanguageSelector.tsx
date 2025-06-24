@@ -1,5 +1,4 @@
 import { useState, useRef, useEffect } from 'react';
-import { useLanguage } from '../context/LanguageContext';
 import { Globe, ChevronDown } from 'lucide-react';
 import i18n from '../i18n';
 import languages from '../config/languages/Languages';

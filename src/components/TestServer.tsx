@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Server, Signal, Copy, Check, Info } from 'lucide-react';
 import { usePterodactyl } from '../hooks/usePterodactyl';
-import { useLanguage } from '../context/LanguageContext';
 import i18n from '../i18n';
 import languages from '../config/languages/Languages';
 import { SERVER_LIMITS } from '../config/config';
@@ -13,9 +12,18 @@ import { motion } from 'framer-motion';
 import ReactCountryFlag from 'react-country-flag';
 
 // siteConfig now only holds the texts, without top-level language detection
-const siteConfig = {
+const siteConfig: {
+  texts: Record<string, { [key: string]: string }>
+} = {
   texts: Object.fromEntries(
-    Object.entries(languages).map(([lang, obj]) => [lang, obj.texts || {}]),
+    Object.entries(languages).map(([lang, obj]) => [
+      lang,
+      Object.fromEntries(
+        Object.entries(obj.texts || {}).filter(
+          ([, value]) => typeof value === 'string'
+        ) as [string, string][]
+      ),
+    ]),
   ),
 };
 
@@ -349,8 +357,23 @@ const TestServer: React.FC = () => {
 
   const mappedState = mapServerState(status?.state);
 
+  // Define the allowed translation keys for type safety
+  type TranslationKey =
+    | 'domainCopied'
+    | 'serverOffline'
+    | 'checking'
+    | 'testServer'
+    | 'connectToTestServer'
+    | 'domain'
+    | 'bedrockPort'
+    | 'cpu'
+    | 'memory'
+    | 'copyDomain'
+    | 'copyPort'
+    | 'javaOnly';
+
   // Add this helper if not already present in your component:
-  const getTranslation = (key: string) =>
+  const getTranslation = (key: TranslationKey) =>
     translations[currentLanguage]?.[key] ?? translations.en?.[key] ?? key;
 
   return (
@@ -358,13 +381,13 @@ const TestServer: React.FC = () => {
     <section className="pt-8 pb-8 bg-gradient-to-b from-gray-50 via-white to-gray-100 dark:from-gray-950 dark:via-gray-900 dark:to-gray-950 transition-colors duration-500 relative overflow-hidden">
       {/* Show notification when something is copied */}
       {showNotification && (
-        <CopyNotification onClose={() => setShowNotification(false)} language={currentLanguage} />
+        <CopyNotification onClose={() => setShowNotification(false)} language={currentLanguage as LanguageKey} />
       )}
       {/* Show popup with connection instructions */}
       {showConnectPopup && (
         <ConnectPopup
           onClose={() => setShowConnectPopup(false)}
-          language={currentLanguage}
+          language={currentLanguage as LanguageKey}
           serverDomain={serverDomain}
           bedrockPort={bedrockPort}
         />
@@ -493,7 +516,7 @@ const TestServer: React.FC = () => {
                         {siteConfig.texts[currentLanguage].cpu}
                       </span>
                       <span className="text-sm text-gray-500">
-                        {siteConfig.texts[currentLanguage].memory}
+                        {cpuUsagePercent}%
                       </span>
                     </div>
                     <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-1.5">
@@ -509,7 +532,9 @@ const TestServer: React.FC = () => {
                         {siteConfig.texts[currentLanguage].memory}
                       </span>
                       <span className="text-sm font-medium text-gray-900 dark:text-white">
-                        {Math.round(status.memory.current / 1024 / 1024)}MB
+                        {status.memory.current
+                          ? `${Math.round(status.memory.current / 1024 / 1024)}MB (${memoryUsagePercent}%)`
+                          : `0MB (0%)`}
                       </span>
                     </div>
                     <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-1.5">

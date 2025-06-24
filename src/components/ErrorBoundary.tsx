@@ -45,7 +45,7 @@ class ErrorBoundary extends React.Component<ErrorBoundaryProps, ErrorBoundarySta
 
       const languageOptions = Object.entries(languages).map(([code, lang]) => (
         <option key={code} value={code}>
-          {lang.texts.languageNames?.[code] || code.toUpperCase()}
+          {(lang.texts.languageNames as Record<string, string> | undefined)?.[code] || code.toUpperCase()}
         </option>
       ));
 

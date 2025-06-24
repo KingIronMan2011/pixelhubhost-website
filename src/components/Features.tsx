@@ -7,8 +7,8 @@ import languages from '../config/languages/Languages';
 // Features section component
 const Features = () => {
   // Always use i18n.language for detection
-  const language = i18n.language || 'en';
-  const t = languages[language]?.texts || languages.en.texts;
+  const language = (i18n.language in languages ? i18n.language : 'en') as keyof typeof languages;
+  const t = languages[language].texts;
 
   // Define the list of features to display, each with an icon, title, and description
   const features = [

@@ -7,7 +7,7 @@ import languages from '../config/languages/Languages';
 const Hero: React.FC = () => {
   // Use i18n.language as the source of truth, fallback to context, then 'en'
   const { language } = useLanguage();
-  const currentLanguage = i18n.language || language || 'en';
+  const currentLanguage = (i18n.language || language || 'en') as keyof typeof languages;
   const t = languages[currentLanguage]?.texts || languages.en.texts;
 
   const heroRef = useRef<HTMLDivElement>(null);

@@ -2,7 +2,7 @@ import { useMemo, useState, useEffect } from 'react';
 import { useLanguage } from '../context/LanguageContext';
 import i18n from '../i18n';
 import { PLANS as basePlans } from '../config/plans';
-import { config, planLinks } from '../config/config';
+import { planLinks, LanguageKey } from '../config/config';
 import { motion } from 'framer-motion'; // Animation library
 import { useTranslation } from 'react-i18next';
 
@@ -28,7 +28,7 @@ const PricingPlans = () => {
   const getCurrencyDisplay = useMemo(() => {
     return (plan: (typeof plans)[0]) => {
       try {
-        const currencyInfo = plan.price.getCurrencyInfo(language);
+        const currencyInfo = plan.price.getCurrencyInfo(language as LanguageKey);
         const { currency = '$', amount = 0, quarterlyAmount = 0 } = currencyInfo || {};
 
         return {

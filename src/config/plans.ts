@@ -1,7 +1,7 @@
-import Language from "./languages/Languages";
+import { LanguageKey } from "../config/config";
 
 // Helper function to get currency symbol and conversion rate based on language
-const getCurrencyByLanguage = (language: Language) => {
+const getCurrencyByLanguage = (language: LanguageKey) => {
   switch (language) {
     case 'en':
       return { symbol: '$', rate: 0.2 };
@@ -25,7 +25,7 @@ export type Plan = {
   descriptionKey: string; // e.g. 'texts.plan_oak_description'
   price: {
     base_amount: number;
-    getCurrencyInfo: (language: Language) => {
+    getCurrencyInfo: (language: LanguageKey) => {
       amount: number;
       quarterlyAmount: number;
       currency: string;

@@ -13,7 +13,7 @@ const Footer: React.FC = () => {
 
   // Use i18n.language as the source of truth, fallback to context, then 'en'
   const currentLanguage = i18n.language || language || 'en';
-  const t = languages[currentLanguage]?.texts || languages.en.texts;
+  const t = languages[currentLanguage as keyof typeof languages]?.texts || languages.en.texts;
   const contact =
     languages[currentLanguage as keyof typeof languages]?.contact || languages.en.contact;
 
@@ -34,7 +34,7 @@ const Footer: React.FC = () => {
   };
 
   // Language options for the selector
-  const languageOptions = Object.keys(languages).map((code) => ({
+  const languageOptions = (Object.keys(languages) as Array<keyof typeof languages>).map((code) => ({
     code,
     name: languages[code]?.texts?.languageNames?.[code] || code.toUpperCase(),
   }));
