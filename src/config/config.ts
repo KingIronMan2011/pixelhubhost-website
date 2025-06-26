@@ -17,6 +17,10 @@ export const config = {
 
 // Links for each hosting plan and billing cycle (monthly/quarterly)
 export const planLinks: Record<string, { monthly: string; quarterly: string }> = {
+  leaf: {
+    monthly: 'https://dash.pixelhubhost.com/market/16/checkout',
+    quarterly: 'https://dash.pixelhubhost.com/market/16/checkout',
+  },
   oak: {
     monthly: 'https://dash.pixelhubhost.com/market/1/checkout',
     quarterly: 'https://dash.pixelhubhost.com/market/1/checkout',
