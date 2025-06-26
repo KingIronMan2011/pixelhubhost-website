@@ -24,8 +24,6 @@ const MetaTags: React.FC<MetaTagsProps> = ({
   // Use i18n.language as the default if language prop is not provided
   const currentLanguage = language || i18n.language || 'en';
 
-  const texts = languages[currentLanguage as SupportedLanguage]?.texts || languages.en.texts;
-
   const pageTitle = useMemo(() => {
     return title ? `${title} | ${config.name}` : config.name;
   }, [title]);
