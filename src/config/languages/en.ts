@@ -55,7 +55,7 @@ const en = {
     soldOut: 'SOLD OUT',
     from: 'from',
     // Test server section
-    testServer: 'Pixel Survival',
+    testServer: 'Official Server',
     testServerDesc: 'Try our server performance with this free test server',
     domain: 'Domain',
     bedrockPort: 'Bedrock Port',

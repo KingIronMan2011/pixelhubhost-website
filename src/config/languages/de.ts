@@ -57,7 +57,7 @@ const de = {
     soldOut: 'AUSVERKAUFT',
     from: 'ab',
     // Test server section
-    testServer: 'Pixel Survival',
+    testServer: 'Offizieller Server',
     testServerDesc: 'Probieren Sie unsere Leistung mit diesem kostenlosen Testserver aus',
     domain: 'Domain',
     bedrockPort: 'Bedrock-Port',
