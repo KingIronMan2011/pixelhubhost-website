@@ -151,17 +151,13 @@ See [TODO.md](./TODO.md) for the current project tasks and checks.
 We welcome contributions from everyone! To contribute:
 
 1. **Fork** this repository.
-2. **Create a new branch** for your feature or bugfix:
+2. **Make your changes** and commit with clear messages.
+3. **Test your changes** locally to ensure nothing is broken.
+4. **Push** your commit to the main branch to your forked repo:
    ```bash
-   git checkout -b my-feature
+   git push origin main
    ```
-3. **Make your changes** and commit with clear messages.
-4. **Test your changes** locally to ensure nothing is broken.
-5. **Push** your branch to your forked repo:
-   ```bash
-   git push origin my-feature
-   ```
-6. **Open a Pull Request** on GitHub, describing your changes and referencing any related issues.
+5. **Open a Pull Request** on GitHub, describing your changes and referencing any related issues.
 
 **Tips:**
 
