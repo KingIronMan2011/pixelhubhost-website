@@ -1,13 +1,13 @@
-## TODOs
+# TODOs
 
-### General Stuff
+## General Stuff
 
 - [ ] Removed the hooks and Services folder with the Pterodactyl Stuff
 - [ ] Make a Backend for all Secrets and the Pterodactyl stuff
 - [ ] List the Ports, Splits, Backups and Databases under additional information button
 - [ ] Add an exchangeRates until using open-meteo
 
-### Optimizations
+## Optimizations
 
 - [ ] Optimize as much as possible of the Code
 - [ ] Make the Pages more secure
