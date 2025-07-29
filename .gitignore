@@ -28,3 +28,6 @@ node_modules/
 .env
 .bolt/
 .vite/
+
+# Ignore build output directories
+dist/
