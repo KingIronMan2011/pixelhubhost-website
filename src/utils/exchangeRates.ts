@@ -1,21 +1,19 @@
-import axios from 'axios';
+// Utility to fetch and cache exchange rates from Open-Meteo (open.er-api.com)
+import axios from "axios";
 
-const API_URL = 'https://api.exchangerate-api.com/v4/latest/BRL'; // Replace with your preferred API
+let cachedRates: Record<string, number> = {};
+let lastFetch = 0;
+const CACHE_DURATION = 1000 * 60 * 60 * 6; // 6 hours
 
-export const getExchangeRates = async () => {
-  try {
-    const response = await axios.get(API_URL);
-    return response.data.rates; // Returns exchange rates for all currencies
-  } catch (error) {
-    console.error('Error fetching exchange rates:', error);
-    throw new Error('Failed to fetch exchange rates');
+export async function getExchangeRates(
+  base = "BRL",
+): Promise<Record<string, number>> {
+  const now = Date.now();
+  if (cachedRates && now - lastFetch < CACHE_DURATION) {
+    return cachedRates;
   }
-};
-
-export const convertPrice = (amountInBRL: number, targetCurrency: string, rates: Record<string, number>) => {
-  const rate = rates[targetCurrency];
-  if (!rate) {
-    throw new Error(`Exchange rate for ${targetCurrency} not found`);
-  }
-  return (amountInBRL * rate).toFixed(2); // Convert and format to 2 decimal places
-};
+  const res = await axios.get(`https://open.er-api.com/v6/latest/${base}`);
+  cachedRates = res.data.rates ?? {};
+  lastFetch = now;
+  return cachedRates;
+}
