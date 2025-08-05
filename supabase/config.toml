@@ -1,6 +1,0 @@
-[functions]
-pterodactyl-proxy = {
-  enable = true
-  runtime = "deno"
-  entrypoint = "index.ts"
-}

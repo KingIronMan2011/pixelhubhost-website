@@ -2,8 +2,8 @@
 
 ## General Stuff
 
-- [ ] Removed the hooks and Services folder with the Pterodactyl Stuff
-- [ ] Make a Backend for all Secrets and the Pterodactyl stuff
+- [x] Removed the hooks and Services folder with the Pterodactyl Stuff
+- [x] Make a Backend for all Secrets and the Pterodactyl stuff
 - [ ] List the Ports, Splits, Backups and Databases under additional information button
 - [x] Add an exchangeRates.ts
 

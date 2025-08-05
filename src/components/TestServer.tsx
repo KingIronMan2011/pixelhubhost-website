@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Server, Signal, Copy, Check, Info } from 'lucide-react';
-import { usePterodactyl } from '../hooks/usePterodactyl';
 import i18n from '../i18n';
 import languages from '../config/languages/Languages';
-import { SERVER_LIMITS } from '../config/config';
+import { SERVER_LIMITS, config } from '../config/config';
 import type { LanguageKey } from '../config/config';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -215,7 +214,6 @@ const ConnectPopup: React.FC<ConnectPopupProps> = ({
   );
 };
 
-const testServerId = import.meta.env.VITE_PTERODACTYL_TEST_SERVER_ID;
 const disableExternalServices = import.meta.env.VITE_DISABLE_EXTERNAL_SERVICES === 'true';
 
 // Main TestServer component
@@ -233,10 +231,40 @@ const TestServer: React.FC = () => {
   const serverDomain = 'jogar.pixelhubhost.com';
   const bedrockPort = '19132';
 
-  // Only call usePterodactyl if not disabled
-  const { status, loading, error } = disableExternalServices
-    ? { status: null, loading: false, error: null }
-    : usePterodactyl(testServerId);
+  // --- NEW: Fetch server status from your backend API ---
+  const [status, setStatus] = useState<any>(null);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (disableExternalServices) return;
+    setLoading(true);
+    setError(null);
+
+    const fetchStatus = async () => {
+      const apiUrl = config.apiUrl;
+      try {
+        const res = await fetch(`http://${apiUrl}:4002/pterodactyl/proxy`);
+        if (!res.ok) {
+          const err = await res.json();
+          throw new Error(err.error || 'Failed to fetch server status');
+        }
+        const data = await res.json();
+        setStatus(data);
+      } catch (err: any) {
+        setError(err.message || 'Failed to fetch server status');
+        setStatus(null);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchStatus();
+
+    // Optionally poll every 10 seconds for live updates:
+    const interval = setInterval(fetchStatus, 5000);
+    return () => clearInterval(interval);
+  }, [disableExternalServices]);
 
   // Use currentLanguage everywhere instead of undefined variable "language"
   const handleCopy = async (
@@ -298,26 +326,6 @@ const TestServer: React.FC = () => {
   const cpuUsagePercent = status?.cpu?.current
     ? Math.round((status.cpu.current / SERVER_LIMITS.CPU) * 100)
     : 0;
-
-  // If no test server ID is configured, show an error message
-  if (!testServerId) {
-    return (
-      <div className="py-12 bg-white dark:bg-gray-900">
-        <div className="container mx-auto px-4">
-          <div className="max-w-3xl mx-auto">
-            <div className="bg-red-50 dark:bg-red-900/20 rounded-xl p-6 border border-red-200 dark:border-red-800">
-              <h2 className="text-red-700 dark:text-red-300 text-lg font-semibold">
-                Configuration Error
-              </h2>
-              <p className="text-red-600 dark:text-red-400 mt-2">
-                Server ID is missing from environment variables
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-    );
-  }
 
   // After loading is false, check for empty data
   if (!loading && (!status || Object.keys(status).length === 0)) {

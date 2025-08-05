@@ -13,6 +13,7 @@ export const config = {
   },
   yearFounded: 2025, // Year the company was founded
   copyright: 'PixelHub Host', // Copyright holder
+  apiUrl: 'localhost', // API URL for internal services
 };
 
 // Links for each hosting plan and billing cycle (monthly/quarterly)
@@ -53,13 +54,6 @@ export type LanguageKey = 'en' | 'pt' | 'de' | 'fr' | 'it'; // Italian supported
 // Supported theme modes
 export type Theme = 'light' | 'dark';
 
-// Configuration for Pterodactyl API integration (server management panel)
-export const PTERODACTYL_CONFIG = {
-  API_URL: import.meta.env.VITE_PTERODACTYL_API_URL, // API base URL from env
-  CLIENT_API_KEY: import.meta.env.VITE_PTERODACTYL_CLIENT_API_KEY, // Client API key from env
-  APPLICATION_API_KEY: import.meta.env.VITE_PTERODACTYL_APPLICATION_API_KEY, // Application API key from env
-};
-
 // Type definition for server status (used for test server status display)
 export type ServerStatus = {
   state: 'running' | 'starting' | 'stopping' | 'offline';
@@ -69,6 +63,6 @@ export type ServerStatus = {
 
 // Limits for the test server (used for progress bars, etc.)
 export const SERVER_LIMITS = {
-  MEMORY: 63.5 * 1024 * 1024 * 1024, // 3GB in bytes
-  CPU: 3200, // 200% (likely for multi-core virtualized CPU)
+  MEMORY: 10 * 1024 * 1024 * 1024, // 3GB in bytes
+  CPU: 100, // 100% (likely for multi-core virtualized CPU)
 };

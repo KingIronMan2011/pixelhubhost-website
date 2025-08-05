@@ -1,5 +1,4 @@
 import { Routes, Route, useLocation } from 'react-router-dom';
-import { useAuth } from './context/AuthContext';
 import { useTranslation } from 'react-i18next';
 import MetaTags from './components/MetaTags';
 import { LanguageProvider } from './context/LanguageContext';
@@ -13,7 +12,7 @@ import PricingPlans from './components/PricingPlans';
 import Addons from './components/Addons';
 import Contact from './components/Contact';
 import { HelmetProvider } from 'react-helmet-async';
-import { Suspense, lazy, useEffect } from 'react';
+import { Suspense, lazy, useEffect, useState } from 'react';
 import { useGoogleAnalytics } from './analytics';
 import i18n from './i18n';
 
@@ -32,23 +31,66 @@ const disableExternalServices = import.meta.env.VITE_DISABLE_EXTERNAL_SERVICES =
 // Main App component that sets up routing, layout, and global providers
 function App() {
   useGoogleAnalytics();
-  // Get authentication loading state from AuthContext
-  const { loading } = useAuth();
 
-  // Initialize translations (i18next)
-  // useTranslation returns an instance with the "t()" function
   const { t } = useTranslation();
-
-  // Get current location for routing
   const location = useLocation();
+  const [appLoading, setAppLoading] = useState(true);
 
   // Keep <html> lang attribute in sync with the current i18n language
   useEffect(() => {
     document.documentElement.lang = i18n.language;
   }, [i18n.language]);
 
+  // State to hold reCAPTCHA site key
+  const [recaptchaSiteKey, setRecaptchaSiteKey] = useState<string | null>(null);
+
+  useEffect(() => {
+    fetch(`http://${config.apiUrl}:4002/recaptcha-config`)
+      .then((res) => res.json())
+      .then((data) => setRecaptchaSiteKey(data.siteKey || null));
+  }, []);
+
+  useEffect(() => {
+    if (recaptchaSiteKey) {
+      const scriptId = 'recaptcha-v3-script';
+      if (document.getElementById(scriptId)) {
+        return;
+      }
+      const script = document.createElement('script');
+      script.id = scriptId;
+      script.src = `https://www.google.com/recaptcha/api.js?render=${recaptchaSiteKey}`;
+      script.async = true;
+      script.defer = true;
+      script.onload = () => {
+        console.log('reCAPTCHA v3 script loaded globally from App.tsx.');
+      };
+      script.onerror = () => {
+        console.error('Failed to load reCAPTCHA v3 script from App.tsx.');
+      };
+      document.head.appendChild(script);
+    }
+  }, [recaptchaSiteKey]);
+
+  useEffect(() => {
+    async function loadApp() {
+      const apiUrl = config.apiUrl;
+      try {
+        await i18n.init();
+        const res = await fetch(`http://${apiUrl}:4002/pterodactyl/proxy`);
+        if (res.ok) {
+          console.log('Pterodactyl API is reachable');
+        }
+      } catch (err) {
+        console.error('Failed to reach Pterodactyl API:', err);
+      } finally {
+        setAppLoading(false);
+      }
+    }
+    loadApp();
+  }, []);
+
   // Show a loading spinner while authentication state is being determined
-  if (loading) {
+  if (appLoading) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-gradient-to-b from-blue-50 via-white to-purple-50 dark:from-gray-950 dark:via-gray-900 dark:to-gray-950 transition-colors duration-500">
         <div className="flex flex-col items-center">

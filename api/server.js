@@ -3,6 +3,7 @@ import cors from 'cors';
 import helmet from 'helmet';
 import dotenv from 'dotenv';
 import axios from 'axios';
+import crypto from 'crypto';
 
 dotenv.config();
 
@@ -76,6 +77,18 @@ app.get('/pterodactyl/proxy', async (req, res) => {
       details: error.response?.data || undefined,
     });
   }
+});
+
+app.get('/recaptcha-config', (req, res) => {
+  if (!RECAPTCHA_V3_SITE_KEY) {
+    return res.status(500).json({
+      error: 'Recaptcha V3 site key not configured',
+    });
+  }
+
+  res.json({
+    siteKey: RECAPTCHA_V3_SITE_KEY,
+  });
 });
 
 // Start the server
