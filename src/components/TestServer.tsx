@@ -409,7 +409,7 @@ const TestServer: React.FC = () => {
                   <h2 className="text-xl font-bold text-gray-900 dark:text-white">
                     {texts.testServer}
                   </h2>
-                  <p className="text-sm text-gray-600 dark:text-gray-400">(1.7.2 - 1.21.5)</p>
+                  <p className="text-sm text-gray-600 dark:text-gray-400">(1.16 - 1.21.7)</p>
                 </div>
               </div>
               {/* Server status indicator */}
@@ -438,12 +438,6 @@ const TestServer: React.FC = () => {
 
             {/* Domain and port info with copy buttons */}
             <div className="space-y-4">
-              {/* Info message: currently only support java */}
-              <div className="mb-2">
-                <span className="inline-block px-3 py-1 rounded bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200 text-xs font-semibold">
-                  {getText('javaOnly')}
-                </span>
-              </div>
               <div className="flex flex-col gap-2">
                 {/* Java/Bedrock domain */}
                 <div className="flex items-center bg-gray-100/70 dark:bg-gray-800/70 rounded-lg px-3 py-2">

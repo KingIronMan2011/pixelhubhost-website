@@ -54,7 +54,7 @@ const pt = {
     soldOut: 'ESGOTADO',
     from: 'a partir de',
     // Test server section
-    testServer: 'Pixel Survival',
+    testServer: 'Servidor de Oficial',
     testServerDesc: 'Experimente nosso desempenho com este servidor de teste gratuito',
     domain: 'Domínio',
     bedrockPort: 'Porta Bedrock',

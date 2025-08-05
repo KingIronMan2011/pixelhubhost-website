@@ -54,7 +54,7 @@ const it = {
     contactUs: 'Contattaci',
     soldOut: 'ESAURITO',
     from: 'da',
-    testServer: 'Pixel Survival',
+    testServer: 'Server di Ufficiale',
     testServerDesc: 'Prova le nostre prestazioni con questo server di test gratuito',
     domain: 'Dominio',
     bedrockPort: 'Porta Bedrock',
