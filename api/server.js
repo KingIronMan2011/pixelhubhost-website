@@ -10,9 +10,10 @@ import http from 'http';
 dotenv.config();
 
 const app = express();
-app.disable("x-powered-by");
+app.disable('x-powered-by');
 const PORT = process.env.PORT || 3000;
 const DOMAIN = process.env.DOMAIN || 'api.www.pixelhubhost.com';
+const isDevelopment = process.env.IS_DEVELOPMENT === 'true';
 
 // Middleware
 app.use(
@@ -23,10 +24,10 @@ app.use(
 );
 app.use(
   helmet({
-    hsts: process.env.USE_HTTPS === "true",
+    hsts: process.env.USE_HTTPS === 'true',
   }),
 );
-app.use(express.json({ limit: "10mb" }));
+app.use(express.json({ limit: '10mb' }));
 
 // --- Pterodactyl API credentials ---
 const PTERODACTYL_URL = process.env.PTERODACTYL_API_URL;
@@ -104,7 +105,7 @@ app.get('/recaptcha-config', (req, res) => {
   });
 });
 
-if (process.env.USE_HTTPS === "true") {
+if (process.env.USE_HTTPS === 'true') {
   const sslOptions = {
     key: fs.readFileSync(process.env.SSL_KEY_PATH),
     cert: fs.readFileSync(process.env.SSL_CERT_PATH),
@@ -117,8 +118,6 @@ if (process.env.USE_HTTPS === "true") {
     console.log(`API running on http://localhost:${PORT}`);
   });
 } else {
-  console.error(
-    "Production must use HTTPS. Set USE_HTTPS=true and provide SSL certs.",
-  );
+  console.error('Production must use HTTPS. Set USE_HTTPS=true and provide SSL certs.');
   process.exit(1);
 }
