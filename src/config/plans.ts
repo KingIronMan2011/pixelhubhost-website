@@ -1,13 +1,13 @@
-import { LanguageKey } from "../config/config";
-import { getCurrencyCodeForLang, getCurrencySymbol } from "../utils/currency";
-import { getExchangeRates } from "../utils/exchangeRates";
+import { LanguageKey } from '../config/config';
+import { getCurrencyCodeForLang, getCurrencySymbol } from '../utils/currency';
+import { getExchangeRates } from '../utils/exchangeRates';
 
 // Helper function to get currency symbol and conversion rate based on language, using live rates
 export async function getCurrencyByLanguageAsync(language: LanguageKey) {
   const currencyCode = getCurrencyCodeForLang(language);
   const symbol = getCurrencySymbol(currencyCode);
-  const exchangeRates = await getExchangeRates("BRL");
-  const rate = currencyCode === "BRL" ? 1 : exchangeRates[currencyCode] || 1;
+  const exchangeRates = await getExchangeRates('BRL');
+  const rate = currencyCode === 'BRL' ? 1 : exchangeRates[currencyCode] || 1;
   return { symbol, rate };
 }
 
@@ -22,7 +22,10 @@ export type Plan = {
   descriptionKey: string; // e.g. 'texts.plan_oak_description'
   price: {
     base_amount: number;
-    getCurrencyInfo: (language: LanguageKey, exchangeRates?: Record<string, number>) => {
+    getCurrencyInfo: (
+      language: LanguageKey,
+      exchangeRates?: Record<string, number>,
+    ) => {
       amount: number;
       quarterlyAmount: number;
       currency: string;
@@ -54,10 +57,7 @@ export const PLANS: Plan[] = [
       getCurrencyInfo: (language, exchangeRates) => {
         const currencyCode = getCurrencyCodeForLang(language);
         const symbol = getCurrencySymbol(currencyCode);
-        const rate =
-          currencyCode === "BRL"
-            ? 1
-            : exchangeRates?.[currencyCode] || 0.2; // fallback to 0.2 if no rates
+        const rate = currencyCode === 'BRL' ? 1 : exchangeRates?.[currencyCode] || 0.2; // fallback to 0.2 if no rates
         return {
           amount: Math.round(16 * rate),
           quarterlyAmount: Math.round(16 * 3 * rate * 0.9),
@@ -93,10 +93,7 @@ export const PLANS: Plan[] = [
       getCurrencyInfo: (language, exchangeRates) => {
         const currencyCode = getCurrencyCodeForLang(language);
         const symbol = getCurrencySymbol(currencyCode);
-        const rate =
-          currencyCode === "BRL"
-            ? 1
-            : exchangeRates?.[currencyCode] || 0.2; // fallback to 0.2 if no rates
+        const rate = currencyCode === 'BRL' ? 1 : exchangeRates?.[currencyCode] || 0.2; // fallback to 0.2 if no rates
         return {
           amount: Math.round(31 * rate),
           quarterlyAmount: Math.round(31 * 3 * rate * 0.9),
@@ -132,10 +129,7 @@ export const PLANS: Plan[] = [
       getCurrencyInfo: (language, exchangeRates) => {
         const currencyCode = getCurrencyCodeForLang(language);
         const symbol = getCurrencySymbol(currencyCode);
-        const rate =
-          currencyCode === "BRL"
-            ? 1
-            : exchangeRates?.[currencyCode] || 0.2; // fallback to 0.2 if no rates
+        const rate = currencyCode === 'BRL' ? 1 : exchangeRates?.[currencyCode] || 0.2; // fallback to 0.2 if no rates
         return {
           amount: Math.round(47 * rate),
           quarterlyAmount: Math.round(47 * 3 * rate * 0.9),
@@ -171,10 +165,7 @@ export const PLANS: Plan[] = [
       getCurrencyInfo: (language, exchangeRates) => {
         const currencyCode = getCurrencyCodeForLang(language);
         const symbol = getCurrencySymbol(currencyCode);
-        const rate =
-          currencyCode === "BRL"
-            ? 1
-            : exchangeRates?.[currencyCode] || 0.2; // fallback to 0.2 if no rates
+        const rate = currencyCode === 'BRL' ? 1 : exchangeRates?.[currencyCode] || 0.2; // fallback to 0.2 if no rates
         return {
           amount: Math.round(63 * rate),
           quarterlyAmount: Math.round(63 * 3 * rate * 0.9),
@@ -210,10 +201,7 @@ export const PLANS: Plan[] = [
       getCurrencyInfo: (language, exchangeRates) => {
         const currencyCode = getCurrencyCodeForLang(language);
         const symbol = getCurrencySymbol(currencyCode);
-        const rate =
-          currencyCode === "BRL"
-            ? 1
-            : exchangeRates?.[currencyCode] || 0.2; // fallback to 0.2 if no rates
+        const rate = currencyCode === 'BRL' ? 1 : exchangeRates?.[currencyCode] || 0.2; // fallback to 0.2 if no rates
         return {
           amount: Math.round(94 * rate),
           quarterlyAmount: Math.round(94 * 3 * rate * 0.9),
@@ -249,10 +237,7 @@ export const PLANS: Plan[] = [
       getCurrencyInfo: (language, exchangeRates) => {
         const currencyCode = getCurrencyCodeForLang(language);
         const symbol = getCurrencySymbol(currencyCode);
-        const rate =
-          currencyCode === "BRL"
-            ? 1
-            : exchangeRates?.[currencyCode] || 0.2; // fallback to 0.2 if no rates
+        const rate = currencyCode === 'BRL' ? 1 : exchangeRates?.[currencyCode] || 0.2; // fallback to 0.2 if no rates
         return {
           amount: Math.round(122 * rate),
           quarterlyAmount: Math.round(122 * 3 * rate * 0.9),
@@ -288,10 +273,7 @@ export const PLANS: Plan[] = [
       getCurrencyInfo: (language, exchangeRates) => {
         const currencyCode = getCurrencyCodeForLang(language);
         const symbol = getCurrencySymbol(currencyCode);
-        const rate =
-          currencyCode === "BRL"
-            ? 1
-            : exchangeRates?.[currencyCode] || 0.2; // fallback to 0.2 if no rates
+        const rate = currencyCode === 'BRL' ? 1 : exchangeRates?.[currencyCode] || 0.2; // fallback to 0.2 if no rates
         return {
           amount: Math.round(248 * rate),
           quarterlyAmount: Math.round(248 * 3 * rate * 0.9),

@@ -5,7 +5,7 @@
 - [ ] Removed the hooks and Services folder with the Pterodactyl Stuff
 - [ ] Make a Backend for all Secrets and the Pterodactyl stuff
 - [ ] List the Ports, Splits, Backups and Databases under additional information button
-- [ ] Add an exchangeRates until using open-meteo
+- [x] Add an exchangeRates.ts
 
 ## Optimizations
 

@@ -2,11 +2,11 @@
  * Map language code to currency code.
  */
 export const langToCurrency: Record<string, string> = {
-  en: "USD",
-  pt: "BRL",
-  de: "EUR",
-  fr: "EUR",
-  it: "EUR",
+  en: 'USD',
+  pt: 'BRL',
+  de: 'EUR',
+  fr: 'EUR',
+  it: 'EUR',
 };
 
 /**
@@ -15,7 +15,7 @@ export const langToCurrency: Record<string, string> = {
  * @returns Currency code (e.g. "USD", "EUR")
  */
 export function getCurrencyCodeForLang(lang: string): string {
-  return langToCurrency[lang] || "USD";
+  return langToCurrency[lang] || 'USD';
 }
 
 /**
@@ -25,14 +25,14 @@ export function getCurrencyCodeForLang(lang: string): string {
  */
 export function getCurrencySymbol(currency: string): string {
   switch (currency) {
-    case "USD":
-      return "$";
-    case "EUR":
-      return "€";
-    case "BRL":
-      return "R$";
-    case "GBP":
-      return "£";
+    case 'USD':
+      return '$';
+    case 'EUR':
+      return '€';
+    case 'BRL':
+      return 'R$';
+    case 'GBP':
+      return '£';
     default:
       return currency;
   }

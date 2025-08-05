@@ -13,15 +13,16 @@ import ReactCountryFlag from 'react-country-flag';
 
 // siteConfig now only holds the texts, without top-level language detection
 const siteConfig: {
-  texts: Record<string, { [key: string]: string }>
+  texts: Record<string, { [key: string]: string }>;
 } = {
   texts: Object.fromEntries(
     Object.entries(languages).map(([lang, obj]) => [
       lang,
       Object.fromEntries(
-        Object.entries(obj.texts || {}).filter(
-          ([, value]) => typeof value === 'string'
-        ) as [string, string][]
+        Object.entries(obj.texts || {}).filter(([, value]) => typeof value === 'string') as [
+          string,
+          string,
+        ][],
       ),
     ]),
   ),
@@ -381,7 +382,10 @@ const TestServer: React.FC = () => {
     <section className="pt-8 pb-8 bg-gradient-to-b from-gray-50 via-white to-gray-100 dark:from-gray-950 dark:via-gray-900 dark:to-gray-950 transition-colors duration-500 relative overflow-hidden">
       {/* Show notification when something is copied */}
       {showNotification && (
-        <CopyNotification onClose={() => setShowNotification(false)} language={currentLanguage as LanguageKey} />
+        <CopyNotification
+          onClose={() => setShowNotification(false)}
+          language={currentLanguage as LanguageKey}
+        />
       )}
       {/* Show popup with connection instructions */}
       {showConnectPopup && (
@@ -509,9 +513,7 @@ const TestServer: React.FC = () => {
                       <span className="text-sm text-gray-500">
                         {siteConfig.texts[currentLanguage].cpu}
                       </span>
-                      <span className="text-sm text-gray-500">
-                        {cpuUsagePercent}%
-                      </span>
+                      <span className="text-sm text-gray-500">{cpuUsagePercent}%</span>
                     </div>
                     <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-1.5">
                       <div
