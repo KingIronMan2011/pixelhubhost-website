@@ -81,10 +81,13 @@ Then, open [http://localhost:5173](http://localhost:5173) in your browser.
 2. **Create the .env File**
 
    - **On Windows:**
+
      ```cmd
      copy .env.example .env
      ```
+
    - **On Linux/macOS:**
+
      ```bash
      cp .env.example .env
      ```
@@ -154,9 +157,11 @@ We welcome contributions from everyone! To contribute:
 2. **Make your changes** and commit with clear messages.
 3. **Test your changes** locally to ensure nothing is broken.
 4. **Push** your commit to the main branch to your forked repo:
+
    ```bash
    git push origin main
    ```
+
 5. **Open a Pull Request** on GitHub, describing your changes and referencing any related issues.
 
 **Tips:**
@@ -174,7 +179,7 @@ Thank you for helping improve PixelHub Host!
 
 - **Discord:** [Join Server](https://discord.gg/mquaVhs5sr)
 - **WhatsApp:** [Contact on WhatsApp](https://wa.me/5516993981473)
-- **Email:** contato@pixelhubhost.com
+- **Email:** <contato@pixelhubhost.com>
 
 ---
 
