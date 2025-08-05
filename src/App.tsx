@@ -45,7 +45,7 @@ function App() {
   const [recaptchaSiteKey, setRecaptchaSiteKey] = useState<string | null>(null);
 
   useEffect(() => {
-    fetch(`http://${config.apiUrl}:4002/recaptcha-config`)
+    fetch(`${config.apiUrl}:4002/recaptcha-config`)
       .then((res) => res.json())
       .then((data) => setRecaptchaSiteKey(data.siteKey || null));
   }, []);
@@ -76,7 +76,7 @@ function App() {
       const apiUrl = config.apiUrl;
       try {
         await i18n.init();
-        const res = await fetch(`http://${apiUrl}:4002/pterodactyl/proxy`);
+        const res = await fetch(`${apiUrl}:4002/pterodactyl/proxy`);
         if (res.ok) {
           console.log('Pterodactyl API is reachable');
         }

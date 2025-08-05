@@ -3,17 +3,30 @@ import cors from 'cors';
 import helmet from 'helmet';
 import dotenv from 'dotenv';
 import axios from 'axios';
-import crypto from 'crypto';
+import fs from 'fs';
+import https from 'https';
+import http from 'http';
 
 dotenv.config();
 
 const app = express();
+app.disable("x-powered-by");
 const PORT = process.env.PORT || 3000;
+const DOMAIN = process.env.DOMAIN || 'api.www.pixelhubhost.com';
 
 // Middleware
-app.use(cors());
-app.use(helmet());
-app.use(express.json());
+app.use(
+  cors({
+    origin: true,
+    credentials: true,
+  }),
+);
+app.use(
+  helmet({
+    hsts: process.env.USE_HTTPS === "true",
+  }),
+);
+app.use(express.json({ limit: "10mb" }));
 
 // --- Pterodactyl API credentials ---
 const PTERODACTYL_URL = process.env.PTERODACTYL_API_URL;
@@ -91,7 +104,21 @@ app.get('/recaptcha-config', (req, res) => {
   });
 });
 
-// Start the server
-app.listen(PORT, () => {
-  console.log(`Server is running on http://localhost:${PORT}`);
-});
+if (process.env.USE_HTTPS === "true") {
+  const sslOptions = {
+    key: fs.readFileSync(process.env.SSL_KEY_PATH),
+    cert: fs.readFileSync(process.env.SSL_CERT_PATH),
+  };
+  https.createServer(sslOptions, app).listen(PORT, '0.0.0.0', () => {
+    console.log(`API running on https://${DOMAIN}:${PORT}`);
+  });
+} else if (isDevelopment) {
+  http.createServer(app).listen(PORT, '0.0.0.0', () => {
+    console.log(`API running on http://localhost:${PORT}`);
+  });
+} else {
+  console.error(
+    "Production must use HTTPS. Set USE_HTTPS=true and provide SSL certs.",
+  );
+  process.exit(1);
+}

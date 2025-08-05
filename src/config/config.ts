@@ -13,7 +13,7 @@ export const config = {
   },
   yearFounded: 2025, // Year the company was founded
   copyright: 'PixelHub Host', // Copyright holder
-  apiUrl: 'localhost', // API URL for internal services
+  apiUrl: 'https://api.www.pixelhubhost.com', // API URL for internal services
 };
 
 // Links for each hosting plan and billing cycle (monthly/quarterly)
