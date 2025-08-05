@@ -262,7 +262,7 @@ const TestServer: React.FC = () => {
     fetchStatus();
 
     // Optionally poll every 10 seconds for live updates:
-    const interval = setInterval(fetchStatus, 5000);
+    const interval = setInterval(fetchStatus, 10000);
     return () => clearInterval(interval);
   }, [disableExternalServices]);
 
