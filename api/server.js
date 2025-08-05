@@ -16,82 +16,64 @@ app.use(express.json());
 
 // --- Pterodactyl API credentials ---
 const PTERODACTYL_URL = process.env.PTERODACTYL_API_URL;
-const PTERODACTYL_API_KEY = process.env.PTERODACTYL_CLIENT_API_KEY;
+const PTERODACTYL_CLIENT_API_KEY = process.env.PTERODACTYL_CLIENT_API_KEY;
+const PTERODACTYL_APPLICATION_API_KEY = process.env.PTERODACTYL_APPLICATION_API_KEY;
+const SERVER_ID = process.env.PTERODACTYL_TEST_SERVER_ID;
+// --- Recaptcha V3 site key ---
+const RECAPTCHA_V3_SITE_KEY = process.env.RECAPTCHA_V3_SITE_KEY;
 
-// Proxy endpoint for Pterodactyl API
-app.get('/pterodactyl', async (req, res) => {
-  const { serverId, action } = req.query;
-  if (!serverId) {
-    return res.status(400).json({ error: 'Missing serverId' });
+// Pterodactyl proxy route
+app.get('/pterodactyl/proxy', async (req, res) => {
+  const serverId = req.query.serverId || SERVER_ID;
+
+  if (!serverId || typeof serverId !== 'string' || !serverId.trim()) {
+    return res.status(400).json({
+      error: 'Invalid server ID provided',
+      details: 'Server ID must be a non-empty string',
+    });
   }
 
-  try {
-    // Example: Get server details
-    let url = `${PTERODACTYL_URL}/client/servers/${serverId}`;
-    if (action === 'resources') {
-      url += '/resources';
-    }
-    // Add more actions as needed
+  if (!PTERODACTYL_URL || !PTERODACTYL_CLIENT_API_KEY) {
+    return res.status(500).json({
+      error: 'Missing environment variables',
+      details: 'PTERODACTYL_URL or PTERODACTYL_CLIENT_API_KEY not set',
+    });
+  }
 
-    const { data } = await axios.get(url, {
+  const endpoint = `/api/client/servers/${serverId}/resources`;
+
+  try {
+    const axiosConfig = {
+      method: 'GET',
+      url: `${PTERODACTYL_URL}${endpoint}`,
       headers: {
-        Authorization: `Bearer ${PTERODACTYL_API_KEY}`,
+        Authorization: `Bearer ${PTERODACTYL_CLIENT_API_KEY}`,
         'Content-Type': 'application/json',
         Accept: 'application/json',
       },
-      timeout: 30000,
-    });
+      timeout: 8000,
+    };
 
-    res.json(data);
-  } catch (error) {
-    const status = error.response?.status || 500;
-    res.status(status).json({
-      error: error.response?.data?.error || error.message || 'Unknown error',
-    });
-  }
-});
+    const response = await axios(axiosConfig);
 
-// Add this route for WebSocket info
-app.get('/pterodactyl/websocket', async (req, res) => {
-  const { serverId } = req.query;
-  if (!serverId) {
-    return res.status(400).json({ error: 'Missing serverId' });
-  }
-
-  try {
-    // 1. Get WebSocket token and URL
-    const wsUrl = `${PTERODACTYL_URL}/client/servers/${serverId}/websocket`;
-    const wsResponse = await axios.get(wsUrl, {
-      headers: {
-        Authorization: `Bearer ${PTERODACTYL_API_KEY}`,
-        Accept: 'Application/vnd.pterodactyl.v1+json',
+    // Normalize resource response for frontend
+    const data = response.data;
+    return res.json({
+      state: data.attributes.current_state,
+      memory: {
+        current: data.attributes.resources.memory_bytes,
+        limit: data.attributes.resources.memory_limit_bytes ?? 0,
       },
-      timeout: 30000,
-    });
-
-    const { token, socket } = wsResponse.data.data;
-
-    // 2. Get resource usage details
-    const resourcesUrl = `${PTERODACTYL_URL}/client/servers/${serverId}/resources`;
-    const resourcesResponse = await axios.get(resourcesUrl, {
-      headers: {
-        Authorization: `Bearer ${PTERODACTYL_API_KEY}`,
-        'Content-Type': 'application/json',
-        Accept: 'application/json',
+      cpu: {
+        current: data.attributes.resources.cpu_absolute,
+        limit: data.attributes.resources.cpu_limit ?? 100,
       },
-      timeout: 30000,
-    });
-
-    // 3. Return both websocket info and resource usage
-    res.json({
-      token,
-      socket,
-      resources: resourcesResponse.data,
     });
   } catch (error) {
     const status = error.response?.status || 500;
-    res.status(status).json({
+    return res.status(status).json({
       error: error.response?.data?.error || error.message || 'Unknown error',
+      details: error.response?.data || undefined,
     });
   }
 });
