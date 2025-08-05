@@ -238,6 +238,8 @@ const en = {
     discord: 'Discord',
     whatsapp: 'Whatsapp',
     email: 'Email',
+    showAdditionalInfo: 'Show Additional Information',
+    hideAdditionalInfo: 'Hide Additional Information',
   },
 };
 

@@ -267,6 +267,8 @@ const it = {
     discord: 'Discord',
     whatsapp: 'Whatsapp',
     email: 'Email',
+    showAdditionalInfo: 'Mostra informazioni aggiuntive',
+    hideAdditionalInfo: 'Nascondi informazioni aggiuntive',
   },
 };
 

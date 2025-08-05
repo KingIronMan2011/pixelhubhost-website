@@ -1,7 +1,5 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
-import { VitePWA } from 'vite-plugin-pwa';
-import { visualizer } from 'rollup-plugin-visualizer';
 
 // This is the main Vite configuration file for the project.
 // It sets up plugins, dev server options, and dependency optimization.
@@ -9,33 +7,6 @@ import { visualizer } from 'rollup-plugin-visualizer';
 export default defineConfig({
   plugins: [
     react(), // Enables React Fast Refresh and JSX support
-    VitePWA({
-      registerType: 'autoUpdate',
-      manifest: {
-        name: 'PixelHub Host',
-        short_name: 'PixelHub',
-        description: 'Premium Minecraft Server Hosting',
-        theme_color: '#2563eb',
-        background_color: '#ffffff',
-        display: 'standalone',
-        start_url: '/',
-        icons: [
-          {
-            src: '/icon-192.png',
-            sizes: '192x192',
-            type: 'image/png',
-          },
-          {
-            src: '/icon-512.png',
-            sizes: '512x512',
-            type: 'image/png',
-          },
-        ],
-      },
-      workbox: {
-        globPatterns: ['**/*.{js,css,html,ico,png,svg}'],
-      },
-    }),
   ],
 
   optimizeDeps: {

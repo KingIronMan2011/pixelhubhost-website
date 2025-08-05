@@ -239,6 +239,8 @@ const pt = {
     discord: 'Discord',
     whatsapp: 'Whatsapp',
     email: 'Email',
+    showAdditionalInfo: 'Mostrar Informações Adicionais',
+    hideAdditionalInfo: 'Ocultar Informações Adicionais',
   },
 };
 

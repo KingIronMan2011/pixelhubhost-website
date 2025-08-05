@@ -55,6 +55,9 @@ const PricingPlans = () => {
     transition: { type: 'tween', duration: 0.13, ease: 'easeInOut' },
   };
 
+  // Add state to track which plan's info is open
+  const [openInfo, setOpenInfo] = useState<string | null>(null);
+
   return (
     <section
       id="pricing"
@@ -220,30 +223,58 @@ const PricingPlans = () => {
                         {`${plan.specs.storage}GB`}
                       </span>
                     </div>
-                    <div className="flex items-center justify-between text-sm text-gray-700 dark:text-gray-400">
-                      <span>{t('texts.backups')}</span>
-                      <span className="font-medium text-gray-900 dark:text-white">
-                        {plan.specs.backups}
-                      </span>
+
+                    {/* Additional Information Button */}
+                    <div className="mt-4 flex justify-center">
+                      <motion.button
+                        className={`px-4 py-2 rounded-lg font-medium shadow-sm
+      ${
+        openInfo === plan.id
+          ? 'bg-blue-600 text-white'
+          : 'bg-gray-100 dark:bg-gray-800 text-black dark:text-white'
+      }
+      focus:outline-none`}
+                        onClick={() => setOpenInfo(openInfo === plan.id ? null : plan.id)}
+                        whileHover={buttonHover}
+                        whileFocus={buttonHover}
+                        type="button"
+                        style={{ willChange: 'transform' }}
+                      >
+                        {openInfo === plan.id
+                          ? t('texts.hideAdditionalInfo') || 'Hide Additional Information'
+                          : t('texts.showAdditionalInfo') || 'Show Additional Information'}
+                      </motion.button>
                     </div>
-                    <div className="flex items-center justify-between text-sm text-gray-700 dark:text-gray-400">
-                      <span>{t('texts.databases')}</span>
-                      <span className="font-medium text-gray-900 dark:text-white">
-                        {plan.specs.databases}
-                      </span>
-                    </div>
-                    <div className="flex items-center justify-between text-sm text-gray-700 dark:text-gray-400">
-                      <span>{t('texts.ports')}</span>
-                      <span className="font-medium text-gray-900 dark:text-white">
-                        {plan.specs.ports}
-                      </span>
-                    </div>
-                    <div className="flex items-center justify-between text-sm text-gray-700 dark:text-gray-400">
-                      <span>{t('texts.splits')}</span>
-                      <span className="font-medium text-gray-900 dark:text-white">
-                        {plan.specs.splits}
-                      </span>
-                    </div>
+
+                    {/* Additional Information Section */}
+                    {openInfo === plan.id && (
+                      <>
+                        <div className="flex items-center justify-between text-sm text-gray-700 dark:text-gray-400">
+                          <span>{t('texts.backups')}</span>
+                          <span className="font-medium text-gray-900 dark:text-white">
+                            {plan.specs.backups}
+                          </span>
+                        </div>
+                        <div className="flex items-center justify-between text-sm text-gray-700 dark:text-gray-400">
+                          <span>{t('texts.databases')}</span>
+                          <span className="font-medium text-gray-900 dark:text-white">
+                            {plan.specs.databases}
+                          </span>
+                        </div>
+                        <div className="flex items-center justify-between text-sm text-gray-700 dark:text-gray-400">
+                          <span>{t('texts.ports')}</span>
+                          <span className="font-medium text-gray-900 dark:text-white">
+                            {plan.specs.ports}
+                          </span>
+                        </div>
+                        <div className="flex items-center justify-between text-sm text-gray-700 dark:text-gray-400">
+                          <span>{t('texts.splits')}</span>
+                          <span className="font-medium text-gray-900 dark:text-white">
+                            {plan.specs.splits}
+                          </span>
+                        </div>
+                      </>
+                    )}
                   </div>
                 </div>
               </motion.div>

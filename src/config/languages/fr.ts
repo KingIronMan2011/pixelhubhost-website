@@ -239,6 +239,8 @@ const fr = {
     discord: 'Discord',
     whatsapp: 'Whatsapp',
     email: 'Email',
+    showAdditionalInfo: 'Afficher les informations supplémentaires',
+    hideAdditionalInfo: 'Masquer les informations supplémentaires',
   },
 };
 
