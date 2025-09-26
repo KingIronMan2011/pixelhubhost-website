@@ -1,5 +1,4 @@
 {
-  "$schema": "https://json.schemastore.org/package.json",
   "name": "pixelhubhost-website",
   "version": "2.0.0",
   "private": true,
