@@ -12,7 +12,6 @@ export default defineConfig({
   optimizeDeps: {
     exclude: ['lucide-react'], // Exclude "lucide-react" from dependency pre-bundling (if you want to handle it differently)
   },
-
   server: {
     host: true, // Listen on all network interfaces (useful for LAN/dev containers)
     port: 5173, // Dev server will run on port 5173
@@ -25,9 +24,7 @@ export default defineConfig({
     watch: {
       usePolling: true, // Use polling for file changes (helps in some environments like Docker/WSL)
     },
-    allowedHosts: ['website.pixelhubhost.com', 'www.pixelhubhost.com'], // Only allow these hosts to access the dev server
   },
-
   build: {
     sourcemap: false, // Disable source maps for the production build
   },
