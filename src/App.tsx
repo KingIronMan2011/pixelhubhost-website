@@ -1,7 +1,6 @@
 import { Routes, Route, useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import MetaTags from './components/MetaTags';
-import { LanguageProvider } from './context/LanguageContext';
 import { config } from './config/config';
 import Header from './components/Header';
 import Footer from './components/Footer';
@@ -11,7 +10,6 @@ import Features from './components/Features';
 import PricingPlans from './components/PricingPlans';
 import Addons from './components/Addons';
 import Contact from './components/Contact';
-import { HelmetProvider } from '@dr.pogodin/react-helmet';
 import { Suspense, lazy, useEffect, useState } from 'react';
 import { useGoogleAnalytics } from './analytics';
 import i18n from './i18n';
@@ -120,56 +118,51 @@ function App() {
 
   // Main app layout and routing
   return (
-    // Provide language context to all children
-    <LanguageProvider>
-      <HelmetProvider>
-        <div className="min-h-screen flex flex-col bg-gradient-to-b from-blue-50 via-white to-purple-50 dark:from-gray-950 dark:via-gray-900 dark:to-gray-950 transition-colors duration-500">
-          {/* Set up meta tags for SEO and social sharing */}
-          <MetaTags />
-          {/* Site header/navigation */}
-          <Header />
-          {/* Main content area with route-based rendering */}
-          <main className="flex-grow">
-            <Suspense fallback={<div>Loading...</div>}>
-              <Routes location={location}>
-                <Route
-                  path="/"
-                  element={
-                    <>
-                      <Hero />
-                      {!disableExternalServices && <TestServer />}
-                      <Features />
-                      <PricingPlans />
-                      <Addons />
-                      <Contact />
-                    </>
-                  }
-                />
-                <Route path="/aboutus" element={<AboutUs />} />
-                <Route path="/privacy" element={<Privacy />} />
-                <Route path="/terms" element={<Terms />} />
-                <Route path="/legal" element={<Legal />} />
-                <Route path="/sitemap" element={<Sitemap />} />
-                <Route path="/not-found" element={<NotFound />} />
-                {/* Catch-all route for under construction page */}
-                <Route path="/under-construction" element={<UnderConstruction />} />
+    <div className="min-h-screen flex flex-col bg-gradient-to-b from-blue-50 via-white to-purple-50 dark:from-gray-950 dark:via-gray-900 dark:to-gray-950 transition-colors duration-500">
+      {/* Set up meta tags for SEO and social sharing */}
+      <MetaTags />
+      {/* Site header/navigation */}
+      <Header />
+      {/* Main content area with route-based rendering */}
+      <main className="flex-grow">
+        <Suspense fallback={<div>Loading...</div>}>
+          <Routes location={location}>
+            <Route
+              path="/"
+              element={
+                <>
+                  <Hero />
+                  {!disableExternalServices && <TestServer />}
+                  <Features />
+                  <PricingPlans />
+                  <Addons />
+                  <Contact />
+                </>
+              }
+            />
+            <Route path="/aboutus" element={<AboutUs />} />
+            <Route path="/privacy" element={<Privacy />} />
+            <Route path="/terms" element={<Terms />} />
+            <Route path="/legal" element={<Legal />} />
+            <Route path="/sitemap" element={<Sitemap />} />
+            <Route path="/not-found" element={<NotFound />} />
+            {/* Catch-all route for under construction page */}
+            <Route path="/under-construction" element={<UnderConstruction />} />
 
-                {/* Example route to display the icon file */}
-                <Route
-                  path="pixel_hub_host.png"
-                  element={<img src="/pixel_hub_host.png" alt="PixelHubHost Logo" />}
-                />
+            {/* Example route to display the icon file */}
+            <Route
+              path="pixel_hub_host.png"
+              element={<img src="/pixel_hub_host.png" alt="PixelHubHost Logo" />}
+            />
 
-                {/* Show custom not found page for unknown routes */}
-                <Route path="*" element={<NotFound />} />
-              </Routes>
-            </Suspense>
-          </main>
-          {/* Site footer */}
-          <Footer />
-        </div>
-      </HelmetProvider>
-    </LanguageProvider>
+            {/* Show custom not found page for unknown routes */}
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </Suspense>
+      </main>
+      {/* Site footer */}
+      <Footer />
+    </div>
   );
 }
 

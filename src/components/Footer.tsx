@@ -1,35 +1,37 @@
 import React from 'react';
 import { Globe, Youtube } from 'lucide-react';
-import { useLanguage } from '../context/LanguageContext';
 import i18n from '../i18n';
 import languages from '../config/languages/Languages';
-import { motion } from 'framer-motion';
+import { motion, easeOut } from 'framer-motion';
 import DOMPurify from 'dompurify';
 import { useLocation } from 'react-router-dom';
 
 // Always use the current i18n language for translations
 const Footer: React.FC = () => {
-  const { language, setLanguage } = useLanguage();
-
   // Use i18n.language as the source of truth, fallback to context, then 'en'
-  const currentLanguage = i18n.language || language || 'en';
+  const currentLanguage = i18n.language || 'en';
   const t = languages[currentLanguage as keyof typeof languages]?.texts || languages.en.texts;
   const contact =
     languages[currentLanguage as keyof typeof languages]?.contact || languages.en.contact;
 
   const location = useLocation();
+
+  // Function to update the language in i18n
+  const setLanguage = (language: string) => {
+    i18n.changeLanguage(language);
+  };
   const isHome = location.pathname === '/' || location.pathname === '/#home';
 
   const hoverMotion = {
     whileHover: {
       scale: 1.07,
       boxShadow: '0 8px 32px 0 rgba(0,0,0,0.13)',
-      transition: { duration: 0.13, ease: 'easeOut' },
+      transition: { duration: 0.13, ease: easeOut },
     },
     whileTap: {
       scale: 1.07,
       boxShadow: '0 8px 32px 0 rgba(0,0,0,0.13)',
-      transition: { duration: 0.13, ease: 'easeOut' },
+      transition: { duration: 0.13, ease: easeOut },
     },
   };
 

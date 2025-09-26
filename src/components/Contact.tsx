@@ -24,20 +24,11 @@ const Contact: React.FC = () => {
     },
   };
 
-  // Animation variants for each contact card (entrance, hover)
+  // Animation variants for individual cards
   const cardVariants = {
-    hidden: { opacity: 0, y: 30, scale: 0.97 },
-    show: {
-      opacity: 1,
-      y: 0,
-      scale: 1,
-      transition: { type: 'spring', stiffness: 120, damping: 16 },
-    },
-    hover: {
-      scale: 1.05,
-      boxShadow: '0 8px 32px 0 rgba(0,0,0,0.13)',
-      transition: { duration: 0.13, ease: 'easeOut' },
-    },
+    hidden: { opacity: 0, y: 20 },
+    show: { opacity: 1, y: 0, transition: { duration: 0.3 } },
+    hover: { scale: 1.1, transition: { duration: 0.2 } },
   };
 
   // List of contact methods with their icons, labels, and styles

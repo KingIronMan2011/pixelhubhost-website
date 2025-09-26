@@ -1,13 +1,11 @@
 import React, { useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import i18n from '../i18n';
-import { useLanguage } from '../context/LanguageContext';
 import languages from '../config/languages/Languages';
 
 const Hero: React.FC = () => {
   // Use i18n.language as the source of truth, fallback to context, then 'en'
-  const { language } = useLanguage();
-  const currentLanguage = (i18n.language || language || 'en') as keyof typeof languages;
+  const currentLanguage = (i18n.language || 'en') as keyof typeof languages;
   const t = languages[currentLanguage]?.texts || languages.en.texts;
 
   const heroRef = useRef<HTMLDivElement>(null);
@@ -33,13 +31,6 @@ const Hero: React.FC = () => {
     };
   }, []);
 
-  // Framer Motion hover animation for the call-to-action buttons
-  const buttonHover = {
-    scale: 1.05,
-    boxShadow: '0 8px 32px 0 rgba(59,130,246,0.15)',
-    transition: { duration: 0.13, ease: 'easeOut' },
-  };
-
   // Helper function to scroll to a given section by ID
   const scrollToSection = (id: string) => {
     const el = document.getElementById(id);
@@ -58,6 +49,12 @@ const Hero: React.FC = () => {
     window.addEventListener('hashchange', handleHashChange);
     return () => window.removeEventListener('hashchange', handleHashChange);
   }, []);
+
+  // Define hover animation for buttons
+  const buttonHover = {
+    scale: 1.05,
+    boxShadow: '0px 4px 15px rgba(0, 0, 0, 0.2)',
+  };
 
   return (
     // Main hero section with animated entrance and gradient background

@@ -302,23 +302,6 @@ const TestServer: React.FC = () => {
   const buttonIcon = copied ? <Check className="w-4 h-4" /> : <Copy className="w-4 h-4" />;
   const buttonIconPort = copiedPort ? <Check className="w-4 h-4" /> : <Copy className="w-4 h-4" />;
 
-  // Framer Motion hover animation for copy and connect buttons
-  const buttonHover = {
-    scale: 1.045,
-    boxShadow: '0 8px 32px 0 rgba(16,185,129,0.13)',
-    transition: { type: 'tween', duration: 0.13, ease: 'easeInOut' },
-  };
-  const copyHover = {
-    scale: 1.13,
-    backgroundColor: 'rgba(59,130,246,0.13)', // blue-500/20
-    transition: { type: 'tween', duration: 0.13, ease: 'easeInOut' },
-  };
-  const copyHoverGreen = {
-    scale: 1.13,
-    backgroundColor: 'rgba(16,185,129,0.13)', // emerald-500/20
-    transition: { type: 'tween', duration: 0.13, ease: 'easeInOut' },
-  };
-
   // Calculate memory and CPU usage as percentages
   const memoryUsagePercent = status?.memory?.current
     ? Math.round((status.memory.current / SERVER_LIMITS.MEMORY) * 100)
@@ -464,8 +447,16 @@ const TestServer: React.FC = () => {
                     onClick={() => handleCopy(serverDomain, setCopied)}
                     className="ml-2 p-1 rounded transition-colors text-gray-700 dark:text-white"
                     title={getTranslation('domainCopied')}
-                    whileHover={copyHover}
-                    whileFocus={copyHover}
+                    whileHover={{
+                      scale: 1.13,
+                      backgroundColor: 'rgba(59,130,246,0.13)', // blue-500/20
+                      transition: { type: 'tween', duration: 0.13, ease: 'easeInOut' },
+                    }}
+                    whileFocus={{
+                      scale: 1.13,
+                      backgroundColor: 'rgba(59,130,246,0.13)', // blue-500/20
+                      transition: { type: 'spring', duration: 0.13, ease: 'easeInOut' },
+                    }}
                     whileTap={{
                       scale: 1.04,
                       backgroundColor: 'rgba(59,130,246,0.18)',
@@ -487,8 +478,16 @@ const TestServer: React.FC = () => {
                     onClick={() => handleCopy(bedrockPort, setCopiedPort)}
                     className="ml-2 p-1 rounded transition-colors text-gray-700 dark:text-white"
                     title={getTranslation('domainCopied')}
-                    whileHover={copyHoverGreen}
-                    whileFocus={copyHoverGreen}
+                    whileHover={{
+                      scale: 1.13,
+                      backgroundColor: 'rgba(16,185,129,0.13)', // emerald-500/20
+                      transition: { type: 'spring', duration: 0.13, ease: 'easeInOut' },
+                    }}
+                    whileFocus={{
+                      scale: 1.13,
+                      backgroundColor: 'rgba(16,185,129,0.13)', // emerald-500/20
+                      transition: { type: 'spring', duration: 0.13, ease: 'easeInOut' },
+                    }}
                     whileTap={{
                       scale: 1.04,
                       backgroundColor: 'rgba(16,185,129,0.18)',
@@ -557,8 +556,14 @@ const TestServer: React.FC = () => {
               <motion.button
                 onClick={() => setShowConnectPopup(true)}
                 className="w-full px-4 py-2 bg-emerald-600 hover:bg-emerald-700 text-white text-sm rounded-lg transition-all duration-200 shadow-lg"
-                whileHover={buttonHover}
-                whileFocus={buttonHover}
+                whileHover={{
+                  scale: 1.05,
+                  boxShadow: '0px 4px 6px rgba(0, 0, 0, 0.1)',
+                }}
+                whileFocus={{
+                  scale: 1.05,
+                  boxShadow: '0px 4px 6px rgba(0, 0, 0, 0.1)',
+                }}
                 whileTap={{ scale: 1.04, backgroundColor: '#059669' }} // mobile tap animation
                 style={{ willChange: 'transform, box-shadow' }}
               >

@@ -54,25 +54,12 @@ const Features = () => {
     },
   };
 
-  // Animation variants for each feature card (entrance, hover, tap)
+  // Animation variants for individual cards
   const cardVariants = {
-    hidden: { opacity: 0, y: 30, scale: 0.97 },
-    show: {
-      opacity: 1,
-      y: 0,
-      scale: 1,
-      transition: { type: 'spring', stiffness: 120, damping: 16 },
-    },
-    hover: {
-      scale: 1.05,
-      boxShadow: '0 8px 32px 0 rgba(0,0,0,0.13)',
-      transition: { duration: 0.13, ease: 'easeOut' },
-    },
-    tap: {
-      scale: 1.05,
-      boxShadow: '0 8px 32px 0 rgba(0,0,0,0.13)',
-      transition: { duration: 0.13, ease: 'easeOut' },
-    },
+    hidden: { opacity: 0, y: 20 },
+    show: { opacity: 1, y: 0 },
+    hover: { scale: 1.05, boxShadow: '0px 4px 15px rgba(0, 0, 0, 0.2)' },
+    tap: { scale: 0.95 },
   };
 
   // Trigger a test error if enabled in config

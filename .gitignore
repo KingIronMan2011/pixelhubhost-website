@@ -31,3 +31,4 @@ node_modules/
 
 # Ignore build output directories
 dist/
+.vercel

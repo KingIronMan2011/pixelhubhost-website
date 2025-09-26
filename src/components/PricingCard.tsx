@@ -39,13 +39,6 @@ const PricingCard = ({ product, isPopular, billingInterval = 'monthly' }: Pricin
   const { currency, amount, quarterlyAmount } = product.price.getCurrencyInfo(language);
   const displayAmount = billingInterval === 'monthly' ? amount : quarterlyAmount;
 
-  // Framer Motion tap animation
-  const tapAnimation = {
-    scale: 0.97,
-    boxShadow: '0 8px 32px 0 rgba(0,0,0,0.13)',
-    transition: { type: 'tween', duration: 0.13, ease: 'easeInOut' },
-  };
-
   return (
     // Animated card container
     <motion.div
@@ -56,7 +49,7 @@ const PricingCard = ({ product, isPopular, billingInterval = 'monthly' }: Pricin
         boxShadow: '0 8px 32px 0 rgba(0,0,0,0.13)',
         transition: { type: 'tween', duration: 0.13, ease: 'easeInOut' },
       }}
-      whileTap={tapAnimation} // mobile tap animation
+      whileTap={{ scale: 0.95 }} // mobile tap animation
       style={{ willChange: 'transform, box-shadow' }}
     >
       {/* Popular plan badge */}

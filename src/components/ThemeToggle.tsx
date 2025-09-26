@@ -16,37 +16,27 @@ const ThemeToggle: React.FC = () => {
   // Get translations for the current language, fallback to English
   const texts = languages[language as keyof typeof languages]?.texts || languages.en.texts;
 
-  // Framer Motion hover animation for the toggle button
-  const buttonHover = {
-    scale: 1.08,
-    boxShadow: '0 8px 32px 0 rgba(251,191,36,0.13)',
-    transition: { type: 'tween', duration: 0.13, ease: 'easeInOut' },
-  };
-
-  // Framer Motion for icon rotation (for dark mode sun)
-  const iconSpin = {
-    animate: { rotate: 360 },
-    transition: { repeat: Infinity, duration: 15, ease: 'linear' },
-  };
-
-  // Framer Motion hover/tap animation for the toggle button (mobile and desktop)
-  const buttonMotion = {
-    whileHover: buttonHover,
-    whileFocus: buttonHover,
-    whileTap: {
-      scale: 0.96,
-      boxShadow: '0 4px 16px 0 rgba(251,191,36,0.10)',
-      transition: { type: 'tween', duration: 0.13, ease: 'easeInOut' },
-    },
-  };
-
   return (
     // Animated button to toggle theme
     <motion.button
       onClick={toggleTheme}
       className="p-2 rounded-xl border border-transparent bg-gray-800/60 hover:bg-gray-700/80 transition-all duration-200 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
       aria-label={texts.toggleTheme}
-      {...buttonMotion}
+      whileFocus={{
+        scale: 1.08,
+        boxShadow: '0 8px 32px 0 rgba(251,191,36,0.13)',
+        transition: { type: 'tween', duration: 0.13, ease: 'easeInOut' },
+      }}
+      whileHover={{
+        scale: 1.08,
+        boxShadow: '0 8px 32px 0 rgba(251,191,36,0.13)',
+        transition: { type: 'tween', duration: 0.13, ease: 'easeInOut' },
+      }}
+      whileTap={{
+        scale: 0.96,
+        boxShadow: '0 4px 16px 0 rgba(251,191,36,0.10)',
+        transition: { type: 'tween', duration: 0.13, ease: 'easeInOut' },
+      }}
       type="button"
       style={{ willChange: 'transform, box-shadow' }}
     >
@@ -54,7 +44,7 @@ const ThemeToggle: React.FC = () => {
       <span className="sr-only">{texts.toggleTheme}</span>
       {/* Show sun icon (animated spin) if dark mode, or moon if light mode */}
       {theme === 'dark' ? (
-        <motion.span {...iconSpin}>
+        <motion.span>
           <Sun
             size={20}
             className="text-yellow-400"

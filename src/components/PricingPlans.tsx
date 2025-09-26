@@ -1,17 +1,25 @@
 import { useMemo, useState, useEffect } from 'react';
-import { useLanguage } from '../context/LanguageContext';
 import i18n from '../i18n';
 import { PLANS as basePlans } from '../config/plans';
 import { planLinks, LanguageKey } from '../config/config';
 import { motion } from 'framer-motion'; // Animation library
+
+// Define card hover animation properties
+const cardHover = {
+  scale: 1.02,
+  transition: { duration: 0.2 },
+};
+
+// Define hover animation properties
+const buttonHover = {
+  scale: 1.05,
+  transition: { duration: 0.2 },
+};
 import { useTranslation } from 'react-i18next';
 
 const PricingPlans = () => {
   const { t } = useTranslation();
-
-  // Use i18n.language as the source of truth, fallback to context, then 'en'
-  const { language: contextLanguage } = useLanguage();
-  const language = i18n.language || contextLanguage || 'en';
+  const language = i18n.language || 'en';
 
   // Force reload of translations when language changes
   useEffect(() => {
@@ -43,17 +51,6 @@ const PricingPlans = () => {
       }
     };
   }, [language, billingInterval]);
-
-  // Framer Motion hover animation for card and button
-  const cardHover = {
-    scale: 1.025,
-    boxShadow: '0 8px 32px 0 rgba(0,0,0,0.13)',
-    transition: { type: 'tween', duration: 0.16, ease: 'easeInOut' },
-  };
-  const buttonHover = {
-    scale: 1.04,
-    transition: { type: 'tween', duration: 0.13, ease: 'easeInOut' },
-  };
 
   // Add state to track which plan's info is open
   const [openInfo, setOpenInfo] = useState<string | null>(null);

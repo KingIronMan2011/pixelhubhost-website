@@ -45,24 +45,14 @@ const Addons: React.FC = () => {
     },
   };
 
-  // Animation variants for each card (entrance, hover, tap)
+  // Animation variants for each card (hover and tap effects)
   const cardVariants = {
-    hidden: { opacity: 0, y: 40, scale: 0.97 }, // initial state (offscreen, faded, slightly smaller)
-    show: {
-      opacity: 1,
-      y: 0,
-      scale: 1,
-      transition: { type: 'spring', stiffness: 90, damping: 14 },
-    },
     hover: {
-      scale: 1.04,
-      boxShadow: '0 8px 32px 0 rgba(0,0,0,0.13)',
-      transition: { duration: 0.13, ease: 'easeOut' },
+      scale: 1.05,
+      boxShadow: '0px 8px 15px rgba(0, 0, 0, 0.2)',
     },
     tap: {
-      scale: 1.04,
-      boxShadow: '0 8px 32px 0 rgba(0,0,0,0.13)',
-      transition: { duration: 0.13, ease: 'easeOut' },
+      scale: 0.95,
     },
   };
 

@@ -1,50 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import i18n from '../i18n';
-import { useLanguage } from '../context/LanguageContext';
-import languages from '../config/languages/Languages';
 import LanguageSelector from './LanguageSelector';
 import ThemeToggle from './ThemeToggle';
 import { motion } from 'framer-motion';
 import { useLocation } from 'react-router-dom';
 
-// Infer the language keys from the config
-type LanguageKey = keyof typeof languages;
-
-// Animation for link hover (desktop)
-const linkHover = {
-  scale: 1.045,
-  color: '#fff',
-  transition: { type: 'tween', duration: 0.13, ease: 'easeInOut' },
-};
-
-// Animation for mobile nav links (hover/tap)
-const mobileLinkMotion = {
-  whileHover: {
-    scale: 1.04,
-    color: '#fff',
-    transition: { type: 'tween', duration: 0.13, ease: 'easeInOut' },
-  },
-  whileTap: {
-    scale: 1.04,
-    color: '#a5b4fc',
-    transition: { type: 'tween', duration: 0.13, ease: 'easeInOut' },
-  },
-};
-
 const Header: React.FC = () => {
   const { t } = useTranslation();
-  const { language } = useLanguage() as { language: LanguageKey };
-
-  // Detect browser language on mount if not set or not supported
-  useEffect(() => {
-    if (!language || !languages[language]) {
-      const browserLang = navigator.language.split('-')[0];
-      if (browserLang && languages[browserLang as LanguageKey] && i18n.language !== browserLang) {
-        i18n.changeLanguage(browserLang);
-      }
-    }
-  }, [language]);
 
   // State for mobile menu open/close
   const [menuOpen, setMenuOpen] = useState(false);
@@ -98,8 +60,8 @@ const Header: React.FC = () => {
               target="_blank"
               rel="noopener noreferrer"
               className="hidden md:inline-flex items-center bg-blue-600 text-white px-5 py-2 rounded-lg hover:bg-blue-700 transition-colors font-medium shadow"
-              whileHover={linkHover}
-              whileFocus={linkHover}
+              whileHover={{ scale: 1.05 }}
+              whileFocus={{ scale: 1.05 }}
               style={{ willChange: 'transform, color' }}
             >
               {t('texts.systemStatus')}
@@ -110,8 +72,8 @@ const Header: React.FC = () => {
               target="_blank"
               rel="noopener noreferrer"
               className="hidden md:inline-flex items-center bg-purple-600 text-white px-5 py-2 rounded-lg hover:bg-purple-700 transition-colors font-medium shadow"
-              whileHover={linkHover}
-              whileFocus={linkHover}
+              whileHover={{ scale: 1.05 }}
+              whileFocus={{ scale: 1.05 }}
               style={{ willChange: 'transform, color' }}
             >
               {t('texts.loginSignup')}
@@ -140,9 +102,8 @@ const Header: React.FC = () => {
                 key={link.href}
                 href={link.href}
                 className="block text-gray-200 py-2 font-medium"
-                variants={mobileLinkMotion}
-                whileHover="whileHover"
-                whileTap="whileTap"
+                whileHover={{ scale: 1.1, color: '#ffffff' }}
+                whileTap={{ scale: 0.95, color: '#cccccc' }}
                 onClick={() => setMenuOpen(false)}
               >
                 {link.label}
@@ -154,7 +115,7 @@ const Header: React.FC = () => {
               target="_blank"
               rel="noopener noreferrer"
               className="block bg-blue-600 text-white px-5 py-2 rounded-lg hover:bg-blue-700 transition-colors font-medium mt-2 text-center shadow"
-              whileHover={linkHover}
+              whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.97, backgroundColor: '#2563eb' }}
               style={{ willChange: 'transform, color, background-color' }}
               onClick={() => setMenuOpen(false)}
@@ -167,7 +128,7 @@ const Header: React.FC = () => {
               target="_blank"
               rel="noopener noreferrer"
               className="block bg-purple-600 text-white px-5 py-2 rounded-lg hover:bg-purple-700 transition-colors font-medium mt-2 text-center shadow"
-              whileHover={linkHover}
+              whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.97, backgroundColor: '#7c3aed' }}
               style={{ willChange: 'transform, color, background-color' }}
               onClick={() => setMenuOpen(false)}
