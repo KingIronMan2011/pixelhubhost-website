@@ -1,5 +1,4 @@
 import axios from 'axios';
-import 'dotenv/config';
 import { Request, Response } from 'express';
 
 const PTERODACTYL_URL = process.env.PTERODACTYL_API_URL;
