@@ -6,6 +6,7 @@ import './index.css';
 import { ThemeProvider } from './context/ThemeContext';
 import { LanguageProvider } from './context/LanguageContext';
 import { HelmetProvider } from 'react-helmet-async';
+import { Analytics } from '@vercel/analytics/react';
 
 // Get the root DOM element where the React app will mount
 const rootElement = document.getElementById('root');
@@ -17,8 +18,9 @@ createRoot(rootElement).render(
     <HelmetProvider>
       <ThemeProvider>
         <LanguageProvider>
-          <Router future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
+          <Router>
             <App />
+            <Analytics />
           </Router>
         </LanguageProvider>
       </ThemeProvider>

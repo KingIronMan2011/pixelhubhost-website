@@ -79,7 +79,6 @@ Then, open [http://localhost:5173](http://localhost:5173) in your browser.
    ```
 
 2. **Create the .env File**
-
    - **On Windows:**
 
      ```cmd
