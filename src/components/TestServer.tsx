@@ -244,7 +244,7 @@ const TestServer: React.FC = () => {
     const fetchStatus = async () => {
       const apiUrl = config.apiUrl;
       try {
-        const res = await fetch(`${apiUrl}:4002/pterodactyl/proxy`);
+        const res = await fetch(`${apiUrl}/api/backendApi?type=pterodactylProxy&serverId=362430c9`);
         if (!res.ok) {
           const err = await res.json();
           throw new Error(err.error || 'Failed to fetch server status');
