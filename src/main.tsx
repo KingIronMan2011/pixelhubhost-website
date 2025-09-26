@@ -5,7 +5,7 @@ import App from './App';
 import './index.css';
 import { ThemeProvider } from './context/ThemeContext';
 import { LanguageProvider } from './context/LanguageContext';
-import { HelmetProvider } from 'react-helmet-async';
+import { HelmetProvider } from '@dr.pogodin/react-helmet';
 import { Analytics } from '@vercel/analytics/react';
 
 // Get the root DOM element where the React app will mount

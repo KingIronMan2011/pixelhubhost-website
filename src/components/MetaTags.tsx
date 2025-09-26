@@ -1,5 +1,5 @@
 import React, { useMemo } from 'react';
-import { Helmet } from 'react-helmet-async';
+import { Helmet } from '@dr.pogodin/react-helmet';
 import { config } from '../config/config';
 import languages from '../config/languages/Languages';
 import i18n from '../i18n';

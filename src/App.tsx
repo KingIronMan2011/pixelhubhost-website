@@ -11,7 +11,7 @@ import Features from './components/Features';
 import PricingPlans from './components/PricingPlans';
 import Addons from './components/Addons';
 import Contact from './components/Contact';
-import { HelmetProvider } from 'react-helmet-async';
+import { HelmetProvider } from '@dr.pogodin/react-helmet';
 import { Suspense, lazy, useEffect, useState } from 'react';
 import { useGoogleAnalytics } from './analytics';
 import i18n from './i18n';
