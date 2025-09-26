@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Server, Signal, Copy, Check, Info } from 'lucide-react';
 import i18n from '../i18n';
 import languages from '../config/languages/Languages';
-import { SERVER_LIMITS, config } from '../config/config';
+import { SERVER_LIMITS } from '../config/config';
 import type { LanguageKey } from '../config/config';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -242,9 +242,8 @@ const TestServer: React.FC = () => {
     setError(null);
 
     const fetchStatus = async () => {
-      const apiUrl = config.apiUrl;
       try {
-        const res = await fetch(`${apiUrl}/api/backendApi?type=pterodactylProxy&serverId=362430c9`);
+        const res = await fetch(`/api/backendApi?type=pterodactylProxy&serverId=362430c9`);
         if (!res.ok) {
           const err = await res.json();
           throw new Error(err.error || 'Failed to fetch server status');

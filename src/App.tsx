@@ -43,7 +43,7 @@ function App() {
   const [recaptchaSiteKey, setRecaptchaSiteKey] = useState<string | null>(null);
 
   useEffect(() => {
-    fetch(`${config.apiUrl}/api/backendApi?type=recaptchaConfig`)
+    fetch(`/api/backendApi?type=recaptchaConfig`)
       .then((res) => res.json())
       .then((data) => setRecaptchaSiteKey(data.siteKey || null));
   }, []);
@@ -71,10 +71,9 @@ function App() {
 
   useEffect(() => {
     async function loadApp() {
-      const apiUrl = config.apiUrl;
       try {
         await i18n.init();
-        const res = await fetch(`${apiUrl}/api/backendApi?type=pterodactylProxy&serverId=362430c9`);
+        const res = await fetch(`/api/backendApi?type=pterodactylProxy&serverId=362430c9`);
         if (res.ok) {
           console.log('Pterodactyl API is reachable');
         }
