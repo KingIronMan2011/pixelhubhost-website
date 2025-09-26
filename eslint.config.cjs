@@ -85,18 +85,6 @@ module.exports = [
       },
     },
   },
-  // Deno functions (for your supabase/functions/ and backups/supabase/ folders)
-  {
-    files: ['supabase/functions/**/*.ts', 'backups/supabase/**/*.ts'],
-    languageOptions: {
-      parser: tsParser,
-      parserOptions: {
-        ecmaVersion: 2021,
-        sourceType: 'module',
-      },
-      globals: denoGlobals,
-    },
-  },
   {
     files: ['*.js', '*.cjs'],
     ignores: ['dist/**', 'node_modules/**', 'build/**'],
