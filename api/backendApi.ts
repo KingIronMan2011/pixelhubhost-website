@@ -78,7 +78,7 @@ async function handlePterodactylProxy(req: Request, res: Response) {
 }
 
 // Handle Recaptcha Config
-function handleRecaptchaConfig(req: Request, res: Response) {
+function handleRecaptchaConfig(_: Request, res: Response) {
   if (!RECAPTCHA_V3_SITE_KEY) {
     return res.status(500).json({
       error: 'Recaptcha V3 site key not configured',
