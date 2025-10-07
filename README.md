@@ -55,7 +55,7 @@ Then, open [http://localhost:5173](http://localhost:5173) in your browser.
 Just run the setup script and everything will be done for you:
 
 ```bash
-./run.sh 
+./run.sh
 ```
 
 This will:

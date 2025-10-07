@@ -9,23 +9,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { Dialog } from '@headlessui/react';
 import { motion } from 'framer-motion';
 import ReactCountryFlag from 'react-country-flag';
-
-// siteConfig now only holds the texts, without top-level language detection
-const siteConfig: {
-  texts: Record<string, { [key: string]: string }>;
-} = {
-  texts: Object.fromEntries(
-    Object.entries(languages).map(([lang, obj]) => [
-      lang,
-      Object.fromEntries(
-        Object.entries(obj.texts || {}).filter(([, value]) => typeof value === 'string') as [
-          string,
-          string,
-        ][],
-      ),
-    ]),
-  ),
-};
+import { useTranslation } from 'react-i18next';
 
 // Translations are still generated for each language
 const translations = Object.fromEntries(
@@ -219,7 +203,7 @@ const disableExternalServices = import.meta.env.VITE_DISABLE_EXTERNAL_SERVICES =
 // Main TestServer component
 const TestServer: React.FC = () => {
   const currentLanguage = i18n.language || 'en';
-  const texts = siteConfig.texts[currentLanguage] || siteConfig.texts.en;
+  const { t } = useTranslation();
 
   // State for copy feedback and popups
   const [copied, setCopied] = useState(false);
@@ -313,28 +297,25 @@ const TestServer: React.FC = () => {
   if (!loading && (!status || Object.keys(status).length === 0)) {
     return (
       <div className="text-center text-gray-500 py-8">
-        {siteConfig.texts[currentLanguage].noServerStatus || 'No server status available.'}
+        {t('noServerStatus')}
       </div>
     );
   }
 
-  const getText = (key: string) =>
-    siteConfig.texts[currentLanguage]?.[key] ?? siteConfig.texts.en?.[key] ?? key;
-
   const getServerStatusText = (mappedState?: string) => {
-    if (loading) return getText('checking');
-    if (!mappedState) return getText('testServerOffline');
+    if (loading) return t('checking');
+    if (!mappedState) return t('testServerOffline');
     switch (mappedState) {
       case 'testServerStarting':
-        return getText('testServerStarting');
+        return t('testServerStarting');
       case 'testServerRunning':
-        return getText('testServerRunning');
+        return t('testServerRunning');
       case 'testServerStopping':
-        return getText('testServerStopping');
+        return t('testServerStopping');
       case 'testServerOffline':
-        return getText('testServerOffline');
+        return t('testServerOffline');
       default:
-        return getText('testServerOffline');
+        return t('testServerOffline');
     }
   };
 
@@ -401,7 +382,7 @@ const TestServer: React.FC = () => {
                 <Server className="w-7 h-7 text-blue-500" />
                 <div>
                   <h2 className="text-xl font-bold text-gray-900 dark:text-white">
-                    {texts.testServer}
+                    {t("testServer")}
                   </h2>
                   <p className="text-sm text-gray-600 dark:text-gray-400">(1.16 - 1.21.7)</p>
                 </div>
@@ -436,7 +417,7 @@ const TestServer: React.FC = () => {
                 {/* Java/Bedrock domain */}
                 <div className="flex items-center bg-gray-100/70 dark:bg-gray-800/70 rounded-lg px-3 py-2">
                   <span className="text-sm text-gray-600 dark:text-gray-400 mr-2">
-                    {getText('domain')}:
+                    {t("domain")}:
                   </span>
                   <span className="font-mono text-blue-600 dark:text-blue-400 text-sm font-medium">
                     {serverDomain}
@@ -467,7 +448,7 @@ const TestServer: React.FC = () => {
                 </div>
                 <div className="flex items-center bg-gray-100/70 dark:bg-gray-800/70 rounded-lg px-3 py-2">
                   <span className="text-sm text-gray-600 dark:text-gray-400 mr-2">
-                    {getText('bedrockPort')}:
+                    {t("bedrockPort")}:
                   </span>
                   <span className="font-mono text-sm text-gray-900 dark:text-white font-medium">
                     {bedrockPort}
@@ -517,7 +498,7 @@ const TestServer: React.FC = () => {
                   <div>
                     <div className="flex items-center justify-between mb-1">
                       <span className="text-sm text-gray-500">
-                        {siteConfig.texts[currentLanguage].cpu}
+                        {t("cpu")}
                       </span>
                       <span className="text-sm text-gray-500">{cpuUsagePercent}%</span>
                     </div>
@@ -531,7 +512,7 @@ const TestServer: React.FC = () => {
                   <div>
                     <div className="flex items-center justify-between mb-1">
                       <span className="text-sm text-gray-500">
-                        {siteConfig.texts[currentLanguage].memory}
+                        {t("memory")}
                       </span>
                       <span className="text-sm font-medium text-gray-900 dark:text-white">
                         {status.memory.current
@@ -566,7 +547,7 @@ const TestServer: React.FC = () => {
                 whileTap={{ scale: 1.04, backgroundColor: '#059669' }} // mobile tap animation
                 style={{ willChange: 'transform, box-shadow' }}
               >
-                {getText('connectToTestServer')}
+                {t("connectToTestServer")}
               </motion.button>
             </div>
           </motion.div>
