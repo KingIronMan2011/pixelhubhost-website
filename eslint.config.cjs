@@ -44,22 +44,17 @@ const browserGlobals = {
   AbortController: 'readonly',
   queueMicrotask: 'readonly',
   DOMException: 'readonly',
-};
-
-// Deno globals
-const denoGlobals = {
-  Deno: 'readonly',
+  fetch: 'readonly',
   Request: 'readonly',
   Response: 'readonly',
-  fetch: 'readonly',
-  AbortController: 'readonly',
-  URL: 'readonly',
-  URLSearchParams: 'readonly',
   Headers: 'readonly',
 };
 
 module.exports = [
   js.configs.recommended,
+  {
+    ignores: ['dist/**', 'node_modules/**', 'build/**', '.vercel/**', '.vite/**'],
+  },
   {
     files: ['**/*.ts', '**/*.tsx', '**/*.js', '**/*.jsx'],
     languageOptions: {
