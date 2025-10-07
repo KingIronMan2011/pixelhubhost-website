@@ -297,25 +297,25 @@ const TestServer: React.FC = () => {
   if (!loading && (!status || Object.keys(status).length === 0)) {
     return (
       <div className="text-center text-gray-500 py-8">
-        {t('noServerStatus')}
+        {t('texts.noServerStatus')}
       </div>
     );
   }
 
   const getServerStatusText = (mappedState?: string) => {
-    if (loading) return t('checking');
-    if (!mappedState) return t('testServerOffline');
+    if (loading) return t('texts.checking');
+    if (!mappedState) return t('texts.testServerOffline');
     switch (mappedState) {
       case 'testServerStarting':
-        return t('testServerStarting');
+        return t('texts.testServerStarting');
       case 'testServerRunning':
-        return t('testServerRunning');
+        return t('texts.testServerRunning');
       case 'testServerStopping':
-        return t('testServerStopping');
+        return t('texts.testServerStopping');
       case 'testServerOffline':
-        return t('testServerOffline');
+        return t('texts.testServerOffline');
       default:
-        return t('testServerOffline');
+        return t('texts.testServerOffline');
     }
   };
 
@@ -382,7 +382,7 @@ const TestServer: React.FC = () => {
                 <Server className="w-7 h-7 text-blue-500" />
                 <div>
                   <h2 className="text-xl font-bold text-gray-900 dark:text-white">
-                    {t("testServer")}
+                    {t("texts.testServer")}
                   </h2>
                   <p className="text-sm text-gray-600 dark:text-gray-400">(1.16 - 1.21.7)</p>
                 </div>
@@ -417,7 +417,7 @@ const TestServer: React.FC = () => {
                 {/* Java/Bedrock domain */}
                 <div className="flex items-center bg-gray-100/70 dark:bg-gray-800/70 rounded-lg px-3 py-2">
                   <span className="text-sm text-gray-600 dark:text-gray-400 mr-2">
-                    {t("domain")}:
+                    {t("texts.domain")}:
                   </span>
                   <span className="font-mono text-blue-600 dark:text-blue-400 text-sm font-medium">
                     {serverDomain}
@@ -448,7 +448,7 @@ const TestServer: React.FC = () => {
                 </div>
                 <div className="flex items-center bg-gray-100/70 dark:bg-gray-800/70 rounded-lg px-3 py-2">
                   <span className="text-sm text-gray-600 dark:text-gray-400 mr-2">
-                    {t("bedrockPort")}:
+                    {t("texts.bedrockPort")}:
                   </span>
                   <span className="font-mono text-sm text-gray-900 dark:text-white font-medium">
                     {bedrockPort}
@@ -498,7 +498,7 @@ const TestServer: React.FC = () => {
                   <div>
                     <div className="flex items-center justify-between mb-1">
                       <span className="text-sm text-gray-500">
-                        {t("cpu")}
+                        {t("texts.cpu")}
                       </span>
                       <span className="text-sm text-gray-500">{cpuUsagePercent}%</span>
                     </div>
@@ -512,7 +512,7 @@ const TestServer: React.FC = () => {
                   <div>
                     <div className="flex items-center justify-between mb-1">
                       <span className="text-sm text-gray-500">
-                        {t("memory")}
+                        {t("texts.memory")}
                       </span>
                       <span className="text-sm font-medium text-gray-900 dark:text-white">
                         {status.memory.current
@@ -547,7 +547,7 @@ const TestServer: React.FC = () => {
                 whileTap={{ scale: 1.04, backgroundColor: '#059669' }} // mobile tap animation
                 style={{ willChange: 'transform, box-shadow' }}
               >
-                {t("connectToTestServer")}
+                {t("texts.connectToTestServer")}
               </motion.button>
             </div>
           </motion.div>
