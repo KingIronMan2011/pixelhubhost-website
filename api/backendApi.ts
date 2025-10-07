@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { Request, Response } from 'express';
 
+/* global process */
 const PTERODACTYL_URL = process.env.PTERODACTYL_API_URL;
 const PTERODACTYL_CLIENT_API_KEY = process.env.PTERODACTYL_CLIENT_API_KEY;
 const SERVER_ID = process.env.PTERODACTYL_TEST_SERVER_ID;

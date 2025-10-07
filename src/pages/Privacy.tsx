@@ -1,9 +1,8 @@
 import React from 'react';
-import { useLanguage } from '../context/LanguageContext';
+import { motion } from 'framer-motion';
 import { config } from '../config/config';
 import languages from '../config/languages/Languages';
 import i18n from '../i18n';
-import { motion } from 'framer-motion';
 import MetaTags from '../components/MetaTags';
 
 // Privacy page component displays privacy policy and data protection info

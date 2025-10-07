@@ -2,12 +2,12 @@ import { useEffect } from 'react';
 
 const GA_MEASUREMENT_ID = 'G-G2Q7J5CB6C'; // Your GA4 Measurement ID
 
-declare global {
-  interface Window {
-    dataLayer: any[];
-    gtag: (...args: any[]) => void;
-  }
+interface WindowWithGtag {
+  dataLayer: unknown[];
+  gtag: (..._args: unknown[]) => void;
 }
+
+declare let window: WindowWithGtag & typeof globalThis;
 
 export function useGoogleAnalytics() {
   useEffect(() => {
@@ -22,7 +22,7 @@ export function useGoogleAnalytics() {
       document.head.appendChild(script);
 
       window.dataLayer = window.dataLayer || [];
-      function gtag(...args: any[]) {
+      function gtag(...args: unknown[]) {
         window.dataLayer.push(args);
       }
       window.gtag = gtag;

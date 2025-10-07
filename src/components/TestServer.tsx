@@ -107,7 +107,7 @@ const ConnectPopup: React.FC<ConnectPopupProps> = ({
       setCopiedFn(true);
       toast.success(translations[language].domainCopied);
       setTimeout(() => setCopiedFn(false), 1500);
-    } catch (err) {
+    } catch {
       toast.error('Copy failed');
     }
   };
@@ -234,8 +234,8 @@ const TestServer: React.FC = () => {
         }
         const data = await res.json();
         setStatus(data);
-      } catch (err: any) {
-        setError(err.message || 'Failed to fetch server status');
+      } catch (err: unknown) {
+        setError((err as Error).message || 'Failed to fetch server status');
         setStatus(null);
       } finally {
         setLoading(false);
@@ -276,7 +276,7 @@ const TestServer: React.FC = () => {
         setCopiedFn(false);
         setShowNotification(false);
       }, 1500);
-    } catch (err) {
+    } catch {
       toast.error('Copy failed');
     }
   };

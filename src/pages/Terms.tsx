@@ -1,6 +1,5 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { useLanguage } from '../context/LanguageContext';
 import { config } from '../config/config';
 import i18n from '../i18n';
 import languages from '../config/languages/Languages';

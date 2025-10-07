@@ -3,11 +3,12 @@ import languages from '../config/languages/Languages'; // Use 'languages' instea
 import { motion } from 'framer-motion';
 import { planLinks } from '../config/config';
 
-type LanguageKey = keyof typeof languages;
-const language = (i18n.language in languages ? i18n.language : 'en') as LanguageKey;
-
 // Get the texts for the current language, fallback to English if not found
-const texts = languages[language].texts;
+const getCurrentLanguage = () => {
+  type LanguageKey = keyof typeof languages;
+  const language = (i18n.language in languages ? i18n.language : 'en') as LanguageKey;
+  return languages[language].texts;
+};
 
 // Props for the PricingCard component
 interface PricingCardProps {
@@ -16,7 +17,7 @@ interface PricingCardProps {
     name: Record<string, string>;
     description: Record<string, string>;
     price: {
-      getCurrencyInfo: (lang: string) => {
+      getCurrencyInfo: (_lang: string) => {
         currency: string;
         amount: string | number;
         quarterlyAmount?: string | number;
@@ -29,6 +30,10 @@ interface PricingCardProps {
 
 // PricingCard component: displays a single pricing plan card
 const PricingCard = ({ product, isPopular, billingInterval = 'monthly' }: PricingCardProps) => {
+  // Get current texts
+  const texts = getCurrentLanguage();
+  const currentLang = i18n.language || 'en';
+
   // Get the correct plan link for the selected billing interval
   const planLink = planLinks[product.id]?.[billingInterval] || '#';
 
@@ -36,7 +41,7 @@ const PricingCard = ({ product, isPopular, billingInterval = 'monthly' }: Pricin
   const billingLabel = billingInterval === 'monthly' ? texts.monthly : texts.quarterly;
 
   // Get currency and price info
-  const { currency, amount, quarterlyAmount } = product.price.getCurrencyInfo(language);
+  const { currency, amount, quarterlyAmount } = product.price.getCurrencyInfo(currentLang);
   const displayAmount = billingInterval === 'monthly' ? amount : quarterlyAmount;
 
   return (
@@ -63,11 +68,11 @@ const PricingCard = ({ product, isPopular, billingInterval = 'monthly' }: Pricin
       <div className={`p-7 ${isPopular ? 'pt-14' : 'pt-7'}`}>
         {/* Plan name */}
         <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-2 tracking-tight">
-          {product.name[language]}
+          {product.name[currentLang]}
         </h3>
         {/* Plan description */}
         <p className="text-gray-600 dark:text-gray-400 mb-6 min-h-[3rem] text-base">
-          {product.description[language]}
+          {product.description[currentLang]}
         </p>
 
         {/* Price and billing label */}

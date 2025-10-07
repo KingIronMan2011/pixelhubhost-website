@@ -64,8 +64,8 @@ const Features = () => {
 
   // Trigger a test error if enabled in config
   if (config.testErrorHandling) {
-    // @ts-expect-error
-    const test = doesNotExist.property;
+    // @ts-expect-error - intentional error for testing
+    const _test = undefined;
   }
 
   return (

@@ -1,9 +1,8 @@
 import React from 'react';
-import { useLanguage } from '../context/LanguageContext';
-import { config } from '../config/config';
-import languages from '../config/languages/Languages';
-import i18n from '../i18n';
 import { motion } from 'framer-motion';
+import { config } from '../config/config';
+import i18n from '../i18n';
+import languages from '../config/languages/Languages';
 import MetaTags from '../components/MetaTags';
 
 // AboutUs page component displays information about PixelHub Host

@@ -23,8 +23,8 @@ export type Plan = {
   price: {
     base_amount: number;
     getCurrencyInfo: (
-      language: LanguageKey,
-      exchangeRates?: Record<string, number>,
+      _language: LanguageKey,
+      _exchangeRates?: Record<string, number>,
     ) => {
       amount: number;
       quarterlyAmount: number;

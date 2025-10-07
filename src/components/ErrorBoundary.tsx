@@ -5,7 +5,7 @@ import languages from '../config/languages/Languages'; // Use 'languages' instea
 type ErrorBoundaryProps = {
   children: React.ReactNode;
   language?: string;
-  setLanguage?: (lang: string) => void;
+  setLanguage?: (_lang: string) => void;
 };
 
 type ErrorBoundaryState = {

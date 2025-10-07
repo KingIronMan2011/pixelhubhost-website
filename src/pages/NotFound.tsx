@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { useLanguage } from '../context/LanguageContext';
 import { motion } from 'framer-motion';
 import MetaTags from '../components/MetaTags';
 import i18n from '../i18n';

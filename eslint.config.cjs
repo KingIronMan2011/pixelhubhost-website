@@ -44,18 +44,7 @@ const browserGlobals = {
   AbortController: 'readonly',
   queueMicrotask: 'readonly',
   DOMException: 'readonly',
-};
-
-// Deno globals
-const denoGlobals = {
-  Deno: 'readonly',
-  Request: 'readonly',
-  Response: 'readonly',
   fetch: 'readonly',
-  AbortController: 'readonly',
-  URL: 'readonly',
-  URLSearchParams: 'readonly',
-  Headers: 'readonly',
 };
 
 module.exports = [
@@ -78,6 +67,14 @@ module.exports = [
     },
     rules: {
       'react/prop-types': 'off',
+      '@typescript-eslint/no-unused-vars': [
+        'error',
+        {
+          argsIgnorePattern: '^_',
+          varsIgnorePattern: '^_',
+        },
+      ],
+      'no-unused-vars': 'off',
     },
     settings: {
       react: {

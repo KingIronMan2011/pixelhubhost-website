@@ -1,5 +1,5 @@
-import { useLanguage } from '../context/LanguageContext';
-import { config, Language } from '../config/config';
+import React from 'react';
+import { config } from '../config/config';
 import i18n from '../i18n';
 import languages from '../config/languages/Languages';
 import { motion } from 'framer-motion';
