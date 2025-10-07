@@ -43,9 +43,23 @@ function App() {
   const [recaptchaSiteKey, setRecaptchaSiteKey] = useState<string | null>(null);
 
   useEffect(() => {
+    // Fetch reCAPTCHA config in background (non-blocking)
     fetch(`/api/backendApi?type=recaptchaConfig`)
-      .then((res) => res.json())
-      .then((data) => setRecaptchaSiteKey(data.siteKey || null));
+      .then((res) => {
+        if (!res.ok) {
+          console.warn('reCAPTCHA config API returned non-OK status:', res.status);
+          return null;
+        }
+        return res.json();
+      })
+      .then((data) => {
+        if (data?.siteKey) {
+          setRecaptchaSiteKey(data.siteKey);
+        }
+      })
+      .catch((err) => {
+        console.warn('Failed to fetch reCAPTCHA config (non-critical):', err);
+      });
   }, []);
 
   useEffect(() => {
@@ -72,14 +86,26 @@ function App() {
   useEffect(() => {
     async function loadApp() {
       try {
+        // Initialize i18n first - this is essential
         await i18n.init();
-        const res = await fetch(`/api/backendApi?type=pterodactylProxy&serverId=362430c9`);
-        if (res.ok) {
-          console.log('Pterodactyl API is reachable');
-        }
+        
+        // Check API availability in background (non-blocking)
+        // Don't wait for this to complete before showing the app
+        fetch(`/api/backendApi?type=pterodactylProxy&serverId=362430c9`)
+          .then((res) => {
+            if (res.ok) {
+              console.log('Pterodactyl API is reachable');
+            } else {
+              console.warn('Pterodactyl API returned non-OK status:', res.status);
+            }
+          })
+          .catch((err) => {
+            console.warn('Failed to reach Pterodactyl API (non-critical):', err);
+          });
       } catch (err) {
-        console.error('Failed to reach Pterodactyl API:', err);
+        console.error('Failed to initialize i18n:', err);
       } finally {
+        // Set loading to false after i18n is ready
         setAppLoading(false);
       }
     }

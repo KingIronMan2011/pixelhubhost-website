@@ -5,6 +5,7 @@ import react from '@vitejs/plugin-react';
 // It sets up plugins, dev server options, and dependency optimization.
 
 export default defineConfig({
+  base: '/', // Explicitly set base path for proper asset loading on Vercel/Cloudflare
   plugins: [
     react(), // Enables React Fast Refresh and JSX support
   ],
