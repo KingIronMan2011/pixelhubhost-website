@@ -48,6 +48,9 @@ const browserGlobals = {
 };
 
 module.exports = [
+  {
+    ignores: ['dist/**', 'node_modules/**', 'build/**', '*.min.js'],
+  },
   js.configs.recommended,
   {
     files: ['**/*.ts', '**/*.tsx', '**/*.js', '**/*.jsx'],
