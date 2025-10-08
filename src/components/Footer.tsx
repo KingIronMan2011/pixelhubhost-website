@@ -3,7 +3,6 @@ import { Youtube } from 'lucide-react';
 import i18n from '../i18n';
 import languages from '../config/languages/Languages';
 import { motion, easeOut } from 'framer-motion';
-import DOMPurify from 'dompurify';
 import { useLocation, Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
@@ -47,9 +46,11 @@ const Footer: React.FC = () => {
                 alt="PixelHub Host Logo"
                 className="h-8 w-auto"
               />
-              {t("texts.brand")}
+              {t('texts.brand')}
             </Link>
-            <p className="text-sm text-gray-400 leading-relaxed mb-4">{t("texts.footerDescription")}</p>
+            <p className="text-sm text-gray-400 leading-relaxed mb-4">
+              {t('texts.footerDescription')}
+            </p>
             {/* Social icons example (e.g., YouTube) */}
             <a
               href="https://www.youtube.com/channel/..."
@@ -64,16 +65,18 @@ const Footer: React.FC = () => {
 
           {/* Company */}
           <div>
-            <h4 className="font-semibold text-lg mb-4 text-white tracking-wide">{t("texts.company")}</h4>
+            <h4 className="font-semibold text-lg mb-4 text-white tracking-wide">
+              {t('texts.company')}
+            </h4>
             <ul className="space-y-2 text-sm">
               <li>
                 <Link to="/aboutus" className="hover:text-blue-400 transition-colors">
-                  {t("texts.aboutUs")}
+                  {t('texts.aboutUs')}
                 </Link>
               </li>
               <li>
                 <Link to="/#contact" className="hover:text-blue-400 transition-colors">
-                  {t("texts.contact")}
+                  {t('texts.contact')}
                 </Link>
               </li>
             </ul>
@@ -81,16 +84,18 @@ const Footer: React.FC = () => {
 
           {/* Services */}
           <div>
-            <h4 className="font-semibold text-lg mb-4 text-white tracking-wide">{t("texts.services")}</h4>
+            <h4 className="font-semibold text-lg mb-4 text-white tracking-wide">
+              {t('texts.services')}
+            </h4>
             <ul className="space-y-2 text-sm">
               <li>
                 <Link to="/#pricing" className="hover:text-blue-400 transition-colors">
-                  {t("texts.mcHosting")}
+                  {t('texts.mcHosting')}
                 </Link>
               </li>
               <li>
                 <Link to="/#addons" className="hover:text-blue-400 transition-colors">
-                  {t("texts.addons")}
+                  {t('texts.addons')}
                 </Link>
               </li>
             </ul>
@@ -98,7 +103,9 @@ const Footer: React.FC = () => {
 
           {/* Support & Language */}
           <div>
-            <h4 className="font-semibold text-lg mb-4 text-white tracking-wide">{t("texts.support")}</h4>
+            <h4 className="font-semibold text-lg mb-4 text-white tracking-wide">
+              {t('texts.support')}
+            </h4>
             <ul className="space-y-2 text-sm">
               <li>
                 <a
@@ -107,7 +114,7 @@ const Footer: React.FC = () => {
                   rel="noopener noreferrer"
                   className="hover:text-blue-400 transition-colors"
                 >
-                  {t("texts.helpCenter")}
+                  {t('texts.helpCenter')}
                 </a>
               </li>
               <li>
@@ -117,7 +124,7 @@ const Footer: React.FC = () => {
                   rel="noopener noreferrer"
                   className="hover:text-blue-400 transition-colors"
                 >
-                  {t("texts.systemStatus")}
+                  {t('texts.systemStatus')}
                 </a>
               </li>
             </ul>
@@ -133,48 +140,48 @@ const Footer: React.FC = () => {
             className="inline-block bg-gray-800 hover:bg-gray-700 text-white font-medium py-1 px-2 rounded shadow text-xs transition-colors duration-200"
             {...hoverMotion}
           >
-            {t("texts.githubButtonText")}
+            {t('texts.githubButtonText')}
           </motion.a>
         </div>
 
         {/* Made by */}
         <div className="flex justify-center mb-1">
           <span className="text-gray-500 text-xs">
-            <span
-              dangerouslySetInnerHTML={{
-                __html: DOMPurify.sanitize(
-                  t("texts.madeByText").replace(
-                    'KingIronMan2011',
-                    `<a href="https://github.com/KingIronMan2011" target="_blank" rel="noopener noreferrer" class="underline hover:text-blue-400 transition-colors">KingIronMan2011</a>`,
-                  ),
-                ),
-              }}
-            />
+            {t('texts.madeByText').split('KingIronMan2011')[0]}
+            <a
+              href="https://github.com/KingIronMan2011"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="underline hover:text-blue-400 transition-colors"
+            >
+              KingIronMan2011
+            </a>
+            {t('texts.madeByText').split('KingIronMan2011')[1]}
           </span>
         </div>
 
         {/* Footer bottom */}
         <div className="border-t border-gray-800 pt-4 mt-4 flex flex-col md:flex-row justify-between items-center gap-4">
-          <p className="text-gray-500 text-xs">{t("texts.footerCopyright")}</p>
+          <p className="text-gray-500 text-xs">{t('texts.footerCopyright')}</p>
           <div className="flex flex-wrap gap-x-6 gap-y-2 text-xs text-gray-500">
             <motion.div {...hoverMotion}>
               <Link to="/privacy" className="hover:text-blue-400 transition-colors">
-                {t("texts.privacyPolicy")}
+                {t('texts.privacyPolicy')}
               </Link>
             </motion.div>
             <motion.div {...hoverMotion}>
               <Link to="/terms" className="hover:text-blue-400 transition-colors">
-                {t("texts.termsOfService")}
+                {t('texts.termsOfService')}
               </Link>
             </motion.div>
             <motion.div {...hoverMotion}>
               <Link to="/sitemap" className="hover:text-blue-400 transition-colors">
-                {t("texts.sitemap")}
+                {t('texts.sitemap')}
               </Link>
             </motion.div>
             <motion.div {...hoverMotion}>
               <Link to="/legal" className="hover:text-blue-400 transition-colors">
-                {t("texts.legal")}
+                {t('texts.legal')}
               </Link>
             </motion.div>
           </div>

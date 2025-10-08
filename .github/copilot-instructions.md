@@ -102,12 +102,10 @@ import { useLanguage } from '../context/LanguageContext';
 
 const MyComponent: React.FC = () => {
   const { texts } = useLanguage();
-  
+
   return (
     <section className="bg-white dark:bg-gray-900 transition-colors">
-      <motion.div whileHover={{ scale: 1.05 }}>
-        {texts.myTranslationKey}
-      </motion.div>
+      <motion.div whileHover={{ scale: 1.05 }}>{texts.myTranslationKey}</motion.div>
     </section>
   );
 };
