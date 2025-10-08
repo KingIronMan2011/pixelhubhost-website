@@ -51,19 +51,6 @@ const CopyNotification: React.FC<NotificationProps> = ({ onClose, language }) =>
           {translations[language].domainCopied}
         </span>
       </div>
-      <style>
-        {`
-          .animate-fade-in-out {
-            animation: fadeInOut 1.5s;
-          }
-          @keyframes fadeInOut {
-            0% { opacity: 0; transform: scale(0.95);}
-            10% { opacity: 1; transform: scale(1);}
-            90% { opacity: 1; transform: scale(1);}
-            100% { opacity: 0; transform: scale(0.95);}
-          }
-        `}
-      </style>
     </div>
   );
 };
@@ -180,17 +167,6 @@ const ConnectPopup: React.FC<ConnectPopupProps> = ({
               </div>
             </div>
           </div>
-          <style>
-            {`
-              .animate-fade-in-down {
-                animation: fadeInDownPopup 0.22s cubic-bezier(.4,0,.2,1);
-              }
-              @keyframes fadeInDownPopup {
-                0% { opacity: 0; transform: translateY(-16px);}
-                100% { opacity: 1; transform: translateY(0);}
-              }
-            `}
-          </style>
         </div>
         <ToastContainer position="bottom-center" autoClose={1500} hideProgressBar />
       </Dialog.Panel>
@@ -425,7 +401,7 @@ const TestServer: React.FC = () => {
                   {/* Copy domain button */}
                   <motion.button
                     onClick={() => handleCopy(serverDomain, setCopied)}
-                    className="ml-2 p-1 rounded transition-colors text-gray-700 dark:text-white"
+                    className="ml-2 p-1 rounded transition-colors text-gray-700 dark:text-white will-change-transform-bg"
                     title={getTranslation('domainCopied')}
                     whileHover={{
                       scale: 1.13,
@@ -441,7 +417,6 @@ const TestServer: React.FC = () => {
                       scale: 1.04,
                       backgroundColor: 'rgba(59,130,246,0.18)',
                     }}
-                    style={{ willChange: 'transform, background-color' }}
                   >
                     {buttonIcon}
                   </motion.button>
@@ -456,7 +431,7 @@ const TestServer: React.FC = () => {
                   {/* Copy bedrock port button */}
                   <motion.button
                     onClick={() => handleCopy(bedrockPort, setCopiedPort)}
-                    className="ml-2 p-1 rounded transition-colors text-gray-700 dark:text-white"
+                    className="ml-2 p-1 rounded transition-colors text-gray-700 dark:text-white will-change-transform-bg"
                     title={getTranslation('domainCopied')}
                     whileHover={{
                       scale: 1.13,
@@ -472,7 +447,6 @@ const TestServer: React.FC = () => {
                       scale: 1.04,
                       backgroundColor: 'rgba(16,185,129,0.18)',
                     }}
-                    style={{ willChange: 'transform, background-color' }}
                   >
                     {buttonIconPort}
                   </motion.button>
@@ -531,7 +505,7 @@ const TestServer: React.FC = () => {
             <div className="mt-4 pt-3 border-t border-gray-200 dark:border-gray-700">
               <motion.button
                 onClick={() => setShowConnectPopup(true)}
-                className="w-full px-4 py-2 bg-emerald-600 hover:bg-emerald-700 text-white text-sm rounded-lg transition-all duration-200 shadow-lg"
+                className="w-full px-4 py-2 bg-emerald-600 hover:bg-emerald-700 text-white text-sm rounded-lg transition-all duration-200 shadow-lg will-change-transform-shadow"
                 whileHover={{
                   scale: 1.05,
                   boxShadow: '0px 4px 6px rgba(0, 0, 0, 0.1)',
@@ -541,7 +515,6 @@ const TestServer: React.FC = () => {
                   boxShadow: '0px 4px 6px rgba(0, 0, 0, 0.1)',
                 }}
                 whileTap={{ scale: 1.04, backgroundColor: '#059669' }} // mobile tap animation
-                style={{ willChange: 'transform, box-shadow' }}
               >
                 {t('texts.connectToTestServer')}
               </motion.button>

@@ -16,8 +16,7 @@ const AboutUs: React.FC = () => {
         <div className="max-w-3xl mx-auto">
           {/* Page title */}
           <h1
-            className="text-4xl font-bold mb-6 bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent"
-            style={{ lineHeight: 1.18 }}
+            className="text-4xl font-bold mb-6 bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent line-height-tight"
           >
             {t('texts.aboutUsTitle')}
           </h1>
@@ -60,7 +59,7 @@ const AboutUs: React.FC = () => {
               href={config.contact.discord}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-block bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-medium transition-colors shadow"
+              className="inline-block bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-medium transition-colors shadow will-change-transform-shadow"
               whileHover={{
                 scale: 1.1,
                 transition: { duration: 0.2 },
@@ -78,7 +77,6 @@ const AboutUs: React.FC = () => {
                   ease: 'easeInOut',
                 },
               }} // mobile tap animation
-              style={{ willChange: 'transform, box-shadow' }}
             >
               {t('texts.aboutUsContact')}
             </motion.a>

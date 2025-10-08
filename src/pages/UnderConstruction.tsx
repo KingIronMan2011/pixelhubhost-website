@@ -42,8 +42,7 @@ const UnderConstruction = () => {
           <span className="text-5xl mb-4 animate-pulse">🚧</span>
           {/* Main title */}
           <h1
-            className="text-3xl md:text-4xl font-bold mb-3 text-gray-900 dark:text-white text-center"
-            style={{ lineHeight: 1.18 }}
+            className="text-3xl md:text-4xl font-bold mb-3 text-gray-900 dark:text-white text-center line-height-tight"
           >
             {t('texts.underConstruction')}
           </h1>
@@ -61,7 +60,7 @@ const UnderConstruction = () => {
               href={contact.discord}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-5 py-2 rounded-lg font-medium transition-colors shadow"
+              className="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-5 py-2 rounded-lg font-medium transition-colors shadow will-change-transform-shadow"
               whileHover={{ scale: 1.05 }}
               whileFocus={{ scale: 1.03 }}
               whileTap={{
@@ -73,7 +72,6 @@ const UnderConstruction = () => {
                   ease: 'easeInOut',
                 },
               }} // mobile tap animation
-              style={{ willChange: 'transform, box-shadow' }}
             >
               <FaDiscord size={20} />
               Discord
@@ -81,7 +79,7 @@ const UnderConstruction = () => {
             {/* Email button */}
             <motion.a
               href={`mailto:${contact.email}`}
-              className="inline-flex items-center gap-2 bg-gray-100 dark:bg-gray-800 text-blue-600 dark:text-blue-400 px-5 py-2 rounded-lg font-medium border border-blue-200 dark:border-blue-900 hover:border-blue-400 dark:hover:border-blue-700 shadow transition-colors"
+              className="inline-flex items-center gap-2 bg-gray-100 dark:bg-gray-800 text-blue-600 dark:text-blue-400 px-5 py-2 rounded-lg font-medium border border-blue-200 dark:border-blue-900 hover:border-blue-400 dark:hover:border-blue-700 shadow transition-colors will-change-transform-shadow"
               whileHover={{ scale: 1.05 }}
               whileFocus={{ scale: 1.03 }}
               whileTap={{
@@ -93,7 +91,6 @@ const UnderConstruction = () => {
                   ease: 'easeInOut',
                 },
               }} // mobile tap animation
-              style={{ willChange: 'transform, box-shadow' }}
             >
               <FaEnvelope size={20} />
               Email
@@ -103,7 +100,7 @@ const UnderConstruction = () => {
               href={contact.whatsapp}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 bg-green-500 hover:bg-green-600 text-white px-5 py-2 rounded-lg font-medium transition-colors shadow"
+              className="inline-flex items-center gap-2 bg-green-500 hover:bg-green-600 text-white px-5 py-2 rounded-lg font-medium transition-colors shadow will-change-transform-shadow"
               whileHover={{ scale: 1.05 }}
               whileFocus={{ scale: 1.03 }}
               whileTap={{
@@ -115,7 +112,6 @@ const UnderConstruction = () => {
                   ease: 'easeInOut',
                 },
               }} // mobile tap animation
-              style={{ willChange: 'transform, box-shadow' }}
             >
               <FaWhatsapp size={20} />
               WhatsApp
@@ -127,7 +123,7 @@ const UnderConstruction = () => {
               {t('texts.constructionLanguage')}:
             </label>
             <motion.div
-              className="relative"
+              className="relative will-change-transform-shadow"
               whileHover={{
                 scale: 1.03,
                 boxShadow: '0 4px 16px 0 rgba(59,130,246,0.10)',
@@ -136,7 +132,6 @@ const UnderConstruction = () => {
                 scale: 1.03,
                 boxShadow: '0 4px 16px 0 rgba(59,130,246,0.13)',
               }}
-              style={{ willChange: 'transform, box-shadow' }}
             >
               <select
                 id="lang"

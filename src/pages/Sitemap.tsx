@@ -24,8 +24,7 @@ const Sitemap: React.FC = () => {
       <div className="max-w-lg mx-auto mt-24 mb-12 p-8 rounded-2xl shadow-xl bg-white/90 dark:bg-gray-900/90 border border-gray-200 dark:border-gray-800">
         {/* Page title, translated */}
         <h1
-          className="font-extrabold text-3xl mb-8 text-center bg-gradient-to-r from-blue-500 to-purple-500 bg-clip-text text-transparent drop-shadow"
-          style={{ lineHeight: 1.18 }}
+          className="font-extrabold text-3xl mb-8 text-center bg-gradient-to-r from-blue-500 to-purple-500 bg-clip-text text-transparent drop-shadow line-height-tight"
         >
           {t('texts.sitemap')}
         </h1>
@@ -37,7 +36,7 @@ const Sitemap: React.FC = () => {
                 whileHover={{ scale: 1.05 }}
                 whileFocus={{ scale: 1.02 }}
                 whileTap={{ scale: 0.95 }}
-                style={{ willChange: 'transform, box-shadow' }}
+                className="will-change-transform-shadow"
               >
                 <Link
                   to={link.path}

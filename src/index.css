@@ -141,3 +141,150 @@ button {
     box-shadow 0.2s,
     border 0.2s;
 }
+
+/* Utility classes for performance optimization with willChange */
+.will-change-transform {
+  will-change: transform;
+}
+
+.will-change-transform-shadow {
+  will-change: transform, box-shadow;
+}
+
+.will-change-transform-color {
+  will-change: transform, color;
+}
+
+.will-change-transform-color-bg {
+  will-change: transform, color, background-color;
+}
+
+.will-change-transform-bg {
+  will-change: transform, background-color;
+}
+
+.will-change-transform-shadow-border {
+  will-change: transform, box-shadow, border-color, border-width;
+}
+
+/* Utility class for common line height */
+.line-height-tight {
+  line-height: 1.18;
+}
+
+/* Utility class for letter spacing */
+.letter-spacing-tight {
+  letter-spacing: 0.01em;
+}
+
+/* Spin animation for theme toggle sun icon */
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-spin-slow {
+  animation: spin 20s linear infinite;
+}
+
+/* Fade in/out animation for notifications */
+@keyframes fadeInOut {
+  0% {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  10% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  90% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+}
+
+.animate-fade-in-out {
+  animation: fadeInOut 1.5s;
+}
+
+/* Fade in down animations for dropdowns/popups */
+@keyframes fadeInDownPopup {
+  0% {
+    opacity: 0;
+    transform: translateY(-16px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in-down {
+  animation: fadeInDownPopup 0.22s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes fadeInDownLang {
+  0% {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in-down-lang {
+  animation: fadeInDownLang 0.18s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Hero-specific fade in animation */
+@keyframes fadeInHero {
+  0% {
+    opacity: 0;
+    transform: translateY(32px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in-hero {
+  animation: fadeInHero 1s cubic-bezier(0.4, 0, 0.2, 1) both;
+}
+
+/* Float animations for hero blobs - alternate versions */
+@keyframes floatAlt {
+  0% {
+    transform: translateY(0px);
+  }
+  100% {
+    transform: translateY(-20px);
+  }
+}
+
+@keyframes floatReverse {
+  0% {
+    transform: translateY(0px);
+  }
+  100% {
+    transform: translateY(20px);
+  }
+}
+
+.animate-float-alt {
+  animation: floatAlt 6s ease-in-out infinite alternate;
+}
+
+.animate-float-reverse-alt {
+  animation: floatReverse 7s ease-in-out infinite alternate;
+}
