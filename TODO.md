@@ -9,8 +9,10 @@
 
 ## Optimizations
 
-- [ ] Optimize as much as possible of the Code
-- [ ] Make the Pages more secure
+- [x] Optimize as much as possible of the Code
+- [x] Make the Pages more secure
+- [ ] Fix outdated translation logic
+- [ ] Fix linting issues
 
 ---
 
