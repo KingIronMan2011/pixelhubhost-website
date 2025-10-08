@@ -6,14 +6,14 @@
 - [x] Make a Backend for all Secrets and the Pterodactyl stuff
 - [x] List the Ports, Splits, Backups and Databases under additional information button
 - [x] Add an exchangeRates.ts
-- [ ] Use a global CSS File for Styling 
+- [ ] Use a global CSS File for Styling
 
 ## Optimizations
 
 - [x] Optimize as much as possible of the Code
 - [x] Make the Pages more secure
-- [ ] Fix outdated translation logic
-- [ ] Fix linting issues
+- [x] Fix outdated translation logic
+- [x] Fix linting issues
 
 ---
 
