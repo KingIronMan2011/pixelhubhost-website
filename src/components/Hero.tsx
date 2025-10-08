@@ -72,9 +72,7 @@ const Hero: React.FC = () => {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="max-w-4xl mx-auto text-center">
           {/* Main hero title with gradient text and animation */}
-          <h1
-            className="animate-on-scroll text-4xl md:text-6xl font-extrabold mb-7 bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 bg-clip-text text-transparent drop-shadow-lg leading-tight md:leading-[1.13] tracking-tight letter-spacing-tight line-height-tight"
-          >
+          <h1 className="animate-on-scroll text-4xl md:text-6xl font-extrabold mb-7 bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 bg-clip-text text-transparent drop-shadow-lg leading-tight md:leading-[1.13] tracking-tight letter-spacing-tight line-height-tight">
             {t('texts.heroTitle')}
           </h1>
           {/* Subtitle below the main title */}

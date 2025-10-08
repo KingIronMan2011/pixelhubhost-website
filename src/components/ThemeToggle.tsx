@@ -38,10 +38,7 @@ const ThemeToggle: React.FC = () => {
       {/* Show sun icon (animated spin) if dark mode, or moon if light mode */}
       {theme === 'dark' ? (
         <motion.span>
-          <Sun
-            size={20}
-            className="text-yellow-400 animate-spin-slow"
-          />
+          <Sun size={20} className="text-yellow-400 animate-spin-slow" />
         </motion.span>
       ) : (
         <Moon size={20} className="text-blue-400" />
