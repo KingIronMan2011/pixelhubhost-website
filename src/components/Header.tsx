@@ -59,10 +59,9 @@ const Header: React.FC = () => {
               href="https://stats.uptimerobot.com/h2jzO5FroG"
               target="_blank"
               rel="noopener noreferrer"
-              className="hidden md:inline-flex items-center bg-blue-600 text-white px-5 py-2 rounded-lg hover:bg-blue-700 transition-colors font-medium shadow"
+              className="hidden md:inline-flex items-center bg-blue-600 text-white px-5 py-2 rounded-lg hover:bg-blue-700 transition-colors font-medium shadow will-change-transform-color"
               whileHover={{ scale: 1.05 }}
               whileFocus={{ scale: 1.05 }}
-              style={{ willChange: 'transform, color' }}
             >
               {t('texts.systemStatus')}
             </motion.a>
@@ -71,10 +70,9 @@ const Header: React.FC = () => {
               href="https://dash.pixelhubhost.com/register"
               target="_blank"
               rel="noopener noreferrer"
-              className="hidden md:inline-flex items-center bg-purple-600 text-white px-5 py-2 rounded-lg hover:bg-purple-700 transition-colors font-medium shadow"
+              className="hidden md:inline-flex items-center bg-purple-600 text-white px-5 py-2 rounded-lg hover:bg-purple-700 transition-colors font-medium shadow will-change-transform-color"
               whileHover={{ scale: 1.05 }}
               whileFocus={{ scale: 1.05 }}
-              style={{ willChange: 'transform, color' }}
             >
               {t('texts.loginSignup')}
             </motion.a>
@@ -114,10 +112,9 @@ const Header: React.FC = () => {
               href="https://stats.uptimerobot.com/h2jzO5FroG"
               target="_blank"
               rel="noopener noreferrer"
-              className="block bg-blue-600 text-white px-5 py-2 rounded-lg hover:bg-blue-700 transition-colors font-medium mt-2 text-center shadow"
+              className="block bg-blue-600 text-white px-5 py-2 rounded-lg hover:bg-blue-700 transition-colors font-medium mt-2 text-center shadow will-change-transform-color-bg"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.97, backgroundColor: '#2563eb' }}
-              style={{ willChange: 'transform, color, background-color' }}
               onClick={() => setMenuOpen(false)}
             >
               {t('systemStatus')}
@@ -127,10 +124,9 @@ const Header: React.FC = () => {
               href="https://dash.pixelhubhost.com/login"
               target="_blank"
               rel="noopener noreferrer"
-              className="block bg-purple-600 text-white px-5 py-2 rounded-lg hover:bg-purple-700 transition-colors font-medium mt-2 text-center shadow"
+              className="block bg-purple-600 text-white px-5 py-2 rounded-lg hover:bg-purple-700 transition-colors font-medium mt-2 text-center shadow will-change-transform-color-bg"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.97, backgroundColor: '#7c3aed' }}
-              style={{ willChange: 'transform, color, background-color' }}
               onClick={() => setMenuOpen(false)}
             >
               {t('loginSignup')}

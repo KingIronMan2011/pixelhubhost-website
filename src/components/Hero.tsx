@@ -13,7 +13,7 @@ const Hero: React.FC = () => {
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            entry.target.classList.add('animate-fade-in');
+            entry.target.classList.add('animate-fade-in-hero');
           }
         });
       },
@@ -65,19 +65,15 @@ const Hero: React.FC = () => {
     >
       {/* Background blobs or decorative elements */}
       <div className="pointer-events-none select-none">
-        <div className="absolute top-1/4 left-1/4 w-72 h-72 rounded-full bg-blue-200 dark:bg-blue-800 opacity-20 animate-float blur-xl"></div>
-        <div className="absolute bottom-1/4 right-1/4 w-72 h-72 rounded-full bg-teal-200 dark:bg-teal-800 opacity-20 animate-float-reverse blur-xl"></div>
+        <div className="absolute top-1/4 left-1/4 w-72 h-72 rounded-full bg-blue-200 dark:bg-blue-800 opacity-20 animate-float-alt blur-xl"></div>
+        <div className="absolute bottom-1/4 right-1/4 w-72 h-72 rounded-full bg-teal-200 dark:bg-teal-800 opacity-20 animate-float-reverse-alt blur-xl"></div>
       </div>
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="max-w-4xl mx-auto text-center">
           {/* Main hero title with gradient text and animation */}
           <h1
-            className="animate-on-scroll text-4xl md:text-6xl font-extrabold mb-7 bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 bg-clip-text text-transparent drop-shadow-lg leading-tight md:leading-[1.13] tracking-tight"
-            style={{
-              letterSpacing: '0.01em',
-              lineHeight: 1.18, // Ensures descenders like "g" are visible
-            }}
+            className="animate-on-scroll text-4xl md:text-6xl font-extrabold mb-7 bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 bg-clip-text text-transparent drop-shadow-lg leading-tight md:leading-[1.13] tracking-tight letter-spacing-tight line-height-tight"
           >
             {t('texts.heroTitle')}
           </h1>
@@ -92,8 +88,7 @@ const Hero: React.FC = () => {
               whileHover={buttonHover}
               whileFocus={buttonHover}
               onClick={() => scrollToSection('pricing')}
-              className="px-8 py-3 bg-blue-600 text-white font-semibold rounded-xl shadow-lg transition-all duration-200 text-lg"
-              style={{ willChange: 'transform, box-shadow' }}
+              className="px-8 py-3 bg-blue-600 text-white font-semibold rounded-xl shadow-lg transition-all duration-200 text-lg will-change-transform-shadow"
             >
               {t('texts.getStarted')}
             </motion.button>
@@ -102,41 +97,13 @@ const Hero: React.FC = () => {
               whileHover={buttonHover}
               whileFocus={buttonHover}
               onClick={() => scrollToSection('features')}
-              className="px-8 py-3 bg-white dark:bg-gray-900 text-blue-600 dark:text-blue-400 font-semibold rounded-xl border border-blue-200 dark:border-blue-900 hover:border-blue-400 dark:hover:border-blue-700 shadow transition-all duration-200 text-lg"
-              style={{ willChange: 'transform, box-shadow' }}
+              className="px-8 py-3 bg-white dark:bg-gray-900 text-blue-600 dark:text-blue-400 font-semibold rounded-xl border border-blue-200 dark:border-blue-900 hover:border-blue-400 dark:hover:border-blue-700 shadow transition-all duration-200 text-lg will-change-transform-shadow"
             >
               {t('texts.learnMore')}
             </motion.button>
           </div>
         </div>
       </div>
-
-      {/* Custom CSS for fade-in and floating blob animations */}
-      <style>
-        {`
-          .animate-fade-in {
-            animation: fadeInHero 1s cubic-bezier(.4,0,.2,1) both;
-          }
-          @keyframes fadeInHero {
-            0% { opacity: 0; transform: translateY(32px);}
-            100% { opacity: 1; transform: translateY(0);}
-          }
-          .animate-float {
-            animation: float 6s ease-in-out infinite alternate;
-          }
-          .animate-float-reverse {
-            animation: floatReverse 7s ease-in-out infinite alternate;
-          }
-          @keyframes float {
-            0% { transform: translateY(0px);}
-            100% { transform: translateY(-20px);}
-          }
-          @keyframes floatReverse {
-            0% { transform: translateY(0px);}
-            100% { transform: translateY(20px);}
-          }
-        `}
-      </style>
     </motion.div>
   );
 };

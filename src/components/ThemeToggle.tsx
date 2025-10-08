@@ -14,7 +14,7 @@ const ThemeToggle: React.FC = () => {
     // Animated button to toggle theme
     <motion.button
       onClick={toggleTheme}
-      className="p-2 rounded-xl border border-transparent bg-gray-800/60 hover:bg-gray-700/80 transition-all duration-200 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+      className="p-2 rounded-xl border border-transparent bg-gray-800/60 hover:bg-gray-700/80 transition-all duration-200 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 will-change-transform-shadow"
       aria-label={t('texts.toggleTheme')}
       whileFocus={{
         scale: 1.08,
@@ -32,7 +32,6 @@ const ThemeToggle: React.FC = () => {
         transition: { type: 'tween', duration: 0.13, ease: 'easeInOut' },
       }}
       type="button"
-      style={{ willChange: 'transform, box-shadow' }}
     >
       {/* Visually hidden label for accessibility */}
       <span className="sr-only">{t('texts.toggleTheme')}</span>
@@ -41,8 +40,7 @@ const ThemeToggle: React.FC = () => {
         <motion.span>
           <Sun
             size={20}
-            className="text-yellow-400"
-            style={{ animation: 'spin 20s linear infinite' }}
+            className="text-yellow-400 animate-spin-slow"
           />
         </motion.span>
       ) : (

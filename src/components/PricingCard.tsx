@@ -49,7 +49,11 @@ const PricingCard = ({ product, isPopular, billingInterval = 'monthly' }: Pricin
         transition: { type: 'tween', duration: 0.13, ease: 'easeInOut' },
       }}
       whileTap={{ scale: 0.95 }} // mobile tap animation
-      style={{ willChange: 'transform, box-shadow' }}
+      className={`relative rounded-2xl border shadow-lg transition-all duration-200 ${
+        isPopular
+          ? 'border-blue-500 bg-gradient-to-br from-blue-50 to-purple-50 dark:from-gray-900 dark:to-gray-800'
+          : 'border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900'
+      } overflow-hidden will-change-transform-shadow`}
     >
       {/* Popular plan badge */}
       {isPopular && (
@@ -100,7 +104,7 @@ const PricingCard = ({ product, isPopular, billingInterval = 'monthly' }: Pricin
             transition: { type: 'tween', duration: 0.13, ease: 'easeInOut' },
           }}
           whileTap={{ scale: 0.97 }} // mobile tap animation
-          style={{ willChange: 'transform' }}
+          className="w-full bg-blue-600 text-white px-6 py-3 rounded-xl hover:bg-blue-700 transition-colors duration-200 font-medium shadow will-change-transform"
         >
           {t('texts.buyNow')}
         </motion.a>

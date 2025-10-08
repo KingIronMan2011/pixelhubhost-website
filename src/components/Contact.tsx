@@ -88,8 +88,7 @@ const Contact: React.FC = () => {
                   scale: 1.04,
                   boxShadow: '0 8px 32px 0 rgba(0,0,0,0.13)',
                 }}
-                className={`flex items-center justify-center gap-3 px-8 py-5 rounded-2xl border shadow transition-all duration-100 font-medium text-lg will-change-transform will-change-shadow hover:-translate-y-1 hover:scale-105 hover:shadow-2xl ${c.className}`}
-                style={{ willChange: 'transform, box-shadow' }}
+                className={`flex items-center justify-center gap-3 px-8 py-5 rounded-2xl border shadow transition-all duration-100 font-medium text-lg will-change-transform-shadow hover:-translate-y-1 hover:scale-105 hover:shadow-2xl ${c.className}`}
               >
                 {c.icon}
                 {c.label}

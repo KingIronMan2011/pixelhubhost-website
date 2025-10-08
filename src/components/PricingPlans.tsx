@@ -71,29 +71,27 @@ const PricingPlans = () => {
           <div className="mt-8 flex justify-center gap-4">
             <motion.button
               onClick={() => setBillingInterval('monthly')}
-              className={`px-4 py-2 rounded-lg transition-colors font-medium shadow-sm ${
+              whileHover={buttonHover}
+              whileFocus={buttonHover}
+              type="button"
+              className={`px-4 py-2 rounded-lg transition-colors font-medium shadow-sm will-change-transform ${
                 billingInterval === 'monthly'
                   ? 'bg-blue-600 text-white'
                   : 'bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300'
               }`}
-              whileHover={buttonHover}
-              whileFocus={buttonHover}
-              type="button"
-              style={{ willChange: 'transform' }}
             >
               {t('texts.monthly')}
             </motion.button>
             <motion.button
               onClick={() => setBillingInterval('quarterly')}
-              className={`px-4 py-2 rounded-lg transition-colors font-medium shadow-sm ${
+              whileHover={buttonHover}
+              whileFocus={buttonHover}
+              type="button"
+              className={`px-4 py-2 rounded-lg transition-colors font-medium shadow-sm will-change-transform ${
                 billingInterval === 'quarterly'
                   ? 'bg-blue-600 text-white'
                   : 'bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300'
               }`}
-              whileHover={buttonHover}
-              whileFocus={buttonHover}
-              type="button"
-              style={{ willChange: 'transform' }}
             >
               {t('texts.quarterly')}
               <span className="ml-2 text-sm bg-green-500 text-white px-2 py-0.5 rounded shadow">
@@ -114,7 +112,7 @@ const PricingPlans = () => {
             return (
               <motion.div
                 key={plan.id}
-                className={`relative rounded-2xl overflow-hidden bg-white/90 dark:bg-gray-900/90 ${
+                className={`relative rounded-2xl overflow-hidden bg-white/90 dark:bg-gray-900/90 will-change-transform-shadow-border ${
                   !plan.available ? 'opacity-75 pointer-events-none' : ''
                 }`}
                 whileHover={{
@@ -141,7 +139,6 @@ const PricingPlans = () => {
                   },
                 }}
                 style={{
-                  willChange: 'transform, box-shadow, border-color, border-width',
                   border: plan.popular ? '2px solid #3b82f6' : '2px solid transparent',
                 }}
               >
@@ -189,13 +186,12 @@ const PricingPlans = () => {
                       !plan.available
                         ? 'opacity-75 cursor-not-allowed bg-gray-500 dark:bg-gray-700 pointer-events-none'
                         : ''
-                    }`}
+                    } will-change-transform`}
                     tabIndex={!plan.available ? -1 : 0}
                     aria-disabled={!plan.available}
                     whileHover={plan.available ? buttonHover : undefined}
                     whileFocus={plan.available ? buttonHover : undefined}
                     whileTap={plan.available ? { scale: 1.04 } : undefined}
-                    style={{ willChange: 'transform' }}
                   >
                     {t('texts.buyNow')}
                   </motion.a>
@@ -230,12 +226,11 @@ const PricingPlans = () => {
           ? 'bg-blue-600 text-white'
           : 'bg-gray-100 dark:bg-gray-800 text-black dark:text-white'
       }
-      focus:outline-none`}
+      focus:outline-none will-change-transform`}
                         onClick={() => setOpenInfo(openInfo === plan.id ? null : plan.id)}
                         whileHover={buttonHover}
                         whileFocus={buttonHover}
                         type="button"
-                        style={{ willChange: 'transform' }}
                       >
                         {openInfo === plan.id
                           ? t('texts.hideAdditionalInfo') || 'Hide Additional Information'

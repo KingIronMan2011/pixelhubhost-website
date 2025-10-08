@@ -95,8 +95,7 @@ const Features = () => {
               variants={cardVariants}
               whileHover="hover"
               whileTap="tap"
-              className="group bg-white/90 dark:bg-gray-900/90 rounded-2xl p-8 border border-gray-200 dark:border-gray-800 shadow-md flex flex-col items-center transition-all duration-100"
-              style={{ willChange: 'transform, box-shadow' }}
+              className="group bg-white/90 dark:bg-gray-900/90 rounded-2xl p-8 border border-gray-200 dark:border-gray-800 shadow-md flex flex-col items-center transition-all duration-100 will-change-transform-shadow"
             >
               {/* Icon with its own animation */}
               <motion.div

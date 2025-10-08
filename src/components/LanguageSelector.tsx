@@ -83,7 +83,7 @@ const LanguageSelector = () => {
 
       {/* Dropdown menu with language options */}
       {isOpen && (
-        <div className="absolute right-0 mt-2 w-48 rounded-xl shadow-2xl bg-gray-900 ring-1 ring-black ring-opacity-10 z-50 animate-fade-in-down">
+        <div className="absolute right-0 mt-2 w-48 rounded-xl shadow-2xl bg-gray-900 ring-1 ring-black ring-opacity-10 z-50 animate-fade-in-down-lang">
           <div className="py-1">
             {Object.entries(languageNames).map(([code, name]) => (
               <button
@@ -101,19 +101,6 @@ const LanguageSelector = () => {
           </div>
         </div>
       )}
-
-      {/* Animation for dropdown appearance */}
-      <style>
-        {`
-          .animate-fade-in-down {
-            animation: fadeInDownLang 0.18s cubic-bezier(.4,0,.2,1);
-          }
-          @keyframes fadeInDownLang {
-            0% { opacity: 0; transform: translateY(-10px);}
-            100% { opacity: 1; transform: translateY(0);}
-          }
-        `}
-      </style>
     </div>
   );
 };
