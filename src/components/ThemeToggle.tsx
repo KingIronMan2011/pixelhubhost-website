@@ -1,27 +1,21 @@
 import React from 'react';
 import { Sun, Moon } from 'lucide-react';
 import { useTheme } from '../context/ThemeContext';
-import languages from '../config/languages/Languages';
-import i18n from '../i18n';
 import { motion } from 'framer-motion';
+import { useTranslation } from 'react-i18next';
 
 // ThemeToggle component: toggles between light and dark mode
 const ThemeToggle: React.FC = () => {
   // Get current theme and toggle function from context
   const { theme, toggleTheme } = useTheme();
-
-  // Always use i18n.language for detection
-  const language = i18n.language || 'en';
-
-  // Get translations for the current language, fallback to English
-  const texts = languages[language as keyof typeof languages]?.texts || languages.en.texts;
+  const { t } = useTranslation();
 
   return (
     // Animated button to toggle theme
     <motion.button
       onClick={toggleTheme}
       className="p-2 rounded-xl border border-transparent bg-gray-800/60 hover:bg-gray-700/80 transition-all duration-200 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
-      aria-label={texts.toggleTheme}
+      aria-label={t('texts.toggleTheme')}
       whileFocus={{
         scale: 1.08,
         boxShadow: '0 8px 32px 0 rgba(251,191,36,0.13)',
@@ -41,7 +35,7 @@ const ThemeToggle: React.FC = () => {
       style={{ willChange: 'transform, box-shadow' }}
     >
       {/* Visually hidden label for accessibility */}
-      <span className="sr-only">{texts.toggleTheme}</span>
+      <span className="sr-only">{t('texts.toggleTheme')}</span>
       {/* Show sun icon (animated spin) if dark mode, or moon if light mode */}
       {theme === 'dark' ? (
         <motion.span>

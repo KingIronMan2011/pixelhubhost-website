@@ -1,10 +1,10 @@
-import { useLanguage } from '../context/LanguageContext';
-import { config, Language } from '../config/config';
+import { config } from '../config/config';
 import i18n from '../i18n';
-import languages from '../config/languages/Languages';
+import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
 import { FaDiscord, FaWhatsapp, FaEnvelope, FaCube } from 'react-icons/fa';
 import MetaTags from '../components/MetaTags';
+import React from 'react';
 
 const brand = config.name;
 const contact = config.contact;
@@ -12,28 +12,8 @@ const website = config.website;
 
 // UnderConstruction page component displays a maintenance/coming soon message
 const UnderConstruction = () => {
-  // Use i18n.language for the current language
+  const { t } = useTranslation();
   const currentLanguage = i18n.language || 'en';
-
-  // Get translated texts for the current language, fallback to English if missing
-  const texts = languages[currentLanguage]?.texts || languages.en.texts;
-
-  // Framer Motion hover animation configs for contact buttons
-  const buttonHover = {
-    scale: 1.045,
-    boxShadow: '0 8px 32px 0 rgba(59,130,246,0.13)',
-    transition: { type: 'tween', duration: 0.13, ease: 'easeInOut' },
-  };
-  const whatsappHover = {
-    scale: 1.045,
-    boxShadow: '0 8px 32px 0 rgba(16,185,129,0.13)',
-    transition: { type: 'tween', duration: 0.13, ease: 'easeInOut' },
-  };
-  const emailHover = {
-    scale: 1.045,
-    boxShadow: '0 8px 32px 0 rgba(59,130,246,0.07)',
-    transition: { type: 'tween', duration: 0.13, ease: 'easeInOut' },
-  };
 
   // Language change handler
   const handleLanguageChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
@@ -42,7 +22,7 @@ const UnderConstruction = () => {
 
   return (
     <>
-      <MetaTags title={texts.underConstruction} description={texts.constructionWorking} />
+      <MetaTags title={t('texts.underConstruction')} description={t('texts.constructionWorking')} />
       {/* Main container with background and centered content */}
       <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-b from-gray-900 via-gray-950 to-black text-gray-200 transition-colors duration-500">
         <div className="bg-white/90 dark:bg-gray-900/90 rounded-2xl shadow-xl p-8 border border-gray-200 dark:border-gray-800 flex flex-col items-center max-w-lg w-full">
@@ -65,14 +45,14 @@ const UnderConstruction = () => {
             className="text-3xl md:text-4xl font-bold mb-3 text-gray-900 dark:text-white text-center"
             style={{ lineHeight: 1.18 }}
           >
-            {texts.underConstruction}
+            {t('texts.underConstruction')}
           </h1>
           {/* Subtitle and info */}
           <p className="text-lg text-gray-700 dark:text-gray-300 text-center mb-2">
-            {texts.constructionWorking}
+            {t('texts.constructionWorking')}
           </p>
           <p className="text-base text-gray-500 dark:text-gray-400 text-center mb-4">
-            {texts.constructionCheckBack}
+            {t('texts.constructionCheckBack')}
           </p>
           {/* Contact buttons: Discord, Email, WhatsApp */}
           <div className="flex gap-4 mb-4">
@@ -82,8 +62,8 @@ const UnderConstruction = () => {
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-5 py-2 rounded-lg font-medium transition-colors shadow"
-              whileHover={buttonHover}
-              whileFocus={buttonHover}
+              whileHover={{ scale: 1.05 }}
+              whileFocus={{ scale: 1.03 }}
               whileTap={{
                 scale: 1.045,
                 boxShadow: '0 8px 32px 0 rgba(16,185,129,0.13)',
@@ -102,8 +82,8 @@ const UnderConstruction = () => {
             <motion.a
               href={`mailto:${contact.email}`}
               className="inline-flex items-center gap-2 bg-gray-100 dark:bg-gray-800 text-blue-600 dark:text-blue-400 px-5 py-2 rounded-lg font-medium border border-blue-200 dark:border-blue-900 hover:border-blue-400 dark:hover:border-blue-700 shadow transition-colors"
-              whileHover={emailHover}
-              whileFocus={emailHover}
+              whileHover={{ scale: 1.05 }}
+              whileFocus={{ scale: 1.03 }}
               whileTap={{
                 scale: 1.045,
                 boxShadow: '0 8px 32px 0 rgba(16,185,129,0.13)',
@@ -124,8 +104,8 @@ const UnderConstruction = () => {
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 bg-green-500 hover:bg-green-600 text-white px-5 py-2 rounded-lg font-medium transition-colors shadow"
-              whileHover={whatsappHover}
-              whileFocus={whatsappHover}
+              whileHover={{ scale: 1.05 }}
+              whileFocus={{ scale: 1.03 }}
               whileTap={{
                 scale: 1.045,
                 boxShadow: '0 8px 32px 0 rgba(16,185,129,0.13)',
@@ -144,7 +124,7 @@ const UnderConstruction = () => {
           {/* Language Switcher Dropdown */}
           <div className="flex items-center gap-2 mt-4">
             <label htmlFor="lang" className="text-sm text-gray-500 dark:text-gray-400">
-              {texts.constructionLanguage}:
+              {t('texts.constructionLanguage')}:
             </label>
             <motion.div
               className="relative"

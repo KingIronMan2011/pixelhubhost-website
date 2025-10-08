@@ -241,6 +241,8 @@ const pt = {
     email: 'Email',
     showAdditionalInfo: 'Mostrar Informações Adicionais',
     hideAdditionalInfo: 'Ocultar Informações Adicionais',
+    team: 'Equipe',
+    ourValues: 'Nossos Valores',
   },
 };
 

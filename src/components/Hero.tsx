@@ -1,12 +1,9 @@
 import React, { useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
-import i18n from '../i18n';
-import languages from '../config/languages/Languages';
+import { useTranslation } from 'react-i18next';
 
 const Hero: React.FC = () => {
-  // Use i18n.language as the source of truth, fallback to context, then 'en'
-  const currentLanguage = (i18n.language || 'en') as keyof typeof languages;
-  const t = languages[currentLanguage]?.texts || languages.en.texts;
+  const { t } = useTranslation();
 
   const heroRef = useRef<HTMLDivElement>(null);
 
@@ -82,11 +79,11 @@ const Hero: React.FC = () => {
               lineHeight: 1.18, // Ensures descenders like "g" are visible
             }}
           >
-            {t.heroTitle}
+            {t('texts.heroTitle')}
           </h1>
           {/* Subtitle below the main title */}
           <p className="animate-on-scroll text-lg md:text-2xl text-gray-700 dark:text-gray-300 mb-10 max-w-2xl mx-auto font-medium">
-            {t.heroSubtitle}
+            {t('texts.heroSubtitle')}
           </p>
           {/* Call-to-action buttons */}
           <div className="animate-on-scroll flex flex-col sm:flex-row justify-center gap-4">
@@ -98,7 +95,7 @@ const Hero: React.FC = () => {
               className="px-8 py-3 bg-blue-600 text-white font-semibold rounded-xl shadow-lg transition-all duration-200 text-lg"
               style={{ willChange: 'transform, box-shadow' }}
             >
-              {t.getStarted}
+              {t('texts.getStarted')}
             </motion.button>
             {/* "Learn More" button */}
             <motion.button
@@ -108,7 +105,7 @@ const Hero: React.FC = () => {
               className="px-8 py-3 bg-white dark:bg-gray-900 text-blue-600 dark:text-blue-400 font-semibold rounded-xl border border-blue-200 dark:border-blue-900 hover:border-blue-400 dark:hover:border-blue-700 shadow transition-all duration-200 text-lg"
               style={{ willChange: 'transform, box-shadow' }}
             >
-              {t.learnMore}
+              {t('texts.learnMore')}
             </motion.button>
           </div>
         </div>

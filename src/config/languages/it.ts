@@ -269,6 +269,8 @@ const it = {
     email: 'Email',
     showAdditionalInfo: 'Mostra informazioni aggiuntive',
     hideAdditionalInfo: 'Nascondi informazioni aggiuntive',
+    team: 'Team',
+    ourValues: 'I nostri valori',
   },
 };
 

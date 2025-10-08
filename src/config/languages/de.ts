@@ -251,6 +251,8 @@ const de = {
     email: 'Email',
     showAdditionalInfo: 'Zusätzliche Informationen anzeigen',
     hideAdditionalInfo: 'Zusätzliche Informationen ausblenden',
+    team: 'Team',
+    ourValues: 'Unsere Werte',
   },
 };
 

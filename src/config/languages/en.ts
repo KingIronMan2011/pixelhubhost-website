@@ -240,6 +240,8 @@ const en = {
     email: 'Email',
     showAdditionalInfo: 'Show Additional Information',
     hideAdditionalInfo: 'Hide Additional Information',
+    team: 'Team',
+    ourValues: 'Our Values',
   },
 };
 

@@ -2,12 +2,11 @@ import i18n from '../i18n';
 import languages from '../config/languages/Languages'; // Use 'languages' instead of 'languagesConfig'
 import { motion } from 'framer-motion';
 import { planLinks } from '../config/config';
+import { useTranslation } from 'react-i18next';
 
 type LanguageKey = keyof typeof languages;
+const { t } = useTranslation();
 const language = (i18n.language in languages ? i18n.language : 'en') as LanguageKey;
-
-// Get the texts for the current language, fallback to English if not found
-const texts = languages[language].texts;
 
 // Props for the PricingCard component
 interface PricingCardProps {
@@ -33,7 +32,7 @@ const PricingCard = ({ product, isPopular, billingInterval = 'monthly' }: Pricin
   const planLink = planLinks[product.id]?.[billingInterval] || '#';
 
   // Get the billing label ("Monthly" or "Quarterly") in the current language
-  const billingLabel = billingInterval === 'monthly' ? texts.monthly : texts.quarterly;
+  const billingLabel = billingInterval === 'monthly' ? t('texts.monthly') : t('texts.quarterly');
 
   // Get currency and price info
   const { currency, amount, quarterlyAmount } = product.price.getCurrencyInfo(language);
@@ -55,7 +54,7 @@ const PricingCard = ({ product, isPopular, billingInterval = 'monthly' }: Pricin
       {/* Popular plan badge */}
       {isPopular && (
         <div className="absolute top-0 inset-x-0 px-4 py-1 bg-gradient-to-r from-blue-500 to-purple-500 text-white text-sm text-center font-semibold rounded-t-2xl shadow">
-          {texts.popularPlan}
+          {t('texts.popularPlan')}
         </div>
       )}
 
@@ -63,11 +62,11 @@ const PricingCard = ({ product, isPopular, billingInterval = 'monthly' }: Pricin
       <div className={`p-7 ${isPopular ? 'pt-14' : 'pt-7'}`}>
         {/* Plan name */}
         <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-2 tracking-tight">
-          {product.name[language]}
+          {t('product.name')}
         </h3>
         {/* Plan description */}
         <p className="text-gray-600 dark:text-gray-400 mb-6 min-h-[3rem] text-base">
-          {product.description[language]}
+          {t('product.description')}
         </p>
 
         {/* Price and billing label */}
@@ -103,7 +102,7 @@ const PricingCard = ({ product, isPopular, billingInterval = 'monthly' }: Pricin
           whileTap={{ scale: 0.97 }} // mobile tap animation
           style={{ willChange: 'transform' }}
         >
-          {texts.buyNow}
+          {t('texts.buyNow')}
         </motion.a>
         {/* Discount badge (always shown here for demo) */}
         <span className="ml-2 text-sm bg-green-500 text-white px-2 py-0.5 rounded shadow font-semibold">

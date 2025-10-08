@@ -1,25 +1,21 @@
 import React from 'react';
-import { Globe, Youtube } from 'lucide-react';
+import { Youtube } from 'lucide-react';
 import i18n from '../i18n';
 import languages from '../config/languages/Languages';
 import { motion, easeOut } from 'framer-motion';
 import DOMPurify from 'dompurify';
-import { useLocation } from 'react-router-dom';
+import { useLocation, Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 // Always use the current i18n language for translations
 const Footer: React.FC = () => {
   // Use i18n.language as the source of truth, fallback to context, then 'en'
   const currentLanguage = i18n.language || 'en';
-  const t = languages[currentLanguage as keyof typeof languages]?.texts || languages.en.texts;
+  const { t } = useTranslation();
   const contact =
     languages[currentLanguage as keyof typeof languages]?.contact || languages.en.contact;
 
   const location = useLocation();
-
-  // Function to update the language in i18n
-  const setLanguage = (language: string) => {
-    i18n.changeLanguage(language);
-  };
   const isHome = location.pathname === '/' || location.pathname === '/#home';
 
   const hoverMotion = {
@@ -35,20 +31,14 @@ const Footer: React.FC = () => {
     },
   };
 
-  // Language options for the selector
-  const languageOptions = (Object.keys(languages) as Array<keyof typeof languages>).map((code) => ({
-    code,
-    name: languages[code]?.texts?.languageNames?.[code] || code.toUpperCase(),
-  }));
-
   return (
     <footer className="bg-gradient-to-b from-gray-900 via-gray-950 to-black text-gray-300 pt-14 pb-8 border-t border-gray-800">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-8">
           {/* Brand & Description */}
           <div>
-            <a
-              href={isHome ? '#home' : '/'}
+            <Link
+              to={isHome ? '/' : '/'}
               className="font-semibold text-lg mb-4 text-white tracking-wide hover:text-blue-400 transition-colors flex items-center gap-2"
               aria-label="PixelHub Host"
             >
@@ -57,9 +47,9 @@ const Footer: React.FC = () => {
                 alt="PixelHub Host Logo"
                 className="h-8 w-auto"
               />
-              {t.brand}
-            </a>
-            <p className="text-sm text-gray-400 leading-relaxed mb-4">{t.footerDescription}</p>
+              {t("texts.brand")}
+            </Link>
+            <p className="text-sm text-gray-400 leading-relaxed mb-4">{t("texts.footerDescription")}</p>
             {/* Social icons example (e.g., YouTube) */}
             <a
               href="https://www.youtube.com/channel/..."
@@ -74,41 +64,41 @@ const Footer: React.FC = () => {
 
           {/* Company */}
           <div>
-            <h4 className="font-semibold text-lg mb-4 text-white tracking-wide">{t.company}</h4>
+            <h4 className="font-semibold text-lg mb-4 text-white tracking-wide">{t("texts.company")}</h4>
             <ul className="space-y-2 text-sm">
               <li>
-                <a href="/aboutus" className="hover:text-blue-400 transition-colors">
-                  {t.aboutUs}
-                </a>
+                <Link to="/aboutus" className="hover:text-blue-400 transition-colors">
+                  {t("texts.aboutUs")}
+                </Link>
               </li>
               <li>
-                <a href="#contact" className="hover:text-blue-400 transition-colors">
-                  {t.contact}
-                </a>
+                <Link to="/#contact" className="hover:text-blue-400 transition-colors">
+                  {t("texts.contact")}
+                </Link>
               </li>
             </ul>
           </div>
 
           {/* Services */}
           <div>
-            <h4 className="font-semibold text-lg mb-4 text-white tracking-wide">{t.services}</h4>
+            <h4 className="font-semibold text-lg mb-4 text-white tracking-wide">{t("texts.services")}</h4>
             <ul className="space-y-2 text-sm">
               <li>
-                <a href="#pricing" className="hover:text-blue-400 transition-colors">
-                  {t.mcHosting}
-                </a>
+                <Link to="/#pricing" className="hover:text-blue-400 transition-colors">
+                  {t("texts.mcHosting")}
+                </Link>
               </li>
               <li>
-                <a href="#addons" className="hover:text-blue-400 transition-colors">
-                  {t.addons}
-                </a>
+                <Link to="/#addons" className="hover:text-blue-400 transition-colors">
+                  {t("texts.addons")}
+                </Link>
               </li>
             </ul>
           </div>
 
           {/* Support & Language */}
           <div>
-            <h4 className="font-semibold text-lg mb-4 text-white tracking-wide">{t.support}</h4>
+            <h4 className="font-semibold text-lg mb-4 text-white tracking-wide">{t("texts.support")}</h4>
             <ul className="space-y-2 text-sm">
               <li>
                 <a
@@ -117,7 +107,7 @@ const Footer: React.FC = () => {
                   rel="noopener noreferrer"
                   className="hover:text-blue-400 transition-colors"
                 >
-                  {t.helpCenter}
+                  {t("texts.helpCenter")}
                 </a>
               </li>
               <li>
@@ -127,29 +117,8 @@ const Footer: React.FC = () => {
                   rel="noopener noreferrer"
                   className="hover:text-blue-400 transition-colors"
                 >
-                  {t.systemStatus}
+                  {t("texts.systemStatus")}
                 </a>
-              </li>
-              <li>
-                <div className="flex items-center mt-3">
-                  <Globe size={16} className="mr-2 text-gray-400" />
-                  <select
-                    value={currentLanguage}
-                    onChange={(e) => setLanguage(e.target.value as any)}
-                    className="bg-gray-900 border border-gray-700 rounded px-2 py-1 text-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                    aria-label="Select language"
-                  >
-                    {languageOptions.map((lang) => (
-                      <option
-                        key={lang.code}
-                        value={lang.code}
-                        className="bg-gray-900 text-gray-300"
-                      >
-                        {lang.name}
-                      </option>
-                    ))}
-                  </select>
-                </div>
               </li>
             </ul>
           </div>
@@ -164,7 +133,7 @@ const Footer: React.FC = () => {
             className="inline-block bg-gray-800 hover:bg-gray-700 text-white font-medium py-1 px-2 rounded shadow text-xs transition-colors duration-200"
             {...hoverMotion}
           >
-            {t.githubButtonText}
+            {t("texts.githubButtonText")}
           </motion.a>
         </div>
 
@@ -174,7 +143,7 @@ const Footer: React.FC = () => {
             <span
               dangerouslySetInnerHTML={{
                 __html: DOMPurify.sanitize(
-                  t.madeByText.replace(
+                  t("texts.madeByText").replace(
                     'KingIronMan2011',
                     `<a href="https://github.com/KingIronMan2011" target="_blank" rel="noopener noreferrer" class="underline hover:text-blue-400 transition-colors">KingIronMan2011</a>`,
                   ),
@@ -186,36 +155,28 @@ const Footer: React.FC = () => {
 
         {/* Footer bottom */}
         <div className="border-t border-gray-800 pt-4 mt-4 flex flex-col md:flex-row justify-between items-center gap-4">
-          <p className="text-gray-500 text-xs">{t.footerCopyright}</p>
+          <p className="text-gray-500 text-xs">{t("texts.footerCopyright")}</p>
           <div className="flex flex-wrap gap-x-6 gap-y-2 text-xs text-gray-500">
-            <motion.a
-              href="/privacy"
-              className="hover:text-blue-400 transition-colors"
-              {...hoverMotion}
-            >
-              {t.privacyPolicy}
-            </motion.a>
-            <motion.a
-              href="/terms"
-              className="hover:text-blue-400 transition-colors"
-              {...hoverMotion}
-            >
-              {t.termsOfService}
-            </motion.a>
-            <motion.a
-              href="/sitemap"
-              className="hover:text-blue-400 transition-colors"
-              {...hoverMotion}
-            >
-              {t.sitemap}
-            </motion.a>
-            <motion.a
-              href="/legal"
-              className="hover:text-blue-400 transition-colors"
-              {...hoverMotion}
-            >
-              {t.legal}
-            </motion.a>
+            <motion.div {...hoverMotion}>
+              <Link to="/privacy" className="hover:text-blue-400 transition-colors">
+                {t("texts.privacyPolicy")}
+              </Link>
+            </motion.div>
+            <motion.div {...hoverMotion}>
+              <Link to="/terms" className="hover:text-blue-400 transition-colors">
+                {t("texts.termsOfService")}
+              </Link>
+            </motion.div>
+            <motion.div {...hoverMotion}>
+              <Link to="/sitemap" className="hover:text-blue-400 transition-colors">
+                {t("texts.sitemap")}
+              </Link>
+            </motion.div>
+            <motion.div {...hoverMotion}>
+              <Link to="/legal" className="hover:text-blue-400 transition-colors">
+                {t("texts.legal")}
+              </Link>
+            </motion.div>
           </div>
         </div>
       </div>

@@ -1,46 +1,43 @@
 import { Shield, Cpu, Network, Clock, Globe, DatabaseBackup } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { config } from '../config/config';
-import i18n from '../i18n';
-import languages from '../config/languages/Languages';
+import { useTranslation } from 'react-i18next';
 
 // Features section component
 const Features = () => {
-  // Always use i18n.language for detection
-  const language = (i18n.language in languages ? i18n.language : 'en') as keyof typeof languages;
-  const t = languages[language].texts;
+  const { t } = useTranslation();
 
   // Define the list of features to display, each with an icon, title, and description
   const features = [
     {
       icon: Shield,
-      title: t.ddosProtectionDesc ? t.ddosProtection : '',
-      description: t.ddosProtectionDesc,
+      title: t('texts.ddosProtectionDesc') ? t('texts.ddosProtection') : '',
+      description: t('texts.ddosProtectionDesc'),
     },
     {
       icon: Cpu,
-      title: t.xeonCpuDesc ? t.xeonCpu : '',
-      description: t.xeonCpuDesc,
+      title: t('texts.xeonCpuDesc') ? t('texts.xeonCpu') : '',
+      description: t('texts.xeonCpuDesc'),
     },
     {
       icon: Network,
-      title: t.networkSpeedDesc ? t.networkSpeed : '',
-      description: t.networkSpeedDesc,
+      title: t('texts.networkSpeedDesc') ? t('texts.networkSpeed') : '',
+      description: t('texts.networkSpeedDesc'),
     },
     {
       icon: Clock,
-      title: t.reliableSupportDesc ? t.reliableSupport : '',
-      description: t.reliableSupportDesc,
+      title: t('texts.reliableSupportDesc') ? t('texts.reliableSupport') : '',
+      description: t('texts.reliableSupportDesc'),
     },
     {
       icon: Globe,
-      title: t.freeSubdomainDesc ? t.freeSubdomain : '',
-      description: t.freeSubdomainDesc,
+      title: t('texts.freeSubdomainDesc') ? t('texts.freeSubdomain') : '',
+      description: t('texts.freeSubdomainDesc'),
     },
     {
       icon: DatabaseBackup,
-      title: t.dailyBackupsDesc ? t.dailyBackups : '',
-      description: t.dailyBackupsDesc,
+      title: t('texts.dailyBackupsDesc') ? t('texts.dailyBackups') : '',
+      description: t('texts.dailyBackupsDesc'),
     },
   ];
 
@@ -77,10 +74,10 @@ const Features = () => {
         {/* Section title and subtitle */}
         <div className="text-center mb-12">
           <h2 className="text-4xl font-extrabold text-gray-900 dark:text-white mb-4 tracking-tight drop-shadow-sm">
-            {t.featuresTitle}
+            {t('texts.featuresTitle')}
           </h2>
           <p className="text-gray-700 dark:text-gray-400 max-w-2xl mx-auto text-lg">
-            {t.featuresSubtitle}
+            {t('texts.featuresSubtitle')}
           </p>
         </div>
 

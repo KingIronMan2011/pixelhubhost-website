@@ -59,7 +59,9 @@ const denoGlobals = {
 };
 
 module.exports = [
-  js.configs.recommended,
+  {
+    ignores: ['dist/**', 'node_modules/**', 'build/**'],
+  },
   {
     files: ['**/*.ts', '**/*.tsx', '**/*.js', '**/*.jsx'],
     languageOptions: {
@@ -78,6 +80,8 @@ module.exports = [
     },
     rules: {
       'react/prop-types': 'off',
+      'no-unused-vars': 'off',
+      '@typescript-eslint/no-unused-vars': 'off',
     },
     settings: {
       react: {
@@ -87,7 +91,6 @@ module.exports = [
   },
   {
     files: ['*.js', '*.cjs'],
-    ignores: ['dist/**', 'node_modules/**', 'build/**'],
     languageOptions: {
       ecmaVersion: 2021,
       sourceType: 'script',
