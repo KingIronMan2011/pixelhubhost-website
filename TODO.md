@@ -6,6 +6,7 @@
 - [x] Make a Backend for all Secrets and the Pterodactyl stuff
 - [x] List the Ports, Splits, Backups and Databases under additional information button
 - [x] Add an exchangeRates.ts
+- [ ] Use a global CSS File for Styling 
 
 ## Optimizations
 
